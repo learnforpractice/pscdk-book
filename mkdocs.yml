@@ -1,0 +1,7 @@
+site_name: Python Smart Contracts
+markdown_extensions:
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+theme:
+  name: material

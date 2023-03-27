@@ -44,6 +44,7 @@ class TableI64:
 ```
 ## store/update/find/get/set五个方法的用法
 
+### store
 以下是`TableI64`类`store`方法的用法例子：
 
 ```python
@@ -131,6 +132,8 @@ could not insert object, most likely a uniqueness constraint was violated
 为了不抛出异常，在要更新表中的数据时，则要用到`update`方法。
 在调用`store`之前要先对表中是否存在主索引进行判断，如果已经存在，则不能调用`store`方法，而必须调用`update`方法。
 以下的示例展示了用法：
+
+### find/update
 
 ```python
 # db_example2.codon
@@ -225,6 +228,8 @@ t.push_action('hello', 'test', {'value': 'hello, alice'}, {'hello': 'active'})
 ```
 
 可以看出，上面的代码稍微有点复杂，首先要调用`find`判断和主索引对应的值存不存在，再决定是调用`store`还是`update`。上面的代码实现的功能可以用`TableI64.set`方法来替代，请看下面的示例：
+
+### get/set
 
 ```python
 # test_example3.codon
@@ -844,6 +849,4 @@ assert it_sec.primary == 1u64
 4. `table.update(it, value, payer)`将更新后的`A`值更新到表里。
 5. `it_sec = idx_table_b.find(22u64)`查找新的二级索引
 6. `assert it_sec.primary == 1u64`用于检查主索引是否正确
-
-
 
