@@ -1,0 +1,51 @@
+from chain.database import TableI64
+from chain.contract import Contract
+
+@packer
+class A(object):
+    a: u64
+    b: str
+    def __init__(self, a: u64, b: str):
+        self.a = a
+        self.b = b
+
+    def get_primary(self) -> u64:
+        return self.a
+
+@contract(main=True)
+class MyContract(Contract):
+
+    def __init__(self):
+        super().__init__()
+
+    @action('test')
+    def test(self):
+        print('db_test')
+        table = TableI64[A](n'hello', n'', n'mytable')
+        payer = n'hello'
+
+        value = A(1u64, "alice")
+        table.store(value, payer)
+
+        value = A(3u64, "bob")
+        table.store(value, payer)
+
+        value = A(5u64, "john")
+        table.store(value, payer)
+
+        it = table.lowerbound(1u64)
+        value2: A = it.get_value()
+        print("+++++:", value2.a, value2.b)
+        assert value2.a == 1u64 and value2.b == 'alice'
+
+        it = table.upperbound(1u64)
+        value2: A = it.get_value()
+        print("+++++:", value2.a, value2.b)
+        assert value2.a == 3u64 and value2.b == 'bob'
+
+@export
+def apply(receiver: u64, first_receiver: u64, action: u64) -> None:
+    from C import __init_codon__() -> i32
+    __init_codon__()
+    c = MyContract(receiver, first_receiver, action)
+    c.apply()

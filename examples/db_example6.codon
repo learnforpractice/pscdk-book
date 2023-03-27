@@ -1,0 +1,118 @@
+from chain.contract import Contract
+from chain.database import primary, secondary
+from chain.database import IdxTable64, IdxTable128, SecondaryValue, Iterator
+from chain.mi import MultiIndexBase
+from chain.name import Name
+
+@packer
+class A(object):
+    a: database.primary[u64]
+    b: secondary[u64]
+    c: secondary[u128]
+
+    def __init__(self, a: u64, b: u64, c: u128):
+        self.a = primary[u64](a)
+        self.b = secondary[u64](b)
+        self.c = secondary[u128](c)
+
+    def get_primary(self) -> u64:
+        return self.a()
+
+    def get_secondary_value(self, index: int) -> SecondaryValue:
+        if index == 0:
+            return SecondaryValue(self.b())
+        elif index == 1:
+            return SecondaryValue(self.c())
+        assert False
+
+    def set_secondary_value(self, index: int, value: SecondaryValue):
+        if index == 0:
+            self.b = value
+        elif index == 1:
+            self.c = value
+        assert False
+
+class MultiIndexA(MultiIndexBase[A]):
+    idx_b: IdxTable64
+    idx_c: IdxTable128
+
+    def __init__(self, code: Name, scope: Name, table: Name):
+        super().__init__(code, scope, table)
+        idx_table_base = table.value & 0xfffffffffffffff0u64
+        self.idx_b = IdxTable64(0, code, scope, Name(idx_table_base | u64(0)))
+        self.idx_c = IdxTable128(1, code, scope, Name(idx_table_base | u64(1)))
+
+    def store(self, item: A, payer: Name) -> Iterator[A]:
+        id: u64 = item.get_primary()
+        it = self.table.store(item, payer)
+        secondary = item.get_secondary_value(0)
+        self.idx_b.store(id, secondary.get_value_u64(), payer)
+
+        secondary = item.get_secondary_value(1)
+        self.idx_c.store(id, secondary.get_value_u128(), payer)
+
+        return it
+
+    def update(self, it: Iterator[A], item: A, payer: Name):
+        self.table.update(it, item, payer)
+
+        primary = item.get_primary()
+        secondary = item.get_secondary_value(0).get_value_u64()
+        it_secondary, old_secondary = self.idx_b.find_by_primary(primary)
+        if not secondary == old_secondary:
+            self.idx_b.update(it_secondary, secondary, payer)
+
+        secondary = item.get_secondary_value(1).get_value_u128()
+        it_secondary, old_secondary = self.idx_c.find_by_primary(primary)
+        if not secondary == old_secondary:
+            self.idx_c.update(it_secondary, secondary, payer)
+
+    def remove(self, it: Iterator[A]):
+        sec_it, _ = self.idx_b.find_by_primary(it.get_primary())
+        self.idx_b.remove(sec_it)
+
+        sec_it, _ = self.idx_c.find_by_primary(it.get_primary())
+        self.idx_c.remove(sec_it)
+
+        self.table.remove(it)
+
+    def get_idx_table_by_b(self) -> IdxTable64:
+        return self.idx_b
+
+    def get_idx_table_by_c(self) -> IdxTable128:
+        return self.idx_c
+
+@extend
+class A:
+    def new_table(code: Name, scope: Name):
+        return MultiIndexA(code, scope, n"mytable")
+
+@contract(main=True)
+class MyContract(Contract):
+
+    def __init__(self):
+        super().__init__()
+
+    @action('test')
+    def test(self):
+        payer = n"hello"
+        table = A.new_table(n"hello", n"")
+        item = A(1u64, 2u64, 3u128)
+        table.store(item, payer)
+
+        idx_table_b = table.get_idx_table_by_b()
+        it = idx_table_b.find(2u64)
+        print("++++++it.primary:", it.primary)
+        assert it.primary == 1u64
+
+        idx_table_c = table.get_idx_table_by_c()
+        it = idx_table_c.find(3u128)
+        print("++++++it.primary:", it.primary)
+        assert it.primary == 1u64
+
+@export
+def apply(receiver: u64, first_receiver: u64, action: u64) -> None:
+    from C import __init_codon__() -> i32
+    __init_codon__()
+    c = MyContract(receiver, first_receiver, action)
+    c.apply()
