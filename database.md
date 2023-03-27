@@ -86,6 +86,12 @@ def apply(receiver: u64, first_receiver: u64, action: u64) -> None:
 
 packer是一个内置的decorator，用来将类中的数据序列化，后面还会单独讲到。用下面的命令来进行测试：
 
+编译：
+
+```
+python-contract build db_example1.codon
+```
+
 ```bash
 ipyeos -m pytest -s -x test.py -k test_example1
 ```
@@ -184,6 +190,12 @@ def test_example2():
     t.produce_block()
 ```
 
+编译：
+
+```
+python-contract build db_example2.codon
+```
+
 用下面的命令来运行测试代码：
 
 ```bash
@@ -212,7 +224,8 @@ t.push_action('hello', 'test', {'value': 'hello, alice'}, {'hello': 'active'})
 +++++update value: hello, alice
 ```
 
-在上面的代码中，`set`方法实现的相同的功能，请看下面的示例：
+可以看出，上面的代码稍微有点复杂，首先要调用`find`判断和主索引对应的值存不存在，再决定是调用`store`还是`update`。上面的代码实现的功能可以用`TableI64.set`方法来替代，请看下面的示例：
+
 ```python
 # test_example3.codon
 from chain.database import TableI64
@@ -246,6 +259,7 @@ class MyContract(Contract):
             print('+++++item.b:', item.b)
         item = A(key, value)
         table.set(item, payer)
+
 @export
 def apply(receiver: u64, first_receiver: u64, action: u64) -> None:
     from C import __init_codon__() -> i32
@@ -255,6 +269,7 @@ def apply(receiver: u64, first_receiver: u64, action: u64) -> None:
 ```
 
 测试代码和`test_example`类似:
+
 ```python
 def test_example3():
     t = init_test('db_example3')
@@ -264,6 +279,12 @@ def test_example3():
 
     ret = t.push_action('hello', 'test', {'value': 'hello, alice'}, {'hello': 'active'})
     t.produce_block()
+```
+
+编译：
+
+```
+python-contract build db_example3.codon
 ```
 
 用下面的命令来运行测试代码：
@@ -335,6 +356,12 @@ def test_example4():
     ret = t.push_action('hello', 'test', {}, {'hello': 'active'})
     t.produce_block()
     logger.info("++++++++++%s\n", ret['elapsed'])
+```
+
+编译：
+
+```
+python-contract build db_example4.codon
 ```
 
 运行测试：
@@ -409,17 +436,16 @@ def apply(receiver: u64, first_receiver: u64, action: u64) -> None:
 ```
 
 这里，通过`table`这个内置的`decorator`来让编译器在ABI中加入表的结构。
-给类加了这个`table`，将编译器会自动给类添加以下四个函数：
+给类加了这个`table`，编译器会自动给类添加以下三个函数：
 
 ```
 get_primary
 set_secondary_value
 get_secondary_value
-get_idx_db_types
 ```
 
 同时，类的成员变量也要满足相应的要求：
-首先，必须声明一个主索引变量，类型必须是`database.primary`, 实现如下：
+首先，必须声明一个主索引变量，类型必须是`database.primary`, `primary`类的实现如下：
 
 ```python
 class primary[T](object):
@@ -453,7 +479,7 @@ class primary[T](object):
 python-contract build db_example5.codon
 ```
 
-你将在生成的`db_example5.abi`中看到下面的对给的描述：
+你将在生成的`db_example5.abi`中看到下面的描述：
 ```bash
 "tables": [
         {
@@ -629,6 +655,12 @@ def test_example6():
     logger.info("++++++++++%s\n", ret['elapsed'])
 ```
 
+编译：
+
+```
+python-contract build db_example6.codon
+```
+
 运行测试：
 
 ```bash
@@ -652,7 +684,6 @@ ipyeos -m pytest -s -x test.py -k test_example6
 from chain.contract import Contract
 from chain.database import primary, secondary
 from chain.database import IdxTable64, IdxTable128, SecondaryValue, Iterator
-from chain.mi import MultiIndexBase
 from chain.name import Name
 
 @table("mytable")
@@ -711,6 +742,12 @@ def test_example7():
     logger.info("++++++++++%s\n", ret['elapsed'])
 ```
 
+编译：
+
+```
+python-contract build db_example6.codon
+```
+
 运行测试：
 
 ```bash
@@ -729,10 +766,10 @@ ipyeos -m pytest -s -x test.py -k test_example6
 在实际的应用中，有时候需要更新二级索引。请先看下面的代码
 
 ```python
+# db_example8.codon
 from chain.contract import Contract
 from chain.database import primary, secondary
 from chain.database import IdxTable64, IdxTable128, SecondaryValue, Iterator
-from chain.mi import MultiIndexBase
 from chain.name import Name
 
 @table("mytable")
@@ -795,11 +832,18 @@ value.b = secondary[u64](22u64)
 table.update(it, value, payer)
 
 it_sec = idx_table_b.find(22u64)
+assert it_sec.is_ok()
 print("++++++it.primary:", it_sec.primary)
 assert it_sec.primary == 1u64
 ```
 
-这里通过`idx_table_b.find`查找二级索引的值`2u64`，再从返回的`SecondarIterator`类型的`it_sec`中获取主索引的值，再通过主索引的值获取对应的`A`的值，再更新`A`的二级索引的值为`22u64`，并通过`table.update`将更新后的`A`值更新到表里。最后，通过`idx_table_b.find(22u64)`并比较主索引来证明更新已经生效。
+简述下过程：
+1. `it_sec = idx_table_b.find(2u64)`查找二级索引的值`2u64`，返回的`SecondarIterator`类型的`it_sec`。
+2. `it = table.find(it_sec.primary)`查找主索引，代码`value: A = it.get_value()`获取对应的`A`的值，
+3. `value.b = secondary[u64](22u64)`更新`A`的二级索引的值为`22u64`
+4. `table.update(it, value, payer)`将更新后的`A`值更新到表里。
+5. `it_sec = idx_table_b.find(22u64)`查找新的二级索引
+6. `assert it_sec.primary == 1u64`用于检查主索引是否正确
 
 
 

@@ -1,5 +1,6 @@
+*.o
 *.wasm
-*.wasm.org
+*.wasm.orig
 *.abi
 # Byte-compiled / optimized / DLL files
 __pycache__/
