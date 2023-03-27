@@ -108,3 +108,17 @@ def test_example8():
     ret = t.push_action('hello', 'test', {}, {'hello': 'active'})
     t.produce_block()
     logger.info("++++++++++%s\n", ret['elapsed'])
+
+def test_example9():
+    t = init_test('db_example8')
+    ret = t.push_action('hello', 'test', {}, {'hello': 'active'})
+    t.produce_block()
+    logger.info("++++++++++%s", ret['elapsed'])
+
+    rows = t.get_table_rows(True, 'hello', '', 'mytable', 22, '', 10, 'i64', '2')
+    logger.info("++++++++++%s", rows['rows'])
+    assert rows['rows'][0]['b'] == 22
+
+    rows = t.get_table_rows(True, 'hello', '', 'mytable', '3', '', 10, 'i128', '3')
+    logger.info("++++++++++%s", rows['rows'])
+    assert rows['rows'][0]['c'] == '3'

@@ -308,6 +308,8 @@ ipyeos -m pytest -s -x test.py -k test_example3
 这两个方法也是用来查找给中的元素的，不同于`find`方法，这两个函数用于模糊查找。其中，`lowerbound`方法返回`>=`指定`id`的`Iterator`，`upperbound`方法返回`>`指定`id`的`Iterator`，下面来看下用法：
 
 ```python
+# db_example4.codon
+
 from chain.database import TableI64
 from chain.contract import Contract
 
@@ -383,8 +385,25 @@ ipyeos -m pytest -s -x test.py -k test_example4
 ```
 
 
-## 通过API来对表进行查询
+## 利用API来对表进行主索引查询
+
 上面的例子都是讲的如果通过智能合约来操作链上的数据库的表，实际上，通过EOS提供的链下的`get_table_rows`的API的接口，也同样可以对链上的表进行查询工作。
+在测试代码中，get_table_rows的定义如下
+
+```python
+def get_table_rows(self, _json, code, scope, table,
+                                lower_bound, upper_bound,
+                                limit,
+                                key_type='',
+                                index_position='', 
+                                reverse = False,
+                                show_payer = False):
+    """ Fetch smart contract data from an account. 
+    key_type: "i64"|"i128"|"i256"|"float64"|"float128"|"sha256"|"ripemd160"
+    index_position: "2"|"3"|"4"|"5"|"6"|"7"|"8"|"9"|"10"
+    """
+```
+
 首先，要通过`get_table_rows`来查询表，表的结构必须在ABI的描述中可见，可以通过下面的代码来让表在生成相应的ABI文件中有描述：
 
 ```python
@@ -750,13 +769,13 @@ def test_example7():
 编译：
 
 ```
-python-contract build db_example6.codon
+python-contract build db_example7.codon
 ```
 
 运行测试：
 
 ```bash
-ipyeos -m pytest -s -x test.py -k test_example6
+ipyeos -m pytest -s -x test.py -k test_example7
 ```
 
 输出：
@@ -799,6 +818,8 @@ class MyContract(Contract):
         payer = n"hello"
         table = A.new_table(n"hello", n"")
         item = A(1u64, 2u64, 3u128)
+        table.store(item, payer)
+        item = A(111u64, 222u64, 333u128)
         table.store(item, payer)
 
         idx_table_b = table.get_idx_table_by_b()
@@ -843,10 +864,59 @@ assert it_sec.primary == 1u64
 ```
 
 简述下过程：
-1. `it_sec = idx_table_b.find(2u64)`查找二级索引的值`2u64`，返回的`SecondarIterator`类型的`it_sec`。
-2. `it = table.find(it_sec.primary)`查找主索引，代码`value: A = it.get_value()`获取对应的`A`的值，
-3. `value.b = secondary[u64](22u64)`更新`A`的二级索引的值为`22u64`
-4. `table.update(it, value, payer)`将更新后的`A`值更新到表里。
-5. `it_sec = idx_table_b.find(22u64)`查找新的二级索引
-6. `assert it_sec.primary == 1u64`用于检查主索引是否正确
 
+- `it_sec = idx_table_b.find(2u64)`查找二级索引的值`2u64`，返回的`SecondarIterator`类型的`it_sec`。
+- `it = table.find(it_sec.primary)`查找主索引，代码`value: A = it.get_value()`获取对应的`A`的值，
+- `value.b = secondary[u64](22u64)`更新`A`的二级索引的值为`22u64`
+- `table.update(it, value, payer)`将更新后的`A`值更新到表里。
+- `it_sec = idx_table_b.find(22u64)`查找新的二级索引
+- `assert it_sec.primary == 1u64`用于检查主索引是否正确
+
+## 利用API来对表进行二重索引查询
+
+在例子`db_example8.codon`中，定义了两个二级索引，类型分别为`u64`,`u128`，`get_table_rows`API还支持通过二级索引来查找对应的值
+
+```python
+def test_example9():
+    t = init_test('db_example8')
+    ret = t.push_action('hello', 'test', {}, {'hello': 'active'})
+    t.produce_block()
+    logger.info("++++++++++%s\n", ret['elapsed'])
+
+    # find by secondary u64
+    rows = t.get_table_rows(True, 'hello', '', 'mytable', 22, '', 10, 'i64', '2')
+    logger.info("++++++++++%s", rows['rows'])
+    assert rows['rows'][0]['b'] == 22
+
+    # find by secondary u128
+    rows = t.get_table_rows(True, 'hello', '', 'mytable', '3', '', 10, 'i128', '3')
+    logger.info("++++++++++%s", rows['rows'])
+    assert rows['rows'][0]['c'] == '3'
+```
+
+下面对代码作下解释
+
+通过二级索引`b`来查找表中的值：
+
+```python
+rows = t.get_table_rows(True, 'hello', '', 'mytable', 22, '', 10, 'i64', '2')
+```
+
+这里的`i64`即是`b`的索引类型，`2`是索引对应的序号，注意一下这里不是从`1`开始算起的。
+
+
+通过二级索引`c`来查找表中的值：
+
+```python
+rows = t.get_table_rows(True, 'hello', '', 'mytable', '3', '', 10, 'i128', '3')
+```
+
+这里的`i128`即是`c`的索引类型，注意这里lowerbound参数的值`3`是二级索引的值，由于u128已经超过了64位整数的表示范围，所以用数字字符串表示，最后一个参数`3`是索引对应的序号。
+
+
+上面的测试代码的运行结果如下：
+
+```
+++++++++++[{'a': 1, 'b': 22, 'c': '3'}, {'a': 111, 'b': 222, 'c': '333'}]
+++++++++++[{'a': 1, 'b': 22, 'c': '3'}, {'a': 111, 'b': 222, 'c': '333'}]
+```
