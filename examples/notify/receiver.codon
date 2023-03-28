@@ -1,0 +1,18 @@
+from chain.name import Name
+from chain.contract import Contract
+
+@contract(main=True)
+class MyContract(Contract):
+
+    @action('sayhello', notify=True)
+    def sayhello(self, receiver: Name):
+        assert not self.receiver == self.first_receiver
+        assert receiver == self.receiver
+        print('hello, world from notify')
+
+@export
+def apply(receiver: u64, first_receiver: u64, action: u64) -> None:
+    from C import __init_codon__() -> i32
+    __init_codon__()
+    c = MyContract(receiver, first_receiver, action)
+    c.apply()

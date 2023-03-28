@@ -1,0 +1,18 @@
+from chain.name import Name
+from chain.contract import Contract
+from chain.action import require_recipient
+
+@contract(main=True)
+class MyContract(Contract):
+
+    @action('sayhello')
+    def sayhello(self, receiver: Name):
+        print('hello, world')
+        require_recipient(receiver)
+
+@export
+def apply(receiver: u64, first_receiver: u64, action: u64) -> None:
+    from C import __init_codon__() -> i32
+    __init_codon__()
+    c = MyContract(receiver, first_receiver, action)
+    c.apply()
