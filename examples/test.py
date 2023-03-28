@@ -122,3 +122,9 @@ def test_example9():
     rows = t.get_table_rows(True, 'hello', '', 'mytable', '3', '', 10, 'i128', '3')
     logger.info("++++++++++%s", rows['rows'])
     assert rows['rows'][0]['c'] == '3'
+
+def test_action():
+    t = init_test('action_example')
+    ret = t.push_action('hello', 'test', {}, {'hello': 'active'})
+    t.produce_block()
+    logger.info("++++++++++%s", ret['elapsed'])

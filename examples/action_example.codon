@@ -1,0 +1,27 @@
+from packer import pack
+from chain.action import Action
+from chain.contract import Contract
+
+@contract(main=True)
+class MyContract(Contract):
+
+    def __init__(self):
+        super().__init__()
+
+    @action('test')
+    def test(self):
+        a = Action(n'hello', n'test2', pack("alice"))
+        print('++++send test2 action')
+        a.send()
+        return
+
+    @action('test2')
+    def test2(self, name: str):
+        print('++++=name:', name)
+
+@export
+def apply(receiver: u64, first_receiver: u64, action: u64) -> None:
+    from C import __init_codon__() -> i32
+    __init_codon__()
+    c = MyContract(receiver, first_receiver, action)
+    c.apply()
