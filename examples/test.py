@@ -128,3 +128,33 @@ def test_action():
     ret = t.push_action('hello', 'test', {}, {'hello': 'active'})
     t.produce_block()
     logger.info("++++++++++%s", ret['elapsed'])
+
+def init_notify():
+    t = ChainTester(True)
+    update_auth(t, 'hello')
+
+    wasm_file = os.path.join(dir_name, 'notify/sender.wasm')
+    with open(wasm_file, 'rb') as f:
+        code = f.read()
+    abi_file = os.path.join(dir_name, 'notify/sender.abi')
+    with open(abi_file, 'r') as f:
+        abi = f.read()
+    t.deploy_contract('hello', code, abi)
+    t.produce_block()
+
+    wasm_file = os.path.join(dir_name, 'notify/receiver.wasm')
+    with open(wasm_file, 'rb') as f:
+        code = f.read()
+    abi_file = os.path.join(dir_name, 'notify/receiver.abi')
+    with open(abi_file, 'r') as f:
+        abi = f.read()
+    t.deploy_contract('alice', code, abi)
+    t.produce_block()
+    return t
+
+def test_notify():
+    t = init_notify()
+    args = {'receiver': 'alice'}
+    ret = t.push_action('hello', 'sayhello', args, {'hello': 'active'})
+    t.produce_block()
+    logger.info("++++++++++%s\n", ret['elapsed'])

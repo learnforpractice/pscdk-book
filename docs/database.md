@@ -90,7 +90,7 @@ packer是一个内置的decorator，用来将类中的数据序列化，后面�
 编译：
 
 ```
-python-contract build db_example1.codon
+python-contract build db_example/db_example1.codon
 ```
 
 ```bash
@@ -196,7 +196,7 @@ def test_example2():
 编译：
 
 ```
-python-contract build db_example2.codon
+python-contract build db_example/db_example2.codon
 ```
 
 用下面的命令来运行测试代码：
@@ -289,7 +289,7 @@ def test_example3():
 编译：
 
 ```
-python-contract build db_example3.codon
+python-contract build db_example/db_example3.codon
 ```
 
 用下面的命令来运行测试代码：
@@ -368,7 +368,7 @@ def test_example4():
 编译：
 
 ```
-python-contract build db_example4.codon
+python-contract build db_example/db_example4.codon
 ```
 
 运行测试：
@@ -500,7 +500,7 @@ class primary[T](object):
 编译：
 
 ```bash
-python-contract build db_example5.codon
+python-contract build db_example/db_example5.codon
 ```
 
 你将在生成的`db_example5.abi`中看到下面的描述：
@@ -682,7 +682,7 @@ def test_example6():
 编译：
 
 ```
-python-contract build db_example6.codon
+python-contract build db_example/db_example6.codon
 ```
 
 运行测试：
@@ -769,7 +769,7 @@ def test_example7():
 编译：
 
 ```
-python-contract build db_example7.codon
+python-contract build db_example/db_example7.codon
 ```
 
 运行测试：

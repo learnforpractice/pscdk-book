@@ -1,4 +1,4 @@
-# Action在智能合约的使用
+# 内联Action在智能合约的使用
 
 在智能合约中也可以发起一个action，这样的action称之为内联action(inline action)。需要注意的是，action是异步的，也就是说，只有在整个代码执行完后，区块链的代码才会调用对应的action。
 
@@ -66,7 +66,7 @@ def __init__(self, account: Name, name: Name, permission_account: Name, data: by
 def __init__(self, account: Name, name: Name, permission_account: Name, permission_name: Name, data: bytes=bytes()):
 ```
 
-如果账号用了多个权限，则用下个这个初始化函数。需要注意的是，当有多个权限时，数组里权限必须按权限名称升序排序，否则会出异常。
+如果账号用了多个权限，则用下个这个初始化函数。
 
 ```python
 def __init__(self, account: Name, name: Name, authorization: List[PermissionLevel], data: bytes=bytes()):
@@ -196,3 +196,28 @@ debug 2023-03-28T12:35:48.177 thread-0  controller.cpp:2444           clear_expi
 
 可以看到，这里先调用了`test`这个在Transaction里指定了的action，然后调用了`test2`这个Action，但是`test2`这个action并没有在Transaction里指定，而是在智能合约里发起的。另外，还通过`test3`演示了如何发送带多个参数的action.
 
+
+
+
+需要注意的是，为了在合约中能够调用inline action，需要在账号的`active`权限中添加`eosio.code`这个虚拟权限,在测试代码中，通过下面的函数来将`eosio.code`这个虚拟权限添加到`active`权限中。
+
+```python
+def update_auth(chain, account):
+    a = {
+        "account": account,
+        "permission": "active",
+        "parent": "owner",
+        "auth": {
+            "threshold": 1,
+            "keys": [
+                {
+                    "key": 'EOS6AjF6hvF7GSuSd4sCgfPKq5uWaXvGM2aQtEUCwmEHygQaqxBSV',
+                    "weight": 1
+                }
+            ],
+            "accounts": [{"permission":{"actor":account,"permission": 'eosio.code'}, "weight":1}],
+            "waits": []
+        }
+    }
+    chain.push_action('eosio', 'updateauth', a, {account:'active'})
+```
