@@ -2,10 +2,10 @@
 
 链上数据存储和读取是智能合约的一个重要功能。EOS链实现了一个内存数据库，支持以表的方式来存储数据，其中，每一个表的每一项数据都有唯一的主索引，称之为primary key，类型为u64，表中存储的原始数据为任意长度的二进制数据，在存储时，会将类的数据序列化后存进表中，在读取的时候又会通过反序列化的方式将原始数据转成类对象。并且还支持u64, u128, u256, double, long double类型的索引表，可以把索引表看作数据长度固定的特殊的表。普通表和索引表可以配合起来使用，以实现二级索引的功能。这里要注意的是，二级索引的值是可以重复的，但是主索引必须是唯一的。
 
-在Python智能合约中，是通过`TableI64`类来操作表的。以下是这个类的声明：
+在Python智能合约中，是通过`PrimaryTable`类来操作表的。以下是这个类的声明：
 
 ```python
-class TableI64:
+class PrimaryTable:
     def store(self, item: T, payer: Name) -> Iterator[T]:
         ...
 
@@ -45,11 +45,11 @@ class TableI64:
 ## store/update/find/get/set五个方法的用法
 
 ### store
-以下是`TableI64`类`store`方法的用法例子：
+以下是`PrimaryTable`类`store`方法的用法例子：
 
 ```python
 # db_example1.codon
-from chain.database import TableI64
+from chain.database import PrimaryTable
 from chain.contract import Contract
 
 @packer
@@ -72,7 +72,7 @@ class MyContract(Contract):
     @action('test')
     def test(self):
         item = A(123u64, 'hello, world')
-        table = TableI64[A](n'hello', n'', n'mytable')
+        table = PrimaryTable[A](n'hello', n'', n'mytable')
         table.store(item, n'hello')
 
 @export
@@ -83,7 +83,7 @@ def apply(receiver: u64, first_receiver: u64, action: u64) -> None:
     c.apply()
 ```
 
-这里展示了`TableI64`类的`store`方法的用法
+这里展示了`PrimaryTable`类的`store`方法的用法
 
 packer是一个内置的decorator，用来将类中的数据序列化，后面还会单独讲到。用下面的命令来进行测试：
 
@@ -137,7 +137,7 @@ could not insert object, most likely a uniqueness constraint was violated
 
 ```python
 # db_example2.codon
-from chain.database import TableI64
+from chain.database import PrimaryTable
 from chain.contract import Contract
 
 @packer
@@ -160,7 +160,7 @@ class MyContract(Contract):
     @action('test')
     def test(self, value: str):
         print('db_test')
-        table = TableI64[A](n'hello', n'', n'mytable')
+        table = PrimaryTable[A](n'hello', n'', n'mytable')
         key = 123u64
         it = table.find(key)
         if it.is_ok():
@@ -227,13 +227,13 @@ t.push_action('hello', 'test', {'value': 'hello, alice'}, {'hello': 'active'})
 +++++update value: hello, alice
 ```
 
-可以看出，上面的代码稍微有点复杂，首先要调用`find`判断和主索引对应的值存不存在，再决定是调用`store`还是`update`。上面的代码实现的功能可以用`TableI64.set`方法来替代，请看下面的示例：
+可以看出，上面的代码稍微有点复杂，首先要调用`find`判断和主索引对应的值存不存在，再决定是调用`store`还是`update`。上面的代码实现的功能可以用`PrimaryTable.set`方法来替代，请看下面的示例：
 
 ### get/set
 
 ```python
 # test_example3.codon
-from chain.database import TableI64
+from chain.database import PrimaryTable
 from chain.contract import Contract
 
 @packer
@@ -256,7 +256,7 @@ class MyContract(Contract):
     @action('test')
     def test(self, value: str):
         print('db_test')
-        table = TableI64[A](n'hello', n'', n'mytable')
+        table = PrimaryTable[A](n'hello', n'', n'mytable')
         key = 123u64
         payer = n'hello'
         item = table.get(key)
@@ -310,7 +310,7 @@ ipyeos -m pytest -s -x test.py -k test_example3
 ```python
 # db_example4.codon
 
-from chain.database import TableI64
+from chain.database import PrimaryTable
 from chain.contract import Contract
 
 @packer
@@ -333,7 +333,7 @@ class MyContract(Contract):
     @action('test')
     def test(self):
         print('db_test')
-        table = TableI64[A](n'hello', n'', n'mytable')
+        table = PrimaryTable[A](n'hello', n'', n'mytable')
         payer = n'hello'
 
         value = A(1u64, "alice")
@@ -409,7 +409,7 @@ def get_table_rows(self, _json, code, scope, table,
 ```python
 # db_example5.codon
 
-from chain.database import TableI64, primary
+from chain.database import PrimaryTable, primary
 from chain.contract import Contract
 
 @table("mytable")
@@ -429,7 +429,7 @@ class MyContract(Contract):
     @action('test')
     def test(self):
         print('db_test')
-        table = TableI64[A](n'hello', n'', n'mytable')
+        table = PrimaryTable[A](n'hello', n'', n'mytable')
         payer = n'hello'
 
         value = A(1u64, "alice")

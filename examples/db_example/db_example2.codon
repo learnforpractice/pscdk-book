@@ -1,4 +1,4 @@
-from chain.database import TableI64
+from chain.database import PrimaryTable
 from chain.contract import Contract
 
 @packer
@@ -21,7 +21,7 @@ class MyContract(Contract):
     @action('test')
     def test(self, value: str):
         print('db_test')
-        table = TableI64[A](n'hello', n'', n'mytable')
+        table = PrimaryTable[A](n'hello', n'', n'mytable')
         key = 123u64
         it = table.find(key)
         if it.is_ok():

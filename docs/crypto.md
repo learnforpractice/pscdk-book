@@ -1,5 +1,19 @@
 # 密码学相关函数
 
+密码学相关的函数在`crypto.codon`中定义，可以通过下面的方式导入：
+
+```python
+from chain.crypto import ...
+```
+
+或者只导入crypto模块：
+
+```python
+from chain import crypto
+```
+
+然后通过像`crypto.sha256`的方式来调用内部函数。
+
 ## sha256
 
 sha256算法hash函数

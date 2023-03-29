@@ -1,6 +1,7 @@
 # require_recipient函数
 
-函数的声明如下：
+函数在``action.codon`中的声明如下：
+
 ```python
 def require_recipient(account: Name):
 ```

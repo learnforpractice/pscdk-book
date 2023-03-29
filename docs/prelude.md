@@ -91,6 +91,7 @@ EOS是一个基于代理权益证明(DPOS - Delegated Proof of Stake)共识算�
 ```
 
 简单介绍一下主要的字段的意思：
+
 - `account_name`: 账号名，规则在下一节中会讲到
 - `privileged`: `true`表示账号是特权账号，如`eosio`即是特权账号。`false`则表示普通账号
 - `last_code_update`: 账号中的智能合约的最后一次更新时间
