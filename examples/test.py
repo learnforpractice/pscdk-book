@@ -6,6 +6,7 @@ from ipyeos import eos
 from ipyeos import chaintester
 from ipyeos.chaintester import ChainTester
 from ipyeos import log
+from pyeoskit import eosapi
 
 chaintester.chain_config['contracts_console'] = True
 eos.set_log_level("default", 3)
@@ -156,5 +157,38 @@ def test_notify():
     t = init_notify()
     args = {'receiver': 'alice'}
     ret = t.push_action('hello', 'sayhello', args, {'hello': 'active'})
+    t.produce_block()
+    logger.info("++++++++++%s\n", ret['elapsed'])
+
+def test_crypto():
+    t = init_test('crypto_example')
+    args = {}
+    ret = t.push_action('hello', 'testcrypto', args, {'hello': 'active'})
+    t.produce_block()
+    logger.info("++++++++++%s\n", ret['elapsed'])
+
+def test_recover():
+    t = init_test('crypto_example')
+
+    msg = b'hello,world'
+    # key pair
+    public_key = 'EOS6MRyAjQq8ud7hVNYcfnVPJqcVpscN5So8BhtHuGYqET5GDW5CV'
+    private_key = '5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3'
+
+    h = hashlib.sha256()
+    h.update(msg)
+    digest = h.hexdigest()
+    logger.info('++++digest: %s', digest)
+
+    #sign with private key
+    sig = eosapi.sign_digest(digest, private_key)
+    logger.info('++++signature: %s', sig)
+    args = {
+        "msg": msg.hex(),
+        "digest": digest,
+        "sig": sig,
+        "k1": public_key,
+    }
+    ret = t.push_action('hello', 'testrecover', args, {'hello': 'active'})
     t.produce_block()
     logger.info("++++++++++%s\n", ret['elapsed'])
