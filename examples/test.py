@@ -192,3 +192,9 @@ def test_recover():
     ret = t.push_action('hello', 'testrecover', args, {'hello': 'active'})
     t.produce_block()
     logger.info("++++++++++%s\n", ret['elapsed'])
+
+def test_common():
+    t = init_test('common_example')
+    ret = t.push_action('hello', 'test', {}, {'hello': 'active'})
+    t.produce_block()
+    logger.info("++++++++++%s\n", ret['elapsed'])
