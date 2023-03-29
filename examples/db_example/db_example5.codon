@@ -39,10 +39,3 @@ class MyContract(Contract):
         value2: A = it.get_value()
         print("+++++:", value2.a, value2.b)
         assert value2.a() == 3u64 and value2.b == 'bob'
-
-@export
-def apply(receiver: u64, first_receiver: u64, action: u64) -> None:
-    from C import __init_codon__() -> i32
-    __init_codon__()
-    c = MyContract(receiver, first_receiver, action)
-    c.apply()

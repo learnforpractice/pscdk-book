@@ -50,8 +50,11 @@ def init_test(contract_name):
     eos.set_log_level("default", 1)
     return t
 
+def init_db_test(contract_name) -> ChainTester:
+    return init_test(f"db_example/{contract_name}")
+
 def test_example1():
-    t = init_test('db_example1')
+    t = init_db_test('db_example1')
     ret = t.push_action('hello', 'test', "", {'hello': 'active'})
     t.produce_block()
     logger.info("++++++++++%s\n", ret['elapsed'])
@@ -61,7 +64,7 @@ def test_example1():
     t.produce_block()
 
 def test_example2():
-    t = init_test('db_example2')
+    t = init_db_test('db_example2')
     ret = t.push_action('hello', 'test', {'value': 'hello, bob'}, {'hello': 'active'})
     t.produce_block()
     logger.info("++++++++++%s\n", ret['elapsed'])
@@ -70,7 +73,7 @@ def test_example2():
     t.produce_block()
 
 def test_example3():
-    t = init_test('db_example3')
+    t = init_db_test('db_example3')
     ret = t.push_action('hello', 'test', {'value': 'hello, bob'}, {'hello': 'active'})
     t.produce_block()
     logger.info("++++++++++%s\n", ret['elapsed'])
@@ -79,13 +82,13 @@ def test_example3():
     t.produce_block()
 
 def test_example4():
-    t = init_test('db_example4')
+    t = init_db_test('db_example4')
     ret = t.push_action('hello', 'test', {}, {'hello': 'active'})
     t.produce_block()
     logger.info("++++++++++%s\n", ret['elapsed'])
 
 def test_example5():
-    t = init_test('db_example5')
+    t = init_db_test('db_example5')
     ret = t.push_action('hello', 'test', {}, {'hello': 'active'})
     t.produce_block()
     logger.info("++++++++++%s\n", ret['elapsed'])
@@ -93,25 +96,25 @@ def test_example5():
     logger.info('++++++=rows: %s', rows)
 
 def test_example6():
-    t = init_test('db_example6')
+    t = init_db_test('db_example6')
     ret = t.push_action('hello', 'test', {}, {'hello': 'active'})
     t.produce_block()
     logger.info("++++++++++%s\n", ret['elapsed'])
 
 def test_example7():
-    t = init_test('db_example7')
+    t = init_db_test('db_example7')
     ret = t.push_action('hello', 'test', {}, {'hello': 'active'})
     t.produce_block()
     logger.info("++++++++++%s\n", ret['elapsed'])
 
 def test_example8():
-    t = init_test('db_example8')
+    t = init_db_test('db_example8')
     ret = t.push_action('hello', 'test', {}, {'hello': 'active'})
     t.produce_block()
     logger.info("++++++++++%s\n", ret['elapsed'])
 
 def test_example9():
-    t = init_test('db_example8')
+    t = init_db_test('db_example8')
     ret = t.push_action('hello', 'test', {}, {'hello': 'active'})
     t.produce_block()
     logger.info("++++++++++%s", ret['elapsed'])

@@ -124,13 +124,6 @@ class MyContract(Contract):
     @action('test3')
     def test3(self, name: str, height: u64):
         print('++++=name:', name, 'height:', height)
-
-@export
-def apply(receiver: u64, first_receiver: u64, action: u64) -> None:
-    from C import __init_codon__() -> i32
-    __init_codon__()
-    c = MyContract(receiver, first_receiver, action)
-    c.apply()
 ```
 
 测试代码：

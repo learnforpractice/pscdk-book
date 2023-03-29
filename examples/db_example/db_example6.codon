@@ -109,10 +109,3 @@ class MyContract(Contract):
         it = idx_table_c.find(3u128)
         print("++++++it.primary:", it.primary)
         assert it.primary == 1u64
-
-@export
-def apply(receiver: u64, first_receiver: u64, action: u64) -> None:
-    from C import __init_codon__() -> i32
-    __init_codon__()
-    c = MyContract(receiver, first_receiver, action)
-    c.apply()

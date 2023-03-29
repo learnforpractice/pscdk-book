@@ -23,13 +23,6 @@ class MyContract(Contract):
     def sayhello(self, receiver: Name):
         print('hello, world')
         require_recipient(receiver)
-
-@export
-def apply(receiver: u64, first_receiver: u64, action: u64) -> None:
-    from C import __init_codon__() -> i32
-    __init_codon__()
-    c = MyContract(receiver, first_receiver, action)
-    c.apply()
 ```
 
 ```python
@@ -45,13 +38,6 @@ class MyContract(Contract):
         assert not self.receiver == self.first_receiver
         assert receiver == self.receiver
         print('hello, world from notify')
-
-@export
-def apply(receiver: u64, first_receiver: u64, action: u64) -> None:
-    from C import __init_codon__() -> i32
-    __init_codon__()
-    c = MyContract(receiver, first_receiver, action)
-    c.apply()
 ```
 
 这里，要注意的是，`receiver.codon`中的`sayhello`函数和`sender.codon`中的`sayhello`函数的定义有些不同，`receiver.codon`中的`sayhello`的`action`decorator中多了`notify=True`，这是用来指定这个action是一个用来接收通知的action，只能通过调用`require_recipient`来触发。

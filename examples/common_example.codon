@@ -16,11 +16,6 @@ class MyContract(Contract):
 
         print(is_account(n"hello"))
         print(is_account(n"hello"))
-        return
 
-@export
-def apply(receiver: u64, first_receiver: u64, action: u64) -> None:
-    from C import __init_codon__() -> i32
-    __init_codon__()
-    c = MyContract(receiver, first_receiver, action)
-    c.apply()
+        check(has_auth(n"hello"), "bad auth")
+        return

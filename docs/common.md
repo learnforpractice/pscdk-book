@@ -1,4 +1,4 @@
-# 其它常用智能合约函数
+# 常用智能合约函数
 
 ## is_account
 
@@ -46,7 +46,18 @@ def require_auth2(account: Name, permission: Name):
 
 ## check
 
-示例代码：
+声明：
+
+```python
+def check(test: bool, msg: str) -> None:
+```
+
+说明：
+
+如果test为False，则会抛出异常。该函数在智能合约中使用比较频繁，可参考`token.codon`中的代码
+
+
+## 示例代码：
 
 ```python
 from chain.action import has_auth, require_auth, require_auth2, is_account
@@ -68,13 +79,6 @@ class MyContract(Contract):
         print(is_account(n"hello"))
         print(is_account(n"hello"))
         return
-
-@export
-def apply(receiver: u64, first_receiver: u64, action: u64) -> None:
-    from C import __init_codon__() -> i32
-    __init_codon__()
-    c = MyContract(receiver, first_receiver, action)
-    c.apply()
 ```
 
 编译：

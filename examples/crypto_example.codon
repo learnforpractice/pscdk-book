@@ -22,10 +22,3 @@ class MyContract(Contract):
         assert _pubkey == k1, "_pubkey == k1"
         assert_recover_key(digest, sig, k1)
         print('done!')
-
-@export
-def apply(receiver: u64, first_receiver: u64, action: u64) -> None:
-    from C import __init_codon__() -> i32
-    __init_codon__()
-    c = MyContract(receiver, first_receiver, action)
-    c.apply()

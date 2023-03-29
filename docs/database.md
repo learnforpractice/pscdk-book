@@ -74,13 +74,6 @@ class MyContract(Contract):
         item = A(123u64, 'hello, world')
         table = PrimaryTable[A](n'hello', n'', n'mytable')
         table.store(item, n'hello')
-
-@export
-def apply(receiver: u64, first_receiver: u64, action: u64) -> None:
-    from C import __init_codon__() -> i32
-    __init_codon__()
-    c = MyContract(receiver, first_receiver, action)
-    c.apply()
 ```
 
 这里展示了`PrimaryTable`类的`store`方法的用法
@@ -100,7 +93,7 @@ ipyeos -m pytest -s -x test.py -k test_example1
 
 ```python
 def test_example1():
-    t = init_test('db_example1')
+    t = init_db_test('db_example1')
     ret = t.push_action('hello', 'test', "", {'hello': 'active'})
     t.produce_block()
     logger.info("++++++++++%s\n", ret['elapsed'])
@@ -113,7 +106,7 @@ def test_example1():
 
 ```python
 def test_example1():
-    t = init_test('db_example1')
+    t = init_db_test('db_example1')
     ret = t.push_action('hello', 'test', "", {'hello': 'active'})
     t.produce_block()
     logger.info("++++++++++%s\n", ret['elapsed'])
@@ -171,20 +164,13 @@ class MyContract(Contract):
             print('+++++store value:', value)
             item = A(key, value)
             table.store(item, n'hello')
-@export
-def apply(receiver: u64, first_receiver: u64, action: u64) -> None:
-    from C import __init_codon__() -> i32
-    __init_codon__()
-    c = MyContract(receiver, first_receiver, action)
-    c.apply()
-
 ```
 
 以下为测试代码：
 
 ```python
 def test_example2():
-    t = init_test('db_example2')
+    t = init_db_test('db_example2')
     ret = t.push_action('hello', 'test', {'value': 'hello, bob'}, {'hello': 'active'})
     t.produce_block()
     logger.info("++++++++++%s\n", ret['elapsed'])
@@ -264,20 +250,13 @@ class MyContract(Contract):
             print('+++++item.b:', item.b)
         item = A(key, value)
         table.set(item, payer)
-
-@export
-def apply(receiver: u64, first_receiver: u64, action: u64) -> None:
-    from C import __init_codon__() -> i32
-    __init_codon__()
-    c = MyContract(receiver, first_receiver, action)
-    c.apply()
 ```
 
 测试代码和`test_example`类似:
 
 ```python
 def test_example3():
-    t = init_test('db_example3')
+    t = init_db_test('db_example3')
     ret = t.push_action('hello', 'test', {'value': 'hello, bob'}, {'hello': 'active'})
     t.produce_block()
     logger.info("++++++++++%s\n", ret['elapsed'])
@@ -359,7 +338,7 @@ class MyContract(Contract):
 测试代码：
 ```python
 def test_example4():
-    t = init_test('db_example4')
+    t = init_db_test('db_example4')
     ret = t.push_action('hello', 'test', {}, {'hello': 'active'})
     t.produce_block()
     logger.info("++++++++++%s\n", ret['elapsed'])
@@ -450,13 +429,6 @@ class MyContract(Contract):
         value2: A = it.get_value()
         print("+++++:", value2.a, value2.b)
         assert value2.a() == 3u64 and value2.b == 'bob'
-
-@export
-def apply(receiver: u64, first_receiver: u64, action: u64) -> None:
-    from C import __init_codon__() -> i32
-    __init_codon__()
-    c = MyContract(receiver, first_receiver, action)
-    c.apply()
 ```
 
 这里，通过`table`这个内置的`decorator`来让编译器在ABI中加入表的结构。
@@ -520,7 +492,7 @@ python-contract build db_example/db_example5.codon
 
 ```python
 def test_example5():
-    t = init_test('db_example5')
+    t = init_db_test('db_example5')
     ret = t.push_action('hello', 'test', {}, {'hello': 'active'})
     t.produce_block()
     logger.info("++++++++++%s\n", ret['elapsed'])
@@ -657,13 +629,6 @@ class MyContract(Contract):
         it = idx_table_c.find(3u128)
         print("++++++it.primary:", it.primary)
         assert it.primary == 1u64
-
-@export
-def apply(receiver: u64, first_receiver: u64, action: u64) -> None:
-    from C import __init_codon__() -> i32
-    __init_codon__()
-    c = MyContract(receiver, first_receiver, action)
-    c.apply()
 ```
 
 这个例子展示了有二个二级索引的例子，通过`get_idx_table_by_b`和`get_idx_table_by_c`获取二级索引的表，对应的类分别是`IdxTable64`和`IdxTable128`。通过`find`来查找对应的值，再从返回的`SecondaryIterator`的类型中判断`primary`的值是否正确。
@@ -673,7 +638,7 @@ def apply(receiver: u64, first_receiver: u64, action: u64) -> None:
 
 ```python
 def test_example6():
-    t = init_test('db_example6')
+    t = init_db_test('db_example6')
     ret = t.push_action('hello', 'test', {}, {'hello': 'active'})
     t.produce_block()
     logger.info("++++++++++%s\n", ret['elapsed'])
@@ -743,14 +708,6 @@ class MyContract(Contract):
         it = idx_table_c.find(3u128)
         print("++++++it.primary:", it.primary)
         assert it.primary == 1u64
-
-@export
-def apply(receiver: u64, first_receiver: u64, action: u64) -> None:
-    from C import __init_codon__() -> i32
-    __init_codon__()
-    c = MyContract(receiver, first_receiver, action)
-    c.apply()
-
 ```
 
 在这个例子中，将`class A`的decorator从`packer`改成`table`，在编译的时候编译器即会生成其它相关的代码。
@@ -760,7 +717,7 @@ def apply(receiver: u64, first_receiver: u64, action: u64) -> None:
 ```python
 # test.py
 def test_example7():
-    t = init_test('db_example7')
+    t = init_db_test('db_example7')
     ret = t.push_action('hello', 'test', {}, {'hello': 'active'})
     t.produce_block()
     logger.info("++++++++++%s\n", ret['elapsed'])
@@ -835,13 +792,6 @@ class MyContract(Contract):
         it_sec = idx_table_b.find(22u64)
         print("++++++it.primary:", it_sec.primary)
         assert it_sec.primary == 1u64
-
-@export
-def apply(receiver: u64, first_receiver: u64, action: u64) -> None:
-    from C import __init_codon__() -> i32
-    __init_codon__()
-    c = MyContract(receiver, first_receiver, action)
-    c.apply()
 ```
 
 注意上面代码中的这段代码：
@@ -878,7 +828,7 @@ assert it_sec.primary == 1u64
 
 ```python
 def test_example9():
-    t = init_test('db_example8')
+    t = init_db_test('db_example8')
     ret = t.push_action('hello', 'test', {}, {'hello': 'active'})
     t.produce_block()
     logger.info("++++++++++%s\n", ret['elapsed'])
