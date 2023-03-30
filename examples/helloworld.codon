@@ -1,0 +1,11 @@
+from chain.contract import Contract
+
+@contract(main=True)
+class MyContract(Contract):
+
+    def __init__(self):
+        super().__init__()
+
+    @action('sayhello')
+    def say_hello(self):
+        print("Hello, World!")

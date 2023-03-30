@@ -2,12 +2,13 @@ site_name: Python Smart Contracts
 nav:
     - 'prelude.md'
     - 'env.md'
-    - 'codon.md'
+    - 'helloworld.md'
     - 'action.md'
     - 'notify.md'
     - 'database.md'
     - 'crypto.md'
     - 'common.md'
+    - 'codon.md'
 markdown_extensions:
   - pymdownx.superfences
   - pymdownx.tabbed:
