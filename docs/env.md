@@ -2,6 +2,7 @@
 
 ## 安装编译和测试所需的工具
 
+### 直接安装开发工具包
 安装pscdk包，这个包用于编译Python智能合约
 
 ```
@@ -13,6 +14,24 @@ python3 -m pip install pscdk
 ```
 python3 -m pip install ipyeos
 ```
+
+### 用Docker运行
+
+MAC平台推荐使用[OrbStack](https://orbstack.dev/download)软件来安装docker和运行docker。其它平台可以使用[Docker Desktop](https://www.docker.com/products/docker-desktop)。
+
+
+下载Docker镜像
+
+```
+docker pull ghcr.io/uuosio/pscdk:latest
+```
+
+运行container:
+
+```
+docker run --entrypoint bash -it --rm -v "$(pwd)":/work -t ghcr.io/uuosio/pscdk
+```
+
 
 ## 测试安装环境是否安装成功：
 

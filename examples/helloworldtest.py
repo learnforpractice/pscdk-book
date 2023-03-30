@@ -25,6 +25,6 @@ def init_test(contract_name):
 
 def test():
     t = init_test('helloworld')
-    ret = t.push_action('hello', 'sayhello', "", {'hello': 'active'})
+    ret = t.push_action('hello', 'sayhello', {"name": 'alice'}, {'hello': 'active'})
     t.produce_block()
     logger.info("++++++++++%s\n", ret['elapsed'])

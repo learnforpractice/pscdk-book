@@ -23,7 +23,7 @@ class MyContract(Contract):
 测试代码：
 
 ```python
-# testhelloworld.py
+# helloworldtest.py
 
 import os
 from ipyeos import chaintester

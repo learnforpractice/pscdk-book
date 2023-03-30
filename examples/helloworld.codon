@@ -7,5 +7,5 @@ class MyContract(Contract):
         super().__init__()
 
     @action('sayhello')
-    def say_hello(self):
-        print("Hello, World!")
+    def say_hello(self, name: str):
+        print("Hello,", name)
