@@ -3,9 +3,9 @@ Python Smart Contract Book
 
 ## 目录
 
-* [预备知识](docs/prelude.md)
 * [开发环境搭建](docs/env.md)
 * [HelloWorld](docs/helloworld.md)
+* [预备知识](docs/prelude.md)
 * [内联Action在智能合约的使用](docs/action.md)
 * [require_recipient函数](docs/notify.md)
 * [数据库的操作](docs/database.md)

@@ -15,9 +15,11 @@ python3 -m pip install pscdk
 python3 -m pip install ipyeos
 ```
 
-### 用Docker运行
+### 在Docker中运行
 
-MAC平台推荐使用[OrbStack](https://orbstack.dev/download)软件来安装docker和运行docker。其它平台可以使用[Docker Desktop](https://www.docker.com/products/docker-desktop)。
+目前，该开发工具包不支持Window和Macbook M1/M2，开发工具在这两种平台上需要利用docker来运行。
+
+macOS平台推荐使用[OrbStack](https://orbstack.dev/download)软件来安装docker和运行docker。其它平台可以使用[Docker Desktop](https://www.docker.com/products/docker-desktop)。
 
 
 下载Docker镜像

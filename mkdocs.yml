@@ -1,8 +1,8 @@
 site_name: Python Smart Contracts
 nav:
-    - 'prelude.md'
     - 'env.md'
     - 'helloworld.md'
+    - 'prelude.md'
     - 'action.md'
     - 'notify.md'
     - 'database.md'
