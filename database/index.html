@@ -1,0 +1,1296 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../notify/">
+      
+      
+        <link rel="next" href="../crypto/">
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.4">
+    
+    
+      
+        <title>数据库的操作 - Python Smart Contracts</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.240905d7.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.a0c5b2b5.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Python Smart Contracts" class="md-header__button md-logo" aria-label="Python Smart Contracts" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Python Smart Contracts
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              数据库的操作
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Python Smart Contracts" class="md-nav__button md-logo" aria-label="Python Smart Contracts" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Python Smart Contracts
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../prelude/" class="md-nav__link">
+        预备知识
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../env/" class="md-nav__link">
+        开发环境搭建
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../helloworld/" class="md-nav__link">
+        HelloWorld
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../action/" class="md-nav__link">
+        内联Action在智能合约的使用
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notify/" class="md-nav__link">
+        require_recipient函数
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          数据库的操作
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        数据库的操作
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#storeupdatefindgetset" class="md-nav__link">
+    store/update/find/get/set五个方法的用法
+  </a>
+  
+    <nav class="md-nav" aria-label="store/update/find/get/set五个方法的用法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#store" class="md-nav__link">
+    store
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#findupdate" class="md-nav__link">
+    find/update
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getset" class="md-nav__link">
+    get/set
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lowerboundupperbound" class="md-nav__link">
+    lowerbound/upperbound
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api" class="md-nav__link">
+    利用API来对表进行主索引查询
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    二级索引的实现
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    二级索引的实现的简化
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    二级索引的的更新
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api_1" class="md-nav__link">
+    利用API来对表进行二重索引查询
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../crypto/" class="md-nav__link">
+        密码学相关函数
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../common/" class="md-nav__link">
+        常用智能合约函数
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../codon/" class="md-nav__link">
+        和标准Python的差异
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#storeupdatefindgetset" class="md-nav__link">
+    store/update/find/get/set五个方法的用法
+  </a>
+  
+    <nav class="md-nav" aria-label="store/update/find/get/set五个方法的用法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#store" class="md-nav__link">
+    store
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#findupdate" class="md-nav__link">
+    find/update
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getset" class="md-nav__link">
+    get/set
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lowerboundupperbound" class="md-nav__link">
+    lowerbound/upperbound
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api" class="md-nav__link">
+    利用API来对表进行主索引查询
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    二级索引的实现
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    二级索引的实现的简化
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    二级索引的的更新
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api_1" class="md-nav__link">
+    利用API来对表进行二重索引查询
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="_1">数据库的操作</h1>
+<p>链上数据存储和读取是智能合约的一个重要功能。EOS链实现了一个内存数据库，支持以表的方式来存储数据，其中，每一个表的每一项数据都有唯一的主索引，称之为primary key，类型为u64，表中存储的原始数据为任意长度的二进制数据，在存储时，会将类的数据序列化后存进表中，在读取的时候又会通过反序列化的方式将原始数据转成类对象。并且还支持u64, u128, u256, double, long double类型的索引表，可以把索引表看作数据长度固定的特殊的表。普通表和索引表可以配合起来使用，以实现二级索引的功能。这里要注意的是，二级索引的值是可以重复的，但是主索引必须是唯一的。</p>
+<p>在Python智能合约中，是通过<code>PrimaryTable</code>类来操作表的。以下是这个类的声明：</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">PrimaryTable</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">store</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">:</span> <span class="n">T</span><span class="p">,</span> <span class="n">payer</span><span class="p">:</span> <span class="n">Name</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">T</span><span class="p">]:</span>
+        <span class="o">...</span>
+
+    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">it</span><span class="p">:</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">T</span><span class="p">],</span> <span class="n">item</span><span class="p">:</span> <span class="n">T</span><span class="p">,</span> <span class="n">payer</span><span class="p">:</span> <span class="n">Name</span><span class="p">):</span>
+        <span class="o">...</span>
+
+    <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">it</span><span class="p">:</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">T</span><span class="p">]):</span>
+        <span class="o">...</span>
+
+    <span class="k">def</span> <span class="nf">find</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="n">u64</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">T</span><span class="p">]:</span>
+        <span class="o">...</span>
+
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="n">u64</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">T</span><span class="p">]:</span>
+        <span class="o">...</span>
+
+    <span class="k">def</span> <span class="nf">set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">:</span> <span class="n">T</span><span class="p">,</span> <span class="n">payer</span><span class="p">:</span> <span class="n">Name</span><span class="p">):</span>
+        <span class="o">...</span>
+
+    <span class="k">def</span> <span class="nf">get_by_iterator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">it</span><span class="p">:</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">T</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">T</span><span class="p">]:</span>
+        <span class="o">...</span>
+
+    <span class="k">def</span> <span class="nf">next</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">it</span><span class="p">:</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">T</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">T</span><span class="p">]:</span>
+        <span class="o">...</span>
+
+    <span class="k">def</span> <span class="nf">previous</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">it</span><span class="p">:</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">T</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">T</span><span class="p">]:</span>
+        <span class="o">...</span>
+
+    <span class="k">def</span> <span class="nf">lowerbound</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="n">u64</span><span class="p">):</span>
+        <span class="o">...</span>
+
+    <span class="k">def</span> <span class="nf">upperbound</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="n">u64</span><span class="p">):</span>
+        <span class="o">...</span>
+
+    <span class="k">def</span> <span class="nf">end</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">T</span><span class="p">]:</span>
+        <span class="o">...</span>
+</code></pre></div>
+<h2 id="storeupdatefindgetset">store/update/find/get/set五个方法的用法</h2>
+<h3 id="store">store</h3>
+<p>以下是<code>PrimaryTable</code>类<code>store</code>方法的用法例子：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># db_example1.codon</span>
+<span class="kn">from</span> <span class="nn">chain.database</span> <span class="kn">import</span> <span class="n">PrimaryTable</span>
+<span class="kn">from</span> <span class="nn">chain.contract</span> <span class="kn">import</span> <span class="n">Contract</span>
+
+<span class="nd">@packer</span>
+<span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="n">a</span><span class="p">:</span> <span class="n">u64</span>
+    <span class="n">b</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">:</span> <span class="n">u64</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">a</span> <span class="o">=</span> <span class="n">a</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="n">b</span>
+
+    <span class="k">def</span> <span class="nf">get_primary</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">u64</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">a</span>
+
+<span class="nd">@contract</span><span class="p">(</span><span class="n">main</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">MyContract</span><span class="p">(</span><span class="n">Contract</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+    <span class="nd">@action</span><span class="p">(</span><span class="s1">&#39;test&#39;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">test</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">item</span> <span class="o">=</span> <span class="n">A</span><span class="p">(</span><span class="mi">123</span><span class="n">u64</span><span class="p">,</span> <span class="s1">&#39;hello, world&#39;</span><span class="p">)</span>
+        <span class="n">table</span> <span class="o">=</span> <span class="n">PrimaryTable</span><span class="p">[</span><span class="n">A</span><span class="p">](</span><span class="n">n</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="n">n</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">n</span><span class="s1">&#39;mytable&#39;</span><span class="p">)</span>
+        <span class="n">table</span><span class="o">.</span><span class="n">store</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">n</span><span class="s1">&#39;hello&#39;</span><span class="p">)</span>
+</code></pre></div>
+<p>这里展示了<code>PrimaryTable</code>类的<code>store</code>方法的用法</p>
+<p>packer是一个内置的decorator，用来将类中的数据序列化，后面还会单独讲到。用下面的命令来进行测试：</p>
+<p>编译：</p>
+<div class="highlight"><pre><span></span><code>python-contract build db_example/db_example1.codon
+</code></pre></div>
+<p><div class="highlight"><pre><span></span><code>ipyeos<span class="w"> </span>-m<span class="w"> </span>pytest<span class="w"> </span>-s<span class="w"> </span>-x<span class="w"> </span>test.py<span class="w"> </span>-k<span class="w"> </span>test_example1
+</code></pre></div>
+运行的测试代码如下：</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">test_example1</span><span class="p">():</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">init_db_test</span><span class="p">(</span><span class="s1">&#39;db_example1&#39;</span><span class="p">)</span>
+    <span class="n">ret</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">push_action</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;hello&#39;</span><span class="p">:</span> <span class="s1">&#39;active&#39;</span><span class="p">})</span>
+    <span class="n">t</span><span class="o">.</span><span class="n">produce_block</span><span class="p">()</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;++++++++++</span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;elapsed&#39;</span><span class="p">])</span>
+</code></pre></div>
+<p>注意在这个示例中，如果表中已经存在以<code>123u64</code>为key的数据，那么该函数会抛出异常。</p>
+<p>如将上面的测试用例修改成下面的代码：</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">test_example1</span><span class="p">():</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">init_db_test</span><span class="p">(</span><span class="s1">&#39;db_example1&#39;</span><span class="p">)</span>
+    <span class="n">ret</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">push_action</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;hello&#39;</span><span class="p">:</span> <span class="s1">&#39;active&#39;</span><span class="p">})</span>
+    <span class="n">t</span><span class="o">.</span><span class="n">produce_block</span><span class="p">()</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;++++++++++</span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;elapsed&#39;</span><span class="p">])</span>
+
+    <span class="c1"># will raise exception</span>
+    <span class="n">ret</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">push_action</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;hello&#39;</span><span class="p">:</span> <span class="s1">&#39;active&#39;</span><span class="p">})</span>
+    <span class="n">t</span><span class="o">.</span><span class="n">produce_block</span><span class="p">()</span>
+</code></pre></div>
+<p>用同样的命令运行测试，在第二次调用<code>push_action</code>时，该函数就会抛出像下面的异常：</p>
+<div class="highlight"><pre><span></span><code>could not insert object, most likely a uniqueness constraint was violated
+</code></pre></div>
+<p>为了不抛出异常，在要更新表中的数据时，则要用到<code>update</code>方法。
+在调用<code>store</code>之前要先对表中是否存在主索引进行判断，如果已经存在，则不能调用<code>store</code>方法，而必须调用<code>update</code>方法。
+以下的示例展示了用法：</p>
+<h3 id="findupdate">find/update</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># db_example2.codon</span>
+<span class="kn">from</span> <span class="nn">chain.database</span> <span class="kn">import</span> <span class="n">PrimaryTable</span>
+<span class="kn">from</span> <span class="nn">chain.contract</span> <span class="kn">import</span> <span class="n">Contract</span>
+
+<span class="nd">@packer</span>
+<span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="n">a</span><span class="p">:</span> <span class="n">u64</span>
+    <span class="n">b</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">:</span> <span class="n">u64</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">a</span> <span class="o">=</span> <span class="n">a</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="n">b</span>
+
+    <span class="k">def</span> <span class="nf">get_primary</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">u64</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">a</span>
+
+<span class="nd">@contract</span><span class="p">(</span><span class="n">main</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">MyContract</span><span class="p">(</span><span class="n">Contract</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+    <span class="nd">@action</span><span class="p">(</span><span class="s1">&#39;test&#39;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">test</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;db_test&#39;</span><span class="p">)</span>
+        <span class="n">table</span> <span class="o">=</span> <span class="n">PrimaryTable</span><span class="p">[</span><span class="n">A</span><span class="p">](</span><span class="n">n</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="n">n</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">n</span><span class="s1">&#39;mytable&#39;</span><span class="p">)</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="mi">123</span><span class="n">u64</span>
+        <span class="n">it</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">it</span><span class="o">.</span><span class="n">is_ok</span><span class="p">():</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;+++++update value:&#39;</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+            <span class="n">item</span> <span class="o">=</span> <span class="n">A</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+            <span class="n">table</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">it</span><span class="p">,</span> <span class="n">item</span><span class="p">,</span> <span class="n">n</span><span class="s1">&#39;hello&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;+++++store value:&#39;</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+            <span class="n">item</span> <span class="o">=</span> <span class="n">A</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+            <span class="n">table</span><span class="o">.</span><span class="n">store</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">n</span><span class="s1">&#39;hello&#39;</span><span class="p">)</span>
+</code></pre></div>
+<p>以下为测试代码：</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">test_example2</span><span class="p">():</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">init_db_test</span><span class="p">(</span><span class="s1">&#39;db_example2&#39;</span><span class="p">)</span>
+    <span class="n">ret</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">push_action</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;hello, bob&#39;</span><span class="p">},</span> <span class="p">{</span><span class="s1">&#39;hello&#39;</span><span class="p">:</span> <span class="s1">&#39;active&#39;</span><span class="p">})</span>
+    <span class="n">t</span><span class="o">.</span><span class="n">produce_block</span><span class="p">()</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;++++++++++</span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;elapsed&#39;</span><span class="p">])</span>
+
+    <span class="n">ret</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">push_action</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;hello, alice&#39;</span><span class="p">},</span> <span class="p">{</span><span class="s1">&#39;hello&#39;</span><span class="p">:</span> <span class="s1">&#39;active&#39;</span><span class="p">})</span>
+    <span class="n">t</span><span class="o">.</span><span class="n">produce_block</span><span class="p">()</span>
+</code></pre></div>
+<p>编译：</p>
+<div class="highlight"><pre><span></span><code>python-contract build db_example/db_example2.codon
+</code></pre></div>
+<p>用下面的命令来运行测试代码：</p>
+<div class="highlight"><pre><span></span><code>ipyeos<span class="w"> </span>-m<span class="w"> </span>pytest<span class="w"> </span>-s<span class="w"> </span>-x<span class="w"> </span>test.py<span class="w"> </span>-k<span class="w"> </span>test_example2
+</code></pre></div>
+<p>在调用
+<div class="highlight"><pre><span></span><code><span class="n">t</span><span class="o">.</span><span class="n">push_action</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;hello, bob&#39;</span><span class="p">},</span> <span class="p">{</span><span class="s1">&#39;hello&#39;</span><span class="p">:</span> <span class="s1">&#39;active&#39;</span><span class="p">})</span>
+</code></pre></div></p>
+<p>会输出：</p>
+<div class="highlight"><pre><span></span><code>+++++store value: hello, bob
+</code></pre></div>
+<p>在调用
+<div class="highlight"><pre><span></span><code><span class="n">t</span><span class="o">.</span><span class="n">push_action</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;hello, alice&#39;</span><span class="p">},</span> <span class="p">{</span><span class="s1">&#39;hello&#39;</span><span class="p">:</span> <span class="s1">&#39;active&#39;</span><span class="p">})</span>
+</code></pre></div></p>
+<p>会输出：</p>
+<div class="highlight"><pre><span></span><code>+++++update value: hello, alice
+</code></pre></div>
+<p>可以看出，上面的代码稍微有点复杂，首先要调用<code>find</code>判断和主索引对应的值存不存在，再决定是调用<code>store</code>还是<code>update</code>。上面的代码实现的功能可以用<code>PrimaryTable.set</code>方法来替代，请看下面的示例：</p>
+<h3 id="getset">get/set</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># test_example3.codon</span>
+<span class="kn">from</span> <span class="nn">chain.database</span> <span class="kn">import</span> <span class="n">PrimaryTable</span>
+<span class="kn">from</span> <span class="nn">chain.contract</span> <span class="kn">import</span> <span class="n">Contract</span>
+
+<span class="nd">@packer</span>
+<span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="n">a</span><span class="p">:</span> <span class="n">u64</span>
+    <span class="n">b</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">:</span> <span class="n">u64</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">a</span> <span class="o">=</span> <span class="n">a</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="n">b</span>
+
+    <span class="k">def</span> <span class="nf">get_primary</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">u64</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">a</span>
+
+<span class="nd">@contract</span><span class="p">(</span><span class="n">main</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">MyContract</span><span class="p">(</span><span class="n">Contract</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+    <span class="nd">@action</span><span class="p">(</span><span class="s1">&#39;test&#39;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">test</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;db_test&#39;</span><span class="p">)</span>
+        <span class="n">table</span> <span class="o">=</span> <span class="n">PrimaryTable</span><span class="p">[</span><span class="n">A</span><span class="p">](</span><span class="n">n</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="n">n</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">n</span><span class="s1">&#39;mytable&#39;</span><span class="p">)</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="mi">123</span><span class="n">u64</span>
+        <span class="n">payer</span> <span class="o">=</span> <span class="n">n</span><span class="s1">&#39;hello&#39;</span>
+        <span class="n">item</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">item</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;+++++item.b:&#39;</span><span class="p">,</span> <span class="n">item</span><span class="o">.</span><span class="n">b</span><span class="p">)</span>
+        <span class="n">item</span> <span class="o">=</span> <span class="n">A</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+        <span class="n">table</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">payer</span><span class="p">)</span>
+</code></pre></div>
+<p>测试代码和<code>test_example</code>类似:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">test_example3</span><span class="p">():</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">init_db_test</span><span class="p">(</span><span class="s1">&#39;db_example3&#39;</span><span class="p">)</span>
+    <span class="n">ret</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">push_action</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;hello, bob&#39;</span><span class="p">},</span> <span class="p">{</span><span class="s1">&#39;hello&#39;</span><span class="p">:</span> <span class="s1">&#39;active&#39;</span><span class="p">})</span>
+    <span class="n">t</span><span class="o">.</span><span class="n">produce_block</span><span class="p">()</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;++++++++++</span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;elapsed&#39;</span><span class="p">])</span>
+
+    <span class="n">ret</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">push_action</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;hello, alice&#39;</span><span class="p">},</span> <span class="p">{</span><span class="s1">&#39;hello&#39;</span><span class="p">:</span> <span class="s1">&#39;active&#39;</span><span class="p">})</span>
+    <span class="n">t</span><span class="o">.</span><span class="n">produce_block</span><span class="p">()</span>
+</code></pre></div>
+<p>编译：</p>
+<div class="highlight"><pre><span></span><code>python-contract build db_example/db_example3.codon
+</code></pre></div>
+<p>用下面的命令来运行测试代码：</p>
+<div class="highlight"><pre><span></span><code>ipyeos<span class="w"> </span>-m<span class="w"> </span>pytest<span class="w"> </span>-s<span class="w"> </span>-x<span class="w"> </span>test.py<span class="w"> </span>-k<span class="w"> </span>test_example3
+</code></pre></div>
+<p>在第二次调用<code>push_action</code>时，会有下面的输出：
+<div class="highlight"><pre><span></span><code>++++item.b: hello, bob
+</code></pre></div></p>
+<h2 id="lowerboundupperbound">lowerbound/upperbound</h2>
+<p>这两个方法也是用来查找给中的元素的，不同于<code>find</code>方法，这两个函数用于模糊查找。其中，<code>lowerbound</code>方法返回<code>&gt;=</code>指定<code>id</code>的<code>Iterator</code>，<code>upperbound</code>方法返回<code>&gt;</code>指定<code>id</code>的<code>Iterator</code>，下面来看下用法：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># db_example4.codon</span>
+
+<span class="kn">from</span> <span class="nn">chain.database</span> <span class="kn">import</span> <span class="n">PrimaryTable</span>
+<span class="kn">from</span> <span class="nn">chain.contract</span> <span class="kn">import</span> <span class="n">Contract</span>
+
+<span class="nd">@packer</span>
+<span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="n">a</span><span class="p">:</span> <span class="n">u64</span>
+    <span class="n">b</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">:</span> <span class="n">u64</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">a</span> <span class="o">=</span> <span class="n">a</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="n">b</span>
+
+    <span class="k">def</span> <span class="nf">get_primary</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">u64</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">a</span>
+
+<span class="nd">@contract</span><span class="p">(</span><span class="n">main</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">MyContract</span><span class="p">(</span><span class="n">Contract</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+    <span class="nd">@action</span><span class="p">(</span><span class="s1">&#39;test&#39;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">test</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;db_test&#39;</span><span class="p">)</span>
+        <span class="n">table</span> <span class="o">=</span> <span class="n">PrimaryTable</span><span class="p">[</span><span class="n">A</span><span class="p">](</span><span class="n">n</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="n">n</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">n</span><span class="s1">&#39;mytable&#39;</span><span class="p">)</span>
+        <span class="n">payer</span> <span class="o">=</span> <span class="n">n</span><span class="s1">&#39;hello&#39;</span>
+
+        <span class="n">value</span> <span class="o">=</span> <span class="n">A</span><span class="p">(</span><span class="mi">1</span><span class="n">u64</span><span class="p">,</span> <span class="s2">&quot;alice&quot;</span><span class="p">)</span>
+        <span class="n">table</span><span class="o">.</span><span class="n">store</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">payer</span><span class="p">)</span>
+
+        <span class="n">value</span> <span class="o">=</span> <span class="n">A</span><span class="p">(</span><span class="mi">3</span><span class="n">u64</span><span class="p">,</span> <span class="s2">&quot;bob&quot;</span><span class="p">)</span>
+        <span class="n">table</span><span class="o">.</span><span class="n">store</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">payer</span><span class="p">)</span>
+
+        <span class="n">value</span> <span class="o">=</span> <span class="n">A</span><span class="p">(</span><span class="mi">5</span><span class="n">u64</span><span class="p">,</span> <span class="s2">&quot;john&quot;</span><span class="p">)</span>
+        <span class="n">table</span><span class="o">.</span><span class="n">store</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">payer</span><span class="p">)</span>
+
+        <span class="n">it</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">lowerbound</span><span class="p">(</span><span class="mi">1</span><span class="n">u64</span><span class="p">)</span>
+        <span class="n">value2</span><span class="p">:</span> <span class="n">A</span> <span class="o">=</span> <span class="n">it</span><span class="o">.</span><span class="n">get_value</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;+++++:&quot;</span><span class="p">,</span> <span class="n">value2</span><span class="o">.</span><span class="n">a</span><span class="p">,</span> <span class="n">value2</span><span class="o">.</span><span class="n">b</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">value2</span><span class="o">.</span><span class="n">a</span> <span class="o">==</span> <span class="mi">1</span><span class="n">u64</span> <span class="ow">and</span> <span class="n">value2</span><span class="o">.</span><span class="n">b</span> <span class="o">==</span> <span class="s1">&#39;alice&#39;</span>
+
+        <span class="n">it</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">upperbound</span><span class="p">(</span><span class="mi">1</span><span class="n">u64</span><span class="p">)</span>
+        <span class="n">value2</span><span class="p">:</span> <span class="n">A</span> <span class="o">=</span> <span class="n">it</span><span class="o">.</span><span class="n">get_value</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;+++++:&quot;</span><span class="p">,</span> <span class="n">value2</span><span class="o">.</span><span class="n">a</span><span class="p">,</span> <span class="n">value2</span><span class="o">.</span><span class="n">b</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">value2</span><span class="o">.</span><span class="n">a</span> <span class="o">==</span> <span class="mi">3</span><span class="n">u64</span> <span class="ow">and</span> <span class="n">value2</span><span class="o">.</span><span class="n">b</span> <span class="o">==</span> <span class="s1">&#39;bob&#39;</span>
+</code></pre></div>
+<p>测试代码：
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">test_example4</span><span class="p">():</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">init_db_test</span><span class="p">(</span><span class="s1">&#39;db_example4&#39;</span><span class="p">)</span>
+    <span class="n">ret</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">push_action</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="p">{},</span> <span class="p">{</span><span class="s1">&#39;hello&#39;</span><span class="p">:</span> <span class="s1">&#39;active&#39;</span><span class="p">})</span>
+    <span class="n">t</span><span class="o">.</span><span class="n">produce_block</span><span class="p">()</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;++++++++++</span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;elapsed&#39;</span><span class="p">])</span>
+</code></pre></div></p>
+<p>编译：</p>
+<div class="highlight"><pre><span></span><code>python-contract build db_example/db_example4.codon
+</code></pre></div>
+<p>运行测试：</p>
+<div class="highlight"><pre><span></span><code>ipyeos<span class="w"> </span>-m<span class="w"> </span>pytest<span class="w"> </span>-s<span class="w"> </span>-x<span class="w"> </span>test.py<span class="w"> </span>-k<span class="w"> </span>test_example4
+</code></pre></div>
+<p>输出：</p>
+<div class="highlight"><pre><span></span><code>+++++: 1 alice
++++++: 3 bob
+</code></pre></div>
+<h2 id="api">利用API来对表进行主索引查询</h2>
+<p>上面的例子都是讲的如果通过智能合约来操作链上的数据库的表，实际上，通过EOS提供的链下的<code>get_table_rows</code>的API的接口，也同样可以对链上的表进行查询工作。
+在测试代码中，get_table_rows的定义如下</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_table_rows</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_json</span><span class="p">,</span> <span class="n">code</span><span class="p">,</span> <span class="n">scope</span><span class="p">,</span> <span class="n">table</span><span class="p">,</span>
+                                <span class="n">lower_bound</span><span class="p">,</span> <span class="n">upper_bound</span><span class="p">,</span>
+                                <span class="n">limit</span><span class="p">,</span>
+                                <span class="n">key_type</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+                                <span class="n">index_position</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> 
+                                <span class="n">reverse</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+                                <span class="n">show_payer</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Fetch smart contract data from an account. </span>
+<span class="sd">    key_type: &quot;i64&quot;|&quot;i128&quot;|&quot;i256&quot;|&quot;float64&quot;|&quot;float128&quot;|&quot;sha256&quot;|&quot;ripemd160&quot;</span>
+<span class="sd">    index_position: &quot;2&quot;|&quot;3&quot;|&quot;4&quot;|&quot;5&quot;|&quot;6&quot;|&quot;7&quot;|&quot;8&quot;|&quot;9&quot;|&quot;10&quot;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+</code></pre></div>
+<p>首先，要通过<code>get_table_rows</code>来查询表，表的结构必须在ABI的描述中可见，可以通过下面的代码来让表在生成相应的ABI文件中有描述：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># db_example5.codon</span>
+
+<span class="kn">from</span> <span class="nn">chain.database</span> <span class="kn">import</span> <span class="n">PrimaryTable</span><span class="p">,</span> <span class="n">primary</span>
+<span class="kn">from</span> <span class="nn">chain.contract</span> <span class="kn">import</span> <span class="n">Contract</span>
+
+<span class="nd">@table</span><span class="p">(</span><span class="s2">&quot;mytable&quot;</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="n">a</span><span class="p">:</span> <span class="n">primary</span><span class="p">[</span><span class="n">u64</span><span class="p">]</span>
+    <span class="n">b</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">:</span> <span class="n">u64</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">a</span> <span class="o">=</span> <span class="n">primary</span><span class="p">[</span><span class="n">u64</span><span class="p">](</span><span class="n">a</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="n">b</span>
+
+<span class="nd">@contract</span><span class="p">(</span><span class="n">main</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">MyContract</span><span class="p">(</span><span class="n">Contract</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+    <span class="nd">@action</span><span class="p">(</span><span class="s1">&#39;test&#39;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">test</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;db_test&#39;</span><span class="p">)</span>
+        <span class="n">table</span> <span class="o">=</span> <span class="n">PrimaryTable</span><span class="p">[</span><span class="n">A</span><span class="p">](</span><span class="n">n</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="n">n</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">n</span><span class="s1">&#39;mytable&#39;</span><span class="p">)</span>
+        <span class="n">payer</span> <span class="o">=</span> <span class="n">n</span><span class="s1">&#39;hello&#39;</span>
+
+        <span class="n">value</span> <span class="o">=</span> <span class="n">A</span><span class="p">(</span><span class="mi">1</span><span class="n">u64</span><span class="p">,</span> <span class="s2">&quot;alice&quot;</span><span class="p">)</span>
+        <span class="n">table</span><span class="o">.</span><span class="n">store</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">payer</span><span class="p">)</span>
+
+        <span class="n">value</span> <span class="o">=</span> <span class="n">A</span><span class="p">(</span><span class="mi">3</span><span class="n">u64</span><span class="p">,</span> <span class="s2">&quot;bob&quot;</span><span class="p">)</span>
+        <span class="n">table</span><span class="o">.</span><span class="n">store</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">payer</span><span class="p">)</span>
+
+        <span class="n">value</span> <span class="o">=</span> <span class="n">A</span><span class="p">(</span><span class="mi">5</span><span class="n">u64</span><span class="p">,</span> <span class="s2">&quot;john&quot;</span><span class="p">)</span>
+        <span class="n">table</span><span class="o">.</span><span class="n">store</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">payer</span><span class="p">)</span>
+
+        <span class="n">it</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">lowerbound</span><span class="p">(</span><span class="mi">1</span><span class="n">u64</span><span class="p">)</span>
+        <span class="n">value2</span><span class="p">:</span> <span class="n">A</span> <span class="o">=</span> <span class="n">it</span><span class="o">.</span><span class="n">get_value</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;+++++:&quot;</span><span class="p">,</span> <span class="n">value2</span><span class="o">.</span><span class="n">a</span><span class="p">,</span> <span class="n">value2</span><span class="o">.</span><span class="n">b</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">value2</span><span class="o">.</span><span class="n">a</span><span class="p">()</span> <span class="o">==</span> <span class="mi">1</span><span class="n">u64</span> <span class="ow">and</span> <span class="n">value2</span><span class="o">.</span><span class="n">b</span> <span class="o">==</span> <span class="s1">&#39;alice&#39;</span>
+
+        <span class="n">it</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">upperbound</span><span class="p">(</span><span class="mi">1</span><span class="n">u64</span><span class="p">)</span>
+        <span class="n">value2</span><span class="p">:</span> <span class="n">A</span> <span class="o">=</span> <span class="n">it</span><span class="o">.</span><span class="n">get_value</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;+++++:&quot;</span><span class="p">,</span> <span class="n">value2</span><span class="o">.</span><span class="n">a</span><span class="p">,</span> <span class="n">value2</span><span class="o">.</span><span class="n">b</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">value2</span><span class="o">.</span><span class="n">a</span><span class="p">()</span> <span class="o">==</span> <span class="mi">3</span><span class="n">u64</span> <span class="ow">and</span> <span class="n">value2</span><span class="o">.</span><span class="n">b</span> <span class="o">==</span> <span class="s1">&#39;bob&#39;</span>
+</code></pre></div>
+<p>这里，通过<code>table</code>这个内置的<code>decorator</code>来让编译器在ABI中加入表的结构。
+给类加了这个<code>table</code>，编译器会自动给类添加以下三个函数：</p>
+<div class="highlight"><pre><span></span><code>get_primary
+set_secondary_value
+get_secondary_value
+</code></pre></div>
+<p>同时，类的成员变量也要满足相应的要求：
+首先，必须声明一个主索引变量，类型必须是<code>database.primary</code>, <code>primary</code>类的实现如下：</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">primary</span><span class="p">[</span><span class="n">T</span><span class="p">](</span><span class="nb">object</span><span class="p">):</span>
+    <span class="n">value</span><span class="p">:</span> <span class="n">T</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">T</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
+
+    <span class="k">def</span> <span class="nf">get_primary</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">u64</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">u64</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">get_primary</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">__pack__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">enc</span><span class="p">:</span> <span class="n">Encoder</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">__pack__</span><span class="p">(</span><span class="n">enc</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__unpack__</span><span class="p">(</span><span class="n">dec</span><span class="p">:</span> <span class="n">Decoder</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">primary</span><span class="p">[</span><span class="n">T</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="n">primary</span><span class="p">[</span><span class="n">T</span><span class="p">](</span><span class="n">T</span><span class="o">.</span><span class="n">__unpack__</span><span class="p">(</span><span class="n">dec</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span>
+
+    <span class="k">def</span> <span class="nf">__size__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">__size__</span><span class="p">()</span>
+</code></pre></div>
+<p><code>primary</code>类是一个模版类，如果<code>primary</code>的<code>value</code>的类型不为<code>u64</code>，则类型必须实现<code>get_primary</code>方法，<code>primary</code>类还有一个<code>__call__</code>方法，以方便获取<code>value</code>。在后面会讲到的多重索引中，还会用到二极索引，二极索引的类型必须是<code>database.secondary</code></p>
+<p>编译：</p>
+<div class="highlight"><pre><span></span><code>python-contract<span class="w"> </span>build<span class="w"> </span>db_example/db_example5.codon
+</code></pre></div>
+<p>你将在生成的<code>db_example5.abi</code>中看到下面的描述：
+<div class="highlight"><pre><span></span><code><span class="s2">&quot;tables&quot;</span>:<span class="w"> </span><span class="o">[</span>
+<span class="w">        </span><span class="o">{</span>
+<span class="w">            </span><span class="s2">&quot;name&quot;</span>:<span class="w"> </span><span class="s2">&quot;mytable&quot;</span>,
+<span class="w">            </span><span class="s2">&quot;type&quot;</span>:<span class="w"> </span><span class="s2">&quot;A&quot;</span>,
+<span class="w">            </span><span class="s2">&quot;index_type&quot;</span>:<span class="w"> </span><span class="s2">&quot;i64&quot;</span>,
+<span class="w">            </span><span class="s2">&quot;key_names&quot;</span>:<span class="w"> </span><span class="o">[]</span>,
+<span class="w">            </span><span class="s2">&quot;key_types&quot;</span>:<span class="w"> </span><span class="o">[]</span>
+<span class="w">        </span><span class="o">}</span>
+<span class="w">    </span><span class="o">]</span>
+</code></pre></div></p>
+<p>再看下测试代码：</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">test_example5</span><span class="p">():</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">init_db_test</span><span class="p">(</span><span class="s1">&#39;db_example5&#39;</span><span class="p">)</span>
+    <span class="n">ret</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">push_action</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="p">{},</span> <span class="p">{</span><span class="s1">&#39;hello&#39;</span><span class="p">:</span> <span class="s1">&#39;active&#39;</span><span class="p">})</span>
+    <span class="n">t</span><span class="o">.</span><span class="n">produce_block</span><span class="p">()</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;++++++++++</span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;elapsed&#39;</span><span class="p">])</span>
+    <span class="n">rows</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">get_table_rows</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;mytable&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;++++++=rows: </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">rows</span><span class="p">)</span>
+</code></pre></div>
+<p>运行测试：</p>
+<div class="highlight"><pre><span></span><code>ipyeos<span class="w"> </span>-m<span class="w"> </span>pytest<span class="w"> </span>-s<span class="w"> </span>-x<span class="w"> </span>test.py<span class="w"> </span>-k<span class="w"> </span>test_example5
+</code></pre></div>
+<p>输出：</p>
+<div class="highlight"><pre><span></span><code>++++++=rows: {&#39;rows&#39;: [{&#39;a&#39;: 1, &#39;b&#39;: &#39;alice&#39;}, {&#39;a&#39;: 3, &#39;b&#39;: &#39;bob&#39;}, {&#39;a&#39;: 5, &#39;b&#39;: &#39;john&#39;}], &#39;more&#39;: False, &#39;next_key&#39;: &#39;&#39;}
+</code></pre></div>
+<h2 id="_2">二级索引的实现</h2>
+<p>智能合约中，一个表可以有1个或者多个二级索引，最多可以有16个。这里介绍一下具体的实现方式：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># db_example6.codon</span>
+<span class="kn">from</span> <span class="nn">chain.contract</span> <span class="kn">import</span> <span class="n">Contract</span>
+<span class="kn">from</span> <span class="nn">chain.database</span> <span class="kn">import</span> <span class="n">primary</span><span class="p">,</span> <span class="n">secondary</span>
+<span class="kn">from</span> <span class="nn">chain.database</span> <span class="kn">import</span> <span class="n">IdxTable64</span><span class="p">,</span> <span class="n">IdxTable128</span><span class="p">,</span> <span class="n">SecondaryValue</span><span class="p">,</span> <span class="n">Iterator</span>
+<span class="kn">from</span> <span class="nn">chain.mi</span> <span class="kn">import</span> <span class="n">MultiIndexBase</span>
+<span class="kn">from</span> <span class="nn">chain.name</span> <span class="kn">import</span> <span class="n">Name</span>
+
+<span class="nd">@packer</span>
+<span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="n">a</span><span class="p">:</span> <span class="n">database</span><span class="o">.</span><span class="n">primary</span><span class="p">[</span><span class="n">u64</span><span class="p">]</span>
+    <span class="n">b</span><span class="p">:</span> <span class="n">secondary</span><span class="p">[</span><span class="n">u64</span><span class="p">]</span>
+    <span class="n">c</span><span class="p">:</span> <span class="n">secondary</span><span class="p">[</span><span class="n">u128</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">:</span> <span class="n">u64</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="n">u64</span><span class="p">,</span> <span class="n">c</span><span class="p">:</span> <span class="n">u128</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">a</span> <span class="o">=</span> <span class="n">primary</span><span class="p">[</span><span class="n">u64</span><span class="p">](</span><span class="n">a</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="n">secondary</span><span class="p">[</span><span class="n">u64</span><span class="p">](</span><span class="n">b</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">c</span> <span class="o">=</span> <span class="n">secondary</span><span class="p">[</span><span class="n">u128</span><span class="p">](</span><span class="n">c</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_primary</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">u64</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">a</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">get_secondary_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SecondaryValue</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">index</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">SecondaryValue</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">b</span><span class="p">())</span>
+        <span class="k">elif</span> <span class="n">index</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">SecondaryValue</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">c</span><span class="p">())</span>
+        <span class="k">assert</span> <span class="kc">False</span>
+
+    <span class="k">def</span> <span class="nf">set_secondary_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">SecondaryValue</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">index</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="k">elif</span> <span class="n">index</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">c</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="k">assert</span> <span class="kc">False</span>
+
+<span class="k">class</span> <span class="nc">MultiIndexA</span><span class="p">(</span><span class="n">MultiIndexBase</span><span class="p">[</span><span class="n">A</span><span class="p">]):</span>
+    <span class="n">idx_b</span><span class="p">:</span> <span class="n">IdxTable64</span>
+    <span class="n">idx_c</span><span class="p">:</span> <span class="n">IdxTable128</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">code</span><span class="p">:</span> <span class="n">Name</span><span class="p">,</span> <span class="n">scope</span><span class="p">:</span> <span class="n">Name</span><span class="p">,</span> <span class="n">table</span><span class="p">:</span> <span class="n">Name</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="n">scope</span><span class="p">,</span> <span class="n">table</span><span class="p">)</span>
+        <span class="n">idx_table_base</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">value</span> <span class="o">&amp;</span> <span class="mh">0xfffffffffffffff0</span><span class="n">u64</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">idx_b</span> <span class="o">=</span> <span class="n">IdxTable64</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">code</span><span class="p">,</span> <span class="n">scope</span><span class="p">,</span> <span class="n">Name</span><span class="p">(</span><span class="n">idx_table_base</span> <span class="o">|</span> <span class="n">u64</span><span class="p">(</span><span class="mi">0</span><span class="p">)))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">idx_c</span> <span class="o">=</span> <span class="n">IdxTable128</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">code</span><span class="p">,</span> <span class="n">scope</span><span class="p">,</span> <span class="n">Name</span><span class="p">(</span><span class="n">idx_table_base</span> <span class="o">|</span> <span class="n">u64</span><span class="p">(</span><span class="mi">1</span><span class="p">)))</span>
+
+    <span class="k">def</span> <span class="nf">store</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">:</span> <span class="n">A</span><span class="p">,</span> <span class="n">payer</span><span class="p">:</span> <span class="n">Name</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">A</span><span class="p">]:</span>
+        <span class="nb">id</span><span class="p">:</span> <span class="n">u64</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">get_primary</span><span class="p">()</span>
+        <span class="n">it</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">table</span><span class="o">.</span><span class="n">store</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">payer</span><span class="p">)</span>
+        <span class="n">secondary</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">get_secondary_value</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">idx_b</span><span class="o">.</span><span class="n">store</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="n">secondary</span><span class="o">.</span><span class="n">get_value_u64</span><span class="p">(),</span> <span class="n">payer</span><span class="p">)</span>
+
+        <span class="n">secondary</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">get_secondary_value</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">idx_c</span><span class="o">.</span><span class="n">store</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="n">secondary</span><span class="o">.</span><span class="n">get_value_u128</span><span class="p">(),</span> <span class="n">payer</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">it</span>
+
+    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">it</span><span class="p">:</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">A</span><span class="p">],</span> <span class="n">item</span><span class="p">:</span> <span class="n">A</span><span class="p">,</span> <span class="n">payer</span><span class="p">:</span> <span class="n">Name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">table</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">it</span><span class="p">,</span> <span class="n">item</span><span class="p">,</span> <span class="n">payer</span><span class="p">)</span>
+
+        <span class="n">primary</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">get_primary</span><span class="p">()</span>
+        <span class="n">secondary</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">get_secondary_value</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">get_value_u64</span><span class="p">()</span>
+        <span class="n">it_secondary</span><span class="p">,</span> <span class="n">old_secondary</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">idx_b</span><span class="o">.</span><span class="n">find_by_primary</span><span class="p">(</span><span class="n">primary</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">secondary</span> <span class="o">==</span> <span class="n">old_secondary</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">idx_b</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">it_secondary</span><span class="p">,</span> <span class="n">secondary</span><span class="p">,</span> <span class="n">payer</span><span class="p">)</span>
+
+        <span class="n">secondary</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">get_secondary_value</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">get_value_u128</span><span class="p">()</span>
+        <span class="n">it_secondary</span><span class="p">,</span> <span class="n">old_secondary</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">idx_c</span><span class="o">.</span><span class="n">find_by_primary</span><span class="p">(</span><span class="n">primary</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">secondary</span> <span class="o">==</span> <span class="n">old_secondary</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">idx_c</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">it_secondary</span><span class="p">,</span> <span class="n">secondary</span><span class="p">,</span> <span class="n">payer</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">it</span><span class="p">:</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">A</span><span class="p">]):</span>
+        <span class="n">sec_it</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">idx_b</span><span class="o">.</span><span class="n">find_by_primary</span><span class="p">(</span><span class="n">it</span><span class="o">.</span><span class="n">get_primary</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">idx_b</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">sec_it</span><span class="p">)</span>
+
+        <span class="n">sec_it</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">idx_c</span><span class="o">.</span><span class="n">find_by_primary</span><span class="p">(</span><span class="n">it</span><span class="o">.</span><span class="n">get_primary</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">idx_c</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">sec_it</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">table</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">it</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_idx_table_by_b</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">IdxTable64</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">idx_b</span>
+
+    <span class="k">def</span> <span class="nf">get_idx_table_by_c</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">IdxTable128</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">idx_c</span>
+
+<span class="nd">@extend</span>
+<span class="k">class</span> <span class="nc">A</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">new_table</span><span class="p">(</span><span class="n">code</span><span class="p">:</span> <span class="n">Name</span><span class="p">,</span> <span class="n">scope</span><span class="p">:</span> <span class="n">Name</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">MultiIndexA</span><span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="n">scope</span><span class="p">,</span> <span class="n">n</span><span class="s2">&quot;mytable&quot;</span><span class="p">)</span>
+
+<span class="nd">@contract</span><span class="p">(</span><span class="n">main</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">MyContract</span><span class="p">(</span><span class="n">Contract</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+    <span class="nd">@action</span><span class="p">(</span><span class="s1">&#39;test&#39;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">test</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">payer</span> <span class="o">=</span> <span class="n">n</span><span class="s2">&quot;hello&quot;</span>
+        <span class="n">table</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">new_table</span><span class="p">(</span><span class="n">n</span><span class="s2">&quot;hello&quot;</span><span class="p">,</span> <span class="n">n</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="n">item</span> <span class="o">=</span> <span class="n">A</span><span class="p">(</span><span class="mi">1</span><span class="n">u64</span><span class="p">,</span> <span class="mi">2</span><span class="n">u64</span><span class="p">,</span> <span class="mi">3</span><span class="n">u128</span><span class="p">)</span>
+        <span class="n">table</span><span class="o">.</span><span class="n">store</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">payer</span><span class="p">)</span>
+
+        <span class="n">idx_table_b</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">get_idx_table_by_b</span><span class="p">()</span>
+        <span class="n">it</span> <span class="o">=</span> <span class="n">idx_table_b</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="mi">2</span><span class="n">u64</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;++++++it.primary:&quot;</span><span class="p">,</span> <span class="n">it</span><span class="o">.</span><span class="n">primary</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">it</span><span class="o">.</span><span class="n">primary</span> <span class="o">==</span> <span class="mi">1</span><span class="n">u64</span>
+
+        <span class="n">idx_table_c</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">get_idx_table_by_c</span><span class="p">()</span>
+        <span class="n">it</span> <span class="o">=</span> <span class="n">idx_table_c</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="mi">3</span><span class="n">u128</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;++++++it.primary:&quot;</span><span class="p">,</span> <span class="n">it</span><span class="o">.</span><span class="n">primary</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">it</span><span class="o">.</span><span class="n">primary</span> <span class="o">==</span> <span class="mi">1</span><span class="n">u64</span>
+</code></pre></div>
+<p>这个例子展示了有二个二级索引的例子，通过<code>get_idx_table_by_b</code>和<code>get_idx_table_by_c</code>获取二级索引的表，对应的类分别是<code>IdxTable64</code>和<code>IdxTable128</code>。通过<code>find</code>来查找对应的值，再从返回的<code>SecondaryIterator</code>的类型中判断<code>primary</code>的值是否正确。</p>
+<p>测试代码：</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">test_example6</span><span class="p">():</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">init_db_test</span><span class="p">(</span><span class="s1">&#39;db_example6&#39;</span><span class="p">)</span>
+    <span class="n">ret</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">push_action</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="p">{},</span> <span class="p">{</span><span class="s1">&#39;hello&#39;</span><span class="p">:</span> <span class="s1">&#39;active&#39;</span><span class="p">})</span>
+    <span class="n">t</span><span class="o">.</span><span class="n">produce_block</span><span class="p">()</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;++++++++++</span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;elapsed&#39;</span><span class="p">])</span>
+</code></pre></div>
+<p>编译：</p>
+<div class="highlight"><pre><span></span><code>python-contract build db_example/db_example6.codon
+</code></pre></div>
+<p>运行测试：</p>
+<div class="highlight"><pre><span></span><code>ipyeos<span class="w"> </span>-m<span class="w"> </span>pytest<span class="w"> </span>-s<span class="w"> </span>-x<span class="w"> </span>test.py<span class="w"> </span>-k<span class="w"> </span>test_example6
+</code></pre></div>
+<p>输出：</p>
+<div class="highlight"><pre><span></span><code>++++++it.primary: 1
+++++++it.primary: 1
+</code></pre></div>
+<h2 id="_3">二级索引的实现的简化</h2>
+<p>上面的例子的二级索引的实现看上去还是比较的复杂，要实现<code>get_primary</code>, <code>get_secondary_value</code>, <code>set_secondary_value</code>这三方法。
+并且还要实现<code>MultiIndexA</code>这个类，而实际上还有更简单的办法，请看下面的例子：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># db_example7.codon</span>
+
+<span class="kn">from</span> <span class="nn">chain.contract</span> <span class="kn">import</span> <span class="n">Contract</span>
+<span class="kn">from</span> <span class="nn">chain.database</span> <span class="kn">import</span> <span class="n">primary</span><span class="p">,</span> <span class="n">secondary</span>
+<span class="kn">from</span> <span class="nn">chain.database</span> <span class="kn">import</span> <span class="n">IdxTable64</span><span class="p">,</span> <span class="n">IdxTable128</span><span class="p">,</span> <span class="n">SecondaryValue</span><span class="p">,</span> <span class="n">Iterator</span>
+<span class="kn">from</span> <span class="nn">chain.name</span> <span class="kn">import</span> <span class="n">Name</span>
+
+<span class="nd">@table</span><span class="p">(</span><span class="s2">&quot;mytable&quot;</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="n">a</span><span class="p">:</span> <span class="n">database</span><span class="o">.</span><span class="n">primary</span><span class="p">[</span><span class="n">u64</span><span class="p">]</span>
+    <span class="n">b</span><span class="p">:</span> <span class="n">secondary</span><span class="p">[</span><span class="n">u64</span><span class="p">]</span>
+    <span class="n">c</span><span class="p">:</span> <span class="n">secondary</span><span class="p">[</span><span class="n">u128</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">:</span> <span class="n">u64</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="n">u64</span><span class="p">,</span> <span class="n">c</span><span class="p">:</span> <span class="n">u128</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">a</span> <span class="o">=</span> <span class="n">primary</span><span class="p">[</span><span class="n">u64</span><span class="p">](</span><span class="n">a</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="n">secondary</span><span class="p">[</span><span class="n">u64</span><span class="p">](</span><span class="n">b</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">c</span> <span class="o">=</span> <span class="n">secondary</span><span class="p">[</span><span class="n">u128</span><span class="p">](</span><span class="n">c</span><span class="p">)</span>
+
+<span class="nd">@contract</span><span class="p">(</span><span class="n">main</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">MyContract</span><span class="p">(</span><span class="n">Contract</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+    <span class="nd">@action</span><span class="p">(</span><span class="s1">&#39;test&#39;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">test</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">payer</span> <span class="o">=</span> <span class="n">n</span><span class="s2">&quot;hello&quot;</span>
+        <span class="n">table</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">new_table</span><span class="p">(</span><span class="n">n</span><span class="s2">&quot;hello&quot;</span><span class="p">,</span> <span class="n">n</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="n">item</span> <span class="o">=</span> <span class="n">A</span><span class="p">(</span><span class="mi">1</span><span class="n">u64</span><span class="p">,</span> <span class="mi">2</span><span class="n">u64</span><span class="p">,</span> <span class="mi">3</span><span class="n">u128</span><span class="p">)</span>
+        <span class="n">table</span><span class="o">.</span><span class="n">store</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">payer</span><span class="p">)</span>
+
+        <span class="n">idx_table_b</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">get_idx_table_by_b</span><span class="p">()</span>
+        <span class="n">it</span> <span class="o">=</span> <span class="n">idx_table_b</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="mi">2</span><span class="n">u64</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;++++++it.primary:&quot;</span><span class="p">,</span> <span class="n">it</span><span class="o">.</span><span class="n">primary</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">it</span><span class="o">.</span><span class="n">primary</span> <span class="o">==</span> <span class="mi">1</span><span class="n">u64</span>
+
+        <span class="n">idx_table_c</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">get_idx_table_by_c</span><span class="p">()</span>
+        <span class="n">it</span> <span class="o">=</span> <span class="n">idx_table_c</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="mi">3</span><span class="n">u128</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;++++++it.primary:&quot;</span><span class="p">,</span> <span class="n">it</span><span class="o">.</span><span class="n">primary</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">it</span><span class="o">.</span><span class="n">primary</span> <span class="o">==</span> <span class="mi">1</span><span class="n">u64</span>
+</code></pre></div>
+<p>在这个例子中，将<code>class A</code>的decorator从<code>packer</code>改成<code>table</code>，在编译的时候编译器即会生成其它相关的代码。</p>
+<p>测试代码：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># test.py</span>
+<span class="k">def</span> <span class="nf">test_example7</span><span class="p">():</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">init_db_test</span><span class="p">(</span><span class="s1">&#39;db_example7&#39;</span><span class="p">)</span>
+    <span class="n">ret</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">push_action</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="p">{},</span> <span class="p">{</span><span class="s1">&#39;hello&#39;</span><span class="p">:</span> <span class="s1">&#39;active&#39;</span><span class="p">})</span>
+    <span class="n">t</span><span class="o">.</span><span class="n">produce_block</span><span class="p">()</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;++++++++++</span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;elapsed&#39;</span><span class="p">])</span>
+</code></pre></div>
+<p>编译：</p>
+<div class="highlight"><pre><span></span><code>python-contract build db_example/db_example7.codon
+</code></pre></div>
+<p>运行测试：</p>
+<div class="highlight"><pre><span></span><code>ipyeos<span class="w"> </span>-m<span class="w"> </span>pytest<span class="w"> </span>-s<span class="w"> </span>-x<span class="w"> </span>test.py<span class="w"> </span>-k<span class="w"> </span>test_example7
+</code></pre></div>
+<p>输出：</p>
+<div class="highlight"><pre><span></span><code>++++++it.primary: 1
+++++++it.primary: 1
+</code></pre></div>
+<h2 id="_4">二级索引的的更新</h2>
+<p>在实际的应用中，有时候需要更新二级索引。请先看下面的代码</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># db_example8.codon</span>
+<span class="kn">from</span> <span class="nn">chain.contract</span> <span class="kn">import</span> <span class="n">Contract</span>
+<span class="kn">from</span> <span class="nn">chain.database</span> <span class="kn">import</span> <span class="n">primary</span><span class="p">,</span> <span class="n">secondary</span>
+<span class="kn">from</span> <span class="nn">chain.database</span> <span class="kn">import</span> <span class="n">IdxTable64</span><span class="p">,</span> <span class="n">IdxTable128</span><span class="p">,</span> <span class="n">SecondaryValue</span><span class="p">,</span> <span class="n">Iterator</span>
+<span class="kn">from</span> <span class="nn">chain.name</span> <span class="kn">import</span> <span class="n">Name</span>
+
+<span class="nd">@table</span><span class="p">(</span><span class="s2">&quot;mytable&quot;</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="n">a</span><span class="p">:</span> <span class="n">database</span><span class="o">.</span><span class="n">primary</span><span class="p">[</span><span class="n">u64</span><span class="p">]</span>
+    <span class="n">b</span><span class="p">:</span> <span class="n">secondary</span><span class="p">[</span><span class="n">u64</span><span class="p">]</span>
+    <span class="n">c</span><span class="p">:</span> <span class="n">secondary</span><span class="p">[</span><span class="n">u128</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">:</span> <span class="n">u64</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="n">u64</span><span class="p">,</span> <span class="n">c</span><span class="p">:</span> <span class="n">u128</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">a</span> <span class="o">=</span> <span class="n">primary</span><span class="p">[</span><span class="n">u64</span><span class="p">](</span><span class="n">a</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="n">secondary</span><span class="p">[</span><span class="n">u64</span><span class="p">](</span><span class="n">b</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">c</span> <span class="o">=</span> <span class="n">secondary</span><span class="p">[</span><span class="n">u128</span><span class="p">](</span><span class="n">c</span><span class="p">)</span>
+
+<span class="nd">@contract</span><span class="p">(</span><span class="n">main</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">MyContract</span><span class="p">(</span><span class="n">Contract</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+    <span class="nd">@action</span><span class="p">(</span><span class="s1">&#39;test&#39;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">test</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">payer</span> <span class="o">=</span> <span class="n">n</span><span class="s2">&quot;hello&quot;</span>
+        <span class="n">table</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">new_table</span><span class="p">(</span><span class="n">n</span><span class="s2">&quot;hello&quot;</span><span class="p">,</span> <span class="n">n</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="n">item</span> <span class="o">=</span> <span class="n">A</span><span class="p">(</span><span class="mi">1</span><span class="n">u64</span><span class="p">,</span> <span class="mi">2</span><span class="n">u64</span><span class="p">,</span> <span class="mi">3</span><span class="n">u128</span><span class="p">)</span>
+        <span class="n">table</span><span class="o">.</span><span class="n">store</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">payer</span><span class="p">)</span>
+        <span class="n">item</span> <span class="o">=</span> <span class="n">A</span><span class="p">(</span><span class="mi">111</span><span class="n">u64</span><span class="p">,</span> <span class="mi">222</span><span class="n">u64</span><span class="p">,</span> <span class="mi">333</span><span class="n">u128</span><span class="p">)</span>
+        <span class="n">table</span><span class="o">.</span><span class="n">store</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">payer</span><span class="p">)</span>
+
+        <span class="n">idx_table_b</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">get_idx_table_by_b</span><span class="p">()</span>
+        <span class="n">it_sec</span> <span class="o">=</span> <span class="n">idx_table_b</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="mi">2</span><span class="n">u64</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;++++++it.primary:&quot;</span><span class="p">,</span> <span class="n">it_sec</span><span class="o">.</span><span class="n">primary</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">it_sec</span><span class="o">.</span><span class="n">primary</span> <span class="o">==</span> <span class="mi">1</span><span class="n">u64</span>
+
+        <span class="n">it</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">it_sec</span><span class="o">.</span><span class="n">primary</span><span class="p">)</span>
+        <span class="n">value</span><span class="p">:</span> <span class="n">A</span> <span class="o">=</span> <span class="n">it</span><span class="o">.</span><span class="n">get_value</span><span class="p">()</span>
+        <span class="n">value</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="n">secondary</span><span class="p">[</span><span class="n">u64</span><span class="p">](</span><span class="mi">22</span><span class="n">u64</span><span class="p">)</span>
+        <span class="n">table</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">it</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">payer</span><span class="p">)</span>
+
+        <span class="n">it_sec</span> <span class="o">=</span> <span class="n">idx_table_b</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="mi">22</span><span class="n">u64</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;++++++it.primary:&quot;</span><span class="p">,</span> <span class="n">it_sec</span><span class="o">.</span><span class="n">primary</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">it_sec</span><span class="o">.</span><span class="n">primary</span> <span class="o">==</span> <span class="mi">1</span><span class="n">u64</span>
+</code></pre></div>
+<p>注意上面代码中的这段代码：</p>
+<div class="highlight"><pre><span></span><code><span class="n">idx_table_b</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">get_idx_table_by_b</span><span class="p">()</span>
+<span class="n">it_sec</span> <span class="o">=</span> <span class="n">idx_table_b</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="mi">2</span><span class="n">u64</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;++++++it.primary:&quot;</span><span class="p">,</span> <span class="n">it_sec</span><span class="o">.</span><span class="n">primary</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">it_sec</span><span class="o">.</span><span class="n">primary</span> <span class="o">==</span> <span class="mi">1</span><span class="n">u64</span>
+
+<span class="n">it</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">it_sec</span><span class="o">.</span><span class="n">primary</span><span class="p">)</span>
+<span class="n">value</span><span class="p">:</span> <span class="n">A</span> <span class="o">=</span> <span class="n">it</span><span class="o">.</span><span class="n">get_value</span><span class="p">()</span>
+<span class="n">value</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="n">secondary</span><span class="p">[</span><span class="n">u64</span><span class="p">](</span><span class="mi">22</span><span class="n">u64</span><span class="p">)</span>
+<span class="n">table</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">it</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">payer</span><span class="p">)</span>
+
+<span class="n">it_sec</span> <span class="o">=</span> <span class="n">idx_table_b</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="mi">22</span><span class="n">u64</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">it_sec</span><span class="o">.</span><span class="n">is_ok</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;++++++it.primary:&quot;</span><span class="p">,</span> <span class="n">it_sec</span><span class="o">.</span><span class="n">primary</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">it_sec</span><span class="o">.</span><span class="n">primary</span> <span class="o">==</span> <span class="mi">1</span><span class="n">u64</span>
+</code></pre></div>
+<p>简述下过程：</p>
+<ul>
+<li><code>it_sec = idx_table_b.find(2u64)</code>查找二级索引的值<code>2u64</code>，返回的<code>SecondarIterator</code>类型的<code>it_sec</code>。</li>
+<li><code>it = table.find(it_sec.primary)</code>查找主索引，代码<code>value: A = it.get_value()</code>获取对应的<code>A</code>的值，</li>
+<li><code>value.b = secondary[u64](22u64)</code>更新<code>A</code>的二级索引的值为<code>22u64</code></li>
+<li><code>table.update(it, value, payer)</code>将更新后的<code>A</code>值更新到表里。</li>
+<li><code>it_sec = idx_table_b.find(22u64)</code>查找新的二级索引</li>
+<li><code>assert it_sec.primary == 1u64</code>用于检查主索引是否正确</li>
+</ul>
+<h2 id="api_1">利用API来对表进行二重索引查询</h2>
+<p>在例子<code>db_example8.codon</code>中，定义了两个二级索引，类型分别为<code>u64</code>,<code>u128</code>，<code>get_table_rows</code>API还支持通过二级索引来查找对应的值</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">test_example9</span><span class="p">():</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">init_db_test</span><span class="p">(</span><span class="s1">&#39;db_example8&#39;</span><span class="p">)</span>
+    <span class="n">ret</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">push_action</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="p">{},</span> <span class="p">{</span><span class="s1">&#39;hello&#39;</span><span class="p">:</span> <span class="s1">&#39;active&#39;</span><span class="p">})</span>
+    <span class="n">t</span><span class="o">.</span><span class="n">produce_block</span><span class="p">()</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;++++++++++</span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;elapsed&#39;</span><span class="p">])</span>
+
+    <span class="c1"># find by secondary u64</span>
+    <span class="n">rows</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">get_table_rows</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;mytable&#39;</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;i64&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;++++++++++</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">rows</span><span class="p">[</span><span class="s1">&#39;rows&#39;</span><span class="p">])</span>
+    <span class="k">assert</span> <span class="n">rows</span><span class="p">[</span><span class="s1">&#39;rows&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;b&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">22</span>
+
+    <span class="c1"># find by secondary u128</span>
+    <span class="n">rows</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">get_table_rows</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;mytable&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;i128&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;++++++++++</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">rows</span><span class="p">[</span><span class="s1">&#39;rows&#39;</span><span class="p">])</span>
+    <span class="k">assert</span> <span class="n">rows</span><span class="p">[</span><span class="s1">&#39;rows&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;c&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;3&#39;</span>
+</code></pre></div>
+<p>下面对代码作下解释</p>
+<p>通过二级索引<code>b</code>来查找表中的值：</p>
+<div class="highlight"><pre><span></span><code><span class="n">rows</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">get_table_rows</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;mytable&#39;</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;i64&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">)</span>
+</code></pre></div>
+<p>这里的<code>i64</code>即是<code>b</code>的索引类型，<code>2</code>是索引对应的序号，注意一下这里不是从<code>1</code>开始算起的。</p>
+<p>通过二级索引<code>c</code>来查找表中的值：</p>
+<div class="highlight"><pre><span></span><code><span class="n">rows</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">get_table_rows</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;mytable&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;i128&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">)</span>
+</code></pre></div>
+<p>这里的<code>i128</code>即是<code>c</code>的索引类型，注意这里lowerbound参数的值<code>3</code>是二级索引的值，由于u128已经超过了64位整数的表示范围，所以用数字字符串表示，最后一个参数<code>3</code>是索引对应的序号。</p>
+<p>上面的测试代码的运行结果如下：</p>
+<div class="highlight"><pre><span></span><code>++++++++++[{&#39;a&#39;: 1, &#39;b&#39;: 22, &#39;c&#39;: &#39;3&#39;}, {&#39;a&#39;: 111, &#39;b&#39;: 222, &#39;c&#39;: &#39;333&#39;}]
+++++++++++[{&#39;a&#39;: 1, &#39;b&#39;: 22, &#39;c&#39;: &#39;3&#39;}, {&#39;a&#39;: 111, &#39;b&#39;: 222, &#39;c&#39;: &#39;333&#39;}]
+</code></pre></div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.19047be9.min.js"></script>
+      
+    
+  </body>
+</html>

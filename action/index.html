@@ -1,0 +1,583 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../helloworld/">
+      
+      
+        <link rel="next" href="../notify/">
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.4">
+    
+    
+      
+        <title>内联Action在智能合约的使用 - Python Smart Contracts</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.240905d7.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.a0c5b2b5.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#action" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Python Smart Contracts" class="md-header__button md-logo" aria-label="Python Smart Contracts" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Python Smart Contracts
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              内联Action在智能合约的使用
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Python Smart Contracts" class="md-nav__button md-logo" aria-label="Python Smart Contracts" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Python Smart Contracts
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../prelude/" class="md-nav__link">
+        预备知识
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../env/" class="md-nav__link">
+        开发环境搭建
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../helloworld/" class="md-nav__link">
+        HelloWorld
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        内联Action在智能合约的使用
+      </a>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notify/" class="md-nav__link">
+        require_recipient函数
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../database/" class="md-nav__link">
+        数据库的操作
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../crypto/" class="md-nav__link">
+        密码学相关函数
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../common/" class="md-nav__link">
+        常用智能合约函数
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../codon/" class="md-nav__link">
+        和标准Python的差异
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="action">内联Action在智能合约的使用</h1>
+<p>在智能合约中也可以发起一个action，这样的action称之为内联action(inline action)。需要注意的是，action是异步的，也就是说，只有在整个代码执行完后，内联action对应的合约代码才会被调用，如果被调用的合约没有定义相关的action或者账号中没有部属合约，那么调用将没有影响，但也不会有异常抛出。像这些空的内联action也不是没有任何作用，例如可以当作链上的日志，以供应用程序来查询。</p>
+<p>以下是Action类在<code>action.codon</code>中的完整代码：</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@packer</span>
+<span class="k">class</span> <span class="nc">Action</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="n">account</span><span class="p">:</span> <span class="n">Name</span>
+    <span class="n">name</span><span class="p">:</span> <span class="n">Name</span>
+    <span class="n">authorization</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">PermissionLevel</span><span class="p">]</span>
+    <span class="n">data</span><span class="p">:</span> <span class="nb">bytes</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">account</span><span class="p">:</span> <span class="n">Name</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="n">Name</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">bytes</span><span class="o">=</span><span class="nb">bytes</span><span class="p">()):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">account</span> <span class="o">=</span> <span class="n">account</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">authorization</span> <span class="o">=</span> <span class="p">[</span><span class="n">PermissionLevel</span><span class="p">(</span><span class="n">account</span><span class="p">,</span> <span class="n">n</span><span class="s1">&#39;active&#39;</span><span class="p">)]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">account</span><span class="p">:</span> <span class="n">Name</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="n">Name</span><span class="p">,</span> <span class="n">permission_account</span><span class="p">:</span> <span class="n">Name</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">bytes</span><span class="o">=</span><span class="nb">bytes</span><span class="p">()):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">account</span> <span class="o">=</span> <span class="n">account</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">authorization</span> <span class="o">=</span> <span class="p">[</span><span class="n">PermissionLevel</span><span class="p">(</span><span class="n">permission_account</span><span class="p">,</span> <span class="n">n</span><span class="s1">&#39;active&#39;</span><span class="p">)]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">account</span><span class="p">:</span> <span class="n">Name</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="n">Name</span><span class="p">,</span> <span class="n">permission_account</span><span class="p">:</span> <span class="n">Name</span><span class="p">,</span> <span class="n">permission_name</span><span class="p">:</span> <span class="n">Name</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">bytes</span><span class="o">=</span><span class="nb">bytes</span><span class="p">()):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">account</span> <span class="o">=</span> <span class="n">account</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">authorization</span> <span class="o">=</span> <span class="p">[</span><span class="n">PermissionLevel</span><span class="p">(</span><span class="n">permission_account</span><span class="p">,</span> <span class="n">permission_name</span><span class="p">)]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">account</span><span class="p">:</span> <span class="n">Name</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="n">Name</span><span class="p">,</span> <span class="n">authorization</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">PermissionLevel</span><span class="p">],</span> <span class="n">data</span><span class="p">:</span> <span class="nb">bytes</span><span class="o">=</span><span class="nb">bytes</span><span class="p">()):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">account</span> <span class="o">=</span> <span class="n">account</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">authorization</span> <span class="o">=</span> <span class="n">authorization</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
+
+    <span class="k">def</span> <span class="nf">send</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">raw</span> <span class="o">=</span> <span class="n">pack</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">send_inline</span><span class="p">(</span><span class="n">raw</span><span class="o">.</span><span class="n">ptr</span><span class="p">,</span> <span class="n">u32</span><span class="p">(</span><span class="n">raw</span><span class="o">.</span><span class="n">len</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">send</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">T</span><span class="p">,</span> <span class="n">T</span><span class="p">:</span> <span class="nb">type</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">pack</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">raw</span> <span class="o">=</span> <span class="n">pack</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">send_inline</span><span class="p">(</span><span class="n">raw</span><span class="o">.</span><span class="n">ptr</span><span class="p">,</span> <span class="n">u32</span><span class="p">(</span><span class="n">raw</span><span class="o">.</span><span class="n">len</span><span class="p">))</span>
+</code></pre></div>
+<p>该类有三个<code>__init__</code>函数，请根据需求来使用，使用比较多的应该是下面这个初始化函数：</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">account</span><span class="p">:</span> <span class="n">Name</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="n">Name</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">bytes</span><span class="o">=</span><span class="nb">bytes</span><span class="p">())</span>
+</code></pre></div>
+<p>这个函数默认使用和account的<code>active</code>权限</p>
+<p>下面这个初始化函数指定了权限的账号，也是默认使用账号的<code>active</code>权限</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">account</span><span class="p">:</span> <span class="n">Name</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="n">Name</span><span class="p">,</span> <span class="n">permission_account</span><span class="p">:</span> <span class="n">Name</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">bytes</span><span class="o">=</span><span class="nb">bytes</span><span class="p">())</span>
+</code></pre></div>
+<p>如果使用的是其它权限，则可以使用下面的个初始化函数：</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">account</span><span class="p">:</span> <span class="n">Name</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="n">Name</span><span class="p">,</span> <span class="n">permission_account</span><span class="p">:</span> <span class="n">Name</span><span class="p">,</span> <span class="n">permission_name</span><span class="p">:</span> <span class="n">Name</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">bytes</span><span class="o">=</span><span class="nb">bytes</span><span class="p">()):</span>
+</code></pre></div>
+<p>如果账号用了多个权限，则用下个这个初始化函数。</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">account</span><span class="p">:</span> <span class="n">Name</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="n">Name</span><span class="p">,</span> <span class="n">authorization</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">PermissionLevel</span><span class="p">],</span> <span class="n">data</span><span class="p">:</span> <span class="nb">bytes</span><span class="o">=</span><span class="nb">bytes</span><span class="p">()):</span>
+</code></pre></div>
+<p>示例：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># action_example.codon</span>
+<span class="kn">from</span> <span class="nn">packer</span> <span class="kn">import</span> <span class="n">pack</span>
+<span class="kn">from</span> <span class="nn">chain.action</span> <span class="kn">import</span> <span class="n">Action</span><span class="p">,</span> <span class="n">PermissionLevel</span>
+<span class="kn">from</span> <span class="nn">chain.contract</span> <span class="kn">import</span> <span class="n">Contract</span>
+
+<span class="nd">@packer</span>
+<span class="k">class</span> <span class="nc">Person</span><span class="p">:</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">height</span><span class="p">:</span> <span class="n">u64</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span> <span class="n">u64</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">height</span> <span class="o">=</span> <span class="n">height</span>
+
+<span class="nd">@contract</span><span class="p">(</span><span class="n">main</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">MyContract</span><span class="p">(</span><span class="n">Contract</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+    <span class="nd">@action</span><span class="p">(</span><span class="s1">&#39;test&#39;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">test</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">Action</span><span class="p">(</span><span class="n">n</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="n">n</span><span class="s1">&#39;test2&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;++++send test2 action&#39;</span><span class="p">)</span>
+        <span class="n">a</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;1 alice&quot;</span><span class="p">)</span>
+
+        <span class="n">a</span> <span class="o">=</span> <span class="n">Action</span><span class="p">(</span><span class="n">n</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="n">n</span><span class="s1">&#39;test2&#39;</span><span class="p">,</span> <span class="n">n</span><span class="s1">&#39;hello&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;++++send test2 action&#39;</span><span class="p">)</span>
+        <span class="n">a</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;2 alice&quot;</span><span class="p">)</span>
+
+        <span class="n">a</span> <span class="o">=</span> <span class="n">Action</span><span class="p">(</span><span class="n">n</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="n">n</span><span class="s1">&#39;test2&#39;</span><span class="p">,</span> <span class="n">n</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="n">n</span><span class="s1">&#39;active&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;++++send test2 action&#39;</span><span class="p">)</span>
+        <span class="n">a</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;3 alice&quot;</span><span class="p">)</span>
+
+        <span class="n">a</span> <span class="o">=</span> <span class="n">Action</span><span class="p">(</span><span class="n">n</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="n">n</span><span class="s1">&#39;test2&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">PermissionLevel</span><span class="p">(</span><span class="n">n</span><span class="s2">&quot;hello&quot;</span><span class="p">,</span> <span class="n">n</span><span class="s2">&quot;active&quot;</span><span class="p">)])</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;++++send test2 action&#39;</span><span class="p">)</span>
+        <span class="n">a</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;4 alice&quot;</span><span class="p">)</span>
+
+        <span class="n">a</span> <span class="o">=</span> <span class="n">Action</span><span class="p">(</span><span class="n">n</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="n">n</span><span class="s1">&#39;test3&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;++++send test3 action&#39;</span><span class="p">)</span>
+        <span class="n">a</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">Person</span><span class="p">(</span><span class="s2">&quot;alice&quot;</span><span class="p">,</span> <span class="mi">175</span><span class="n">u64</span><span class="p">))</span>
+        <span class="k">return</span>
+
+    <span class="nd">@action</span><span class="p">(</span><span class="s1">&#39;test2&#39;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">test2</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;++++=name:&#39;</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+
+    <span class="nd">@action</span><span class="p">(</span><span class="s1">&#39;test3&#39;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">test3</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span> <span class="n">u64</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;++++=name:&#39;</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="s1">&#39;height:&#39;</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
+</code></pre></div>
+<p>测试代码：</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">test_action</span><span class="p">():</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">init_test</span><span class="p">(</span><span class="s1">&#39;action_example&#39;</span><span class="p">)</span>
+    <span class="n">ret</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">push_action</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="p">{},</span> <span class="p">{</span><span class="s1">&#39;hello&#39;</span><span class="p">:</span> <span class="s1">&#39;active&#39;</span><span class="p">})</span>
+    <span class="n">t</span><span class="o">.</span><span class="n">produce_block</span><span class="p">()</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;++++++++++</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;elapsed&#39;</span><span class="p">])</span>
+</code></pre></div>
+<p>编译：
+<div class="highlight"><pre><span></span><code>python-contract build action_example.codon
+</code></pre></div></p>
+<p>运行测试：</p>
+<div class="highlight"><pre><span></span><code>ipyeos -m pytest -s -x test.py -k test_action
+</code></pre></div>
+<p>输出：</p>
+<div class="highlight"><pre><span></span><code>debug 2023-03-28T12:35:48.175 thread-0  apply_context.cpp:30          print_debug          ] 
+[(hello,test)-&gt;hello]: CONSOLE OUTPUT BEGIN =====================
+++++send test2 action
+++++send test2 action
+++++send test2 action
+++++send test2 action
+++++send test3 action
+
+[(hello,test)-&gt;hello]: CONSOLE OUTPUT END   =====================
+debug 2023-03-28T12:35:48.175 thread-0  apply_context.cpp:30          print_debug          ] 
+[(hello,test2)-&gt;hello]: CONSOLE OUTPUT BEGIN =====================
+++++=name: 1 alice
+
+[(hello,test2)-&gt;hello]: CONSOLE OUTPUT END   =====================
+debug 2023-03-28T12:35:48.175 thread-0  apply_context.cpp:30          print_debug          ] 
+[(hello,test2)-&gt;hello]: CONSOLE OUTPUT BEGIN =====================
+++++=name: 2 alice
+
+[(hello,test2)-&gt;hello]: CONSOLE OUTPUT END   =====================
+debug 2023-03-28T12:35:48.175 thread-0  apply_context.cpp:30          print_debug          ] 
+[(hello,test2)-&gt;hello]: CONSOLE OUTPUT BEGIN =====================
+++++=name: 3 alice
+
+[(hello,test2)-&gt;hello]: CONSOLE OUTPUT END   =====================
+debug 2023-03-28T12:35:48.175 thread-0  apply_context.cpp:30          print_debug          ] 
+[(hello,test2)-&gt;hello]: CONSOLE OUTPUT BEGIN =====================
+++++=name: 4 alice
+
+[(hello,test2)-&gt;hello]: CONSOLE OUTPUT END   =====================
+debug 2023-03-28T12:35:48.175 thread-0  apply_context.cpp:30          print_debug          ] 
+[(hello,test3)-&gt;hello]: CONSOLE OUTPUT BEGIN =====================
+++++=name: alice height: 175
+
+[(hello,test3)-&gt;hello]: CONSOLE OUTPUT END   =====================
+debug 2023-03-28T12:35:48.177 thread-0  controller.cpp:2444           clear_expired_input_ ] removed 0 expired transactions of the 50 input dedup list, pending block time 2018-06-01T12:00:04.000
+</code></pre></div>
+<p>可以看到，这里先调用了<code>test</code>这个在Transaction里指定了的action，然后调用了<code>test2</code>这个Action，但是<code>test2</code>这个action并没有在Transaction里指定，而是在智能合约里发起的。另外，还通过<code>test3</code>演示了如何发送带多个参数的action.</p>
+<p>需要注意的是，为了在合约中能够调用inline action，需要在账号的<code>active</code>权限中添加<code>eosio.code</code>这个虚拟权限,在测试代码中，通过下面的函数来将<code>eosio.code</code>这个虚拟权限添加到<code>active</code>权限中。</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">update_auth</span><span class="p">(</span><span class="n">chain</span><span class="p">,</span> <span class="n">account</span><span class="p">):</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;account&quot;</span><span class="p">:</span> <span class="n">account</span><span class="p">,</span>
+        <span class="s2">&quot;permission&quot;</span><span class="p">:</span> <span class="s2">&quot;active&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;parent&quot;</span><span class="p">:</span> <span class="s2">&quot;owner&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;auth&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;threshold&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="s2">&quot;keys&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;key&quot;</span><span class="p">:</span> <span class="s1">&#39;EOS6AjF6hvF7GSuSd4sCgfPKq5uWaXvGM2aQtEUCwmEHygQaqxBSV&#39;</span><span class="p">,</span>
+                    <span class="s2">&quot;weight&quot;</span><span class="p">:</span> <span class="mi">1</span>
+                <span class="p">}</span>
+            <span class="p">],</span>
+            <span class="s2">&quot;accounts&quot;</span><span class="p">:</span> <span class="p">[{</span><span class="s2">&quot;permission&quot;</span><span class="p">:{</span><span class="s2">&quot;actor&quot;</span><span class="p">:</span><span class="n">account</span><span class="p">,</span><span class="s2">&quot;permission&quot;</span><span class="p">:</span> <span class="s1">&#39;eosio.code&#39;</span><span class="p">},</span> <span class="s2">&quot;weight&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">}],</span>
+            <span class="s2">&quot;waits&quot;</span><span class="p">:</span> <span class="p">[]</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="n">chain</span><span class="o">.</span><span class="n">push_action</span><span class="p">(</span><span class="s1">&#39;eosio&#39;</span><span class="p">,</span> <span class="s1">&#39;updateauth&#39;</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="p">{</span><span class="n">account</span><span class="p">:</span><span class="s1">&#39;active&#39;</span><span class="p">})</span>
+</code></pre></div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.19047be9.min.js"></script>
+      
+    
+  </body>
+</html>
