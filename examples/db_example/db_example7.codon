@@ -1,7 +1,6 @@
 from chain.contract import Contract
 from chain.database import primary, secondary
 from chain.database import IdxTable64, IdxTable128, SecondaryValue, Iterator
-from chain.name import Name
 
 @table("mytable")
 class A(object):

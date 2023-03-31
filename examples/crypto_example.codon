@@ -1,7 +1,6 @@
 from chain.contract import Contract
 from chain.crypto import sha256, assert_sha256, sha512, assert_sha512, sha1, assert_sha1, ripemd160, assert_ripemd160
 from chain.crypto import recover_key, assert_recover_key
-from chain.crypto import Signature, Checksum256, PublicKey
 
 @contract(main=True)
 class MyContract(Contract):

@@ -24,7 +24,7 @@ def has_auth(account: Name) -> bool:
 
 说明：
 
-用来判断是否有指定账号的`active`权限
+用来判断是否有指定账号的`active`权限，也就是Transaction是否有用指定账号的`active`权限所对应的私钥进行签名。对应的私钥最少有一个，也可能二个以上。
 
 ## require_auth/require_auth2
 

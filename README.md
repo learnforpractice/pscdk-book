@@ -1,5 +1,6 @@
 # pscdk-book
-Python Smart Contract Book
+
+Python Smart Contracts Development Cook Book
 
 ## 目录
 

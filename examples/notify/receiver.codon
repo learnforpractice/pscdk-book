@@ -1,4 +1,3 @@
-from chain.name import Name
 from chain.contract import Contract
 
 @contract(main=True)

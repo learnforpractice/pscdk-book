@@ -1,4 +1,4 @@
-site_name: Python Smart Contracts
+site_name: Python Smart Contracts Development Cook Book
 nav:
     - 'env.md'
     - 'helloworld.md'
@@ -8,6 +8,7 @@ nav:
     - 'database.md'
     - 'crypto.md'
     - 'common.md'
+    - 'abi.md'
     - 'codon.md'
 markdown_extensions:
   - pymdownx.superfences
