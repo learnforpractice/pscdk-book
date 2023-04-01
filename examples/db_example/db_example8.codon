@@ -44,10 +44,7 @@ class MyContract(Contract):
         print("++++++it.primary:", it_sec.primary)
         assert it_sec.primary == 1u64
         
-        it = table.find(it_sec.primary)
-        value: A = it.get_value()
-        value.b = secondary[u64](22u64)
-        table.update(it, value, payer)
+        table.update_b(it_sec, 22u64, payer)
 
         it_sec = idx_table_b.find(22u64)
         assert it_sec.is_ok()

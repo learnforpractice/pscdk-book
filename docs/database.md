@@ -602,6 +602,22 @@ class MultiIndexA(MultiIndexBase[A]):
     def get_idx_table_by_c(self) -> IdxTable128:
         return self.idx_c
 
+    def update_b(self, it: SecondaryIterator, b: u64, payer: Name) -> None:
+        self.idx_b.update(it, b, payer)
+        it_primary = self.table.find(it.primary)
+        check(it_primary.is_ok(), "primary iterator not found")
+        value: A = it_primary.get_value()
+        value.b = secondary[u64](b)
+        self.table.update(it_primary, value, payer)
+
+    def update_c(self, it: SecondaryIterator, c: u128, payer: Name) -> None:
+        self.idx_c.update(it, c, payer)
+        it_primary = self.table.find(it.primary)
+        check(it_primary.is_ok(), "primary iterator not found")
+        value: A = it_primary.get_value()
+        value.c = secondary[u128](c)
+        self.table.update(it_primary, value, payer)
+
 @extend
 class A:
     def new_table(code: Name, scope: Name):
@@ -784,12 +800,10 @@ class MyContract(Contract):
         print("++++++it.primary:", it_sec.primary)
         assert it_sec.primary == 1u64
         
-        it = table.find(it_sec.primary)
-        value: A = it.get_value()
-        value.b = secondary[u64](22u64)
-        table.update(it, value, payer)
+        table.update_b(it_sec, 22u64, payer)
 
         it_sec = idx_table_b.find(22u64)
+        assert it_sec.is_ok()
         print("++++++it.primary:", it_sec.primary)
         assert it_sec.primary == 1u64
 ```
@@ -802,10 +816,7 @@ it_sec = idx_table_b.find(2u64)
 print("++++++it.primary:", it_sec.primary)
 assert it_sec.primary == 1u64
 
-it = table.find(it_sec.primary)
-value: A = it.get_value()
-value.b = secondary[u64](22u64)
-table.update(it, value, payer)
+table.update_b(it_sec, 22u64, payer)
 
 it_sec = idx_table_b.find(22u64)
 assert it_sec.is_ok()
@@ -816,9 +827,7 @@ assert it_sec.primary == 1u64
 简述下过程：
 
 - `it_sec = idx_table_b.find(2u64)`查找二级索引的值`2u64`，返回的`SecondarIterator`类型的`it_sec`。
-- `it = table.find(it_sec.primary)`查找主索引，代码`value: A = it.get_value()`获取对应的`A`的值，
-- `value.b = secondary[u64](22u64)`更新`A`的二级索引的值为`22u64`
-- `table.update(it, value, payer)`将更新后的`A`值更新到表里。
+- `table.update_b(it_sec, 22u64, payer)` 更新`b`的值为`22u64`
 - `it_sec = idx_table_b.find(22u64)`查找新的二级索引
 - `assert it_sec.primary == 1u64`用于检查主索引是否正确
 
