@@ -350,13 +350,7 @@ class MyContract(Contract):
 ```
 
 这里，通过`table`这个内置的`decorator`来让编译器在ABI中加入表的结构。
-给类加了这个`table`，编译器会自动给类添加以下三个函数：
-
-```
-get_primary
-set_secondary_value
-get_secondary_value
-```
+给类加了这个`table`，编译器会自动给类添加`get_primary`以及`new_table`函数：
 
 同时，类的成员变量也要满足相应的要求：
 首先，必须声明一个主索引变量，类型必须是`database.primary`, `primary`类的实现如下：
@@ -724,20 +718,6 @@ class A(object):
     def get_primary(self) -> u64:
         return self.a()
 
-    def get_secondary_value(self, index: int) -> SecondaryValue:
-        if index == 0:
-            return SecondaryValue(self.b())
-        elif index == 1:
-            return SecondaryValue(self.c())
-        assert False
-
-    def set_secondary_value(self, index: int, value: SecondaryValue):
-        if index == 0:
-            self.b = value
-        elif index == 1:
-            self.c = value
-        assert False
-
 class MultiIndexA(MultiIndexBase[A]):
     idx_b: IdxTable64
     idx_c: IdxTable128
@@ -751,11 +731,9 @@ class MultiIndexA(MultiIndexBase[A]):
     def store(self, item: A, payer: Name) -> Iterator[A]:
         id: u64 = item.get_primary()
         it = self.table.store(item, payer)
-        secondary = item.get_secondary_value(0)
-        self.idx_b.store(id, secondary.get_value_u64(), payer)
+        self.idx_b.store(id, item.b(), payer)
 
-        secondary = item.get_secondary_value(1)
-        self.idx_c.store(id, secondary.get_value_u128(), payer)
+        self.idx_c.store(id, item.c(), payer)
 
         return it
 
@@ -763,12 +741,12 @@ class MultiIndexA(MultiIndexBase[A]):
         self.table.update(it, item, payer)
 
         primary = item.get_primary()
-        secondary = item.get_secondary_value(0).get_value_u64()
+        secondary = item.b()
         it_secondary, old_secondary = self.idx_b.find_by_primary(primary)
         if not secondary == old_secondary:
             self.idx_b.update(it_secondary, secondary, payer)
 
-        secondary = item.get_secondary_value(1).get_value_u128()
+        secondary = item.c()
         it_secondary, old_secondary = self.idx_c.find_by_primary(primary)
         if not secondary == old_secondary:
             self.idx_c.update(it_secondary, secondary, payer)
@@ -781,6 +759,11 @@ class MultiIndexA(MultiIndexBase[A]):
         self.idx_c.remove(sec_it)
 
         self.table.remove(it)
+
+    def remove(self, primary: u64):
+        it = self.table.find(primary)
+        if it.is_ok():
+            self.remove(it)
 
     def get_idx_table_by_b(self) -> IdxTable64:
         return self.idx_b
@@ -850,8 +833,6 @@ class MyContract(Contract):
 同时会为类`A`生成额外的方法：
 
 - `get_primary` 获取主索引
-- `get_secondary_value` 根据序号获取二级索引的值
-- `set_secondary_value` 根据序号设置二级索引的值
 - `get_idx_table_by_b`, 用于获取二级索引`b`的表，返回的类是`IdxTable64`
 - `get_idx_table_by_c`，用于获取二级索引`c`的表，返回的类为`IdxTable128`。
 - `new_table`
