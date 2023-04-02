@@ -1,4 +1,4 @@
-from chain.database import PrimaryTable, primary
+from chain.database import primary
 from chain.contract import Contract
 
 @table("mytable")
@@ -18,7 +18,7 @@ class MyContract(Contract):
     @action('test')
     def test(self):
         print('db_test')
-        table = PrimaryTable[A](n'hello', n'', n'mytable')
+        table = A.new_table(n'hello', n'')
         payer = n'hello'
 
         value = A(1u64, "alice")

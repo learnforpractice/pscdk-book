@@ -31,8 +31,6 @@ class MyContract(Contract):
         payer = n"hello"
         table = A.new_table(n"hello", n"")
         item = A(1u64, 2u64, 3u128)
-        import copy
-        item2 = copy.copy(item)
         table.store(item, payer)
 
         item = A(111u64, 222u64, 333u128)
@@ -50,3 +48,18 @@ class MyContract(Contract):
         assert it_sec.is_ok()
         print("++++++it.primary:", it_sec.primary)
         assert it_sec.primary == 1u64
+
+    @action('testremove')
+    def test_remove(self):
+        payer = n"hello"
+        table = A.new_table(n"hello", n"")
+        item = A(1u64, 2u64, 3u128)
+        table.store(item, payer)
+
+        it = table.find(1u64)
+        table.remove(it)
+
+        idx_table_b = table.get_idx_table_by_b()
+        it_sec = idx_table_b.find(2u64)
+        assert not it_sec.is_ok()
+

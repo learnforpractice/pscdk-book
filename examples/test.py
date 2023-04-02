@@ -53,37 +53,34 @@ def init_test(contract_name):
 def init_db_test(contract_name) -> ChainTester:
     return init_test(f"db_example/{contract_name}")
 
-def test_example1():
+def test_store():
     t = init_db_test('db_example1')
-    ret = t.push_action('hello', 'test', "", {'hello': 'active'})
+    ret = t.push_action('hello', 'teststore', "", {'hello': 'active'})
     t.produce_block()
     logger.info("++++++++++%s\n", ret['elapsed'])
 
     # will raise exception
-    ret = t.push_action('hello', 'test', "", {'hello': 'active'})
-    t.produce_block()
+    # ret = t.push_action('hello', 'test', "", {'hello': 'active'})
+    # t.produce_block()
 
-def test_example2():
-    t = init_db_test('db_example2')
-    ret = t.push_action('hello', 'test', {'value': 'hello, bob'}, {'hello': 'active'})
-    t.produce_block()
-    logger.info("++++++++++%s\n", ret['elapsed'])
-
-    ret = t.push_action('hello', 'test', {'value': 'hello, alice'}, {'hello': 'active'})
-    t.produce_block()
-
-def test_example3():
-    t = init_db_test('db_example3')
-    ret = t.push_action('hello', 'test', {'value': 'hello, bob'}, {'hello': 'active'})
+def test_update():
+    t = init_db_test('db_example1')
+    ret = t.push_action('hello', 'testupdate', {'value': 'hello, bob'}, {'hello': 'active'})
     t.produce_block()
     logger.info("++++++++++%s\n", ret['elapsed'])
 
-    ret = t.push_action('hello', 'test', {'value': 'hello, alice'}, {'hello': 'active'})
+    ret = t.push_action('hello', 'testupdate', {'value': 'hello, alice'}, {'hello': 'active'})
     t.produce_block()
 
-def test_example4():
-    t = init_db_test('db_example4')
-    ret = t.push_action('hello', 'test', {}, {'hello': 'active'})
+def test_remove():
+    t = init_db_test('db_example1')
+    ret = t.push_action('hello', 'testremove', "", {'hello': 'active'})
+    t.produce_block()
+    logger.info("++++++++++%s\n", ret['elapsed'])
+
+def test_bound():
+    t = init_db_test('db_example1')
+    ret = t.push_action('hello', 'testbound', {}, {'hello': 'active'})
     t.produce_block()
     logger.info("++++++++++%s\n", ret['elapsed'])
 
@@ -110,6 +107,12 @@ def test_example7():
 def test_example8():
     t = init_db_test('db_example8')
     ret = t.push_action('hello', 'test', {}, {'hello': 'active'})
+    t.produce_block()
+    logger.info("++++++++++%s\n", ret['elapsed'])
+
+def test_remove_secondary():
+    t = init_db_test('db_example8')
+    ret = t.push_action('hello', 'testremove', {}, {'hello': 'active'})
     t.produce_block()
     logger.info("++++++++++%s\n", ret['elapsed'])
 

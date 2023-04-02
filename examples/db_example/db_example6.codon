@@ -75,6 +75,11 @@ class MultiIndexA(MultiIndexBase[A]):
 
         self.table.remove(it)
 
+    def remove(self, primary: u64):
+        it = self.table.find(primary)
+        if it.is_ok():
+            self.remove(it)
+
     def get_idx_table_by_b(self) -> IdxTable64:
         return self.idx_b
 
