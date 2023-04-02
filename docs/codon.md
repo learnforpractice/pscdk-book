@@ -9,12 +9,13 @@
 例如：
 
 ```python
-class SecondaryValue(object):
-    def __init__(self, value: u64):
-        pass
+class Action(object):
+...
+    def __init__(self, account: Name, name: Name, data: bytes=bytes()):
+        ...
 
-    def __init__(self, value: u128):
-        pass
+    def __init__(self, account: Name, name: Name, permission_account: Name, data: bytes=bytes()):
+        ...
 ```
 
 但是要注意的是，模块的函数暂时不支持函数重载

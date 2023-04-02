@@ -433,7 +433,7 @@ ipyeos -m pytest -s -x test.py -k test_example5
 
 from chain.contract import Contract
 from chain.database import primary, secondary
-from chain.database import IdxTable64, IdxTable128, SecondaryValue, Iterator
+from chain.database import IdxTable64, IdxTable128, Iterator
 from chain.name import Name
 
 @table("mytable")
@@ -519,7 +519,7 @@ ipyeos -m pytest -s -x test.py -k test_example7
 # db_example8.codon
 from chain.contract import Contract
 from chain.database import primary, secondary
-from chain.database import IdxTable64, IdxTable128, SecondaryValue, Iterator
+from chain.database import IdxTable64, IdxTable128, Iterator
 from chain.name import Name
 
 @table("mytable")
@@ -700,7 +700,7 @@ rows = t.get_table_rows(True, 'hello', '', 'mytable', '3', '', 10, 'i128', '3')
 # db_example6.codon
 from chain.contract import Contract
 from chain.database import primary, secondary
-from chain.database import IdxTable64, IdxTable128, SecondaryValue, Iterator
+from chain.database import IdxTable64, IdxTable128, Iterator
 from chain.mi import MultiIndexBase
 from chain.name import Name
 
