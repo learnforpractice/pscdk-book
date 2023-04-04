@@ -1,3 +1,5 @@
+# helloworld版本的Python智能合约的例子
+
 from chain.contract import Contract
 
 @contract(main=True)

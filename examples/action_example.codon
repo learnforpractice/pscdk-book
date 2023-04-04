@@ -1,3 +1,5 @@
+# Description: This example shows how to use Action class to send action to other contract.
+
 from packer import pack
 from chain.action import Action, PermissionLevel
 from chain.contract import Contract

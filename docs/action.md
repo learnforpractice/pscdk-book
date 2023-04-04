@@ -125,7 +125,7 @@ class MyContract(Contract):
     def test3(self, name: str, height: u64):
         print('++++=name:', name, 'height:', height)
 ```
-
+                                                                                                    
 测试代码：
 
 ```python

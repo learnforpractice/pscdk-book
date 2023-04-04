@@ -1,5 +1,13 @@
 # 预备知识
 
+## 什么是智能合约
+
+智能合约是可以在链上执行的代码
+
+## 什么是Python智能合约
+
+Python智能合约是用Python语言写的可在链上执行的代码。以EOS网络为例，Python智能合约的代码会被编译成叫Webassebmly的二进制文件，并且可以发布到链上并被执行，从而达成某种操作效果。
+
 ## 什么是EOS
 EOS是一个基于代理权益证明(DPOS - Delegated Proof of Stake)共识算法的区块链网络。主网于2018年的6月8号正式上线。EOS的主网由21个块生产者(Block Producer)控制，块生产者简称为BP，由投票产生，负责将交易(Transaction)打包到区块中。
 
@@ -105,7 +113,7 @@ EOS是一个基于代理权益证明(DPOS - Delegated Proof of Stake)共识算�
 - `ram_usage`: 已经使用的内存
 - `permissions`: 账号的权限，账号的权限包含一个或者多个公钥或者账号的信息，每个公钥和账号的权限又占一定的权重(weight)，在发送交易(transaction)时，必须用公钥对应的私钥对交易进行签名，并且权重要大于等于`threshold`时，这个交易才能被BP认可。当账号的权限里包含的不是公钥信息，而是指定继承自某个账号的权限信息时，在签名的时候，会从这个账号的权限信息里提取出公钥信息，这通过C++程序的算法来实现。EOS的RPC接口中也有一个`get_required_keys`接口来获取签名的公钥信息。
 - `total_resources`：这里指定组账号分配的NET，CPU， RAM等资源的信息
-
+                                                                                                    
 ## Name 结构
 name是EOS中的一个最基本的数据结构，在底层用一个64位的无符号整数(uint64_t)表示。
 
@@ -147,7 +155,7 @@ name是EOS中的一个最基本的数据结构，在底层用一个64位的无�
 ```
 
 在这个C++代码中，name结构也用来表示action， table的名称等等，注意的是，不同于账号(account)名，在用字符串表示这些名称时，最多可以有13个字符，但是一般为了方便，习惯上用的时候也是最多用12个字符来表示这些名称。
-
+                                                                                                    
 ## Transaction 结构
 
 EOS上基本数据结构称为交易（Transaction），由BP负责将一段时间内收集到的交易打包成一个区块。智能合约开发者必须充分了解Transaction的数据结构。
@@ -180,7 +188,7 @@ struct transaction_header {
 - `ref_block_num`, `ref_block_prefix` 这两个成员变量是用来防止transaction在fork链上被重新包含进区块而设计的。
 - `actions`, 这是一个action的数组结构，action的概念非常重要，每一个action都对应一个链上的智能合约函数，BP在将Transaction包含进区块的时候，都会根据action来调用对应的智能合约函数，这将在下面的一节中详细解释。
 - `context_free_actions `, 这同样是一个action的数组，不同的是，当和action相对应的智能合约函数被调用时，执行的代码被禁止调用和链上数据库相关的API。
-
+                                                                                                    
 ## Action 结构
 
 Action结构包含在Transaction结构中。一个action结构在C++代码中的定义如下：
@@ -212,7 +220,7 @@ struct permission_level {
 - `authorization`权限数组
 - `data`action所包含的已经被序列化后的原始数据，在被智能合约所调用的时候，会被反序列化成具体的数据结构
 
-
+                                                                                                    
 ## ABI(Application Binary Interface)
 
 在开发智能合约的时候，在编译智能合约代码的过程中，正常情况下，在生成的每个智能合约的二进制代码(.wasm)的同时，都会生成一个ABI文件(.abi)。但是要注意这个文件并不是调用链上的智能合约所必须的。它的作用是方便开发者能够获取相关的action的信息，以构造相应的Transaction数据结构，以方便和区块链进行交互。

@@ -76,7 +76,7 @@ could not insert object, most likely a uniqueness constraint was violated
 为了不抛出异常，在要更新表中的数据时，则要用到`update`方法。
 在调用`store`之前要先对表中是否存在主索引进行判断，如果已经存在，则不能调用`store`方法，而必须调用`update`方法。
 以下的示例展示了用法：
-
+                                                                                                    
 ## find/update
 
 这一节演示了数据库的查找和更新功能。
@@ -164,7 +164,7 @@ table.update(it, item, n'hello')
 ```
 
 你将会看到到智能合约里抛出的异常
-
+                                                                                                    
 ## remove
 
 下面的代码演示了如何去删除数据库中的一项数据。
@@ -211,8 +211,7 @@ ipyeos -m pytest -s -x test.py -k test_remove
 
 
 上面的代码先调用`store`方法来存储索引为`123u64`的数据，然后再再调用`remove`删除，调用`assert`以检查结果。如果一切正常，程序将不会抛出任何的异常。
-
-
+                                                                                                    
 ## lowerbound/upperbound
 
 这两个方法也是用来查找给中的元素的，不同于`find`方法，这两个函数用于模糊查找。其中，`lowerbound`方法返回`>=`指定`id`的`Iterator`，`upperbound`方法返回`>`指定`id`的`Iterator`，下面来看下用法：
@@ -280,8 +279,7 @@ ipyeos -m pytest -s -x test.py -k test_bound
 +++++: 1 alice
 +++++: 3 bob
 ```
-
-
+                                                                                                    
 ## 利用API来对表进行主索引查询
 
 上面的例子都是讲的如果通过智能合约来操作链上的数据库的表，实际上，通过EOS提供的链下的`get_table_rows`的API的接口，也同样可以对链上的表进行查询工作。
@@ -423,7 +421,7 @@ ipyeos -m pytest -s -x test.py -k test_example5
 ```
 ++++++=rows: {'rows': [{'a': 1, 'b': 'alice'}, {'a': 3, 'b': 'bob'}, {'a': 5, 'b': 'john'}], 'more': False, 'next_key': ''}
 ```
-
+                                                                                                    
 ## 二级索引的操作
 
 请先看下面的例子：
@@ -510,7 +508,7 @@ ipyeos -m pytest -s -x test.py -k test_example7
 ++++++it.primary: 1
 ++++++it.primary: 1
 ```
-
+                                                                                                    
 ## 二级索引的的更新
 
 在实际的应用中，有时候需要更新二级索引。请先看下面的代码
@@ -602,7 +600,7 @@ def update_b(self, it: SecondaryIterator, b: u64, payer: Name) -> None:
 ```
 
 从代码看出，更新二级索引的时候，还会更新主索引的对应的值
-
+                                                                                                    
 ## 二级索引的删除
 
 ```python
@@ -691,7 +689,7 @@ rows = t.get_table_rows(True, 'hello', '', 'mytable', '3', '', 10, 'i128', '3')
 ++++++++++[{'a': 1, 'b': 22, 'c': '3'}, {'a': 111, 'b': 222, 'c': '333'}]
 ++++++++++[{'a': 1, 'b': 22, 'c': '3'}, {'a': 111, 'b': 222, 'c': '333'}]
 ```
-
+                                                                                                    
 ## 数据库的实现原理
 
 上面的代码演示了数据库的基本操作，但是实际上在编译的过程中，有些方法和类是由编译器生成的，下面的代码把这些由编译器生成的代码展示了出来。
@@ -866,7 +864,7 @@ ipyeos -m pytest -s -x test.py -k test_example6
 ++++++it.primary: 1
 ```
 
-
+                                                                                                    
 ## 总结
 
 EOS中的数据存储功能是比较完善的，并且有二级索引表的功能，使数据的查找变得非常的灵活。本章详细讲解了数据库表的增，删，改，查的代码。本章的内容较多，需要花点时间好好消化。可以在示例的基础上作些发动，并且尝试运行以增加对这章知识点的理解。

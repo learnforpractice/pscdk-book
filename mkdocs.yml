@@ -1,4 +1,6 @@
 site_name: Python Smart Contracts Development Cook Book
+plugins:
+    - chat
 nav:
     - 'env.md'
     - 'helloworld.md'

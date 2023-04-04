@@ -1,3 +1,4 @@
+# 常用函数示例
 from chain.action import has_auth, require_auth, require_auth2, is_account
 from chain.contract import Contract
 

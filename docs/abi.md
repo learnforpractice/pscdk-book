@@ -16,7 +16,7 @@
 name bytes string bool uint64 checksum256
 public_key signature symbol asset extended_asset
 ```
-
+                                                                                                    
 # ABI中的内置数据类型和Python中的数据类型的对应关系表
 
 下面的这张表显示了ABI中的内置类型和Python中的类型的对应关系.
@@ -63,7 +63,7 @@ from chain.crypto import PublicKey
 |      symbol_code     |     SymbolCode     | asset   |
 |         asset        |        Asset       | asset   |
 |    extended_asset    |    ExtendedAsset   | asset   |
-
+                                                                                                    
 # 特别的ABI类型
 
 ## optional
