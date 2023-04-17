@@ -47,6 +47,52 @@ Codon 目前使用的是 ASCII 字符串，不像 Python 的 unicode 字符串�
 
 Codon 的字典类型不保留插入顺序，不像Python那样从3.6开始支持。
 
+## Optional类型
+
+Codon的编译器提供了对Optional类型的支持
+
+```python
+class A:
+    value: u64
+    def __init__(self, value):
+        self.value = value
+a = Optional(A(123u64))
+```
+
+判断Optional类型是否为None:
+
+```python
+if a is None:
+    do_something()
+```
+
+获取Optional类型中的值:
+
+```python
+from internal.types.optional import unwrap
+a1 = unwrap(a)
+```
+
+还有种更简单的办法：
+
+```python
+a1: A = a
+```
+
+这里，编译器在编译的时候会判断是否为Optional类型，是则会调用unwrap(a)，unwrap函数在a为None的时候会抛出异常。
+
+Optional中的类的方法或者成员变量可以直接访问：
+
+```python
+print(a.value)
+```
+
+实际上调用的是：
+```python
+print(unwrap(a).value)
+```
+
+
 ## 总结
 最后，特别需要说明一下的是，编译智能合约代码后生成的可执行文件的指令是WebAssembly指令，文件的扩展名为.wasm。在现实中，并没有能直接执行WebAssembly指令的CPU存在，在执行的时候，大多数情况也是需要通过专门的虚拟机程序来解释执行的，但是执行的是binary code而已。这和Python的虚拟机执行byte code的方式类似，但是WebAssebmly的指令由于是binary code，比Python的虚拟机指令更加低级，安全性也更好，可以比较方便的翻译成系统的机器码，所以可以比较方便的以JIT或者AOT的方式先编译成所在的系统指令后再执行，从而优化执行的速度。在EOS区块链中，智能合约的代码既可以通过`eosvm`以JIT的方式来执行的，也可以通过对指令解释执行的方式来执行，甚至还可以先编译成系统可直接执行的机器码来运行。而Python的虚拟机指令则很难被完全的以JIT和AOT的方式来执行。
 
