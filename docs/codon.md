@@ -92,6 +92,40 @@ print(a.value)
 print(unwrap(a).value)
 ```
 
+## Union类型
+
+Union类型是Codon的内置类型，在Python中，并没有对Union提供内置类型支持，所以要注意用法的不同。
+在Codon中，Union的数据结构并不定义在codon的代码里，是编译器内部实现的，但是可以用下面的类的定义来表示：
+```python
+class Union:
+    tag: byte
+    value: object
+```
+
+用法：
+
+```python
+a = Union[int, str](123)
+print(a == 123)
+```
+输出：True
+
+如果类型不对，则会直接抛出异常，如下面的代码会抛出异常：
+
+```python
+a = Union[int, str](123)
+print(a == "ABC")
+```
+
+要注意的是，Codon里的Union，如果union里的类型只是顺序不同，那么视为同一个种类型。
+
+如下面的代码输出为：True
+
+```python
+a = Union[int, str](123)
+b = Union[str, int]("abc")
+print(isinstance(a, Union[str, int]))
+```
 
 ## 总结
 最后，特别需要说明一下的是，编译智能合约代码后生成的可执行文件的指令是WebAssembly指令，文件的扩展名为.wasm。在现实中，并没有能直接执行WebAssembly指令的CPU存在，在执行的时候，大多数情况也是需要通过专门的虚拟机程序来解释执行的，但是执行的是binary code而已。这和Python的虚拟机执行byte code的方式类似，但是WebAssebmly的指令由于是binary code，比Python的虚拟机指令更加低级，安全性也更好，可以比较方便的翻译成系统的机器码，所以可以比较方便的以JIT或者AOT的方式先编译成所在的系统指令后再执行，从而优化执行的速度。在EOS区块链中，智能合约的代码既可以通过`eosvm`以JIT的方式来执行的，也可以通过对指令解释执行的方式来执行，甚至还可以先编译成系统可直接执行的机器码来运行。而Python的虚拟机指令则很难被完全的以JIT和AOT的方式来执行。
