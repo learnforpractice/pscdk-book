@@ -31,7 +31,7 @@ docker pull ghcr.io/uuosio/pscdk:latest
 运行container:
 
 ```
-docker run --entrypoint bash -it --rm -v "$(pwd)":/work -t ghcr.io/uuosio/pscdk
+docker run --entrypoint bash -it --rm -v "$(pwd)":/work -w /work -t ghcr.io/uuosio/pscdk
 ```
 
 

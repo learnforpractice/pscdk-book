@@ -1,6 +1,7 @@
 site_name: Python Smart Contracts Development Cook Book
 plugins:
-    - chat
+    - chat:
+        docs_chat_endpoint: "https://127.0.0.1/chat"
 nav:
     - 'env.md'
     - 'helloworld.md'
