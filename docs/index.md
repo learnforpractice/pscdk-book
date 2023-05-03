@@ -1,11 +1,11 @@
-# 目录
+# Table of Contents
 
-* [预备知识](prelude.md)
-* [开发环境搭建](env.md)
+* [Prior Knowledge](prelude.md)
+* [Development Environment](env.md)
 * [HelloWorld](helloworld.md)
-* [内联Action在智能合约的使用](action.md)
-* [require_recipient函数](notify.md)
-* [数据库的操作](database.md)
-* [密码学相关函数](crypto.md)
-* [常用智能合约函数](common.md)
-* [和标准Python的差异](codon.md)
+* [Inline Action](action.md)
+* [The require_recipient Function](notify.md)
+* [Database](database.md)
+* [Crypto Functions](crypto.md)
+* [Commonly Functions](common.md)
+* [Codon](codon.md)

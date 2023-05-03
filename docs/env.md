@@ -1,75 +1,73 @@
-# 开发环境搭建
+# Development Environment Setup
 
-## 安装编译和测试所需的工具
+## Installing the Required Tools for Compilation and Testing
 
-### 直接安装开发工具包
-安装pscdk包，这个包用于编译Python智能合约
+### Direct Installation of Development Toolkits
+Install the `pscdk` package, which is used to compile Python smart contracts, using the following command:
 
-```
+```bash
 python3 -m pip install pscdk
 ```
 
-安装ipyeos包，这个包用于测试智能合约
+Install the `ipyeos` package, which is used to test smart contracts, using the following command:
 
-```
+```bash
 python3 -m pip install ipyeos
 ```
 
-### 在Docker中运行
+### Running in Docker
 
-目前，该开发工具包不支持Window和Macbook M1/M2，开发工具在这两种平台上需要利用docker来运行。
+Currently, the development toolkit does not support Windows and Macbook M1/M2 platforms, and must be run using Docker on these platforms.
 
-macOS平台推荐使用[OrbStack](https://orbstack.dev/download)软件来安装docker和运行docker。其它平台可以使用[Docker Desktop](https://www.docker.com/products/docker-desktop)。
+The recommended software for installing and running Docker on macOS is [OrbStack](https://orbstack.dev/download). For other platforms, you can use [Docker Desktop](https://www.docker.com/products/docker-desktop).
 
+Download the Docker image using the following command:
 
-下载Docker镜像
-
-```
+```bash
 docker pull ghcr.io/uuosio/pscdk:latest
 ```
 
-运行container:
+Run the container:
 
-```
+```bash
 docker run --entrypoint bash -it --rm -v "$(pwd)":/work -w /work -t ghcr.io/uuosio/pscdk
 ```
 
+## Testing the Installation Environment
 
-## 测试安装环境是否安装成功：
+Create a test project using the following command:
 
-新建一个测试项目：
-
-```
+```bash
 python-contract init mytest
 ```
 
-编译合约代码：
-```
+Compile the contract code:
+
+```bash
 python-contract build mytest.codon
 ```
 
-或者直接运行`build.sh`脚本：
+Alternatively, you can run the `build.sh` script directly:
 
 ```bash
 ./build.sh
 ```
 
+If there are no exceptions, the `mytest.wasm` WebAssembly binary file will be generated.
 
-不出异常会生成`mytest.wasm`这个WebAssembly的二进制文件
+To test the installation environment, run:
 
-测试：
-
-```
+```bash
 ipyeos -m pytest -s -x test.py -k test_hello
 ```
 
-或者直接运行测试脚本`test.sh`：
+Alternatively, you can run the test script `test.sh` directly:
 
 ```bash
 ./test.sh
 ```
 
-正常会看到输出：
+You should see the output:
 
 ```
 hello  alice

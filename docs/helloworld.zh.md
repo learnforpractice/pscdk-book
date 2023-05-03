@@ -1,8 +1,8 @@
 # HelloWorld
 
-## The First Smart Contract
+## 第一个智能合约
 
-The following code shows the simplest smart contract and its testing code:
+以下展示了一个最简单的智能合约代码和测试代码
 
 ```python
 # helloworld.codon
@@ -20,7 +20,7 @@ class MyContract(Contract):
         print("Hello, World!")
 ```
 
-Testing code:
+测试代码：
 
 ```python
 # helloworldtest.py
@@ -58,49 +58,47 @@ def test():
 ```
 
 
-Compile:
+编译：
 
 ```
 python-contract build helloworld.codon
 ```
 
 
-To run the test code:
-
+运行测试代码：
 ```
 ipyeos -m pytest -s -x testhelloworld.py -k test
 ```
 
-Output:
+输出：
 
 ```
 Hello, World!
 ```
 
-## Create an Initial Project
+## 创建一个初始项目
 
-You can create an initial project using the `python-contract init` command. For example, the following code creates an initial project named `mycontract`:
+可以用`python-contract init`命令来创建一个初始项目，例如下面的代码创建了一个`mycontract`的初始项目：
 
 ```
 python-contract init mycontract
 ```
 
-After creating the project, you can compile the contract using the following command:
+创建完后可以用下面的命令编译合约：
 
 ```
 cd mycontract
 ./build.sh
 ```
 
-After a successful execution, `mycontract.wasm` and `mycontract.abi` files will be generated.
+执行成功后会生成`mycontract.wasm`和`mycontract.abi`这两个文件
 
-You can run the following command for testing:
-
+可以运行下面的命令进行测试：
 ```
 ./test.sh
 ```
 
-The following information will be output:
+会输出以下信息：
 
 ```
 [(hello,sayhello)->hello]: CONSOLE OUTPUT BEGIN =====================
@@ -109,4 +107,4 @@ hello  alice
 [(hello,sayhello)->hello]: CONSOLE OUTPUT END   =====================
 ```
 
-After confirming that the test was successful, you can proceed with smart contract development based on this existing project.
+确认测试成功后即可在现有的项目的基础上进行智能合约的开发。

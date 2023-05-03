@@ -1,14 +1,14 @@
-# The `require_recipient` function
+# require_recipient函数
 
-The function is declared in `action.codon` as follows:
+函数在`action.codon`中的声明如下：
 
 ```python
 def require_recipient(account: Name):
 ```
 
-The `require_recipient` function is utilized to notify other contracts. If the `account` contract has the same action, this action will be called.
+`require_recipient`函数用来通知其它合约. 如果account合约有相同的action，那么这个action将被调用。
 
-The following code in `sender.codon` and `receiver.codon` demonstrates how to send a notification from one contract to another.
+以下的`sender.codon`, `receiver.codon`的代码演示了如何从一个合约发送通知到另一个合约。
 
 ```python
 # sender.codon
@@ -40,9 +40,9 @@ class MyContract(Contract):
         print('hello, world from notify')
 ```
 
-Note that the definition of the `sayhello` function in `receiver.codon` is slightly different from that in `sender.codon`. The `notify=True` in the `action` decorator of the `sayhello` function in `receiver.codon` is used to specify that this action is used to receive notifications and can only be triggered by calling `require_recipient`.
+这里，要注意的是，`receiver.codon`中的`sayhello`函数和`sender.codon`中的`sayhello`函数的定义有些不同，`receiver.codon`中的`sayhello`的`action`decorator中多了`notify=True`，这是用来指定这个action是一个用来接收通知的action，只能通过调用`require_recipient`来触发。
 
-The following is the test code:
+以下是测试代码：
 
 ```python
 def init_notify():
@@ -76,19 +76,19 @@ def test_notify():
     logger.info("++++++++++%s\n", ret['elapsed'])
 ```
 
-Compile:
+编译：
 ```bash
 python-contract build notify/receiver.codon
 python-contract build notify/sender.codon
 ```
 
-Test:
+测试：
 
 ```bash
 ipyeos -m pytest -s -x test.py -k test_notify
 ```
 
-Output:
+输出：
 
 ```
 [(hello,sayhello)->hello]: CONSOLE OUTPUT BEGIN =====================

@@ -1,12 +1,12 @@
-# Database Operations
+# 数据库的操作
 
-On-chain data storage and retrieval is a critical feature of smart contracts. EOS implements an in-memory database that allows data to be stored in a table format. Each item in a table has a unique primary index, called a primary key, which is of type `u64`. The raw data stored in the table can be binary data of any length. When the storage function of a smart contract is called, the data is serialized and stored in the table. When reading, the stored data is deserialized back as a class object. Additionally, EOS supports secondary index tables of types `u64`, `u128`, `u256`, `double`, and `long double`, which can be considered special tables with a fixed data length. Primary and secondary index tables can be used together to implement multiple indexes. There can be multiple secondary index tables, and the values in these tables can be repeated, but the primary index in the primary index table must be unique.
+链上数据存储和读取是智能合约的一个重要功能。EOS链实现了一个内存数据库，支持以表的方式来存储数据，其中，每一个表的每一项数据都有唯一的主索引，称之为primary key，类型为u64，表中存储的原始数据为任意长度的二进制数据，在智能合约调用存储数据的功能时，会将类的数据序列化后存进表中，在读取的时候又会通过反序列化的方式将原始数据转成类对象。并且还支持u64, u128, u256, double, long double类型的二级索引表，可以把二级索引表看作数据长度固定的特殊的表。主索引表和二级索引表可以配合起来使用，以实现多重索引的功能。二级索引表可以有多个。二级索引表的值是可以重复的，但是主索引表的主索引必须是唯一的。
 
-The following example demonstrates the usage of EOS's in-memory database.
+下面结合示例来讲解下EOS的链上的内存数据库的使用。
 
-## Store
+## store
 
-Storage is the simplest function of the database, and the following code demonstrates this functionality.
+存储功能是数据库最简单的功能了，下面的代码即演示了该功能。
 
 ```python
 # db_example1.codon
@@ -32,7 +32,7 @@ class MyContract(Contract):
         table.store(item, n'hello')
 ```
 
-Compile:
+编译：
 
 ```
 python-contract build db_example/db_example1.codon
@@ -41,8 +41,7 @@ python-contract build db_example/db_example1.codon
 ```bash
 ipyeos -m pytest -s -x test.py -k test_store
 ```
-
-The test code you are running is as follows:
+运行的测试代码如下：
 
 ```python
 def test_store():
@@ -52,11 +51,9 @@ def test_store():
     logger.info("++++++++++%s\n", ret['elapsed'])
 ```
 
-**Note**:
+注意在这个示例中，如果表中已经存在以`123u64`为key的数据，那么该函数会抛出异常。
 
-In this example, if there is already data with the primary key `123u64` in the table, an exception will be thrown when the function is called.
-
-To modify the above test case to the following code:
+如将上面的测试用例修改成下面的代码：
 
 ```python
 def test_example1():
@@ -70,17 +67,19 @@ def test_example1():
     t.produce_block()
 ```
 
-When running the test with the same command, if the `push_action` is called for the second time, the function will throw an exception similar to the following:
+用同样的命令运行测试，在第二次调用`push_action`时，该函数就会抛出像下面的异常：
 
 ```
 could not insert object, most likely a uniqueness constraint was violated
 ```
 
-To avoid such exceptions, the `update` method must be used when updating data in the table. Before calling `store`, it is necessary to check whether the primary index already exists in the table. If it does, `store` method cannot be called, and `update` method must be used instead. The following example demonstrates how to use it:
+为了不抛出异常，在要更新表中的数据时，则要用到`update`方法。
+在调用`store`之前要先对表中是否存在主索引进行判断，如果已经存在，则不能调用`store`方法，而必须调用`update`方法。
+以下的示例展示了用法：
                                                                                                     
 ## find/update
 
-This section demonstrates the lookup and update functionality of the database.
+这一节演示了数据库的查找和更新功能。
 
 ```python
 # db_example1.codon
@@ -108,7 +107,7 @@ class MyContract(Contract):
             table.store(item, n'hello')
 ```
 
-The following is the test code:
+以下为测试代码：
 
 ```python
 def test_update():
@@ -121,54 +120,54 @@ def test_update():
     t.produce_block()
 ```
 
-Compile using the following command:
+编译：
 
 ```
 python-contract build db_example/db_example1.codon
 ```
 
-Execute the test code with the following command:
+用下面的命令来运行测试代码：
 
 ```bash
 ipyeos -m pytest -s -x test.py -k test_update
 ```
 
-When calling
+在调用
 ```python
 t.push_action('hello', 'test', {'value': 'hello, bob'}, {'hello': 'active'})
 ```
 
-it will output:
+会输出：
 
 ```
 +++++store value: hello, bob
 ```
 
-When calling
+在调用
 ```python
 t.push_action('hello', 'test', {'value': 'hello, alice'}, {'hello': 'active'})
 ```
 
-it will output:
+会输出：
 
 ```
 +++++update value: hello, alice
 ```
 
-As you can see, the above code is a bit complicated. First, it needs to call `find` to determine whether the value corresponding to the primary index exists, and then decide whether to call `store` or `update`. It should be noted that, during the update process, **the value of the primary index cannot be changed**, otherwise an exception will be thrown.
+可以看出，上面的代码稍微有点复杂，首先要调用`find`判断和主索引对应的值存不存在，再决定是调用`store`还是`update`。需要注意的是，在更新的过程中，**主索引的值是不能变的**，否则会抛出异常。
 
-You can try to modify the update code to:
+可以试着将update的代码修改成：
 
 ```python
 item = A(key+1u64, value)
 table.update(it, item, n'hello')
 ```
 
-You will see an exception thrown in the smart contract.
+你将会看到到智能合约里抛出的异常
                                                                                                     
-## Remove
+## remove
 
-The following code demonstrates how to remove an item from the database.
+下面的代码演示了如何去删除数据库中的一项数据。
 
 ```python
 # db_example/db_example1.codon
@@ -188,7 +187,7 @@ def test_remove(self):
     assert not it.is_ok()
 ```
 
-Test code:
+测试代码：
 
 ```python
 def test_remove():
@@ -198,24 +197,24 @@ def test_remove():
     logger.info("++++++++++%s\n", ret['elapsed'])
 ```
 
-Compile using the following command:
+编译：
 
 ```
 python-contract build db_example/db_example1.codon
 ```
 
-Test using the following command:
+测试：
 
 ```bash
 ipyeos -m pytest -s -x test.py -k test_remove
 ```
 
-The above code first calls the `store` method to store the data with index `123u64` in the database, then calls `remove` to delete it, and uses `assert` to check the result. If everything is normal, the program will not throw any exceptions.
 
-## Lowerbound/Upperbound
+上面的代码先调用`store`方法来存储索引为`123u64`的数据，然后再再调用`remove`删除，调用`assert`以检查结果。如果一切正常，程序将不会抛出任何的异常。
+                                                                                                    
+## lowerbound/upperbound
 
-These two methods are also used to search for elements in the database. Unlike the `find` method, these two functions are used for fuzzy searching. Among them, the `lowerbound` method returns an `Iterator` whose `id` is `>=` the specified `id`, and the `upperbound` method returns an `Iterator` whose `id` is `>` the specified `id`. Let's take a look at the usage below:
-
+这两个方法也是用来查找给中的元素的，不同于`find`方法，这两个函数用于模糊查找。其中，`lowerbound`方法返回`>=`指定`id`的`Iterator`，`upperbound`方法返回`>`指定`id`的`Iterator`，下面来看下用法：
 
 ```python
 # db_example/db_example1.codon
@@ -253,40 +252,38 @@ class MyContract(Contract):
         assert value2.a == 3u64 and value2.b == 'bob'
 ```
 
-Test code:
-
+测试代码：
 ```python
 def test_bound():
-    t = init_db_test('db_example4')
+    t = init_db_test('db_example41)
     ret = t.push_action('hello', 'testbound', {}, {'hello': 'active'})
     t.produce_block()
     logger.info("++++++++++%s\n", ret['elapsed'])
 ```
 
-Compile using the following command:
+编译：
 
 ```
 python-contract build db_example/db_example1.codon
 ```
 
-Run the test using the following command:
+运行测试：
 
 ```bash
 ipyeos -m pytest -s -x test.py -k test_bound
 ```
 
-Output:
+输出：
 
 ```
 +++++: 1 alice
 +++++: 3 bob
 ```
+                                                                                                    
+## 利用API来对表进行主索引查询
 
-## Querying the Primary Index of a Table Using API
-
-The above examples are all about how to operate the database table on the chain through the smart contract. In fact, by using the `get_table_rows` API provided by EOS off the chain, you can also query the table on the chain.
-
-In the test code, the definition of `get_table_rows` is as follows:
+上面的例子都是讲的如果通过智能合约来操作链上的数据库的表，实际上，通过EOS提供的链下的`get_table_rows`的API的接口，也同样可以对链上的表进行查询工作。
+在测试代码中，get_table_rows的定义如下
 
 ```python
 def get_table_rows(self, _json, code, scope, table,
@@ -302,7 +299,7 @@ def get_table_rows(self, _json, code, scope, table,
     """
 ```
 
-First of all, to query a table using `get_table_rows`, the structure of the table must be visible in the ABI description. You can use the following code to describe the table in the corresponding generated ABI file:
+首先，要通过`get_table_rows`来查询表，表的结构必须在ABI的描述中可见，可以通过下面的代码来让表在生成相应的ABI文件中有描述：
 
 ```python
 # db_example5.codon
@@ -350,11 +347,11 @@ class MyContract(Contract):
         assert value2.a() == 3u64 and value2.b == 'bob'
 ```
 
-Here, the `table` decorator is used to make the compiler include the structure of the table in the ABI.
+这里，通过`table`这个内置的`decorator`来让编译器在ABI中加入表的结构。
+给类加了这个`table`，编译器会自动给类添加`get_primary`以及`new_table`函数：
 
-After adding this `table` to the class, the compiler will automatically add the `get_primary` and `new_table` functions to the class.
-
-At the same time, the member variables of the class must also meet certain requirements: first, a primary index variable must be declared, and the type must be `database.primary`. The implementation of the `primary` class is as follows:
+同时，类的成员变量也要满足相应的要求：
+首先，必须声明一个主索引变量，类型必须是`database.primary`, `primary`类的实现如下：
 
 ```python
 class primary[T](object):
@@ -380,14 +377,15 @@ class primary[T](object):
         return self.value.__size__()
 ```
 
-The `primary` class is a template class. If the type of the `value` in `primary` is not of type `u64`, then the type must implement the `get_primary` method. The `primary` class also has a `__call__` method to facilitate access to `value`. In the following discussion of multiple indexes, binary indexes will also be used. The type of the binary index must be `database.secondary`.
+`primary`类是一个模版类，如果`primary`的`value`的类型不为`u64`，则类型必须实现`get_primary`方法，`primary`类还有一个`__call__`方法，以方便获取`value`。在后面会讲到的多重索引中，还会用到二极索引，二极索引的类型必须是`database.secondary`
 
-Compilation:
+编译：
+
 ```bash
 python-contract build db_example/db_example5.codon
 ```
 
-You will see the following description in the generated `db_example5.abi:`
+你将在生成的`db_example5.abi`中看到下面的描述：
 ```bash
 "tables": [
         {
@@ -400,7 +398,8 @@ You will see the following description in the generated `db_example5.abi:`
     ]
 ```
 
-Now consider the test code:
+再看下测试代码：
+
 ```python
 def test_example5():
     t = init_db_test('db_example5')
@@ -411,19 +410,21 @@ def test_example5():
     logger.info('++++++=rows: %s', rows)
 ```
 
-Run the test:
+运行测试：
+
 ```bash
 ipyeos -m pytest -s -x test.py -k test_example5
 ```
 
-Output:
+输出：
+
 ```
 ++++++=rows: {'rows': [{'a': 1, 'b': 'alice'}, {'a': 3, 'b': 'bob'}, {'a': 5, 'b': 'john'}], 'more': False, 'next_key': ''}
 ```
+                                                                                                    
+## 二级索引的操作
 
-## Operation of the binary index
-
-First, consider the following example:
+请先看下面的例子：
 
 ```python
 # db_example7.codon
@@ -468,16 +469,17 @@ class MyContract(Contract):
         assert it.primary == 1u64
 ```
 
-In this example, two binary indexes are defined:
+在这个例子中，定义了两个二级索引：
 
 ```python
 b: secondary[u64]
 c: secondary[u128]
 ```
 
-In the code, `get_idx_table_by_b` and `get_idx_table_by_c` are used to obtain the tables of the binary indexes, and the returned object types are `IdxTable64` and `IdxTable128`, respectively. The tables of binary indexes have similar method names as the tables of the primary index, and can also perform the function of binary index lookup.
+在代码里，通过`get_idx_table_by_b`和`get_idx_table_by_c`来获取二级索引的表，返回的对象类型分别为`IdxTable64`和`IdxTable128`。
+二级索引的表和主索引的表有类似的方法名称，也可以执行二级索引的查找的功能。
 
-Test code:
+测试代码：
 
 ```python
 # test.py
@@ -488,27 +490,28 @@ def test_example7():
     logger.info("++++++++++%s\n", ret['elapsed'])
 ```
 
-Compile:
+编译：
 
 ```
 python-contract build db_example/db_example7.codon
 ```
 
-Run the test:
+运行测试：
 
 ```bash
 ipyeos -m pytest -s -x test.py -k test_example7
 ```
 
-Output:
+输出：
+
 ```
 ++++++it.primary: 1
 ++++++it.primary: 1
 ```
+                                                                                                    
+## 二级索引的的更新
 
-## Updating the binary index
-
-In practical applications, sometimes it is necessary to update the binary index. Please first look at the following code:
+在实际的应用中，有时候需要更新二级索引。请先看下面的代码
 
 ```python
 # db_example8.codon
@@ -556,7 +559,7 @@ class MyContract(Contract):
         assert it_sec.primary == 1u64
 ```
 
-Note the following code in the above code:
+注意上面代码中的这段代码：
 
 ```python
 idx_table_b = table.get_idx_table_by_b()
@@ -572,15 +575,15 @@ print("++++++it.primary:", it_sec.primary)
 assert it_sec.primary == 1u64
 ```
 
-Brief description of the process:
+简述下过程：
 
-- `it_sec = idx_table_b.find(2u64)`: Looks up the value `2u64` in the binary index and returns the `SecondarIterator` type result `it_sec`.
-- `table.update_b(it_sec, 22u64, payer)`: This line of code implements the update function and updates the value of `b` to `22u64`.
-- `it_sec = idx_table_b.find(22u64)`: Looks up the new binary index.
-- `assert assert it_sec.is_ok()`: Used to confirm whether the binary index has been updated successfully.
-- `assert it_sec.primary == 1u64`: Used to confirm whether the primary index is correct.
+- `it_sec = idx_table_b.find(2u64)`查找二级索引的值`2u64`，返回的`SecondarIterator`类型的`it_sec`。
+- **`table.update_b(it_sec, 22u64, payer)`** 这行代码即是实现了更新的功能，更新`b`的值为`22u64`
+- `it_sec = idx_table_b.find(22u64)`查找新的二级索引
+- `assert assert it_sec.is_ok()`用于确认二级索引是否更新成功
+- `assert it_sec.primary == 1u64`用于确认主索引是否正确
 
-The `update_b` code is generated by the compiler and is shown below:
+而`update_b`是由编译器生成的代码，生成的代码如下：
 
 ```python
 def update_b(self, it: SecondaryIterator, b: u64, payer: Name) -> None:
@@ -596,9 +599,9 @@ def update_b(self, it: SecondaryIterator, b: u64, payer: Name) -> None:
     self.table.update(it_primary, value, payer)
 ```
 
-From the code, it is apparent that when updating the binary index, the corresponding value in the primary index will also be updated.
-
-## Deleting the binary index
+从代码看出，更新二级索引的时候，还会更新主索引的对应的值
+                                                                                                    
+## 二级索引的删除
 
 ```python
 @action('testremove')
@@ -626,21 +629,21 @@ def test_remove_secondary():
 ```
 
 
-Compilation:
+编译：
 
-```bash
+```
 python-contract build db_example/db_example8.codon
 ```
 
-Running the test:
+运行测试：
 
 ```bash
 ipyeos -m pytest -s -x test.py -k test_remove_secondary
 ```
 
-## Using the API to perform secondary index queries on a table
+## 利用API来对表进行二重索引查询
 
-In the `db_example8.codon` example, two binary indexes are defined, with the types `u64` and `u128`, respectively. The `get_table_rows` API also supports finding corresponding values through binary indexes.
+在例子`db_example8.codon`中，定义了两个二级索引，类型分别为`u64`,`u128`，`get_table_rows`API还支持通过二级索引来查找对应的值
 
 ```python
 def test_example9():
@@ -660,34 +663,36 @@ def test_example9():
     assert rows['rows'][0]['c'] == '3'
 ```
 
-Explanation of the code below:
+下面对代码作下解释
 
-To find the value in the table through the second index `b`:
+通过二级索引`b`来查找表中的值：
 
 ```python
 rows = t.get_table_rows(True, 'hello', '', 'mytable', 22, '', 10, 'i64', '2')
 ```
 
-Here, `i64` is the index type of `b`, and `2` is zero-based index corresponding to the index.
+这里的`i64`即是`b`的索引类型，`2`是索引对应的序号，注意一下这里不是从`1`开始算起的。
 
-To find the value in the table through the second index `c`:
+
+通过二级索引`c`来查找表中的值：
 
 ```python
 rows = t.get_table_rows(True, 'hello', '', 'mytable', '3', '', 10, 'i128', '3')
 ```
 
-Here, `i128` is the index type of `c`. Note that the value `3` in the `lowerbound` parameter is the value of the binary index. Since `u128` has exceeded the range of 64-bit integers, a numeric string is used to represent it. Finally, the last parameter `3` is the corresponding index number.
+这里的`i128`即是`c`的索引类型，注意这里lowerbound参数的值`3`是二级索引的值，由于u128已经超过了64位整数的表示范围，所以用数字字符串表示，最后一个参数`3`是索引对应的序号。
 
-The results of running the above test code are as follows:
+
+上面的测试代码的运行结果如下：
 
 ```
 ++++++++++[{'a': 1, 'b': 22, 'c': '3'}, {'a': 111, 'b': 222, 'c': '333'}]
 ++++++++++[{'a': 1, 'b': 22, 'c': '3'}, {'a': 111, 'b': 222, 'c': '333'}]
 ```
+                                                                                                    
+## 数据库的实现原理
 
-## Implementation principles of the database
-
-The above code demonstrates the basic operations of the database. However, during the compilation process, some methods and classes are generated by the compiler. The following code displays the code generated by the compiler.
+上面的代码演示了数据库的基本操作，但是实际上在编译的过程中，有些方法和类是由编译器生成的，下面的代码把这些由编译器生成的代码展示了出来。
 
 ```python
 # db_example6.codon
@@ -809,9 +814,10 @@ class MyContract(Contract):
         assert it.primary == 1u64
 ```
 
-This example demonstrates a scenario where there are two binary indexes. Only the name `table` was changed to `packer`. In this case, the compiler will not generate any code related to the database.
+这个例子展示了有二个二级索引的例子，只是把`table`改成了`packer`，编译器即不再会生成数据库相关的代码。
+对比可知，编译器在编译的时候会生成`MultiIndexA`这个继承自`mi.codon`中定义的`MultiIndexBase`类，
 
-By comparison, it is apparent that the compiler generates a class named `MultiIndexA`, which inherits from the `MultiIndexBase` class defined in `mi.codon`. This class has the following methods:
+这个类有以下几个方法：
 
 - def store(self, item: A, payer: Name) -> Iterator[A]
 - def update(self, it: Iterator[A], item: A, payer: Name)
@@ -821,14 +827,15 @@ By comparison, it is apparent that the compiler generates a class named `MultiIn
 - def update_b(self, it: SecondaryIterator, b: u64, payer: Name) -> None:
 - def update_c(self, it: SecondaryIterator, c: u128, payer: Name) -> None:
 
-In addition, the class `A` is generated, along with the following additional methods:
 
-- `get_primary`: retrieves the primary index
-- `get_idx_table_by_b`: retrieves the table indexed by `b`, returning an instance of the `IdxTable64` class
-- `get_idx_table_by_c`: retrieves the table indexed by `c`, returning an instance of the `IdxTable128` class
+同时会为类`A`生成额外的方法：
+
+- `get_primary` 获取主索引
+- `get_idx_table_by_b`, 用于获取二级索引`b`的表，返回的类是`IdxTable64`
+- `get_idx_table_by_c`，用于获取二级索引`c`的表，返回的类为`IdxTable128`。
 - `new_table`
 
-Test code:
+测试代码：
 
 ```python
 def test_example6():
@@ -838,25 +845,26 @@ def test_example6():
     logger.info("++++++++++%s\n", ret['elapsed'])
 ```
 
-Compilation:
+编译：
 
 ```
 python-contract build db_example/db_example6.codon
 ```
 
-Running the test:
+运行测试：
 
 ```bash
 ipyeos -m pytest -s -x test.py -k test_example6
 ```
 
-Output:
+输出：
 
 ```
 ++++++it.primary: 1
 ++++++it.primary: 1
 ```
 
-## Summary
+                                                                                                    
+## 总结
 
-The data storage functionality in EOS is relatively comprehensive, and the second-level index table function makes data querying very flexible. This chapter provides a detailed explanation of the code for table operations, including adding, deleting, modifying, and querying. This chapter contains a lot of content and requires some time to digest. You can try to modify the examples and run them to gain a better understanding of the content covered in this chapter.
+EOS中的数据存储功能是比较完善的，并且有二级索引表的功能，使数据的查找变得非常的灵活。本章详细讲解了数据库表的增，删，改，查的代码。本章的内容较多，需要花点时间好好消化。可以在示例的基础上作些发动，并且尝试运行以增加对这章知识点的理解。

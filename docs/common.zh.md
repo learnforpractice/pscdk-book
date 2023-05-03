@@ -1,34 +1,34 @@
-# Common Smart Contract Functions
+# 常用智能合约函数
 
 ## is_account
 
-Declaration:
+声明：
 
 ```python
 def is_account(account: Name ) -> bool:
     ...
 ```
 
-Explanation:
+说明：
 
-Used to determine if an account exists.
+用来判断账号存不存在
 
 ## has_auth
 
-Declaration:
+声明：
 
 ```python
 def has_auth(account: Name) -> bool:
     ...
 ```
 
-Explanation:
+说明：
 
-Used to determine if the 'active' permission of the specified account is present, i.e. whether the Transaction is signed with the private key corresponding to the 'active' permission of the specified account. There is at least one corresponding private key, and possibly multiple.
+用来判断是否有指定账号的`active`权限，也就是Transaction是否有用指定账号的`active`权限所对应的私钥进行签名。对应的私钥最少有一个，也可能二个以上。
 
 ## require_auth/require_auth2
 
-Declaration:
+声明：
 
 ```python
 def require_auth(account: Name):
@@ -38,25 +38,26 @@ def require_auth2(account: Name, permission: Name):
     ...
 ```
 
-Explanation:
+说明：
 
-Both of these functions throw an exception when the account does not exist or the specified account's permission is not detected. The difference is that `require_auth` checks for the existence of the 'active' permission, while `require_auth2` can check for a specified permission.
+这两个函数在账号不存在或者没有检测到有指定账号的权限时都会抛出异常，不同的是`require_auth`为检测是否存在`active`权限，而`require_auth2`可以检测指定的权限。
 
 ## publication_time/current_time
 
 ## check
 
-Declaration:
+声明：
 
 ```python
 def check(test: bool, msg: str) -> None:
 ```
 
-Explanation:
+说明：
 
-If test is False, an exception will be thrown. This function is frequently used in smart contracts, and can be referenced in the code of `token.codon`.
+如果test为False，则会抛出异常。该函数在智能合约中使用比较频繁，可参考`token.codon`中的代码
 
-## Example Code:
+
+## 示例代码：
 
 ```python
 from chain.action import has_auth, require_auth, require_auth2, is_account
@@ -80,13 +81,12 @@ class MyContract(Contract):
         return
 ```
 
-Compilation:
-
-```bash
+编译：
+```
 python-contract build common_example.codon
 ```
 
-Test code:
+测试代码：
 
 ```python
 def test_common():
@@ -96,13 +96,13 @@ def test_common():
     logger.info("++++++++++%s\n", ret['elapsed'])
 ```
 
-Test:
+测试：
 
-```bash
+```
 ipyeos -m pytest -s -x test.py -k test_common
 ```
 
-Output:
+输出：
 ```
 [(hello,test)->hello]: CONSOLE OUTPUT BEGIN =====================
 True

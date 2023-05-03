@@ -1,5 +1,15 @@
 site_name: Python Smart Contracts Development Cook Book
+repo_url: https://github.com/uuosio/pscdk
 plugins:
+    - i18n:
+        default_language: en
+        languages:
+            en:
+                name: English
+                build: true
+            zh:
+                name: 中文
+                build: true
     - chat:
         docs_chat_endpoint: "https://127.0.0.1/chat"
 nav:

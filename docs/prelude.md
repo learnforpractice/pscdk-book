@@ -1,20 +1,22 @@
-# 预备知识
+# Prerequisite Knowledge
 
-## 什么是智能合约
+## What are Smart Contracts?
 
-智能合约是可以在链上执行的代码
+Smart contracts are codes that can be executed on the blockchain.
 
-## 什么是Python智能合约
+## What are Python Smart Contracts?
 
-Python智能合约是用Python语言写的可在链上执行的代码。以EOS网络为例，Python智能合约的代码会被编译成叫Webassebmly的二进制文件，并且可以发布到链上并被执行，从而达成某种操作效果。
+Python smart contracts are codes written in the Python language that can be executed on the blockchain. Taking EOS network as an example, the code of Python smart contracts is compiled into a binary file called WebAssembly, and can be published on the network and executed to achieve a certain desired effect.
 
-## 什么是EOS
-EOS是一个基于代理权益证明(DPOS - Delegated Proof of Stake)共识算法的区块链网络。主网于2018年的6月8号正式上线。EOS的主网由21个块生产者(Block Producer)控制，块生产者简称为BP，由投票产生，负责将交易(Transaction)打包到区块中。
+## What is EOS?
 
-## 账号(Account)
-在EOS区块链上，每一个交易的实体用一个账号表示。账号的名称是一个name结构，在下一节会讲到。账号在C++代码里表示的结构比较复杂。
+EOS is a blockchain network based on Delegated Proof of Stake (DPOS) consensus algorithm. The mainnet was launched on June 8, 2018. The mainnet of EOS is controlled by 21 block producers (BP), abbreviated as BP, which are selected through voting and are responsible for packaging transactions into blocks.
 
-下面是通过EOS的`get_account`RPC接口返回的信息来分集一下包含在账号里的信息：
+## Account
+
+On the EOS blockchain, each entity in a transaction is represented by an account. The name of the account is a name structure, which will be discussed in the next section. The structure of the account in C++ code is relatively complex.
+
+Below is a summary of the information contained in the account, obtained through the `get_account`RPC interface in EOS:
 
 ```json
 {
@@ -98,26 +100,26 @@ EOS是一个基于代理权益证明(DPOS - Delegated Proof of Stake)共识算�
 }
 ```
 
-简单介绍一下主要的字段的意思：
+Here's a brief description of the main fields:
 
-- `account_name`: 账号名，规则在下一节中会讲到
-- `privileged`: `true`表示账号是特权账号，如`eosio`即是特权账号。`false`则表示普通账号
-- `last_code_update`: 账号中的智能合约的最后一次更新时间
-- `created`: 账号的创建时间,
-- `core_liquid_balance`: 账号的可用余额,
-- `ram_quota`: 账号分配的总内存，由于EOS的数据库是内存数据库，所有的链上数据都是要放到内存中，而内存是有限的，所以将内存作为一种资源来分配给账号。
-- `net_weight`: 账号分配到的网络资源的权重
-- `cpu_weight`: 账号分配到的CPU资源的权重
-- `net_limit`：账号的网络资源的使用情况
-- `cpu_limit`CPU资源的使用情况
-- `ram_usage`: 已经使用的内存
-- `permissions`: 账号的权限，账号的权限包含一个或者多个公钥或者账号的信息，每个公钥和账号的权限又占一定的权重(weight)，在发送交易(transaction)时，必须用公钥对应的私钥对交易进行签名，并且权重要大于等于`threshold`时，这个交易才能被BP认可。当账号的权限里包含的不是公钥信息，而是指定继承自某个账号的权限信息时，在签名的时候，会从这个账号的权限信息里提取出公钥信息，这通过C++程序的算法来实现。EOS的RPC接口中也有一个`get_required_keys`接口来获取签名的公钥信息。
-- `total_resources`：这里指定组账号分配的NET，CPU， RAM等资源的信息
-                                                                                                    
-## Name 结构
-name是EOS中的一个最基本的数据结构，在底层用一个64位的无符号整数(uint64_t)表示。
+- `account_name`: the name of the account, the rules for which will be explained in the next section.
+- `privileged`: `true` indicates that the account is a privileged account, such as `eosio`. `false` indicates a regular account.
+- `last_code_update`: the time of the last update to the smart contract in the account.
+- `created`: the creation time of the account.
+- `core_liquid_balance`: the available balance in the account.
+- `ram_quota`: the total amount of memory allocated to the account. Because EOS's database is a memory database, all on-chain data needs to be stored in memory, and memory is limited, so memory is allocated as a resource to accounts.
+- `net_weight`: the weight of the network resources allocated to the account.
+- `cpu_weight`: the weight of the CPU resources allocated to the account.
+- `net_limit`: the usage of network resources by the account.
+- `cpu_limit`: the usage of CPU resources by the account.
+- `ram_usage`: the amount of memory already used.
+- `permissions`: the permissions of the account, which include one or more public keys or account information. Each public key and account permission carries a certain weight, and when a transaction is sent, it must be signed with the private key corresponding to the public key, and the weight must be greater than or equal to the `threshold` before the transaction can be recognized by the BP. When the account permission includes information inherited from another account instead of a public key, the public key information will be extracted from the permission information of the account when signing, which is implemented through C++ algorithms. The EOS RPC interface also has a `get_required_keys` interface to obtain the public key information of the signature.
+- `total_resources`: specifies the information of the NET, CPU, RAM and other resources allocated to the group account.
 
-在C++中的定义如下：
+## Name structure
+Name is one of the most basic data structures in EOS, represented by a 64-bit unsigned integer (`uint64_t`) at the lowest level.
+
+Here is the C++ definition.
 
 [libraries/chain/include/eosio/chain/name.hpp](https://github.com/EOSIO/eos/blob/5082391c60b0fa5e68157c385cd402bf25aea934/libraries/chain/include/eosio/chain/name.hpp#L42)
 
@@ -133,16 +135,16 @@ name是EOS中的一个最基本的数据结构，在底层用一个64位的无�
    }
 ```
 
-但是在应用层使用的时候都是以字符串的形式表示的,字符串也只能包含这些字符：".12345abcdefghijklmnopqrstuvwxyz"。字符一共32个，分别用来表示0～31这32个数字，可以把这些字符串看作是32进制的数据，`uint64_t`中，每5位转换成一个上面的字符，由于`uint64_t`最多只有64位，所以前60位可以表示12个字符，字符的范围用正则表达式表示为`[.1-5a-z]`，而最高的4位，只可以用16个字符来表示，这16个字符用正则表达式表示的范围为`[.1-5a-j]`，
+However, in the application layer, name values are represented as strings and can only contain the following characters: ".12345abcdefghijklmnopqrstuvwxyz". There are a total of 32 characters which represent the numbers 0 to 31, and these strings can be seen as a 32-bit data. In a `uint64_t`, every 5 bits are converted into one of the aforementioned characters. As `uint64_t` has a maximum of 64 bits, the first 60 bits can represent up to 12 characters. The characters' scope can be expressed using regular expressions as `[.1-5a-z]`, whereas the highest 4 bits can only be represented by 16 characters, which are expressed within the range `[.1-5a-j]`.
 
-在具体的使用的过程中，如在创建账号的时候，经常犯的错误就是把`6`到`9`，`0`以及大写的字母都作为有效的字符，还有就是没有把长度限制在12个字符之内。
+It is not uncommon to make mistakes when creating accounts, such as making valid characters out of '6' to '9', '0' and uppercase letters, as well as not limiting the name to 12 characters.
 
-总结一下：
+In summary:
 
-- EOS中，name的值在底层其实是一个`uint64_t`类型，在应用层的时候才用字符串表示，这个字符串最多可以有13个字符
-- 第13个字符的范围比前12个字符能表示的范围小。
-- 在用name结构来表示账号（account）名时，最多只有12个字符。
-- 另外，name结构也用来表示一些其它类型，见下面的C++代码：
+- In EOS, the name value is actually a `uint64_t` type at the underlying level, and it is represented as a string in the application layer, with the string having a maximum of 13 characters.
+- The range of the 13th character is smaller than that of the previous 12 characters.
+- When representing account names using the name structure, a maximum of 12 characters is allowed.
+- Additionally, the name structure is also used to represent other types in the following C++ code:
 
 [libraries/chain/include/eosio/chain/types.hpp](https://github.com/EOSIO/eos/blob/5082391c60b0fa5e68157c385cd402bf25aea934/libraries/chain/include/eosio/chain/types.hpp#L133)
 
@@ -154,12 +156,10 @@ name是EOS中的一个最基本的数据结构，在底层用一个64位的无�
    using table_name       = name;
 ```
 
-在这个C++代码中，name结构也用来表示action， table的名称等等，注意的是，不同于账号(account)名，在用字符串表示这些名称时，最多可以有13个字符，但是一般为了方便，习惯上用的时候也是最多用12个字符来表示这些名称。
-                                                                                                    
-## Transaction 结构
+In this C++ code, the name structure is also used to represent action, table names, and more. It should be noted that unlike account names, when representing these names as strings, they can have a maximum of 13 characters. However, for convenience, it is common practice to use a maximum of 12 characters to represent these names.                                                                                                    
+## Transaction
 
-EOS上基本数据结构称为交易（Transaction），由BP负责将一段时间内收集到的交易打包成一个区块。智能合约开发者必须充分了解Transaction的数据结构。
-
+On EOS, the basic data structure is called a transaction, which is responsible for collecting transactions within a period of time and packaging them into a block by the block producers (BP). Smart contract developers must fully understand the data structure of transactions.
 
 [libraries/chain/include/eosio/chain/transaction.hpp](https://github.com/EOSIO/eos/blob/5082391c60b0fa5e68157c385cd402bf25aea934/libraries/chain/include/eosio/chain/transaction.hpp#L30)
 ```c++
@@ -182,16 +182,16 @@ struct transaction_header {
    };
 ```
 
-简单解释下比较重要的字段：
+Here's a brief explanation of some of the important fields:
 
-- `expiration`, 设置transaction上链的超时时间，超时将被拒绝加入区块中。
-- `ref_block_num`, `ref_block_prefix` 这两个成员变量是用来防止transaction在fork链上被重新包含进区块而设计的。
-- `actions`, 这是一个action的数组结构，action的概念非常重要，每一个action都对应一个链上的智能合约函数，BP在将Transaction包含进区块的时候，都会根据action来调用对应的智能合约函数，这将在下面的一节中详细解释。
-- `context_free_actions `, 这同样是一个action的数组，不同的是，当和action相对应的智能合约函数被调用时，执行的代码被禁止调用和链上数据库相关的API。
+- `expiration`: This sets the timeout period for the transaction to be put on the chain. Transactions that exceed their expiration time will be rejected from being included in the block.
+- `ref_block_num` and `ref_block_prefix`: These two member variables are designed to prevent transactions from being included in blocks on forked chains.
+- `actions`: This is an array structure of actions, which is a very important concept. Each action corresponds to a smart contract function on the chain, and when the BP includes the transaction in the block, they will call the corresponding smart contract function according to the action. This will be explained in more detail in the following section.
+- `context_free_actions`: This is also an array of actions, but when the corresponding smart contract function is called, the code that is executed is not allowed to call the API related to the on-chain database.
                                                                                                     
-## Action 结构
+## Action
 
-Action结构包含在Transaction结构中。一个action结构在C++代码中的定义如下：
+The action structure is included in the transaction structure. The definition of an action structure in C++ code is as follows:
 
 [libraries/chain/include/eosio/chain/action.hpp](https://github.com/EOSIO/eos/blob/5082391c60b0fa5e68157c385cd402bf25aea934/libraries/chain/include/eosio/chain/action.hpp#L60)
 
@@ -205,7 +205,7 @@ Action结构包含在Transaction结构中。一个action结构在C++代码中的
    }
 ```
 
-其中，[permission_level](https://github.com/EOSIO/eos/blob/5082391c60b0fa5e68157c385cd402bf25aea934/libraries/chain/include/eosio/chain/action.hpp#L12)的定义如下：
+Where [permission_level](https://github.com/EOSIO/eos/blob/5082391c60b0fa5e68157c385cd402bf25aea934/libraries/chain/include/eosio/chain/action.hpp#L12)的定义如下：
 
 ```C++
 struct permission_level {
@@ -213,19 +213,17 @@ struct permission_level {
     permission_name permission;
 };
 ```
-结构中的成员变量意义解释如下：
+The meanings of the member variables in the structure are explained as follows:
 
-- `account`用来指定要被调用的智能合约的账号名
-- `name`被调用的action的名称
-- `authorization`权限数组
-- `data`action所包含的已经被序列化后的原始数据，在被智能合约所调用的时候，会被反序列化成具体的数据结构
-
-                                                                                                    
+- `account`: The account name of the smart contract to be called.
+- `name`: The name of the action to be called.
+- `authorization`: An array of permissions.
+- `data`: The serialized raw data contained in the action, which will be deserialized into specific data structures when called by the smart contract.                                                                                                
 ## ABI(Application Binary Interface)
 
-在开发智能合约的时候，在编译智能合约代码的过程中，正常情况下，在生成的每个智能合约的二进制代码(.wasm)的同时，都会生成一个ABI文件(.abi)。但是要注意这个文件并不是调用链上的智能合约所必须的。它的作用是方便开发者能够获取相关的action的信息，以构造相应的Transaction数据结构，以方便和区块链进行交互。
+When developing smart contracts, during the compilation process of the smart contract code, an ABI file (.abi) is usually generated along with the binary code (.wasm) of each smart contract. However, it should be noted that this file is not necessary for calling smart contracts on the chain. Its purpose is to facilitate developers in obtaining information about relevant actions, in order to construct the corresponding Transaction data structure for interacting with the blockchain.
 
-一个ABI文件的内容是json格式的数据，像下面这个样子：
+The content of an ABI file is in JSON format, like the following:
 
 ```json
 {
@@ -275,7 +273,7 @@ struct permission_level {
 }
 ```
 
-- `version`用来指定ABI的版本
-- `structs`用来指定数据结构，会在`actions`和`tables`这两个结构里被用到
-- `actions`用来描述可以智能合约中的action，每个action实际上都是对应一个智能合约函数
-- `tables`用来描述表的信息，这样，你网页应用程序就可以通过`get_table_rows`这个RPC API来查询链上的数据库信息
+- `version`: Specifies the version of the ABI.
+- `structs`: Specifies the data structures that will be used in the `actions` and `tables` structures.
+- `actions`: Describes the actions that can be performed in the smart contract, each of which corresponds to a smart contract function.
+- `tables`: Describes information about tables so that your web application can query on-chain database information using the `get_table_rows` RPC API.

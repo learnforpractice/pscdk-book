@@ -1,28 +1,28 @@
-# Cryptographic functions
+# 密码学相关函数
 
-Cryptographic functions are defined in `crypto.codon`. They can be imported like the following code:
+密码学相关的函数在`crypto.codon`中定义，可以通过像下面的方式导入：
 
 ```python
 from chain.crypto import sha256
 ```
 
-Or just import the `crypto` module:
+或者只导入crypto模块：
 
 ```python
 from chain import crypto
 ```
 
-Then, call internal functions such as `crypto.sha256` using the appropriate format.
+然后通过像`crypto.sha256`的方式来调用内部函数。
 
 ## sha256
 
-Hash function using the sha256 algorithm:
+sha256算法hash函数
 
 ```python
 def sha256(data: bytes) -> Checksum256:
 ```
 
-Used for checking if the hash256 value is correct. If not, an exception will be raised:
+用于检测hash256值是否正常，不正确会直接抛出异常
 
 ```python
 def assert_sha256(data: bytes, hash: Checksum256):
@@ -30,27 +30,28 @@ def assert_sha256(data: bytes, hash: Checksum256):
 
 ## sha1
 
-Hash function using the sha1 algorithm:
+sha1算法hash函数
 
 ```python
 def sha1(data: bytes) -> Checksum160:
 ```
 
-Used for checking if the sha1 hash value is correct. If not, an exception will be raised:
+用于检测sha1 hash值是否正常，不正确会直接抛出异常
 
 ```python
 def assert_sha1(data: bytes, hash: Checksum160):
 ```
 
+
 ## sha512
 
-Hash function using the sha512 algorithm:
+sha512算法hash函数
 
 ```python
 def sha512(data: bytes) -> Checksum512:
 ```
 
-Used for checking if the hash512 value is correct. If not, an exception will be raised:
+用于检测hash512值是否正常，不正确会直接抛出异常
 
 ```python
 def assert_sha512(data: bytes, hash: Checksum512):
@@ -58,13 +59,13 @@ def assert_sha512(data: bytes, hash: Checksum512):
 
 ## ripemd160
 
-Hash function using the ripemd160 algorithm:
+ripemd160算法hash函数
 
 ```python
 def ripemd160(data: bytes) -> Checksum160:
 ```
 
-Used for checking if the ripemd160 algorithm hash value is correct. If not, an exception will be raised:
+用于检测ripemd160算法的hash值是否正常，不正确会直接抛出异常
 
 ```python
 def assert_ripemd160(data: bytes, hash: Checksum160):
@@ -72,19 +73,19 @@ def assert_ripemd160(data: bytes, hash: Checksum160):
 
 ## recover_key
 
-Used to recover the public key from digest and signature:
+用于从digest和signture中恢复出公钥
 
 ```python
 def recover_key(digest: Checksum256, sig: Signature) -> PublicKey:
 ```
 
-Checks if the signature is correct. If not, an exception will be raised:
+检查签名是否正常，不正常会抛出异常
 
 ```python
 def assert_recover_key(digest: Checksum256, sig: Signature, pub: PublicKey):
 ```
 
-## Example:
+## 示例：
 
 ```python
 # crypto_example.codon
@@ -116,7 +117,7 @@ class MyContract(Contract):
         print('done!')
 ```
 
-Testing code:
+测试代码：
 
 ```python
 def test_crypto():
@@ -153,21 +154,21 @@ def test_recover():
     logger.info("++++++++++%s\n", ret['elapsed'])
 ```
 
-Compilation:
+编译：
 
 ```
 python-contract build crypto_example.codon
 ```
 
-Testing:
+测试：
 
 ```
 ipyeos -m pytest -s -x test.py -k test_crypto
 ipyeos -m pytest -s -x test.py -k test_recover
 ```
 
-In this example code, the usage of commonly used hash functions as well as the usage of `recover_key` and `assert_recover_key` are demonstrated separately. The usage of hash functions is relatively simple; here is an explanation of the test code for `recover_key`:
-`recover_key` takes two parameters, namely `digest` and `signature`. The `digest` is the result of running the sha256 algorithm on a binary data. In the above code, the hash calculation was performed on `hello,world` using the sha256 algorithm.
+在这个示例代码中，分别演示了常用的hash函数的用法以及`recover_key`和`assert_recover_key`的用法。hash函数的用法比较简单，这里解释一下recover_key的测试代码：
+recover_key接受二个参数，分别是`digest`和`signature`，digest是对一个二进制数据进行sha256运行的结果。在上面的代码中是通过对`hello,world`进行sha256算法的hash计算。
 
 ```python
 h = hashlib.sha256()
@@ -175,9 +176,9 @@ h.update(b'hello,world')
 digest = h.hexdigest()
 ```
 
-The computed result is passed as a parameter to the action.
+运算出的结果作为参数传给action.
 
-Here is an explanation of `testrecover`:
+下面是对`testrecover`的解释：
 
 ```python
 @action('testrecover')
@@ -191,10 +192,10 @@ def test_recover(self, msg: bytes, digest: Checksum256, sig: Signature, k1: Publ
     print('done!')
 ```
 
-In the sent transaction, the user's signature on the transaction is also required to indicate that the user has authorized the transaction. Then, in the smart contract, the `require_auth` function can be called to determine whether the transaction has been authorized by a specific user.
+在发送的Transaction中也是需要包含用户对Transaction的签名的，以表示用户授权了这个Transaction。然后在智能合约，就可以调用的`require_auth`函数来判断Transaction是否进行过特定用户的授权。
 
-In actual smart contract applications, the above method can also be used to determine whether a certain section of binary data in the smart contract is signed using a specific private key. The process is as follows:
+在实际的智能合约的应用中，如果要在智能合约里判断某段二进制数据是否是用特定的私钥进行的签名也可以用上面的办法。过程如下：
 
-- Firstly, the user signs the data using his own private key
-- The user passes the data, signature, and public key (note that this is not a private key) to the smart contract
-- The smart contract can then determine whether the data is signed using a particular private key and perform corresponding operations.
+- 首先用户用自己的私钥对数据进行签名
+- 用户将数据，签名，公钥（注意这里不是私钥）传给智能合约
+- 智能合约即可判断数据是否是用特别的私钥签的名，并进行相应的操作。
