@@ -15,6 +15,7 @@ plugins:
 nav:
     - 'env.md'
     - 'helloworld.md'
+    - 'deploy.md'
     - 'prelude.md'
     - 'action.md'
     - 'notify.md'

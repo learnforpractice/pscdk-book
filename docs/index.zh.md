@@ -3,6 +3,7 @@
 * [预备知识](prelude.md)
 * [开发环境搭建](env.md)
 * [HelloWorld](helloworld.md)
+* [发布合约](deploy.zh.md)
 * [内联Action在智能合约的使用](action.md)
 * [require_recipient函数](notify.md)
 * [数据库的操作](database.md)
