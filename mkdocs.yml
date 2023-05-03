@@ -11,7 +11,7 @@ plugins:
                 name: 中文
                 build: true
     - chat:
-        docs_chat_endpoint: "https://127.0.0.1/chat"
+        docs_chat_endpoint: "https://docs.uuos.io:8443/chat"
 nav:
     - 'env.md'
     - 'helloworld.md'
