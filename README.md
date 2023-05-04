@@ -2,19 +2,20 @@
 
 Python Smart Contracts Development Cook Book
 
-## 目录
+## Table of Contents
 
-* [开发环境搭建](docs/env.md)
+* [Prior Knowledge](docs/prelude.md)
+* [Development Environment](docs/env.md)
 * [HelloWorld](docs/helloworld.md)
-* [预备知识](docs/prelude.md)
-* [内联Action在智能合约的使用](docs/action.md)
-* [require_recipient函数](docs/notify.md)
-* [数据库的操作](docs/database.md)
-* [密码学相关函数](docs/crypto.md)
-* [常用智能合约函数](docs/common.md)
-* [和标准Python的差异](docs/codon.md)
+* [Deploy](docs/deploy.md)
+* [Inline Action](docs/action.md)
+* [The require_recipient Function](docs/notify.md)
+* [Database](docs/database.md)
+* [Crypto Functions](docs/crypto.md)
+* [Commonly Functions](docs/common.md)
+* [Codon](docs/codon.md)
 
 
-## 示例
+## Examples
 
 [examples](./examples)
