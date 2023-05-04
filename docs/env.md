@@ -3,16 +3,17 @@
 ## Installing the Required Tools for Compilation and Testing
 
 ### Direct Installation of Development Toolkits
-Install the `pscdk` package, which is used to compile Python smart contracts, using the following command:
 
-```bash
-python3 -m pip install pscdk
-```
-
-Install the `ipyeos` package, which is used to test smart contracts, using the following command:
+Install `ipyeos`, a package used for testing smart contracts or running a node:
 
 ```bash
 python3 -m pip install ipyeos
+```
+
+Install `pyeoskit`, a tool used to interact with nodes, such as deploying smart contracts, etc:
+
+```bash
+python3 -m pip install pyeoskit
 ```
 
 ### Running in Docker

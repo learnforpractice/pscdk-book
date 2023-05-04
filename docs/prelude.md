@@ -1,22 +1,22 @@
 # Prerequisite Knowledge
 
-## What are Smart Contracts?
+## What is a Smart Contract
 
-Smart contracts are codes that can be executed on the blockchain.
+A smart contract is code that can be executed on the blockchain.
 
-## What are Python Smart Contracts?
+## What is a Python Smart Contract
 
-Python smart contracts are codes written in the Python language that can be executed on the blockchain. Taking EOS network as an example, the code of Python smart contracts is compiled into a binary file called WebAssembly, and can be published on the network and executed to achieve a certain desired effect.
+A Python smart contract is code written in Python that can be executed on the blockchain. In the case of the EOS network, Python smart contract code is compiled into a binary file called WebAssembly, which can be published to the blockchain and executed, achieving a certain operation effect.
 
-## What is EOS?
+## What is EOS
 
-EOS is a blockchain network based on Delegated Proof of Stake (DPOS) consensus algorithm. The mainnet was launched on June 8, 2018. The mainnet of EOS is controlled by 21 block producers (BP), abbreviated as BP, which are selected through voting and are responsible for packaging transactions into blocks.
+EOS is a blockchain network based on the Delegated Proof of Stake (DPOS) consensus algorithm. The main network was officially launched on June 8, 2018. The EOS mainnet is controlled by 21 Block Producers (BP) who are elected by voting and are responsible for packaging transactions into blocks.
 
 ## Account
 
-On the EOS blockchain, each entity in a transaction is represented by an account. The name of the account is a name structure, which will be discussed in the next section. The structure of the account in C++ code is relatively complex.
+On the EOS blockchain, each transaction entity is represented by an account. The account name is a `name` structure, which will be discussed in the next section. The account structure in C++ code is relatively complex.
 
-Below is a summary of the information contained in the account, obtained through the `get_account`RPC interface in EOS:
+The following is a brief overview of the information contained in an account, based on the information returned by EOS's `get_account` RPC interface:
 
 ```json
 {
@@ -80,7 +80,7 @@ Below is a summary of the information contained in the account, obtained through
   }
  ],
  "total_resources": {
-  "owner": "helloworld11",
+  "owner": "testaccount",
   "net_weight": "0.0000 EOS",
   "cpu_weight": "0.0000 EOS",
   "ram_bytes": 3052
@@ -100,26 +100,26 @@ Below is a summary of the information contained in the account, obtained through
 }
 ```
 
-Here's a brief description of the main fields:
+Let's briefly introduce the meanings of the main fields:
 
-- `account_name`: the name of the account, the rules for which will be explained in the next section.
-- `privileged`: `true` indicates that the account is a privileged account, such as `eosio`. `false` indicates a regular account.
-- `last_code_update`: the time of the last update to the smart contract in the account.
-- `created`: the creation time of the account.
-- `core_liquid_balance`: the available balance in the account.
-- `ram_quota`: the total amount of memory allocated to the account. Because EOS's database is a memory database, all on-chain data needs to be stored in memory, and memory is limited, so memory is allocated as a resource to accounts.
-- `net_weight`: the weight of the network resources allocated to the account.
-- `cpu_weight`: the weight of the CPU resources allocated to the account.
-- `net_limit`: the usage of network resources by the account.
-- `cpu_limit`: the usage of CPU resources by the account.
-- `ram_usage`: the amount of memory already used.
-- `permissions`: the permissions of the account, which include one or more public keys or account information. Each public key and account permission carries a certain weight, and when a transaction is sent, it must be signed with the private key corresponding to the public key, and the weight must be greater than or equal to the `threshold` before the transaction can be recognized by the BP. When the account permission includes information inherited from another account instead of a public key, the public key information will be extracted from the permission information of the account when signing, which is implemented through C++ algorithms. The EOS RPC interface also has a `get_required_keys` interface to obtain the public key information of the signature.
-- `total_resources`: specifies the information of the NET, CPU, RAM and other resources allocated to the group account.
+- `account_name`: Account name, the rules will be discussed in the next section
+- `privileged`: `true` indicates that the account is a privileged account, such as `eosio` being a privileged account. `false` means it's a regular account
+- `last_code_update`: The last update time of the smart contract in the account
+- `created`: Account creation time
+- `core_liquid_balance`: Account's available balance
+- `ram_quota`: Total memory allocated to the account. Since the EOS database is an in-memory database, all on-chain data must be stored in memory, and memory is limited, so memory is allocated as a resource to accounts.
+- `net_weight`: The weight of the network resources allocated to the account
+- `cpu_weight`: The weight of the CPU resources allocated to the account
+- `net_limit`: Account's network resource usage
+- `cpu_limit`: CPU resource usage
+- `ram_usage`: Already used memory
+- `permissions`: Account permissions; account permissions contain one or more public keys or account information, each public key and account permission occupies a certain weight, when sending a transaction, the private key corresponding to the public key must be used to sign the transaction, and the weight must be greater or equal to the `threshold` for the transaction to be recognized by BP. When the permissions of the account contain not public key information but designate inherited permissions from a certain account, the public key information will be extracted from the permission information of this account during signing, which is implemented through the algorithm of the C++ program. EOS's RPC interface also has a `get_required_keys` interface to obtain the public key information for signing.
+- `total_resources`: This specifies the information of resources allocated to the account, such as NET, CPU, RAM, etc.
 
-## Name structure
-Name is one of the most basic data structures in EOS, represented by a 64-bit unsigned integer (`uint64_t`) at the lowest level.
+## Name Structure
+`name` is one of the most basic data structures in EOS, represented at the low level by a 64-bit unsigned integer (uint64_t).
 
-Here is the C++ definition.
+The definition in C++ is as follows:
 
 [libraries/chain/include/eosio/chain/name.hpp](https://github.com/EOSIO/eos/blob/5082391c60b0fa5e68157c385cd402bf25aea934/libraries/chain/include/eosio/chain/name.hpp#L42)
 
@@ -135,16 +135,16 @@ Here is the C++ definition.
    }
 ```
 
-However, in the application layer, name values are represented as strings and can only contain the following characters: ".12345abcdefghijklmnopqrstuvwxyz". There are a total of 32 characters which represent the numbers 0 to 31, and these strings can be seen as a 32-bit data. In a `uint64_t`, every 5 bits are converted into one of the aforementioned characters. As `uint64_t` has a maximum of 64 bits, the first 60 bits can represent up to 12 characters. The characters' scope can be expressed using regular expressions as `[.1-5a-z]`, whereas the highest 4 bits can only be represented by 16 characters, which are expressed within the range `[.1-5a-j]`.
+However, when used at the application layer, it is represented as a string, and the string can only contain these characters: ".12345abcdefghijklmnopqrstuvwxyz". There are a total of 32 characters, each representing one of the numbers 0-31. These strings can be considered as base-32 data, with each 5 bits in the `uint64_t` converted to one of the characters above. Since `uint64_t` has a maximum of 64 bits, the first 60 bits can represent 12 characters, with the character range represented by the regular expression `[.1-5a-z]`. The highest 4 bits can only be represented by 16 characters, with the range of these characters represented by the regular expression `[.1-5a-j]`.
 
-It is not uncommon to make mistakes when creating accounts, such as making valid characters out of '6' to '9', '0' and uppercase letters, as well as not limiting the name to 12 characters.
+In practice, such as when creating an account, common mistakes include treating '6' to '9', '0', and uppercase letters as valid characters, and not limiting the length to 12 characters.
 
 In summary:
 
-- In EOS, the name value is actually a `uint64_t` type at the underlying level, and it is represented as a string in the application layer, with the string having a maximum of 13 characters.
-- The range of the 13th character is smaller than that of the previous 12 characters.
-- When representing account names using the name structure, a maximum of 12 characters is allowed.
-- Additionally, the name structure is also used to represent other types in the following C++ code:
+- In EOS, the value of `name` is actually a `uint64_t` type at the low level, and is represented as a string when used at the application layer. This string can have up to 13 characters.
+- The range of the 13th character is smaller than the range that the first 12 characters can represent.
+- When using the `name` structure to represent an account name, there can be up to 12 characters.
+- In addition, the `name` structure is also used to represent some other types, as shown in the following C++ code:
 
 [libraries/chain/include/eosio/chain/types.hpp](https://github.com/EOSIO/eos/blob/5082391c60b0fa5e68157c385cd402bf25aea934/libraries/chain/include/eosio/chain/types.hpp#L133)
 
@@ -156,10 +156,12 @@ In summary:
    using table_name       = name;
 ```
 
-In this C++ code, the name structure is also used to represent action, table names, and more. It should be noted that unlike account names, when representing these names as strings, they can have a maximum of 13 characters. However, for convenience, it is common practice to use a maximum of 12 characters to represent these names.                                                                                                    
-## Transaction
+In this C++ code, the `name` structure is also used to represent action names, table names, and so on. Note that unlike account names, when representing these names as strings, there can be up to 13 characters. However, for convenience, it is customary to use up to 12 characters to represent these names.
 
-On EOS, the basic data structure is called a transaction, which is responsible for collecting transactions within a period of time and packaging them into a block by the block producers (BP). Smart contract developers must fully understand the data structure of transactions.
+## Transaction Structure
+
+The basic data structure on EOS is called a transaction (Transaction), and BPs are responsible for packaging transactions collected over a period of time into a block. Smart contract developers must fully understand the Transaction data structure.
+
 
 [libraries/chain/include/eosio/chain/transaction.hpp](https://github.com/EOSIO/eos/blob/5082391c60b0fa5e68157c385cd402bf25aea934/libraries/chain/include/eosio/chain/transaction.hpp#L30)
 ```c++
@@ -182,16 +184,16 @@ struct transaction_header {
    };
 ```
 
-Here's a brief explanation of some of the important fields:
+Let's briefly explain the more important fields:
 
-- `expiration`: This sets the timeout period for the transaction to be put on the chain. Transactions that exceed their expiration time will be rejected from being included in the block.
-- `ref_block_num` and `ref_block_prefix`: These two member variables are designed to prevent transactions from being included in blocks on forked chains.
-- `actions`: This is an array structure of actions, which is a very important concept. Each action corresponds to a smart contract function on the chain, and when the BP includes the transaction in the block, they will call the corresponding smart contract function according to the action. This will be explained in more detail in the following section.
-- `context_free_actions`: This is also an array of actions, but when the corresponding smart contract function is called, the code that is executed is not allowed to call the API related to the on-chain database.
-                                                                                                    
-## Action
+- `expiration`, sets the timeout for the transaction to be added to the chain; if the timeout is exceeded, the transaction will be rejected from being included in the block.
+- `ref_block_num`, `ref_block_prefix` these two member variables are designed to prevent transactions from being re-included in blocks on forked chains.
+- `actions`, this is an array structure of actions; the concept of action is very important. Each action corresponds to a smart contract function on the chain. When a BP includes a transaction in a block, the corresponding smart contract function is called based on the action. This will be explained in detail in the following section.
+- `context_free_actions`, this is also an array of actions. The difference is that when the smart contract function corresponding to an action is called, the execution of the code is prohibited from calling APIs related to the on-chain database.
 
-The action structure is included in the transaction structure. The definition of an action structure in C++ code is as follows:
+## Action Structure
+
+The Action structure is contained within the Transaction structure. An action structure in C++ code is defined as follows:
 
 [libraries/chain/include/eosio/chain/action.hpp](https://github.com/EOSIO/eos/blob/5082391c60b0fa5e68157c385cd402bf25aea934/libraries/chain/include/eosio/chain/action.hpp#L60)
 
@@ -205,7 +207,7 @@ The action structure is included in the transaction structure. The definition of
    }
 ```
 
-Where [permission_level](https://github.com/EOSIO/eos/blob/5082391c60b0fa5e68157c385cd402bf25aea934/libraries/chain/include/eosio/chain/action.hpp#L12)的定义如下：
+其中，[permission_level](https://github.com/EOSIO/eos/blob/5082391c60b0fa5e68157c385cd402bf25aea934/libraries/chain/include/eosio/chain/action.hpp#L12)的定义如下：
 
 ```C++
 struct permission_level {
@@ -215,15 +217,16 @@ struct permission_level {
 ```
 The meanings of the member variables in the structure are explained as follows:
 
-- `account`: The account name of the smart contract to be called.
-- `name`: The name of the action to be called.
-- `authorization`: An array of permissions.
-- `data`: The serialized raw data contained in the action, which will be deserialized into specific data structures when called by the smart contract.                                                                                                
-## ABI(Application Binary Interface)
+- `account` is used to specify the account name of the smart contract to be called
+- `name` is the name of the action being called
+- `authorization` is an array of permissions
+- `data` is the serialized raw data contained in the action; when called by the smart contract, it will be deserialized into a specific data structure
 
-When developing smart contracts, during the compilation process of the smart contract code, an ABI file (.abi) is usually generated along with the binary code (.wasm) of each smart contract. However, it should be noted that this file is not necessary for calling smart contracts on the chain. Its purpose is to facilitate developers in obtaining information about relevant actions, in order to construct the corresponding Transaction data structure for interacting with the blockchain.
+## ABI (Application Binary Interface)
 
-The content of an ABI file is in JSON format, like the following:
+When developing smart contracts, during the compilation process of the smart contract code, under normal circumstances, an ABI file (.abi) will be generated for each smart contract binary code (.wasm). However, it should be noted that this file is not required for calling smart contracts on the chain. Its purpose is to help developers obtain relevant action information and construct the corresponding Transaction data structure for easy interaction with the blockchain.
+
+The content of an ABI file is in JSON format, like this:
 
 ```json
 {
@@ -273,7 +276,7 @@ The content of an ABI file is in JSON format, like the following:
 }
 ```
 
-- `version`: Specifies the version of the ABI.
-- `structs`: Specifies the data structures that will be used in the `actions` and `tables` structures.
-- `actions`: Describes the actions that can be performed in the smart contract, each of which corresponds to a smart contract function.
-- `tables`: Describes information about tables so that your web application can query on-chain database information using the `get_table_rows` RPC API.
+- `version` is used to specify the ABI version
+- `structs` is used to define data structures and will be used in both `actions` and `tables`
+- `actions` describes the actions in the smart contract, with each action corresponding to a smart contract function
+- `tables` describes table information, so your web application can query the on-chain database information using the `get_table_rows` RPC API

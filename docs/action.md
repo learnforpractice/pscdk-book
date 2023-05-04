@@ -1,8 +1,8 @@
 # Inline Actions
 
-In smart contracts, it is also possible to initiate an action, which is called an inline action. Note that actions are asynchronous, meaning that the contract code corresponding to the inline action is only called after the entire code has been executed. If the called contract has not defined the relevant action or if there is no deployed contract in the account, the call will have no effect, but no exceptions will be thrown. Even empty inline actions are not without any purpose, for they can be used as on-chain logs for application programs to query.
+In smart contracts, you can also initiate an action, which is called an inline action. Keep in mind that actions are asynchronous, meaning that the contract code corresponding to the inline action will only be called after the entire code is executed. If the called contract does not define the relevant action or the account does not have a deployed contract, the call will have no effect, but no exception will be thrown. Empty inline actions like these are not entirely useless, as they can serve as on-chain logs for application queries.
 
-Here is the complete code for the `Action` class in `action.codon`:
+Here is the complete code of the `Action` class in `action.codon`:
 
 ```python
 @packer

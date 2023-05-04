@@ -112,7 +112,7 @@ EOS是一个基于代理权益证明(DPOS - Delegated Proof of Stake)共识算�
 - `cpu_limit`CPU资源的使用情况
 - `ram_usage`: 已经使用的内存
 - `permissions`: 账号的权限，账号的权限包含一个或者多个公钥或者账号的信息，每个公钥和账号的权限又占一定的权重(weight)，在发送交易(transaction)时，必须用公钥对应的私钥对交易进行签名，并且权重要大于等于`threshold`时，这个交易才能被BP认可。当账号的权限里包含的不是公钥信息，而是指定继承自某个账号的权限信息时，在签名的时候，会从这个账号的权限信息里提取出公钥信息，这通过C++程序的算法来实现。EOS的RPC接口中也有一个`get_required_keys`接口来获取签名的公钥信息。
-- `total_resources`：这里指定组账号分配的NET，CPU， RAM等资源的信息
+- `total_resources`：这里指定账号分配的NET，CPU， RAM等资源的信息
                                                                                                     
 ## Name 结构
 name是EOS中的一个最基本的数据结构，在底层用一个64位的无符号整数(uint64_t)表示。
