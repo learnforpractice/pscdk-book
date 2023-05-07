@@ -1,6 +1,6 @@
 
 <!doctype html>
-<html lang="en" class="no-js">
+<html lang="zh" class="no-js">
   <head>
     
       <meta charset="utf-8">
@@ -14,19 +14,19 @@
       
         <link rel="next" href="../notify/">
       
-      <link rel="icon" href="../assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.4">
     
     
       
-        <title>Inline Actions - Python Smart Contracts Development Cook Book</title>
+        <title>内联Action在智能合约的使用 - Python Smart Contracts Development Cook Book</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.240905d7.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.240905d7.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.a0c5b2b5.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.a0c5b2b5.min.css">
       
       
 
@@ -42,7 +42,7 @@
       
     
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -50,7 +50,7 @@
     
     
   
-  <link rel="stylesheet" href="../css/chat-dialog-plugin.css">
+  <link rel="stylesheet" href="../../css/chat-dialog-plugin.css">
 </head>
   
   
@@ -69,8 +69,8 @@
     <div data-md-component="skip">
       
         
-        <a href="#inline-actions" class="md-skip">
-          Skip to content
+        <a href="#action" class="md-skip">
+          跳转至
         </a>
       
     </div>
@@ -84,8 +84,8 @@
   
 
 <header class="md-header md-header--shadow" data-md-component="header">
-  <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="Python Smart Contracts Development Cook Book" class="md-header__button md-logo" aria-label="Python Smart Contracts Development Cook Book" data-md-component="logo">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../" title="Python Smart Contracts Development Cook Book" class="md-header__button md-logo" aria-label="Python Smart Contracts Development Cook Book" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -104,7 +104,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Inline Actions
+              内联Action在智能合约的使用
             
           </span>
         </div>
@@ -115,20 +115,20 @@
       <div class="md-header__option">
         <div class="md-select">
           
-          <button class="md-header__button md-icon" aria-label="Select language">
+          <button class="md-header__button md-icon" aria-label="选择当前语言">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.52 17.52 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04M18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12m-2.62 7 1.62-4.33L19.12 17h-3.24Z"/></svg>
           </button>
           <div class="md-select__inner">
             <ul class="md-select__list">
               
                 <li class="md-select__item">
-                  <a href="./" hreflang="en" class="md-select__link">
+                  <a href="../../action/" hreflang="en" class="md-select__link">
                     English
                   </a>
                 </li>
               
                 <li class="md-select__item">
-                  <a href="../zh/action/" hreflang="zh" class="md-select__link">
+                  <a href="./" hreflang="zh" class="md-select__link">
                     中文
                   </a>
                 </li>
@@ -141,7 +141,7 @@
     
     
       <div class="md-header__source">
-        <a href="https://github.com/uuosio/pscdk" title="Go to repository" class="md-source" data-md-component="source">
+        <a href="https://github.com/uuosio/pscdk" title="前往仓库" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
@@ -174,9 +174,9 @@
                     
 
 
-<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="Python Smart Contracts Development Cook Book" class="md-nav__button md-logo" aria-label="Python Smart Contracts Development Cook Book" data-md-component="logo">
+    <a href="../" title="Python Smart Contracts Development Cook Book" class="md-nav__button md-logo" aria-label="Python Smart Contracts Development Cook Book" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -186,7 +186,7 @@
   </label>
   
     <div class="md-nav__source">
-      <a href="https://github.com/uuosio/pscdk" title="Go to repository" class="md-source" data-md-component="source">
+      <a href="https://github.com/uuosio/pscdk" title="前往仓库" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
@@ -208,7 +208,7 @@
   
     <li class="md-nav__item">
       <a href="../prelude/" class="md-nav__link">
-        Prerequisite Knowledge
+        预备知识
       </a>
     </li>
   
@@ -223,7 +223,7 @@
   
     <li class="md-nav__item">
       <a href="../env/" class="md-nav__link">
-        Development Environment Setup
+        开发环境搭建
       </a>
     </li>
   
@@ -253,7 +253,7 @@
   
     <li class="md-nav__item">
       <a href="../deploy/" class="md-nav__link">
-        Deploying a Smart Contract
+        发布智能合约
       </a>
     </li>
   
@@ -277,7 +277,7 @@
       
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Inline Actions
+        内联Action在智能合约的使用
       </a>
       
     </li>
@@ -293,7 +293,7 @@
   
     <li class="md-nav__item">
       <a href="../notify/" class="md-nav__link">
-        The `require_recipient` function
+        require_recipient函数
       </a>
     </li>
   
@@ -308,7 +308,7 @@
   
     <li class="md-nav__item">
       <a href="../database/" class="md-nav__link">
-        Database Operations
+        数据库的操作
       </a>
     </li>
   
@@ -323,7 +323,7 @@
   
     <li class="md-nav__item">
       <a href="../crypto/" class="md-nav__link">
-        Cryptographic functions
+        密码学相关函数
       </a>
     </li>
   
@@ -338,7 +338,7 @@
   
     <li class="md-nav__item">
       <a href="../common/" class="md-nav__link">
-        Common Smart Contract Functions
+        常用智能合约函数
       </a>
     </li>
   
@@ -353,7 +353,7 @@
   
     <li class="md-nav__item">
       <a href="../abi/" class="md-nav__link">
-        Explanation of ABI types
+        ABI类型详解
       </a>
     </li>
   
@@ -368,7 +368,7 @@
   
     <li class="md-nav__item">
       <a href="../codon/" class="md-nav__link">
-        Differences between Codon and standard Python
+        和标准Python的差异
       </a>
     </li>
   
@@ -387,7 +387,7 @@
                   <div class="md-sidebar__inner">
                     
 
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+<nav class="md-nav md-nav--secondary" aria-label="目录">
   
   
   
@@ -410,9 +410,9 @@
   
 
 
-<h1 id="inline-actions">Inline Actions</h1>
-<p>In smart contracts, you can also initiate an action, which is called an inline action. Keep in mind that actions are asynchronous, meaning that the contract code corresponding to the inline action will only be called after the entire code is executed. If the called contract does not define the relevant action or the account does not have a deployed contract, the call will have no effect, but no exception will be thrown. Empty inline actions like these are not entirely useless, as they can serve as on-chain logs for application queries.</p>
-<p>Here is the complete code of the <code>Action</code> class in <code>action.codon</code>:</p>
+<h1 id="action">内联Action在智能合约的使用</h1>
+<p>在智能合约中也可以发起一个action，这样的action称之为内联action(inline action)。需要注意的是，action是异步的，也就是说，只有在整个代码执行完后，内联action对应的合约代码才会被调用，如果被调用的合约没有定义相关的action或者账号中没有部属合约，那么调用将没有影响，但也不会有异常抛出。像这些空的内联action也不是没有任何作用，例如可以当作链上的日志，以供应用程序来查询。</p>
+<p>以下是Action类在<code>action.codon</code>中的完整代码：</p>
 <div class="highlight"><pre><span></span><code><span class="nd">@packer</span>
 <span class="k">class</span> <span class="nc">Action</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="n">account</span><span class="p">:</span> <span class="n">Name</span>
@@ -453,20 +453,20 @@
         <span class="n">raw</span> <span class="o">=</span> <span class="n">pack</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="n">send_inline</span><span class="p">(</span><span class="n">raw</span><span class="o">.</span><span class="n">ptr</span><span class="p">,</span> <span class="n">u32</span><span class="p">(</span><span class="n">raw</span><span class="o">.</span><span class="n">len</span><span class="p">))</span>
 </code></pre></div>
-<p>This class has three <code>__init__</code> functions, which should be used according to needs. The following initialization function should be the most commonly used:</p>
+<p>该类有三个<code>__init__</code>函数，请根据需求来使用，使用比较多的应该是下面这个初始化函数：</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">account</span><span class="p">:</span> <span class="n">Name</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="n">Name</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">bytes</span><span class="o">=</span><span class="nb">bytes</span><span class="p">())</span>
 </code></pre></div>
-<p>This function uses <code>active</code> authorization by default.</p>
-<p>The following initialization function specifies which account's authorization to use, and also uses the <code>active</code> authorization of the account by default:</p>
+<p>这个函数默认使用和account的<code>active</code>权限</p>
+<p>下面这个初始化函数指定了权限的账号，也是默认使用账号的<code>active</code>权限</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">account</span><span class="p">:</span> <span class="n">Name</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="n">Name</span><span class="p">,</span> <span class="n">permission_account</span><span class="p">:</span> <span class="n">Name</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">bytes</span><span class="o">=</span><span class="nb">bytes</span><span class="p">())</span>
 </code></pre></div>
-<p>If a contract uses other authorizations, the following initialization function can be used:</p>
+<p>如果使用的是其它权限，则可以使用下面的个初始化函数：</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">account</span><span class="p">:</span> <span class="n">Name</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="n">Name</span><span class="p">,</span> <span class="n">permission_account</span><span class="p">:</span> <span class="n">Name</span><span class="p">,</span> <span class="n">permission_name</span><span class="p">:</span> <span class="n">Name</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">bytes</span><span class="o">=</span><span class="nb">bytes</span><span class="p">()):</span>
 </code></pre></div>
-<p>If an account has multiple authorizations, the following initialization function can be used:</p>
+<p>如果账号用了多个权限，则用下个这个初始化函数。</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">account</span><span class="p">:</span> <span class="n">Name</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="n">Name</span><span class="p">,</span> <span class="n">authorization</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">PermissionLevel</span><span class="p">],</span> <span class="n">data</span><span class="p">:</span> <span class="nb">bytes</span><span class="o">=</span><span class="nb">bytes</span><span class="p">()):</span>
 </code></pre></div>
-<p>Example:</p>
+<p>示例：</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># action_example.codon</span>
 <span class="kn">from</span> <span class="nn">packer</span> <span class="kn">import</span> <span class="n">pack</span>
 <span class="kn">from</span> <span class="nn">chain.action</span> <span class="kn">import</span> <span class="n">Action</span><span class="p">,</span> <span class="n">PermissionLevel</span>
@@ -517,7 +517,58 @@
     <span class="k">def</span> <span class="nf">test3</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span> <span class="n">u64</span><span class="p">):</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;++++=name:&#39;</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="s1">&#39;height:&#39;</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
 </code></pre></div>
-<p>Please note that in order to call inline actions in the contract, the virtual permission <code>eosio.code</code> must be added to the <code>active</code> permission of the account, and in the test code, the following function is used to add this virtual permission to the <code>active</code> permission.</p>
+<p>测试代码：</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">test_action</span><span class="p">():</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">init_test</span><span class="p">(</span><span class="s1">&#39;action_example&#39;</span><span class="p">)</span>
+    <span class="n">ret</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">push_action</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="p">{},</span> <span class="p">{</span><span class="s1">&#39;hello&#39;</span><span class="p">:</span> <span class="s1">&#39;active&#39;</span><span class="p">})</span>
+    <span class="n">t</span><span class="o">.</span><span class="n">produce_block</span><span class="p">()</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;++++++++++</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;elapsed&#39;</span><span class="p">])</span>
+</code></pre></div>
+<p>编译：
+<div class="highlight"><pre><span></span><code>python-contract build action_example.codon
+</code></pre></div></p>
+<p>运行测试：</p>
+<div class="highlight"><pre><span></span><code>ipyeos -m pytest -s -x test.py -k test_action
+</code></pre></div>
+<p>输出：</p>
+<div class="highlight"><pre><span></span><code>debug 2023-03-28T12:35:48.175 thread-0  apply_context.cpp:30          print_debug          ] 
+[(hello,test)-&gt;hello]: CONSOLE OUTPUT BEGIN =====================
+++++send test2 action
+++++send test2 action
+++++send test2 action
+++++send test2 action
+++++send test3 action
+
+[(hello,test)-&gt;hello]: CONSOLE OUTPUT END   =====================
+debug 2023-03-28T12:35:48.175 thread-0  apply_context.cpp:30          print_debug          ] 
+[(hello,test2)-&gt;hello]: CONSOLE OUTPUT BEGIN =====================
+++++=name: 1 alice
+
+[(hello,test2)-&gt;hello]: CONSOLE OUTPUT END   =====================
+debug 2023-03-28T12:35:48.175 thread-0  apply_context.cpp:30          print_debug          ] 
+[(hello,test2)-&gt;hello]: CONSOLE OUTPUT BEGIN =====================
+++++=name: 2 alice
+
+[(hello,test2)-&gt;hello]: CONSOLE OUTPUT END   =====================
+debug 2023-03-28T12:35:48.175 thread-0  apply_context.cpp:30          print_debug          ] 
+[(hello,test2)-&gt;hello]: CONSOLE OUTPUT BEGIN =====================
+++++=name: 3 alice
+
+[(hello,test2)-&gt;hello]: CONSOLE OUTPUT END   =====================
+debug 2023-03-28T12:35:48.175 thread-0  apply_context.cpp:30          print_debug          ] 
+[(hello,test2)-&gt;hello]: CONSOLE OUTPUT BEGIN =====================
+++++=name: 4 alice
+
+[(hello,test2)-&gt;hello]: CONSOLE OUTPUT END   =====================
+debug 2023-03-28T12:35:48.175 thread-0  apply_context.cpp:30          print_debug          ] 
+[(hello,test3)-&gt;hello]: CONSOLE OUTPUT BEGIN =====================
+++++=name: alice height: 175
+
+[(hello,test3)-&gt;hello]: CONSOLE OUTPUT END   =====================
+debug 2023-03-28T12:35:48.177 thread-0  controller.cpp:2444           clear_expired_input_ ] removed 0 expired transactions of the 50 input dedup list, pending block time 2018-06-01T12:00:04.000
+</code></pre></div>
+<p>可以看到，这里先调用了<code>test</code>这个在Transaction里指定了的action，然后调用了<code>test2</code>这个Action，但是<code>test2</code>这个action并没有在Transaction里指定，而是在智能合约里发起的。另外，还通过<code>test3</code>演示了如何发送带多个参数的action.</p>
+<p>需要注意的是，为了在合约中能够调用inline action，需要在账号的<code>active</code>权限中添加<code>eosio.code</code>这个虚拟权限,在测试代码中，通过下面的函数来将<code>eosio.code</code>这个虚拟权限添加到<code>active</code>权限中。</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">update_auth</span><span class="p">(</span><span class="n">chain</span><span class="p">,</span> <span class="n">account</span><span class="p">):</span>
     <span class="n">a</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s2">&quot;account&quot;</span><span class="p">:</span> <span class="n">account</span><span class="p">,</span>
@@ -574,10 +625,10 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.19047be9.min.js"></script>
+      <script src="../../assets/javascripts/bundle.19047be9.min.js"></script>
       
     
   
@@ -585,7 +636,7 @@
 console.log("hello, plugin")
 var mkdocs_chat_plugin = {'param': '', 'docs_chat_endpoint': 'https://docs.uuos.io:8443/chat'};
 </script>
-<script src="../js/chat-dialog-plugin.js"></script>
+<script src="../../js/chat-dialog-plugin.js"></script>
 
         </body>
 </html>

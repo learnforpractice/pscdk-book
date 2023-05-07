@@ -9,24 +9,24 @@
       
       
       
-        <link rel="prev" href="../env/">
+        <link rel="prev" href="../action/">
       
       
-        <link rel="next" href="../deploy/">
+        <link rel="next" href="../database/">
       
-      <link rel="icon" href="../assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.4">
     
     
       
-        <title>HelloWorld - Python Smart Contracts Development Cook Book</title>
+        <title>The `require_recipient` function - Python Smart Contracts Development Cook Book</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.240905d7.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.240905d7.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.a0c5b2b5.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.a0c5b2b5.min.css">
       
       
 
@@ -42,7 +42,7 @@
       
     
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -50,7 +50,7 @@
     
     
   
-  <link rel="stylesheet" href="../css/chat-dialog-plugin.css">
+  <link rel="stylesheet" href="../../css/chat-dialog-plugin.css">
 </head>
   
   
@@ -69,7 +69,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#helloworld" class="md-skip">
+        <a href="#the-require_recipient-function" class="md-skip">
           Skip to content
         </a>
       
@@ -85,7 +85,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="Python Smart Contracts Development Cook Book" class="md-header__button md-logo" aria-label="Python Smart Contracts Development Cook Book" data-md-component="logo">
+    <a href="../" title="Python Smart Contracts Development Cook Book" class="md-header__button md-logo" aria-label="Python Smart Contracts Development Cook Book" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -104,7 +104,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              HelloWorld
+              The `require_recipient` function
             
           </span>
         </div>
@@ -122,13 +122,13 @@
             <ul class="md-select__list">
               
                 <li class="md-select__item">
-                  <a href="./" hreflang="en" class="md-select__link">
+                  <a href="../../notify/" hreflang="en" class="md-select__link">
                     English
                   </a>
                 </li>
               
                 <li class="md-select__item">
-                  <a href="../zh/helloworld/" hreflang="zh" class="md-select__link">
+                  <a href="../../zh/notify/" hreflang="zh" class="md-select__link">
                     中文
                   </a>
                 </li>
@@ -176,7 +176,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="Python Smart Contracts Development Cook Book" class="md-nav__button md-logo" aria-label="Python Smart Contracts Development Cook Book" data-md-component="logo">
+    <a href="../" title="Python Smart Contracts Development Cook Book" class="md-nav__button md-logo" aria-label="Python Smart Contracts Development Cook Book" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -235,59 +235,11 @@
 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          HelloWorld
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../helloworld/" class="md-nav__link">
         HelloWorld
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#the-first-smart-contract" class="md-nav__link">
-    The First Smart Contract
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#create-an-initial-project" class="md-nav__link">
-    Create an Initial Project
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -328,11 +280,21 @@
 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../notify/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         The `require_recipient` function
       </a>
+      
     </li>
   
 
@@ -432,28 +394,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#the-first-smart-contract" class="md-nav__link">
-    The First Smart Contract
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#create-an-initial-project" class="md-nav__link">
-    Create an Initial Project
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -470,85 +410,88 @@
   
 
 
-<h1 id="helloworld">HelloWorld</h1>
-<h2 id="the-first-smart-contract">The First Smart Contract</h2>
-<p>The following code shows the simplest smart contract and its testing code:</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># helloworld.codon</span>
+<h1 id="the-require_recipient-function">The <code>require_recipient</code> function</h1>
+<p>The function is declared in <code>action.codon</code> as follows:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">require_recipient</span><span class="p">(</span><span class="n">account</span><span class="p">:</span> <span class="n">Name</span><span class="p">):</span>
+</code></pre></div>
+<p>The <code>require_recipient</code> function is utilized to notify other contracts. If the <code>account</code> contract has the same action, this action will be called.</p>
+<p>The following code in <code>sender.codon</code> and <code>receiver.codon</code> demonstrates how to send a notification from one contract to another.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># sender.codon</span>
+<span class="kn">from</span> <span class="nn">chain.name</span> <span class="kn">import</span> <span class="n">Name</span>
+<span class="kn">from</span> <span class="nn">chain.contract</span> <span class="kn">import</span> <span class="n">Contract</span>
+<span class="kn">from</span> <span class="nn">chain.action</span> <span class="kn">import</span> <span class="n">require_recipient</span>
 
+<span class="nd">@contract</span><span class="p">(</span><span class="n">main</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">MyContract</span><span class="p">(</span><span class="n">Contract</span><span class="p">):</span>
+
+    <span class="nd">@action</span><span class="p">(</span><span class="s1">&#39;sayhello&#39;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">sayhello</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">receiver</span><span class="p">:</span> <span class="n">Name</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;hello, world&#39;</span><span class="p">)</span>
+        <span class="n">require_recipient</span><span class="p">(</span><span class="n">receiver</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># receiver.codon</span>
+<span class="kn">from</span> <span class="nn">chain.name</span> <span class="kn">import</span> <span class="n">Name</span>
 <span class="kn">from</span> <span class="nn">chain.contract</span> <span class="kn">import</span> <span class="n">Contract</span>
 
 <span class="nd">@contract</span><span class="p">(</span><span class="n">main</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">class</span> <span class="nc">MyContract</span><span class="p">(</span><span class="n">Contract</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
-
-    <span class="nd">@action</span><span class="p">(</span><span class="s1">&#39;sayhello&#39;</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">say_hello</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello, World!&quot;</span><span class="p">)</span>
+    <span class="nd">@action</span><span class="p">(</span><span class="s1">&#39;sayhello&#39;</span><span class="p">,</span> <span class="n">notify</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">sayhello</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">receiver</span><span class="p">:</span> <span class="n">Name</span><span class="p">):</span>
+        <span class="k">assert</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">receiver</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">first_receiver</span>
+        <span class="k">assert</span> <span class="n">receiver</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">receiver</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;hello, world from notify&#39;</span><span class="p">)</span>
 </code></pre></div>
-<p>Testing code:</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># helloworldtest.py</span>
-
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">from</span> <span class="nn">ipyeos</span> <span class="kn">import</span> <span class="n">chaintester</span>
-<span class="kn">from</span> <span class="nn">ipyeos.chaintester</span> <span class="kn">import</span> <span class="n">ChainTester</span>
-<span class="kn">from</span> <span class="nn">ipyeos</span> <span class="kn">import</span> <span class="n">log</span>
-
-<span class="n">chaintester</span><span class="o">.</span><span class="n">chain_config</span><span class="p">[</span><span class="s1">&#39;contracts_console&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
-
-<span class="n">logger</span> <span class="o">=</span> <span class="n">log</span><span class="o">.</span><span class="n">get_logger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
-
-<span class="n">dir_name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span>
-
-<span class="k">def</span> <span class="nf">init_test</span><span class="p">(</span><span class="n">contract_name</span><span class="p">):</span>
+<p>Note that the definition of the <code>sayhello</code> function in <code>receiver.codon</code> is slightly different from that in <code>sender.codon</code>. The <code>notify=True</code> in the <code>action</code> decorator of the <code>sayhello</code> function in <code>receiver.codon</code> is used to specify that this action is used to receive notifications and can only be triggered by calling <code>require_recipient</code>.</p>
+<p>The following is the test code:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">init_notify</span><span class="p">():</span>
     <span class="n">t</span> <span class="o">=</span> <span class="n">ChainTester</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">wasm_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dir_name</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">contract_name</span><span class="si">}</span><span class="s1">.wasm&#39;</span><span class="p">)</span>
+    <span class="n">update_auth</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="s1">&#39;hello&#39;</span><span class="p">)</span>
+
+    <span class="n">wasm_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dir_name</span><span class="p">,</span> <span class="s1">&#39;notify/sender.wasm&#39;</span><span class="p">)</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">wasm_file</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
         <span class="n">code</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-
-    <span class="n">abi_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dir_name</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">contract_name</span><span class="si">}</span><span class="s1">.abi&#39;</span><span class="p">)</span>
+    <span class="n">abi_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dir_name</span><span class="p">,</span> <span class="s1">&#39;notify/sender.abi&#39;</span><span class="p">)</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">abi_file</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
         <span class="n">abi</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-
     <span class="n">t</span><span class="o">.</span><span class="n">deploy_contract</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="n">code</span><span class="p">,</span> <span class="n">abi</span><span class="p">)</span>
+    <span class="n">t</span><span class="o">.</span><span class="n">produce_block</span><span class="p">()</span>
+
+    <span class="n">wasm_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dir_name</span><span class="p">,</span> <span class="s1">&#39;notify/receiver.wasm&#39;</span><span class="p">)</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">wasm_file</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">code</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="n">abi_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dir_name</span><span class="p">,</span> <span class="s1">&#39;notify/receiver.abi&#39;</span><span class="p">)</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">abi_file</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">abi</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="n">t</span><span class="o">.</span><span class="n">deploy_contract</span><span class="p">(</span><span class="s1">&#39;alice&#39;</span><span class="p">,</span> <span class="n">code</span><span class="p">,</span> <span class="n">abi</span><span class="p">)</span>
     <span class="n">t</span><span class="o">.</span><span class="n">produce_block</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">t</span>
 
-<span class="k">def</span> <span class="nf">test</span><span class="p">():</span>
-    <span class="n">t</span> <span class="o">=</span> <span class="n">init_test</span><span class="p">(</span><span class="s1">&#39;helloworld&#39;</span><span class="p">)</span>
-    <span class="n">ret</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">push_action</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;sayhello&#39;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;hello&#39;</span><span class="p">:</span> <span class="s1">&#39;active&#39;</span><span class="p">})</span>
+<span class="k">def</span> <span class="nf">test_notify</span><span class="p">():</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">init_notify</span><span class="p">()</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;receiver&#39;</span><span class="p">:</span> <span class="s1">&#39;alice&#39;</span><span class="p">}</span>
+    <span class="n">ret</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">push_action</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;sayhello&#39;</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;hello&#39;</span><span class="p">:</span> <span class="s1">&#39;active&#39;</span><span class="p">})</span>
     <span class="n">t</span><span class="o">.</span><span class="n">produce_block</span><span class="p">()</span>
     <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;++++++++++</span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;elapsed&#39;</span><span class="p">])</span>
 </code></pre></div>
-<p>Compile:</p>
-<div class="highlight"><pre><span></span><code>python-contract build helloworld.codon
-</code></pre></div>
-<p>To run the test code:</p>
-<div class="highlight"><pre><span></span><code>ipyeos -m pytest -s -x testhelloworld.py -k test
+<p>Compile:
+<div class="highlight"><pre><span></span><code>python-contract<span class="w"> </span>build<span class="w"> </span>notify/receiver.codon
+python-contract<span class="w"> </span>build<span class="w"> </span>notify/sender.codon
+</code></pre></div></p>
+<p>Test:</p>
+<div class="highlight"><pre><span></span><code>ipyeos<span class="w"> </span>-m<span class="w"> </span>pytest<span class="w"> </span>-s<span class="w"> </span>-x<span class="w"> </span>test.py<span class="w"> </span>-k<span class="w"> </span>test_notify
 </code></pre></div>
 <p>Output:</p>
-<div class="highlight"><pre><span></span><code>Hello, World!
-</code></pre></div>
-<h2 id="create-an-initial-project">Create an Initial Project</h2>
-<p>You can create an initial project using the <code>python-contract init</code> command. For example, the following code creates an initial project named <code>mycontract</code>:</p>
-<div class="highlight"><pre><span></span><code>python-contract init mycontract
-</code></pre></div>
-<p>After creating the project, you can compile the contract using the following command:</p>
-<div class="highlight"><pre><span></span><code>cd mycontract
-./build.sh
-</code></pre></div>
-<p>After a successful execution, <code>mycontract.wasm</code> and <code>mycontract.abi</code> files will be generated.</p>
-<p>You can run the following command for testing:</p>
-<div class="highlight"><pre><span></span><code>./test.sh
-</code></pre></div>
-<p>The following information will be output:</p>
 <div class="highlight"><pre><span></span><code>[(hello,sayhello)-&gt;hello]: CONSOLE OUTPUT BEGIN =====================
-hello  alice
+hello, world
 
 [(hello,sayhello)-&gt;hello]: CONSOLE OUTPUT END   =====================
+debug 2023-03-28T13:08:01.110 thread-0  apply_context.cpp:30          print_debug          ] 
+[(hello,sayhello)-&gt;alice]: CONSOLE OUTPUT BEGIN =====================
+hello, world from notify
+
+[(hello,sayhello)-&gt;alice]: CONSOLE OUTPUT END   =====================
 </code></pre></div>
-<p>After confirming that the test was successful, you can proceed with smart contract development based on this existing project.</p>
 
 
 
@@ -586,10 +529,10 @@ hello  alice
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.19047be9.min.js"></script>
+      <script src="../../assets/javascripts/bundle.19047be9.min.js"></script>
       
     
   
@@ -597,7 +540,7 @@ hello  alice
 console.log("hello, plugin")
 var mkdocs_chat_plugin = {'param': '', 'docs_chat_endpoint': 'https://docs.uuos.io:8443/chat'};
 </script>
-<script src="../js/chat-dialog-plugin.js"></script>
+<script src="../../js/chat-dialog-plugin.js"></script>
 
         </body>
 </html>

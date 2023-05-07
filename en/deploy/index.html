@@ -9,24 +9,24 @@
       
       
       
-        <link rel="prev" href="../prelude/">
+        <link rel="prev" href="../helloworld/">
       
       
-        <link rel="next" href="../helloworld/">
+        <link rel="next" href="../action/">
       
-      <link rel="icon" href="../assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.4">
     
     
       
-        <title>Development Environment Setup - Python Smart Contracts Development Cook Book</title>
+        <title>Deploying a Smart Contract - Python Smart Contracts Development Cook Book</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.240905d7.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.240905d7.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.a0c5b2b5.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.a0c5b2b5.min.css">
       
       
 
@@ -42,7 +42,7 @@
       
     
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -50,7 +50,7 @@
     
     
   
-  <link rel="stylesheet" href="../css/chat-dialog-plugin.css">
+  <link rel="stylesheet" href="../../css/chat-dialog-plugin.css">
 </head>
   
   
@@ -69,7 +69,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#development-environment-setup" class="md-skip">
+        <a href="#deploying-a-smart-contract" class="md-skip">
           Skip to content
         </a>
       
@@ -85,7 +85,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="Python Smart Contracts Development Cook Book" class="md-header__button md-logo" aria-label="Python Smart Contracts Development Cook Book" data-md-component="logo">
+    <a href="../" title="Python Smart Contracts Development Cook Book" class="md-header__button md-logo" aria-label="Python Smart Contracts Development Cook Book" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -104,7 +104,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Development Environment Setup
+              Deploying a Smart Contract
             
           </span>
         </div>
@@ -122,13 +122,13 @@
             <ul class="md-select__list">
               
                 <li class="md-select__item">
-                  <a href="./" hreflang="en" class="md-select__link">
+                  <a href="../../deploy/" hreflang="en" class="md-select__link">
                     English
                   </a>
                 </li>
               
                 <li class="md-select__item">
-                  <a href="../zh/env/" hreflang="zh" class="md-select__link">
+                  <a href="../../zh/deploy/" hreflang="zh" class="md-select__link">
                     中文
                   </a>
                 </li>
@@ -176,7 +176,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="Python Smart Contracts Development Cook Book" class="md-nav__button md-logo" aria-label="Python Smart Contracts Development Cook Book" data-md-component="logo">
+    <a href="../" title="Python Smart Contracts Development Cook Book" class="md-nav__button md-logo" aria-label="Python Smart Contracts Development Cook Book" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -220,79 +220,11 @@
 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Development Environment Setup
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../env/" class="md-nav__link">
         Development Environment Setup
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#installing-the-required-tools-for-compilation-and-testing" class="md-nav__link">
-    Installing the Required Tools for Compilation and Testing
-  </a>
-  
-    <nav class="md-nav" aria-label="Installing the Required Tools for Compilation and Testing">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#direct-installation-of-development-toolkits" class="md-nav__link">
-    Direct Installation of Development Toolkits
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#running-in-docker" class="md-nav__link">
-    Running in Docker
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#testing-the-installation-environment" class="md-nav__link">
-    Testing the Installation Environment
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -318,11 +250,21 @@
 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../deploy/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Deploying a Smart Contract
       </a>
+      
     </li>
   
 
@@ -452,48 +394,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#installing-the-required-tools-for-compilation-and-testing" class="md-nav__link">
-    Installing the Required Tools for Compilation and Testing
-  </a>
-  
-    <nav class="md-nav" aria-label="Installing the Required Tools for Compilation and Testing">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#direct-installation-of-development-toolkits" class="md-nav__link">
-    Direct Installation of Development Toolkits
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#running-in-docker" class="md-nav__link">
-    Running in Docker
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#testing-the-installation-environment" class="md-nav__link">
-    Testing the Installation Environment
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -510,43 +410,33 @@
   
 
 
-<h1 id="development-environment-setup">Development Environment Setup</h1>
-<h2 id="installing-the-required-tools-for-compilation-and-testing">Installing the Required Tools for Compilation and Testing</h2>
-<h3 id="direct-installation-of-development-toolkits">Direct Installation of Development Toolkits</h3>
-<p>Install <code>ipyeos</code>, a package used for testing smart contracts or running a node:</p>
-<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>ipyeos
+<h1 id="deploying-a-smart-contract">Deploying a Smart Contract</h1>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pyeoskit</span> <span class="kn">import</span> <span class="n">eosapi</span>
+<span class="kn">from</span> <span class="nn">pyeoskit</span> <span class="kn">import</span> <span class="n">wallet</span>
+
+<span class="c1"># Set node</span>
+<span class="n">eosapi</span><span class="o">.</span><span class="n">set_node</span><span class="p">(</span><span class="s1">&#39;https://eos.greymass.com&#39;</span><span class="p">)</span>
+
+<span class="c1"># Import the private key corresponding to the active permission of the contract account,</span>
+<span class="c1"># you can import multiple private keys simultaneously</span>
+<span class="n">wallet</span><span class="o">.</span><span class="n">import_key</span><span class="p">(</span><span class="s1">&#39;mywallet&#39;</span><span class="p">,</span> <span class="s1">&#39;your private key&#39;</span><span class="p">)</span>
+
+<span class="n">account_name</span> <span class="o">=</span> <span class="s1">&#39;myaccount&#39;</span>
+<span class="n">contract_name</span> <span class="o">=</span> <span class="s1">&#39;test&#39;</span>
+
+<span class="c1"># Read .wasm file</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">contract_name</span><span class="si">}</span><span class="s1">.wasm&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">code</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+<span class="c1"># Read .abi file</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">contract_name</span><span class="si">}</span><span class="s1">.abi&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">abi</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+<span class="c1"># Deploy</span>
+<span class="n">eosapi</span><span class="o">.</span><span class="n">deploy_contract</span><span class="p">(</span><span class="n">account_name</span><span class="p">,</span> <span class="n">code</span><span class="p">,</span> <span class="n">abi</span><span class="p">)</span>
 </code></pre></div>
-<p>Install <code>pyeoskit</code>, a tool used to interact with nodes, such as deploying smart contracts, etc:</p>
-<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>pyeoskit
-</code></pre></div>
-<h3 id="running-in-docker">Running in Docker</h3>
-<p>Currently, the development toolkit does not support Windows and Macbook M1/M2 platforms, and must be run using Docker on these platforms.</p>
-<p>The recommended software for installing and running Docker on macOS is <a href="https://orbstack.dev/download">OrbStack</a>. For other platforms, you can use <a href="https://www.docker.com/products/docker-desktop">Docker Desktop</a>.</p>
-<p>Download the Docker image using the following command:</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>pull<span class="w"> </span>ghcr.io/uuosio/pscdk:latest
-</code></pre></div>
-<p>Run the container:</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>--entrypoint<span class="w"> </span>bash<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span><span class="s2">&quot;</span>:/work<span class="w"> </span>-w<span class="w"> </span>/work<span class="w"> </span>-t<span class="w"> </span>ghcr.io/uuosio/pscdk
-</code></pre></div>
-<h2 id="testing-the-installation-environment">Testing the Installation Environment</h2>
-<p>Create a test project using the following command:</p>
-<div class="highlight"><pre><span></span><code>python-contract<span class="w"> </span>init<span class="w"> </span>mytest
-</code></pre></div>
-<p>Compile the contract code:</p>
-<div class="highlight"><pre><span></span><code>python-contract<span class="w"> </span>build<span class="w"> </span>mytest.codon
-</code></pre></div>
-<p>Alternatively, you can run the <code>build.sh</code> script directly:</p>
-<div class="highlight"><pre><span></span><code>./build.sh
-</code></pre></div>
-<p>If there are no exceptions, the <code>mytest.wasm</code> WebAssembly binary file will be generated.</p>
-<p>To test the installation environment, run:</p>
-<div class="highlight"><pre><span></span><code>ipyeos<span class="w"> </span>-m<span class="w"> </span>pytest<span class="w"> </span>-s<span class="w"> </span>-x<span class="w"> </span>test.py<span class="w"> </span>-k<span class="w"> </span>test_hello
-</code></pre></div>
-<p>Alternatively, you can run the test script <code>test.sh</code> directly:</p>
-<div class="highlight"><pre><span></span><code>./test.sh
-</code></pre></div>
-<p>You should see the output:</p>
-<div class="highlight"><pre><span></span><code>hello  alice
+<p>If you have the private key corresponding to the active permission saved in a Ledger Nano S wallet, you can use the <code>indices</code> parameter to specify the index of the private key in the wallet:</p>
+<div class="highlight"><pre><span></span><code><span class="n">eosapi</span><span class="o">.</span><span class="n">deploy_contract</span><span class="p">(</span><span class="n">account_name</span><span class="p">,</span> <span class="n">code</span><span class="p">,</span> <span class="n">abi</span><span class="err">，</span> <span class="n">indices</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,])</span>
 </code></pre></div>
 
 
@@ -585,10 +475,10 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.19047be9.min.js"></script>
+      <script src="../../assets/javascripts/bundle.19047be9.min.js"></script>
       
     
   
@@ -596,7 +486,7 @@
 console.log("hello, plugin")
 var mkdocs_chat_plugin = {'param': '', 'docs_chat_endpoint': 'https://docs.uuos.io:8443/chat'};
 </script>
-<script src="../js/chat-dialog-plugin.js"></script>
+<script src="../../js/chat-dialog-plugin.js"></script>
 
         </body>
 </html>

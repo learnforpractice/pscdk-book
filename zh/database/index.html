@@ -1,6 +1,6 @@
 
 <!doctype html>
-<html lang="en" class="no-js">
+<html lang="zh" class="no-js">
   <head>
     
       <meta charset="utf-8">
@@ -14,19 +14,19 @@
       
         <link rel="next" href="../crypto/">
       
-      <link rel="icon" href="../assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.4">
     
     
       
-        <title>Database Operations - Python Smart Contracts Development Cook Book</title>
+        <title>数据库的操作 - Python Smart Contracts Development Cook Book</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.240905d7.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.240905d7.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.a0c5b2b5.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.a0c5b2b5.min.css">
       
       
 
@@ -42,7 +42,7 @@
       
     
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -50,7 +50,7 @@
     
     
   
-  <link rel="stylesheet" href="../css/chat-dialog-plugin.css">
+  <link rel="stylesheet" href="../../css/chat-dialog-plugin.css">
 </head>
   
   
@@ -69,8 +69,8 @@
     <div data-md-component="skip">
       
         
-        <a href="#database-operations" class="md-skip">
-          Skip to content
+        <a href="#_1" class="md-skip">
+          跳转至
         </a>
       
     </div>
@@ -84,8 +84,8 @@
   
 
 <header class="md-header md-header--shadow" data-md-component="header">
-  <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="Python Smart Contracts Development Cook Book" class="md-header__button md-logo" aria-label="Python Smart Contracts Development Cook Book" data-md-component="logo">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../" title="Python Smart Contracts Development Cook Book" class="md-header__button md-logo" aria-label="Python Smart Contracts Development Cook Book" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -104,7 +104,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Database Operations
+              数据库的操作
             
           </span>
         </div>
@@ -115,20 +115,20 @@
       <div class="md-header__option">
         <div class="md-select">
           
-          <button class="md-header__button md-icon" aria-label="Select language">
+          <button class="md-header__button md-icon" aria-label="选择当前语言">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.52 17.52 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04M18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12m-2.62 7 1.62-4.33L19.12 17h-3.24Z"/></svg>
           </button>
           <div class="md-select__inner">
             <ul class="md-select__list">
               
                 <li class="md-select__item">
-                  <a href="./" hreflang="en" class="md-select__link">
+                  <a href="../../database/" hreflang="en" class="md-select__link">
                     English
                   </a>
                 </li>
               
                 <li class="md-select__item">
-                  <a href="../zh/database/" hreflang="zh" class="md-select__link">
+                  <a href="./" hreflang="zh" class="md-select__link">
                     中文
                   </a>
                 </li>
@@ -141,7 +141,7 @@
     
     
       <div class="md-header__source">
-        <a href="https://github.com/uuosio/pscdk" title="Go to repository" class="md-source" data-md-component="source">
+        <a href="https://github.com/uuosio/pscdk" title="前往仓库" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
@@ -174,9 +174,9 @@
                     
 
 
-<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="Python Smart Contracts Development Cook Book" class="md-nav__button md-logo" aria-label="Python Smart Contracts Development Cook Book" data-md-component="logo">
+    <a href="../" title="Python Smart Contracts Development Cook Book" class="md-nav__button md-logo" aria-label="Python Smart Contracts Development Cook Book" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -186,7 +186,7 @@
   </label>
   
     <div class="md-nav__source">
-      <a href="https://github.com/uuosio/pscdk" title="Go to repository" class="md-source" data-md-component="source">
+      <a href="https://github.com/uuosio/pscdk" title="前往仓库" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
@@ -208,7 +208,7 @@
   
     <li class="md-nav__item">
       <a href="../prelude/" class="md-nav__link">
-        Prerequisite Knowledge
+        预备知识
       </a>
     </li>
   
@@ -223,7 +223,7 @@
   
     <li class="md-nav__item">
       <a href="../env/" class="md-nav__link">
-        Development Environment Setup
+        开发环境搭建
       </a>
     </li>
   
@@ -253,7 +253,7 @@
   
     <li class="md-nav__item">
       <a href="../deploy/" class="md-nav__link">
-        Deploying a Smart Contract
+        发布智能合约
       </a>
     </li>
   
@@ -268,7 +268,7 @@
   
     <li class="md-nav__item">
       <a href="../action/" class="md-nav__link">
-        Inline Actions
+        内联Action在智能合约的使用
       </a>
     </li>
   
@@ -283,7 +283,7 @@
   
     <li class="md-nav__item">
       <a href="../notify/" class="md-nav__link">
-        The `require_recipient` function
+        require_recipient函数
       </a>
     </li>
   
@@ -307,17 +307,17 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Database Operations
+          数据库的操作
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Database Operations
+        数据库的操作
       </a>
       
         
 
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+<nav class="md-nav md-nav--secondary" aria-label="目录">
   
   
   
@@ -326,13 +326,13 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      Table of contents
+      目录
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
   <a href="#store" class="md-nav__link">
-    Store
+    store
   </a>
   
 </li>
@@ -346,63 +346,63 @@
       
         <li class="md-nav__item">
   <a href="#remove" class="md-nav__link">
-    Remove
+    remove
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#lowerboundupperbound" class="md-nav__link">
-    Lowerbound/Upperbound
+    lowerbound/upperbound
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#querying-the-primary-index-of-a-table-using-api" class="md-nav__link">
-    Querying the Primary Index of a Table Using API
+  <a href="#api" class="md-nav__link">
+    利用API来对表进行主索引查询
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#operation-of-the-binary-index" class="md-nav__link">
-    Operation of the binary index
+  <a href="#_2" class="md-nav__link">
+    二级索引的操作
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#updating-the-binary-index" class="md-nav__link">
-    Updating the binary index
+  <a href="#_3" class="md-nav__link">
+    二级索引的的更新
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#deleting-the-binary-index" class="md-nav__link">
-    Deleting the binary index
+  <a href="#_4" class="md-nav__link">
+    二级索引的删除
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#using-the-api-to-perform-secondary-index-queries-on-a-table" class="md-nav__link">
-    Using the API to perform secondary index queries on a table
+  <a href="#api_1" class="md-nav__link">
+    利用API来对表进行二重索引查询
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#implementation-principles-of-the-database" class="md-nav__link">
-    Implementation principles of the database
+  <a href="#_5" class="md-nav__link">
+    数据库的实现原理
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#summary" class="md-nav__link">
-    Summary
+  <a href="#_6" class="md-nav__link">
+    总结
   </a>
   
 </li>
@@ -424,7 +424,7 @@
   
     <li class="md-nav__item">
       <a href="../crypto/" class="md-nav__link">
-        Cryptographic functions
+        密码学相关函数
       </a>
     </li>
   
@@ -439,7 +439,7 @@
   
     <li class="md-nav__item">
       <a href="../common/" class="md-nav__link">
-        Common Smart Contract Functions
+        常用智能合约函数
       </a>
     </li>
   
@@ -454,7 +454,7 @@
   
     <li class="md-nav__item">
       <a href="../abi/" class="md-nav__link">
-        Explanation of ABI types
+        ABI类型详解
       </a>
     </li>
   
@@ -469,7 +469,7 @@
   
     <li class="md-nav__item">
       <a href="../codon/" class="md-nav__link">
-        Differences between Codon and standard Python
+        和标准Python的差异
       </a>
     </li>
   
@@ -488,7 +488,7 @@
                   <div class="md-sidebar__inner">
                     
 
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+<nav class="md-nav md-nav--secondary" aria-label="目录">
   
   
   
@@ -497,13 +497,13 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      Table of contents
+      目录
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
   <a href="#store" class="md-nav__link">
-    Store
+    store
   </a>
   
 </li>
@@ -517,63 +517,63 @@
       
         <li class="md-nav__item">
   <a href="#remove" class="md-nav__link">
-    Remove
+    remove
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#lowerboundupperbound" class="md-nav__link">
-    Lowerbound/Upperbound
+    lowerbound/upperbound
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#querying-the-primary-index-of-a-table-using-api" class="md-nav__link">
-    Querying the Primary Index of a Table Using API
+  <a href="#api" class="md-nav__link">
+    利用API来对表进行主索引查询
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#operation-of-the-binary-index" class="md-nav__link">
-    Operation of the binary index
+  <a href="#_2" class="md-nav__link">
+    二级索引的操作
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#updating-the-binary-index" class="md-nav__link">
-    Updating the binary index
+  <a href="#_3" class="md-nav__link">
+    二级索引的的更新
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#deleting-the-binary-index" class="md-nav__link">
-    Deleting the binary index
+  <a href="#_4" class="md-nav__link">
+    二级索引的删除
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#using-the-api-to-perform-secondary-index-queries-on-a-table" class="md-nav__link">
-    Using the API to perform secondary index queries on a table
+  <a href="#api_1" class="md-nav__link">
+    利用API来对表进行二重索引查询
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#implementation-principles-of-the-database" class="md-nav__link">
-    Implementation principles of the database
+  <a href="#_5" class="md-nav__link">
+    数据库的实现原理
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#summary" class="md-nav__link">
-    Summary
+  <a href="#_6" class="md-nav__link">
+    总结
   </a>
   
 </li>
@@ -596,11 +596,11 @@
   
 
 
-<h1 id="database-operations">Database Operations</h1>
-<p>On-chain data storage and retrieval is a critical feature of smart contracts. EOS implements an in-memory database that allows data to be stored in a table format. Each item in a table has a unique primary index, called a primary key, which is of type <code>u64</code>. The raw data stored in the table can be binary data of any length. When the storage function of a smart contract is called, the data is serialized and stored in the table. When reading, the stored data is deserialized back as a class object. Additionally, EOS supports secondary index tables of types <code>u64</code>, <code>u128</code>, <code>u256</code>, <code>double</code>, and <code>long double</code>, which can be considered special tables with a fixed data length. Primary and secondary index tables can be used together to implement multiple indexes. There can be multiple secondary index tables, and the values in these tables can be repeated, but the primary index in the primary index table must be unique.</p>
-<p>The following example demonstrates the usage of EOS's in-memory database.</p>
-<h2 id="store">Store</h2>
-<p>Storage is the simplest function of the database, and the following code demonstrates this functionality.</p>
+<h1 id="_1">数据库的操作</h1>
+<p>链上数据存储和读取是智能合约的一个重要功能。EOS链实现了一个内存数据库，支持以表的方式来存储数据，其中，每一个表的每一项数据都有唯一的主索引，称之为primary key，类型为u64，表中存储的原始数据为任意长度的二进制数据，在智能合约调用存储数据的功能时，会将类的数据序列化后存进表中，在读取的时候又会通过反序列化的方式将原始数据转成类对象。并且还支持u64, u128, u256, double, long double类型的二级索引表，可以把二级索引表看作数据长度固定的特殊的表。主索引表和二级索引表可以配合起来使用，以实现多重索引的功能。二级索引表可以有多个。二级索引表的值是可以重复的，但是主索引表的主索引必须是唯一的。</p>
+<p>下面结合示例来讲解下EOS的链上的内存数据库的使用。</p>
+<h2 id="store">store</h2>
+<p>存储功能是数据库最简单的功能了，下面的代码即演示了该功能。</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># db_example1.codon</span>
 <span class="nd">@table</span><span class="p">(</span><span class="s2">&quot;mytable&quot;</span><span class="p">)</span>
 <span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
@@ -623,21 +623,20 @@
         <span class="n">table</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">new_table</span><span class="p">(</span><span class="n">n</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="n">n</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
         <span class="n">table</span><span class="o">.</span><span class="n">store</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">n</span><span class="s1">&#39;hello&#39;</span><span class="p">)</span>
 </code></pre></div>
-<p>Compile:</p>
+<p>编译：</p>
 <div class="highlight"><pre><span></span><code>python-contract build db_example/db_example1.codon
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>ipyeos<span class="w"> </span>-m<span class="w"> </span>pytest<span class="w"> </span>-s<span class="w"> </span>-x<span class="w"> </span>test.py<span class="w"> </span>-k<span class="w"> </span>test_store
+<p><div class="highlight"><pre><span></span><code>ipyeos<span class="w"> </span>-m<span class="w"> </span>pytest<span class="w"> </span>-s<span class="w"> </span>-x<span class="w"> </span>test.py<span class="w"> </span>-k<span class="w"> </span>test_store
 </code></pre></div>
-<p>The test code you are running is as follows:</p>
+运行的测试代码如下：</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">test_store</span><span class="p">():</span>
     <span class="n">t</span> <span class="o">=</span> <span class="n">init_db_test</span><span class="p">(</span><span class="s1">&#39;db_example1&#39;</span><span class="p">)</span>
     <span class="n">ret</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">push_action</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;teststore&#39;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;hello&#39;</span><span class="p">:</span> <span class="s1">&#39;active&#39;</span><span class="p">})</span>
     <span class="n">t</span><span class="o">.</span><span class="n">produce_block</span><span class="p">()</span>
     <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;++++++++++</span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;elapsed&#39;</span><span class="p">])</span>
 </code></pre></div>
-<p><strong>Note</strong>:</p>
-<p>In this example, if there is already data with the primary key <code>123u64</code> in the table, an exception will be thrown when the function is called.</p>
-<p>To modify the above test case to the following code:</p>
+<p>注意在这个示例中，如果表中已经存在以<code>123u64</code>为key的数据，那么该函数会抛出异常。</p>
+<p>如将上面的测试用例修改成下面的代码：</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">test_example1</span><span class="p">():</span>
     <span class="n">t</span> <span class="o">=</span> <span class="n">init_db_test</span><span class="p">(</span><span class="s1">&#39;db_example1&#39;</span><span class="p">)</span>
     <span class="n">ret</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">push_action</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;hello&#39;</span><span class="p">:</span> <span class="s1">&#39;active&#39;</span><span class="p">})</span>
@@ -648,12 +647,14 @@
     <span class="n">ret</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">push_action</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;hello&#39;</span><span class="p">:</span> <span class="s1">&#39;active&#39;</span><span class="p">})</span>
     <span class="n">t</span><span class="o">.</span><span class="n">produce_block</span><span class="p">()</span>
 </code></pre></div>
-<p>When running the test with the same command, if the <code>push_action</code> is called for the second time, the function will throw an exception similar to the following:</p>
+<p>用同样的命令运行测试，在第二次调用<code>push_action</code>时，该函数就会抛出像下面的异常：</p>
 <div class="highlight"><pre><span></span><code>could not insert object, most likely a uniqueness constraint was violated
 </code></pre></div>
-<p>To avoid such exceptions, the <code>update</code> method must be used when updating data in the table. Before calling <code>store</code>, it is necessary to check whether the primary index already exists in the table. If it does, <code>store</code> method cannot be called, and <code>update</code> method must be used instead. The following example demonstrates how to use it:</p>
+<p>为了不抛出异常，在要更新表中的数据时，则要用到<code>update</code>方法。
+在调用<code>store</code>之前要先对表中是否存在主索引进行判断，如果已经存在，则不能调用<code>store</code>方法，而必须调用<code>update</code>方法。
+以下的示例展示了用法：</p>
 <h2 id="findupdate">find/update</h2>
-<p>This section demonstrates the lookup and update functionality of the database.</p>
+<p>这一节演示了数据库的查找和更新功能。</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># db_example1.codon</span>
 
 <span class="o">...</span>
@@ -678,7 +679,7 @@
             <span class="n">item</span> <span class="o">=</span> <span class="n">A</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
             <span class="n">table</span><span class="o">.</span><span class="n">store</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">n</span><span class="s1">&#39;hello&#39;</span><span class="p">)</span>
 </code></pre></div>
-<p>The following is the test code:</p>
+<p>以下为测试代码：</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">test_update</span><span class="p">():</span>
     <span class="n">t</span> <span class="o">=</span> <span class="n">init_db_test</span><span class="p">(</span><span class="s1">&#39;db_example1&#39;</span><span class="p">)</span>
     <span class="n">ret</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">push_action</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;testupdate&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;hello, bob&#39;</span><span class="p">},</span> <span class="p">{</span><span class="s1">&#39;hello&#39;</span><span class="p">:</span> <span class="s1">&#39;active&#39;</span><span class="p">})</span>
@@ -688,32 +689,32 @@
     <span class="n">ret</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">push_action</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;hello, alice&#39;</span><span class="p">},</span> <span class="p">{</span><span class="s1">&#39;hello&#39;</span><span class="p">:</span> <span class="s1">&#39;active&#39;</span><span class="p">})</span>
     <span class="n">t</span><span class="o">.</span><span class="n">produce_block</span><span class="p">()</span>
 </code></pre></div>
-<p>Compile using the following command:</p>
+<p>编译：</p>
 <div class="highlight"><pre><span></span><code>python-contract build db_example/db_example1.codon
 </code></pre></div>
-<p>Execute the test code with the following command:</p>
+<p>用下面的命令来运行测试代码：</p>
 <div class="highlight"><pre><span></span><code>ipyeos<span class="w"> </span>-m<span class="w"> </span>pytest<span class="w"> </span>-s<span class="w"> </span>-x<span class="w"> </span>test.py<span class="w"> </span>-k<span class="w"> </span>test_update
 </code></pre></div>
-<p>When calling
+<p>在调用
 <div class="highlight"><pre><span></span><code><span class="n">t</span><span class="o">.</span><span class="n">push_action</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;hello, bob&#39;</span><span class="p">},</span> <span class="p">{</span><span class="s1">&#39;hello&#39;</span><span class="p">:</span> <span class="s1">&#39;active&#39;</span><span class="p">})</span>
 </code></pre></div></p>
-<p>it will output:</p>
+<p>会输出：</p>
 <div class="highlight"><pre><span></span><code>+++++store value: hello, bob
 </code></pre></div>
-<p>When calling
+<p>在调用
 <div class="highlight"><pre><span></span><code><span class="n">t</span><span class="o">.</span><span class="n">push_action</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;hello, alice&#39;</span><span class="p">},</span> <span class="p">{</span><span class="s1">&#39;hello&#39;</span><span class="p">:</span> <span class="s1">&#39;active&#39;</span><span class="p">})</span>
 </code></pre></div></p>
-<p>it will output:</p>
+<p>会输出：</p>
 <div class="highlight"><pre><span></span><code>+++++update value: hello, alice
 </code></pre></div>
-<p>As you can see, the above code is a bit complicated. First, it needs to call <code>find</code> to determine whether the value corresponding to the primary index exists, and then decide whether to call <code>store</code> or <code>update</code>. It should be noted that, during the update process, <strong>the value of the primary index cannot be changed</strong>, otherwise an exception will be thrown.</p>
-<p>You can try to modify the update code to:</p>
+<p>可以看出，上面的代码稍微有点复杂，首先要调用<code>find</code>判断和主索引对应的值存不存在，再决定是调用<code>store</code>还是<code>update</code>。需要注意的是，在更新的过程中，<strong>主索引的值是不能变的</strong>，否则会抛出异常。</p>
+<p>可以试着将update的代码修改成：</p>
 <div class="highlight"><pre><span></span><code><span class="n">item</span> <span class="o">=</span> <span class="n">A</span><span class="p">(</span><span class="n">key</span><span class="o">+</span><span class="mi">1</span><span class="n">u64</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
 <span class="n">table</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">it</span><span class="p">,</span> <span class="n">item</span><span class="p">,</span> <span class="n">n</span><span class="s1">&#39;hello&#39;</span><span class="p">)</span>
 </code></pre></div>
-<p>You will see an exception thrown in the smart contract.</p>
-<h2 id="remove">Remove</h2>
-<p>The following code demonstrates how to remove an item from the database.</p>
+<p>你将会看到到智能合约里抛出的异常</p>
+<h2 id="remove">remove</h2>
+<p>下面的代码演示了如何去删除数据库中的一项数据。</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># db_example/db_example1.codon</span>
 
 <span class="nd">@action</span><span class="p">(</span><span class="s1">&#39;testremove&#39;</span><span class="p">)</span>
@@ -730,22 +731,22 @@
     <span class="n">it</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="mi">123</span><span class="n">u64</span><span class="p">)</span>
     <span class="k">assert</span> <span class="ow">not</span> <span class="n">it</span><span class="o">.</span><span class="n">is_ok</span><span class="p">()</span>
 </code></pre></div>
-<p>Test code:</p>
+<p>测试代码：</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">test_remove</span><span class="p">():</span>
     <span class="n">t</span> <span class="o">=</span> <span class="n">init_db_test</span><span class="p">(</span><span class="s1">&#39;db_example1&#39;</span><span class="p">)</span>
     <span class="n">ret</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">push_action</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;testremove&#39;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;hello&#39;</span><span class="p">:</span> <span class="s1">&#39;active&#39;</span><span class="p">})</span>
     <span class="n">t</span><span class="o">.</span><span class="n">produce_block</span><span class="p">()</span>
     <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;++++++++++</span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;elapsed&#39;</span><span class="p">])</span>
 </code></pre></div>
-<p>Compile using the following command:</p>
+<p>编译：</p>
 <div class="highlight"><pre><span></span><code>python-contract build db_example/db_example1.codon
 </code></pre></div>
-<p>Test using the following command:</p>
+<p>测试：</p>
 <div class="highlight"><pre><span></span><code>ipyeos<span class="w"> </span>-m<span class="w"> </span>pytest<span class="w"> </span>-s<span class="w"> </span>-x<span class="w"> </span>test.py<span class="w"> </span>-k<span class="w"> </span>test_remove
 </code></pre></div>
-<p>The above code first calls the <code>store</code> method to store the data with index <code>123u64</code> in the database, then calls <code>remove</code> to delete it, and uses <code>assert</code> to check the result. If everything is normal, the program will not throw any exceptions.</p>
-<h2 id="lowerboundupperbound">Lowerbound/Upperbound</h2>
-<p>These two methods are also used to search for elements in the database. Unlike the <code>find</code> method, these two functions are used for fuzzy searching. Among them, the <code>lowerbound</code> method returns an <code>Iterator</code> whose <code>id</code> is <code>&gt;=</code> the specified <code>id</code>, and the <code>upperbound</code> method returns an <code>Iterator</code> whose <code>id</code> is <code>&gt;</code> the specified <code>id</code>. Let's take a look at the usage below:</p>
+<p>上面的代码先调用<code>store</code>方法来存储索引为<code>123u64</code>的数据，然后再再调用<code>remove</code>删除，调用<code>assert</code>以检查结果。如果一切正常，程序将不会抛出任何的异常。</p>
+<h2 id="lowerboundupperbound">lowerbound/upperbound</h2>
+<p>这两个方法也是用来查找给中的元素的，不同于<code>find</code>方法，这两个函数用于模糊查找。其中，<code>lowerbound</code>方法返回<code>&gt;=</code>指定<code>id</code>的<code>Iterator</code>，<code>upperbound</code>方法返回<code>&gt;</code>指定<code>id</code>的<code>Iterator</code>，下面来看下用法：</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># db_example/db_example1.codon</span>
 
 <span class="o">...</span>
@@ -780,26 +781,26 @@
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;+++++:&quot;</span><span class="p">,</span> <span class="n">value2</span><span class="o">.</span><span class="n">a</span><span class="p">,</span> <span class="n">value2</span><span class="o">.</span><span class="n">b</span><span class="p">)</span>
         <span class="k">assert</span> <span class="n">value2</span><span class="o">.</span><span class="n">a</span> <span class="o">==</span> <span class="mi">3</span><span class="n">u64</span> <span class="ow">and</span> <span class="n">value2</span><span class="o">.</span><span class="n">b</span> <span class="o">==</span> <span class="s1">&#39;bob&#39;</span>
 </code></pre></div>
-<p>Test code:</p>
+<p>测试代码：
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">test_bound</span><span class="p">():</span>
-    <span class="n">t</span> <span class="o">=</span> <span class="n">init_db_test</span><span class="p">(</span><span class="s1">&#39;db_example4&#39;</span><span class="p">)</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">init_db_test</span><span class="p">(</span><span class="s1">&#39;db_example41)</span>
     <span class="n">ret</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">push_action</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;testbound&#39;</span><span class="p">,</span> <span class="p">{},</span> <span class="p">{</span><span class="s1">&#39;hello&#39;</span><span class="p">:</span> <span class="s1">&#39;active&#39;</span><span class="p">})</span>
     <span class="n">t</span><span class="o">.</span><span class="n">produce_block</span><span class="p">()</span>
     <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;++++++++++</span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;elapsed&#39;</span><span class="p">])</span>
-</code></pre></div>
-<p>Compile using the following command:</p>
+</code></pre></div></p>
+<p>编译：</p>
 <div class="highlight"><pre><span></span><code>python-contract build db_example/db_example1.codon
 </code></pre></div>
-<p>Run the test using the following command:</p>
+<p>运行测试：</p>
 <div class="highlight"><pre><span></span><code>ipyeos<span class="w"> </span>-m<span class="w"> </span>pytest<span class="w"> </span>-s<span class="w"> </span>-x<span class="w"> </span>test.py<span class="w"> </span>-k<span class="w"> </span>test_bound
 </code></pre></div>
-<p>Output:</p>
+<p>输出：</p>
 <div class="highlight"><pre><span></span><code>+++++: 1 alice
 +++++: 3 bob
 </code></pre></div>
-<h2 id="querying-the-primary-index-of-a-table-using-api">Querying the Primary Index of a Table Using API</h2>
-<p>The above examples are all about how to operate the database table on the chain through the smart contract. In fact, by using the <code>get_table_rows</code> API provided by EOS off the chain, you can also query the table on the chain.</p>
-<p>In the test code, the definition of <code>get_table_rows</code> is as follows:</p>
+<h2 id="api">利用API来对表进行主索引查询</h2>
+<p>上面的例子都是讲的如果通过智能合约来操作链上的数据库的表，实际上，通过EOS提供的链下的<code>get_table_rows</code>的API的接口，也同样可以对链上的表进行查询工作。
+在测试代码中，get_table_rows的定义如下</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_table_rows</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_json</span><span class="p">,</span> <span class="n">code</span><span class="p">,</span> <span class="n">scope</span><span class="p">,</span> <span class="n">table</span><span class="p">,</span>
                                 <span class="n">lower_bound</span><span class="p">,</span> <span class="n">upper_bound</span><span class="p">,</span>
                                 <span class="n">limit</span><span class="p">,</span>
@@ -812,7 +813,7 @@
 <span class="sd">    index_position: &quot;2&quot;|&quot;3&quot;|&quot;4&quot;|&quot;5&quot;|&quot;6&quot;|&quot;7&quot;|&quot;8&quot;|&quot;9&quot;|&quot;10&quot;</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 </code></pre></div>
-<p>First of all, to query a table using <code>get_table_rows</code>, the structure of the table must be visible in the ABI description. You can use the following code to describe the table in the corresponding generated ABI file:</p>
+<p>首先，要通过<code>get_table_rows</code>来查询表，表的结构必须在ABI的描述中可见，可以通过下面的代码来让表在生成相应的ABI文件中有描述：</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># db_example5.codon</span>
 
 <span class="kn">from</span> <span class="nn">chain.database</span> <span class="kn">import</span> <span class="n">primary</span>
@@ -857,9 +858,10 @@
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;+++++:&quot;</span><span class="p">,</span> <span class="n">value2</span><span class="o">.</span><span class="n">a</span><span class="p">,</span> <span class="n">value2</span><span class="o">.</span><span class="n">b</span><span class="p">)</span>
         <span class="k">assert</span> <span class="n">value2</span><span class="o">.</span><span class="n">a</span><span class="p">()</span> <span class="o">==</span> <span class="mi">3</span><span class="n">u64</span> <span class="ow">and</span> <span class="n">value2</span><span class="o">.</span><span class="n">b</span> <span class="o">==</span> <span class="s1">&#39;bob&#39;</span>
 </code></pre></div>
-<p>Here, the <code>table</code> decorator is used to make the compiler include the structure of the table in the ABI.</p>
-<p>After adding this <code>table</code> to the class, the compiler will automatically add the <code>get_primary</code> and <code>new_table</code> functions to the class.</p>
-<p>At the same time, the member variables of the class must also meet certain requirements: first, a primary index variable must be declared, and the type must be <code>database.primary</code>. The implementation of the <code>primary</code> class is as follows:</p>
+<p>这里，通过<code>table</code>这个内置的<code>decorator</code>来让编译器在ABI中加入表的结构。
+给类加了这个<code>table</code>，编译器会自动给类添加<code>get_primary</code>以及<code>new_table</code>函数：</p>
+<p>同时，类的成员变量也要满足相应的要求：
+首先，必须声明一个主索引变量，类型必须是<code>database.primary</code>, <code>primary</code>类的实现如下：</p>
 <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">primary</span><span class="p">[</span><span class="n">T</span><span class="p">](</span><span class="nb">object</span><span class="p">):</span>
     <span class="n">value</span><span class="p">:</span> <span class="n">T</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">T</span><span class="p">):</span>
@@ -882,11 +884,11 @@
     <span class="k">def</span> <span class="nf">__size__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">__size__</span><span class="p">()</span>
 </code></pre></div>
-<p>The <code>primary</code> class is a template class. If the type of the <code>value</code> in <code>primary</code> is not of type <code>u64</code>, then the type must implement the <code>get_primary</code> method. The <code>primary</code> class also has a <code>__call__</code> method to facilitate access to <code>value</code>. In the following discussion of multiple indexes, binary indexes will also be used. The type of the binary index must be <code>database.secondary</code>.</p>
-<p>Compilation:
+<p><code>primary</code>类是一个模版类，如果<code>primary</code>的<code>value</code>的类型不为<code>u64</code>，则类型必须实现<code>get_primary</code>方法，<code>primary</code>类还有一个<code>__call__</code>方法，以方便获取<code>value</code>。在后面会讲到的多重索引中，还会用到二极索引，二极索引的类型必须是<code>database.secondary</code></p>
+<p>编译：</p>
 <div class="highlight"><pre><span></span><code>python-contract<span class="w"> </span>build<span class="w"> </span>db_example/db_example5.codon
-</code></pre></div></p>
-<p>You will see the following description in the generated <code>db_example5.abi:</code>
+</code></pre></div>
+<p>你将在生成的<code>db_example5.abi</code>中看到下面的描述：
 <div class="highlight"><pre><span></span><code><span class="s2">&quot;tables&quot;</span>:<span class="w"> </span><span class="o">[</span>
 <span class="w">        </span><span class="o">{</span>
 <span class="w">            </span><span class="s2">&quot;name&quot;</span>:<span class="w"> </span><span class="s2">&quot;mytable&quot;</span>,
@@ -897,7 +899,7 @@
 <span class="w">        </span><span class="o">}</span>
 <span class="w">    </span><span class="o">]</span>
 </code></pre></div></p>
-<p>Now consider the test code:
+<p>再看下测试代码：</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">test_example5</span><span class="p">():</span>
     <span class="n">t</span> <span class="o">=</span> <span class="n">init_db_test</span><span class="p">(</span><span class="s1">&#39;db_example5&#39;</span><span class="p">)</span>
     <span class="n">ret</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">push_action</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="p">{},</span> <span class="p">{</span><span class="s1">&#39;hello&#39;</span><span class="p">:</span> <span class="s1">&#39;active&#39;</span><span class="p">})</span>
@@ -905,15 +907,15 @@
     <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;++++++++++</span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;elapsed&#39;</span><span class="p">])</span>
     <span class="n">rows</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">get_table_rows</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;mytable&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
     <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;++++++=rows: </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">rows</span><span class="p">)</span>
-</code></pre></div></p>
-<p>Run the test:
+</code></pre></div>
+<p>运行测试：</p>
 <div class="highlight"><pre><span></span><code>ipyeos<span class="w"> </span>-m<span class="w"> </span>pytest<span class="w"> </span>-s<span class="w"> </span>-x<span class="w"> </span>test.py<span class="w"> </span>-k<span class="w"> </span>test_example5
-</code></pre></div></p>
-<p>Output:
+</code></pre></div>
+<p>输出：</p>
 <div class="highlight"><pre><span></span><code>++++++=rows: {&#39;rows&#39;: [{&#39;a&#39;: 1, &#39;b&#39;: &#39;alice&#39;}, {&#39;a&#39;: 3, &#39;b&#39;: &#39;bob&#39;}, {&#39;a&#39;: 5, &#39;b&#39;: &#39;john&#39;}], &#39;more&#39;: False, &#39;next_key&#39;: &#39;&#39;}
-</code></pre></div></p>
-<h2 id="operation-of-the-binary-index">Operation of the binary index</h2>
-<p>First, consider the following example:</p>
+</code></pre></div>
+<h2 id="_2">二级索引的操作</h2>
+<p>请先看下面的例子：</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># db_example7.codon</span>
 
 <span class="kn">from</span> <span class="nn">chain.contract</span> <span class="kn">import</span> <span class="n">Contract</span>
@@ -955,12 +957,13 @@
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;++++++it.primary:&quot;</span><span class="p">,</span> <span class="n">it</span><span class="o">.</span><span class="n">primary</span><span class="p">)</span>
         <span class="k">assert</span> <span class="n">it</span><span class="o">.</span><span class="n">primary</span> <span class="o">==</span> <span class="mi">1</span><span class="n">u64</span>
 </code></pre></div>
-<p>In this example, two binary indexes are defined:</p>
+<p>在这个例子中，定义了两个二级索引：</p>
 <div class="highlight"><pre><span></span><code><span class="n">b</span><span class="p">:</span> <span class="n">secondary</span><span class="p">[</span><span class="n">u64</span><span class="p">]</span>
 <span class="n">c</span><span class="p">:</span> <span class="n">secondary</span><span class="p">[</span><span class="n">u128</span><span class="p">]</span>
 </code></pre></div>
-<p>In the code, <code>get_idx_table_by_b</code> and <code>get_idx_table_by_c</code> are used to obtain the tables of the binary indexes, and the returned object types are <code>IdxTable64</code> and <code>IdxTable128</code>, respectively. The tables of binary indexes have similar method names as the tables of the primary index, and can also perform the function of binary index lookup.</p>
-<p>Test code:</p>
+<p>在代码里，通过<code>get_idx_table_by_b</code>和<code>get_idx_table_by_c</code>来获取二级索引的表，返回的对象类型分别为<code>IdxTable64</code>和<code>IdxTable128</code>。
+二级索引的表和主索引的表有类似的方法名称，也可以执行二级索引的查找的功能。</p>
+<p>测试代码：</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># test.py</span>
 <span class="k">def</span> <span class="nf">test_example7</span><span class="p">():</span>
     <span class="n">t</span> <span class="o">=</span> <span class="n">init_db_test</span><span class="p">(</span><span class="s1">&#39;db_example7&#39;</span><span class="p">)</span>
@@ -968,18 +971,18 @@
     <span class="n">t</span><span class="o">.</span><span class="n">produce_block</span><span class="p">()</span>
     <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;++++++++++</span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;elapsed&#39;</span><span class="p">])</span>
 </code></pre></div>
-<p>Compile:</p>
+<p>编译：</p>
 <div class="highlight"><pre><span></span><code>python-contract build db_example/db_example7.codon
 </code></pre></div>
-<p>Run the test:</p>
+<p>运行测试：</p>
 <div class="highlight"><pre><span></span><code>ipyeos<span class="w"> </span>-m<span class="w"> </span>pytest<span class="w"> </span>-s<span class="w"> </span>-x<span class="w"> </span>test.py<span class="w"> </span>-k<span class="w"> </span>test_example7
 </code></pre></div>
-<p>Output:
+<p>输出：</p>
 <div class="highlight"><pre><span></span><code>++++++it.primary: 1
 ++++++it.primary: 1
-</code></pre></div></p>
-<h2 id="updating-the-binary-index">Updating the binary index</h2>
-<p>In practical applications, sometimes it is necessary to update the binary index. Please first look at the following code:</p>
+</code></pre></div>
+<h2 id="_3">二级索引的的更新</h2>
+<p>在实际的应用中，有时候需要更新二级索引。请先看下面的代码</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># db_example8.codon</span>
 <span class="kn">from</span> <span class="nn">chain.contract</span> <span class="kn">import</span> <span class="n">Contract</span>
 <span class="kn">from</span> <span class="nn">chain.database</span> <span class="kn">import</span> <span class="n">primary</span><span class="p">,</span> <span class="n">secondary</span>
@@ -1024,7 +1027,7 @@
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;++++++it.primary:&quot;</span><span class="p">,</span> <span class="n">it_sec</span><span class="o">.</span><span class="n">primary</span><span class="p">)</span>
         <span class="k">assert</span> <span class="n">it_sec</span><span class="o">.</span><span class="n">primary</span> <span class="o">==</span> <span class="mi">1</span><span class="n">u64</span>
 </code></pre></div>
-<p>Note the following code in the above code:</p>
+<p>注意上面代码中的这段代码：</p>
 <div class="highlight"><pre><span></span><code><span class="n">idx_table_b</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">get_idx_table_by_b</span><span class="p">()</span>
 <span class="n">it_sec</span> <span class="o">=</span> <span class="n">idx_table_b</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="mi">2</span><span class="n">u64</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;++++++it.primary:&quot;</span><span class="p">,</span> <span class="n">it_sec</span><span class="o">.</span><span class="n">primary</span><span class="p">)</span>
@@ -1037,15 +1040,15 @@
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;++++++it.primary:&quot;</span><span class="p">,</span> <span class="n">it_sec</span><span class="o">.</span><span class="n">primary</span><span class="p">)</span>
 <span class="k">assert</span> <span class="n">it_sec</span><span class="o">.</span><span class="n">primary</span> <span class="o">==</span> <span class="mi">1</span><span class="n">u64</span>
 </code></pre></div>
-<p>Brief description of the process:</p>
+<p>简述下过程：</p>
 <ul>
-<li><code>it_sec = idx_table_b.find(2u64)</code>: Looks up the value <code>2u64</code> in the binary index and returns the <code>SecondarIterator</code> type result <code>it_sec</code>.</li>
-<li><code>table.update_b(it_sec, 22u64, payer)</code>: This line of code implements the update function and updates the value of <code>b</code> to <code>22u64</code>.</li>
-<li><code>it_sec = idx_table_b.find(22u64)</code>: Looks up the new binary index.</li>
-<li><code>assert assert it_sec.is_ok()</code>: Used to confirm whether the binary index has been updated successfully.</li>
-<li><code>assert it_sec.primary == 1u64</code>: Used to confirm whether the primary index is correct.</li>
+<li><code>it_sec = idx_table_b.find(2u64)</code>查找二级索引的值<code>2u64</code>，返回的<code>SecondarIterator</code>类型的<code>it_sec</code>。</li>
+<li><strong><code>table.update_b(it_sec, 22u64, payer)</code></strong> 这行代码即是实现了更新的功能，更新<code>b</code>的值为<code>22u64</code></li>
+<li><code>it_sec = idx_table_b.find(22u64)</code>查找新的二级索引</li>
+<li><code>assert assert it_sec.is_ok()</code>用于确认二级索引是否更新成功</li>
+<li><code>assert it_sec.primary == 1u64</code>用于确认主索引是否正确</li>
 </ul>
-<p>The <code>update_b</code> code is generated by the compiler and is shown below:</p>
+<p>而<code>update_b</code>是由编译器生成的代码，生成的代码如下：</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">update_b</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">it</span><span class="p">:</span> <span class="n">SecondaryIterator</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="n">u64</span><span class="p">,</span> <span class="n">payer</span><span class="p">:</span> <span class="n">Name</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="c1"># 更新`b`的二级索引</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">idx_b</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">it</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">payer</span><span class="p">)</span>
@@ -1058,8 +1061,8 @@
     <span class="n">value</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="n">secondary</span><span class="p">[</span><span class="n">u64</span><span class="p">](</span><span class="n">b</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">table</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">it_primary</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">payer</span><span class="p">)</span>
 </code></pre></div>
-<p>From the code, it is apparent that when updating the binary index, the corresponding value in the primary index will also be updated.</p>
-<h2 id="deleting-the-binary-index">Deleting the binary index</h2>
+<p>从代码看出，更新二级索引的时候，还会更新主索引的对应的值</p>
+<h2 id="_4">二级索引的删除</h2>
 <div class="highlight"><pre><span></span><code><span class="nd">@action</span><span class="p">(</span><span class="s1">&#39;testremove&#39;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">test_remove</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="n">payer</span> <span class="o">=</span> <span class="n">n</span><span class="s2">&quot;hello&quot;</span>
@@ -1081,14 +1084,14 @@
     <span class="n">t</span><span class="o">.</span><span class="n">produce_block</span><span class="p">()</span>
     <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;++++++++++</span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;elapsed&#39;</span><span class="p">])</span>
 </code></pre></div>
-<p>Compilation:</p>
-<div class="highlight"><pre><span></span><code>python-contract<span class="w"> </span>build<span class="w"> </span>db_example/db_example8.codon
+<p>编译：</p>
+<div class="highlight"><pre><span></span><code>python-contract build db_example/db_example8.codon
 </code></pre></div>
-<p>Running the test:</p>
+<p>运行测试：</p>
 <div class="highlight"><pre><span></span><code>ipyeos<span class="w"> </span>-m<span class="w"> </span>pytest<span class="w"> </span>-s<span class="w"> </span>-x<span class="w"> </span>test.py<span class="w"> </span>-k<span class="w"> </span>test_remove_secondary
 </code></pre></div>
-<h2 id="using-the-api-to-perform-secondary-index-queries-on-a-table">Using the API to perform secondary index queries on a table</h2>
-<p>In the <code>db_example8.codon</code> example, two binary indexes are defined, with the types <code>u64</code> and <code>u128</code>, respectively. The <code>get_table_rows</code> API also supports finding corresponding values through binary indexes.</p>
+<h2 id="api_1">利用API来对表进行二重索引查询</h2>
+<p>在例子<code>db_example8.codon</code>中，定义了两个二级索引，类型分别为<code>u64</code>,<code>u128</code>，<code>get_table_rows</code>API还支持通过二级索引来查找对应的值</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">test_example9</span><span class="p">():</span>
     <span class="n">t</span> <span class="o">=</span> <span class="n">init_db_test</span><span class="p">(</span><span class="s1">&#39;db_example8&#39;</span><span class="p">)</span>
     <span class="n">ret</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">push_action</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="p">{},</span> <span class="p">{</span><span class="s1">&#39;hello&#39;</span><span class="p">:</span> <span class="s1">&#39;active&#39;</span><span class="p">})</span>
@@ -1105,21 +1108,21 @@
     <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;++++++++++</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">rows</span><span class="p">[</span><span class="s1">&#39;rows&#39;</span><span class="p">])</span>
     <span class="k">assert</span> <span class="n">rows</span><span class="p">[</span><span class="s1">&#39;rows&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;c&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;3&#39;</span>
 </code></pre></div>
-<p>Explanation of the code below:</p>
-<p>To find the value in the table through the second index <code>b</code>:</p>
+<p>下面对代码作下解释</p>
+<p>通过二级索引<code>b</code>来查找表中的值：</p>
 <div class="highlight"><pre><span></span><code><span class="n">rows</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">get_table_rows</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;mytable&#39;</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;i64&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">)</span>
 </code></pre></div>
-<p>Here, <code>i64</code> is the index type of <code>b</code>, and <code>2</code> is zero-based index corresponding to the index.</p>
-<p>To find the value in the table through the second index <code>c</code>:</p>
+<p>这里的<code>i64</code>即是<code>b</code>的索引类型，<code>2</code>是索引对应的序号，注意一下这里不是从<code>1</code>开始算起的。</p>
+<p>通过二级索引<code>c</code>来查找表中的值：</p>
 <div class="highlight"><pre><span></span><code><span class="n">rows</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">get_table_rows</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;mytable&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;i128&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">)</span>
 </code></pre></div>
-<p>Here, <code>i128</code> is the index type of <code>c</code>. Note that the value <code>3</code> in the <code>lowerbound</code> parameter is the value of the binary index. Since <code>u128</code> has exceeded the range of 64-bit integers, a numeric string is used to represent it. Finally, the last parameter <code>3</code> is the corresponding index number.</p>
-<p>The results of running the above test code are as follows:</p>
+<p>这里的<code>i128</code>即是<code>c</code>的索引类型，注意这里lowerbound参数的值<code>3</code>是二级索引的值，由于u128已经超过了64位整数的表示范围，所以用数字字符串表示，最后一个参数<code>3</code>是索引对应的序号。</p>
+<p>上面的测试代码的运行结果如下：</p>
 <div class="highlight"><pre><span></span><code>++++++++++[{&#39;a&#39;: 1, &#39;b&#39;: 22, &#39;c&#39;: &#39;3&#39;}, {&#39;a&#39;: 111, &#39;b&#39;: 222, &#39;c&#39;: &#39;333&#39;}]
 ++++++++++[{&#39;a&#39;: 1, &#39;b&#39;: 22, &#39;c&#39;: &#39;3&#39;}, {&#39;a&#39;: 111, &#39;b&#39;: 222, &#39;c&#39;: &#39;333&#39;}]
 </code></pre></div>
-<h2 id="implementation-principles-of-the-database">Implementation principles of the database</h2>
-<p>The above code demonstrates the basic operations of the database. However, during the compilation process, some methods and classes are generated by the compiler. The following code displays the code generated by the compiler.</p>
+<h2 id="_5">数据库的实现原理</h2>
+<p>上面的代码演示了数据库的基本操作，但是实际上在编译的过程中，有些方法和类是由编译器生成的，下面的代码把这些由编译器生成的代码展示了出来。</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># db_example6.codon</span>
 <span class="kn">from</span> <span class="nn">chain.contract</span> <span class="kn">import</span> <span class="n">Contract</span>
 <span class="kn">from</span> <span class="nn">chain.database</span> <span class="kn">import</span> <span class="n">primary</span><span class="p">,</span> <span class="n">secondary</span>
@@ -1238,8 +1241,9 @@
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;++++++it.primary:&quot;</span><span class="p">,</span> <span class="n">it</span><span class="o">.</span><span class="n">primary</span><span class="p">)</span>
         <span class="k">assert</span> <span class="n">it</span><span class="o">.</span><span class="n">primary</span> <span class="o">==</span> <span class="mi">1</span><span class="n">u64</span>
 </code></pre></div>
-<p>This example demonstrates a scenario where there are two binary indexes. Only the name <code>table</code> was changed to <code>packer</code>. In this case, the compiler will not generate any code related to the database.</p>
-<p>By comparison, it is apparent that the compiler generates a class named <code>MultiIndexA</code>, which inherits from the <code>MultiIndexBase</code> class defined in <code>mi.codon</code>. This class has the following methods:</p>
+<p>这个例子展示了有二个二级索引的例子，只是把<code>table</code>改成了<code>packer</code>，编译器即不再会生成数据库相关的代码。
+对比可知，编译器在编译的时候会生成<code>MultiIndexA</code>这个继承自<code>mi.codon</code>中定义的<code>MultiIndexBase</code>类，</p>
+<p>这个类有以下几个方法：</p>
 <ul>
 <li>def store(self, item: A, payer: Name) -&gt; Iterator[A]</li>
 <li>def update(self, it: Iterator[A], item: A, payer: Name)</li>
@@ -1249,32 +1253,32 @@
 <li>def update_b(self, it: SecondaryIterator, b: u64, payer: Name) -&gt; None:</li>
 <li>def update_c(self, it: SecondaryIterator, c: u128, payer: Name) -&gt; None:</li>
 </ul>
-<p>In addition, the class <code>A</code> is generated, along with the following additional methods:</p>
+<p>同时会为类<code>A</code>生成额外的方法：</p>
 <ul>
-<li><code>get_primary</code>: retrieves the primary index</li>
-<li><code>get_idx_table_by_b</code>: retrieves the table indexed by <code>b</code>, returning an instance of the <code>IdxTable64</code> class</li>
-<li><code>get_idx_table_by_c</code>: retrieves the table indexed by <code>c</code>, returning an instance of the <code>IdxTable128</code> class</li>
+<li><code>get_primary</code> 获取主索引</li>
+<li><code>get_idx_table_by_b</code>, 用于获取二级索引<code>b</code>的表，返回的类是<code>IdxTable64</code></li>
+<li><code>get_idx_table_by_c</code>，用于获取二级索引<code>c</code>的表，返回的类为<code>IdxTable128</code>。</li>
 <li><code>new_table</code></li>
 </ul>
-<p>Test code:</p>
+<p>测试代码：</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">test_example6</span><span class="p">():</span>
     <span class="n">t</span> <span class="o">=</span> <span class="n">init_db_test</span><span class="p">(</span><span class="s1">&#39;db_example6&#39;</span><span class="p">)</span>
     <span class="n">ret</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">push_action</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="p">{},</span> <span class="p">{</span><span class="s1">&#39;hello&#39;</span><span class="p">:</span> <span class="s1">&#39;active&#39;</span><span class="p">})</span>
     <span class="n">t</span><span class="o">.</span><span class="n">produce_block</span><span class="p">()</span>
     <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;++++++++++</span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;elapsed&#39;</span><span class="p">])</span>
 </code></pre></div>
-<p>Compilation:</p>
+<p>编译：</p>
 <div class="highlight"><pre><span></span><code>python-contract build db_example/db_example6.codon
 </code></pre></div>
-<p>Running the test:</p>
+<p>运行测试：</p>
 <div class="highlight"><pre><span></span><code>ipyeos<span class="w"> </span>-m<span class="w"> </span>pytest<span class="w"> </span>-s<span class="w"> </span>-x<span class="w"> </span>test.py<span class="w"> </span>-k<span class="w"> </span>test_example6
 </code></pre></div>
-<p>Output:</p>
+<p>输出：</p>
 <div class="highlight"><pre><span></span><code>++++++it.primary: 1
 ++++++it.primary: 1
 </code></pre></div>
-<h2 id="summary">Summary</h2>
-<p>The data storage functionality in EOS is relatively comprehensive, and the second-level index table function makes data querying very flexible. This chapter provides a detailed explanation of the code for table operations, including adding, deleting, modifying, and querying. This chapter contains a lot of content and requires some time to digest. You can try to modify the examples and run them to gain a better understanding of the content covered in this chapter.</p>
+<h2 id="_6">总结</h2>
+<p>EOS中的数据存储功能是比较完善的，并且有二级索引表的功能，使数据的查找变得非常的灵活。本章详细讲解了数据库表的增，删，改，查的代码。本章的内容较多，需要花点时间好好消化。可以在示例的基础上作些发动，并且尝试运行以增加对这章知识点的理解。</p>
 
 
 
@@ -1312,10 +1316,10 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.19047be9.min.js"></script>
+      <script src="../../assets/javascripts/bundle.19047be9.min.js"></script>
       
     
   
@@ -1323,7 +1327,7 @@
 console.log("hello, plugin")
 var mkdocs_chat_plugin = {'param': '', 'docs_chat_endpoint': 'https://docs.uuos.io:8443/chat'};
 </script>
-<script src="../js/chat-dialog-plugin.js"></script>
+<script src="../../js/chat-dialog-plugin.js"></script>
 
         </body>
 </html>

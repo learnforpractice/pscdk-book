@@ -9,17 +9,17 @@
       
       
       
-        <link rel="prev" href="../env/">
+        <link rel="prev" href="../common/">
       
       
-        <link rel="next" href="../deploy/">
+        <link rel="next" href="../codon/">
       
       <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.4">
     
     
       
-        <title>HelloWorld - Python Smart Contracts Development Cook Book</title>
+        <title>Explanation of ABI types - Python Smart Contracts Development Cook Book</title>
       
     
     
@@ -69,7 +69,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#helloworld" class="md-skip">
+        <a href="#explanation-of-abi-types" class="md-skip">
           Skip to content
         </a>
       
@@ -104,7 +104,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              HelloWorld
+              Explanation of ABI types
             
           </span>
         </div>
@@ -128,7 +128,7 @@
                 </li>
               
                 <li class="md-select__item">
-                  <a href="../zh/helloworld/" hreflang="zh" class="md-select__link">
+                  <a href="../zh/abi/" hreflang="zh" class="md-select__link">
                     中文
                   </a>
                 </li>
@@ -235,59 +235,11 @@
 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          HelloWorld
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../helloworld/" class="md-nav__link">
         HelloWorld
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#the-first-smart-contract" class="md-nav__link">
-    The First Smart Contract
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#create-an-initial-project" class="md-nav__link">
-    Create an Initial Project
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -388,11 +340,93 @@
 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../abi/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Explanation of ABI types
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Explanation of ABI types
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#built-in-abi-types" class="md-nav__link">
+    Built-in ABI types
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#correspondence-table-of-built-in-data-types-in-abi-and-data-types-in-python" class="md-nav__link">
+    Correspondence table of built-in data types in ABI and data types in Python
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#special-abi-types" class="md-nav__link">
+    Special ABI types
+  </a>
+  
+    <nav class="md-nav" aria-label="Special ABI types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#optional" class="md-nav__link">
+    Optional
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variant" class="md-nav__link">
+    Variant
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#binaryextension" class="md-nav__link">
+    Binaryextension
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -439,16 +473,50 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#the-first-smart-contract" class="md-nav__link">
-    The First Smart Contract
+  <a href="#built-in-abi-types" class="md-nav__link">
+    Built-in ABI types
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#create-an-initial-project" class="md-nav__link">
-    Create an Initial Project
+  <a href="#correspondence-table-of-built-in-data-types-in-abi-and-data-types-in-python" class="md-nav__link">
+    Correspondence table of built-in data types in ABI and data types in Python
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#special-abi-types" class="md-nav__link">
+    Special ABI types
+  </a>
+  
+    <nav class="md-nav" aria-label="Special ABI types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#optional" class="md-nav__link">
+    Optional
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variant" class="md-nav__link">
+    Variant
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#binaryextension" class="md-nav__link">
+    Binaryextension
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -470,85 +538,191 @@
   
 
 
-<h1 id="helloworld">HelloWorld</h1>
-<h2 id="the-first-smart-contract">The First Smart Contract</h2>
-<p>The following code shows the simplest smart contract and its testing code:</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># helloworld.codon</span>
-
-<span class="kn">from</span> <span class="nn">chain.contract</span> <span class="kn">import</span> <span class="n">Contract</span>
-
-<span class="nd">@contract</span><span class="p">(</span><span class="n">main</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">class</span> <span class="nc">MyContract</span><span class="p">(</span><span class="n">Contract</span><span class="p">):</span>
-
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
-
-    <span class="nd">@action</span><span class="p">(</span><span class="s1">&#39;sayhello&#39;</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">say_hello</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello, World!&quot;</span><span class="p">)</span>
+<h1 id="explanation-of-abi-types">Explanation of ABI types</h1>
+<h2 id="built-in-abi-types">Built-in ABI types</h2>
+<p>Here are the built-in ABI types, a total of 31:</p>
+<ul>
+<li>Basic types: name bytes string</li>
+<li>Numerical types: bool int8 uint8 int16 uint16 int32 uint32 int64 uint64 int128 uint128 varint32 varuint32 float32 float64 float128</li>
+<li>Time-related: time_point time_point_sec block_timestamp_type</li>
+<li>Password-related functions: checksum160 checksum256 checksum512 public_key signature</li>
+<li>Token-related: symbol symbol_code asset extended_asset</li>
+</ul>
+<p>The following are the most commonly used:</p>
+<div class="highlight"><pre><span></span><code>name bytes string bool uint64 checksum256
+public_key signature symbol asset extended_asset
 </code></pre></div>
-<p>Testing code:</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># helloworldtest.py</span>
-
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">from</span> <span class="nn">ipyeos</span> <span class="kn">import</span> <span class="n">chaintester</span>
-<span class="kn">from</span> <span class="nn">ipyeos.chaintester</span> <span class="kn">import</span> <span class="n">ChainTester</span>
-<span class="kn">from</span> <span class="nn">ipyeos</span> <span class="kn">import</span> <span class="n">log</span>
-
-<span class="n">chaintester</span><span class="o">.</span><span class="n">chain_config</span><span class="p">[</span><span class="s1">&#39;contracts_console&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
-
-<span class="n">logger</span> <span class="o">=</span> <span class="n">log</span><span class="o">.</span><span class="n">get_logger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
-
-<span class="n">dir_name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span>
-
-<span class="k">def</span> <span class="nf">init_test</span><span class="p">(</span><span class="n">contract_name</span><span class="p">):</span>
-    <span class="n">t</span> <span class="o">=</span> <span class="n">ChainTester</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">wasm_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dir_name</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">contract_name</span><span class="si">}</span><span class="s1">.wasm&#39;</span><span class="p">)</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">wasm_file</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-        <span class="n">code</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-
-    <span class="n">abi_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dir_name</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">contract_name</span><span class="si">}</span><span class="s1">.abi&#39;</span><span class="p">)</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">abi_file</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-        <span class="n">abi</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-
-    <span class="n">t</span><span class="o">.</span><span class="n">deploy_contract</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="n">code</span><span class="p">,</span> <span class="n">abi</span><span class="p">)</span>
-    <span class="n">t</span><span class="o">.</span><span class="n">produce_block</span><span class="p">()</span>
-    <span class="k">return</span> <span class="n">t</span>
-
-<span class="k">def</span> <span class="nf">test</span><span class="p">():</span>
-    <span class="n">t</span> <span class="o">=</span> <span class="n">init_test</span><span class="p">(</span><span class="s1">&#39;helloworld&#39;</span><span class="p">)</span>
-    <span class="n">ret</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">push_action</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;sayhello&#39;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;hello&#39;</span><span class="p">:</span> <span class="s1">&#39;active&#39;</span><span class="p">})</span>
-    <span class="n">t</span><span class="o">.</span><span class="n">produce_block</span><span class="p">()</span>
-    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;++++++++++</span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;elapsed&#39;</span><span class="p">])</span>
+<h2 id="correspondence-table-of-built-in-data-types-in-abi-and-data-types-in-python">Correspondence table of built-in data types in ABI and data types in Python</h2>
+<p>The table below shows the correspondence between the built-in types in ABI and the types in Python.</p>
+<p>It should be noted that although some of these types corresponding to Python belong to different modules, they have all been imported into the global environment in advance. Therefore, developers can directly use these ABI types corresponding to Python without needing to import them in the following way:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">chain.crypto</span> <span class="kn">import</span> <span class="n">PublicKey</span>
 </code></pre></div>
-<p>Compile:</p>
-<div class="highlight"><pre><span></span><code>python-contract build helloworld.codon
-</code></pre></div>
-<p>To run the test code:</p>
-<div class="highlight"><pre><span></span><code>ipyeos -m pytest -s -x testhelloworld.py -k test
-</code></pre></div>
-<p>Output:</p>
-<div class="highlight"><pre><span></span><code>Hello, World!
-</code></pre></div>
-<h2 id="create-an-initial-project">Create an Initial Project</h2>
-<p>You can create an initial project using the <code>python-contract init</code> command. For example, the following code creates an initial project named <code>mycontract</code>:</p>
-<div class="highlight"><pre><span></span><code>python-contract init mycontract
-</code></pre></div>
-<p>After creating the project, you can compile the contract using the following command:</p>
-<div class="highlight"><pre><span></span><code>cd mycontract
-./build.sh
-</code></pre></div>
-<p>After a successful execution, <code>mycontract.wasm</code> and <code>mycontract.abi</code> files will be generated.</p>
-<p>You can run the following command for testing:</p>
-<div class="highlight"><pre><span></span><code>./test.sh
-</code></pre></div>
-<p>The following information will be output:</p>
-<div class="highlight"><pre><span></span><code>[(hello,sayhello)-&gt;hello]: CONSOLE OUTPUT BEGIN =====================
-hello  alice
-
-[(hello,sayhello)-&gt;hello]: CONSOLE OUTPUT END   =====================
-</code></pre></div>
-<p>After confirming that the test was successful, you can proceed with smart contract development based on this existing project.</p>
+<p>Of course, repeated imports will not have any impact.</p>
+<table>
+<thead>
+<tr>
+<th align="center">ABI Type</th>
+<th align="center">Python Type</th>
+<th align="center">Module</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">bool</td>
+<td align="center">bool</td>
+<td align="center">Built-in</td>
+</tr>
+<tr>
+<td align="center">int8</td>
+<td align="center">i8</td>
+<td align="center">Built-in</td>
+</tr>
+<tr>
+<td align="center">uint8</td>
+<td align="center">u8</td>
+<td align="center">Built-in</td>
+</tr>
+<tr>
+<td align="center">int16</td>
+<td align="center">i16</td>
+<td align="center">Built-in</td>
+</tr>
+<tr>
+<td align="center">int32</td>
+<td align="center">i32</td>
+<td align="center">Built-in</td>
+</tr>
+<tr>
+<td align="center">uint32</td>
+<td align="center">u32</td>
+<td align="center">Built-in</td>
+</tr>
+<tr>
+<td align="center">int64</td>
+<td align="center">i64</td>
+<td align="center">Built-in</td>
+</tr>
+<tr>
+<td align="center">uint64</td>
+<td align="center">u64</td>
+<td align="center">Built-in</td>
+</tr>
+<tr>
+<td align="center">int128</td>
+<td align="center">i128</td>
+<td align="center">Built-in</td>
+</tr>
+<tr>
+<td align="center">uint128</td>
+<td align="center">u128</td>
+<td align="center">Built-in</td>
+</tr>
+<tr>
+<td align="center">varint32</td>
+<td align="center">VarInt32</td>
+<td align="center">Structs</td>
+</tr>
+<tr>
+<td align="center">varuint32</td>
+<td align="center">VarUint32</td>
+<td align="center">Structs</td>
+</tr>
+<tr>
+<td align="center">float32</td>
+<td align="center">float32</td>
+<td align="center">Built-in</td>
+</tr>
+<tr>
+<td align="center">float64</td>
+<td align="center">float</td>
+<td align="center">Built-in</td>
+</tr>
+<tr>
+<td align="center">float128</td>
+<td align="center">Float128</td>
+<td align="center">Structs</td>
+</tr>
+<tr>
+<td align="center">time_point</td>
+<td align="center">TimePoint</td>
+<td align="center">Structs</td>
+</tr>
+<tr>
+<td align="center">time_point_sec</td>
+<td align="center">TimePointSec</td>
+<td align="center">Structs</td>
+</tr>
+<tr>
+<td align="center">block_timestamp_type</td>
+<td align="center">BlockTimestampType</td>
+<td align="center">Structs</td>
+</tr>
+<tr>
+<td align="center">name</td>
+<td align="center">Name</td>
+<td align="center">Name</td>
+</tr>
+<tr>
+<td align="center">bytes</td>
+<td align="center">bytes</td>
+<td align="center">Built-in</td>
+</tr>
+<tr>
+<td align="center">string</td>
+<td align="center">str</td>
+<td align="center">Built-in</td>
+</tr>
+<tr>
+<td align="center">checksum160</td>
+<td align="center">Checksum160</td>
+<td align="center">Crypto</td>
+</tr>
+<tr>
+<td align="center">checksum256</td>
+<td align="center">Checksum256/u256</td>
+<td align="center">Crypto</td>
+</tr>
+<tr>
+<td align="center">checksum512</td>
+<td align="center">Checksum512</td>
+<td align="center">Crypto</td>
+</tr>
+<tr>
+<td align="center">public_key</td>
+<td align="center">PublicKey</td>
+<td align="center">Crypto</td>
+</tr>
+<tr>
+<td align="center">signature</td>
+<td align="center">Signature</td>
+<td align="center">Crypto</td>
+</tr>
+<tr>
+<td align="center">symbol</td>
+<td align="center">Symbol</td>
+<td align="center">Asset</td>
+</tr>
+<tr>
+<td align="center">symbol_code</td>
+<td align="center">SymbolCode</td>
+<td align="center">Asset</td>
+</tr>
+<tr>
+<td align="center">asset</td>
+<td align="center">Asset</td>
+<td align="center">Asset</td>
+</tr>
+<tr>
+<td align="center">extended_asset</td>
+<td align="center">ExtendedAsset</td>
+<td align="center">Asset</td>
+</tr>
+</tbody>
+</table>
+<h2 id="special-abi-types">Special ABI types</h2>
+<h3 id="optional">Optional</h3>
+<h3 id="variant">Variant</h3>
+<h3 id="binaryextension">Binaryextension</h3>
 
 
 

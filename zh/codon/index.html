@@ -1,6 +1,6 @@
 
 <!doctype html>
-<html lang="en" class="no-js">
+<html lang="zh" class="no-js">
   <head>
     
       <meta charset="utf-8">
@@ -12,19 +12,19 @@
         <link rel="prev" href="../abi/">
       
       
-      <link rel="icon" href="../assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.4">
     
     
       
-        <title>Differences between Codon and standard Python - Python Smart Contracts Development Cook Book</title>
+        <title>和标准Python的差异 - Python Smart Contracts Development Cook Book</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.240905d7.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.240905d7.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.a0c5b2b5.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.a0c5b2b5.min.css">
       
       
 
@@ -40,7 +40,7 @@
       
     
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -48,7 +48,7 @@
     
     
   
-  <link rel="stylesheet" href="../css/chat-dialog-plugin.css">
+  <link rel="stylesheet" href="../../css/chat-dialog-plugin.css">
 </head>
   
   
@@ -67,8 +67,8 @@
     <div data-md-component="skip">
       
         
-        <a href="#differences-between-codon-and-standard-python" class="md-skip">
-          Skip to content
+        <a href="#python" class="md-skip">
+          跳转至
         </a>
       
     </div>
@@ -82,8 +82,8 @@
   
 
 <header class="md-header md-header--shadow" data-md-component="header">
-  <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="Python Smart Contracts Development Cook Book" class="md-header__button md-logo" aria-label="Python Smart Contracts Development Cook Book" data-md-component="logo">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../" title="Python Smart Contracts Development Cook Book" class="md-header__button md-logo" aria-label="Python Smart Contracts Development Cook Book" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -102,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Differences between Codon and standard Python
+              和标准Python的差异
             
           </span>
         </div>
@@ -113,20 +113,20 @@
       <div class="md-header__option">
         <div class="md-select">
           
-          <button class="md-header__button md-icon" aria-label="Select language">
+          <button class="md-header__button md-icon" aria-label="选择当前语言">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.52 17.52 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04M18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12m-2.62 7 1.62-4.33L19.12 17h-3.24Z"/></svg>
           </button>
           <div class="md-select__inner">
             <ul class="md-select__list">
               
                 <li class="md-select__item">
-                  <a href="./" hreflang="en" class="md-select__link">
+                  <a href="../../codon/" hreflang="en" class="md-select__link">
                     English
                   </a>
                 </li>
               
                 <li class="md-select__item">
-                  <a href="../zh/codon/" hreflang="zh" class="md-select__link">
+                  <a href="./" hreflang="zh" class="md-select__link">
                     中文
                   </a>
                 </li>
@@ -139,7 +139,7 @@
     
     
       <div class="md-header__source">
-        <a href="https://github.com/uuosio/pscdk" title="Go to repository" class="md-source" data-md-component="source">
+        <a href="https://github.com/uuosio/pscdk" title="前往仓库" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
@@ -172,9 +172,9 @@
                     
 
 
-<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="Python Smart Contracts Development Cook Book" class="md-nav__button md-logo" aria-label="Python Smart Contracts Development Cook Book" data-md-component="logo">
+    <a href="../" title="Python Smart Contracts Development Cook Book" class="md-nav__button md-logo" aria-label="Python Smart Contracts Development Cook Book" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -184,7 +184,7 @@
   </label>
   
     <div class="md-nav__source">
-      <a href="https://github.com/uuosio/pscdk" title="Go to repository" class="md-source" data-md-component="source">
+      <a href="https://github.com/uuosio/pscdk" title="前往仓库" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
@@ -206,7 +206,7 @@
   
     <li class="md-nav__item">
       <a href="../prelude/" class="md-nav__link">
-        Prerequisite Knowledge
+        预备知识
       </a>
     </li>
   
@@ -221,7 +221,7 @@
   
     <li class="md-nav__item">
       <a href="../env/" class="md-nav__link">
-        Development Environment Setup
+        开发环境搭建
       </a>
     </li>
   
@@ -251,7 +251,7 @@
   
     <li class="md-nav__item">
       <a href="../deploy/" class="md-nav__link">
-        Deploying a Smart Contract
+        发布智能合约
       </a>
     </li>
   
@@ -266,7 +266,7 @@
   
     <li class="md-nav__item">
       <a href="../action/" class="md-nav__link">
-        Inline Actions
+        内联Action在智能合约的使用
       </a>
     </li>
   
@@ -281,7 +281,7 @@
   
     <li class="md-nav__item">
       <a href="../notify/" class="md-nav__link">
-        The `require_recipient` function
+        require_recipient函数
       </a>
     </li>
   
@@ -296,7 +296,7 @@
   
     <li class="md-nav__item">
       <a href="../database/" class="md-nav__link">
-        Database Operations
+        数据库的操作
       </a>
     </li>
   
@@ -311,7 +311,7 @@
   
     <li class="md-nav__item">
       <a href="../crypto/" class="md-nav__link">
-        Cryptographic functions
+        密码学相关函数
       </a>
     </li>
   
@@ -326,7 +326,7 @@
   
     <li class="md-nav__item">
       <a href="../common/" class="md-nav__link">
-        Common Smart Contract Functions
+        常用智能合约函数
       </a>
     </li>
   
@@ -341,7 +341,7 @@
   
     <li class="md-nav__item">
       <a href="../abi/" class="md-nav__link">
-        Explanation of ABI types
+        ABI类型详解
       </a>
     </li>
   
@@ -365,17 +365,17 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Differences between Codon and standard Python
+          和标准Python的差异
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Differences between Codon and standard Python
+        和标准Python的差异
       </a>
       
         
 
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+<nav class="md-nav md-nav--secondary" aria-label="目录">
   
   
   
@@ -384,62 +384,69 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      Table of contents
+      目录
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#support-for-method-overloading-in-classes" class="md-nav__link">
-    Support for method overloading in classes
+  <a href="#pythonpython" class="md-nav__link">
+    Python智能合约代码和标准Python代码的差异
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#the-int-type-in-codon-is-a-64-bit-signed-integer" class="md-nav__link">
-    The int type in Codon is a 64-bit signed integer
+  <a href="#_1" class="md-nav__link">
+    类的方法支持重载
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#numeric-types-in-codon" class="md-nav__link">
-    Numeric types in Codon
+  <a href="#codonint64" class="md-nav__link">
+    Codon里的int类型是64位有符号整数
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#string-type" class="md-nav__link">
-    String type
+  <a href="#codon" class="md-nav__link">
+    Codon的数值类型
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#dictionary-type" class="md-nav__link">
-    Dictionary type
+  <a href="#_2" class="md-nav__link">
+    字符串类型
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#optional-type" class="md-nav__link">
-    Optional type
+  <a href="#_3" class="md-nav__link">
+    字典类型
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#union-type" class="md-nav__link">
-    Union type
+  <a href="#optional" class="md-nav__link">
+    Optional类型
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#conclusion" class="md-nav__link">
-    Conclusion
+  <a href="#union" class="md-nav__link">
+    Union类型
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    总结
   </a>
   
 </li>
@@ -465,7 +472,7 @@
                   <div class="md-sidebar__inner">
                     
 
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+<nav class="md-nav md-nav--secondary" aria-label="目录">
   
   
   
@@ -474,62 +481,69 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      Table of contents
+      目录
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#support-for-method-overloading-in-classes" class="md-nav__link">
-    Support for method overloading in classes
+  <a href="#pythonpython" class="md-nav__link">
+    Python智能合约代码和标准Python代码的差异
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#the-int-type-in-codon-is-a-64-bit-signed-integer" class="md-nav__link">
-    The int type in Codon is a 64-bit signed integer
+  <a href="#_1" class="md-nav__link">
+    类的方法支持重载
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#numeric-types-in-codon" class="md-nav__link">
-    Numeric types in Codon
+  <a href="#codonint64" class="md-nav__link">
+    Codon里的int类型是64位有符号整数
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#string-type" class="md-nav__link">
-    String type
+  <a href="#codon" class="md-nav__link">
+    Codon的数值类型
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#dictionary-type" class="md-nav__link">
-    Dictionary type
+  <a href="#_2" class="md-nav__link">
+    字符串类型
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#optional-type" class="md-nav__link">
-    Optional type
+  <a href="#_3" class="md-nav__link">
+    字典类型
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#union-type" class="md-nav__link">
-    Union type
+  <a href="#optional" class="md-nav__link">
+    Optional类型
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#conclusion" class="md-nav__link">
-    Conclusion
+  <a href="#union" class="md-nav__link">
+    Union类型
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    总结
   </a>
   
 </li>
@@ -552,10 +566,11 @@
   
 
 
-<h1 id="differences-between-codon-and-standard-python">Differences between Codon and standard Python</h1>
-<p>Python is generally referred to as a dynamic language that generates relatively high-level virtual machine instructions (byte code) at compile time. When Python programs are executed, they are still interpreted by a specialized virtual machine program. The advantage is that the code is very flexible and supports dynamic modification of the code, but the disadvantage is that the execution speed is slow. The earliest Python smart contract was executed in this way. Later, in order to solve the problem of slow Python code execution speed, many solutions emerged, including tools like Codon that directly compile Python code into machine code that can be executed directly. The Python smart contract later adopted the Codon compiler, which not only preserves the ease of use of writing Python code, but also ensures execution speed. However, due to the different compilation methods, the generated target files are different, and the execution method is different from that of standard Python programs, so there are some differences in compatibility between Codon compiled Python code and standard Python code. Let's introduce these differences below to avoid confusion when writing smart contracts.</p>
-<h2 id="support-for-method-overloading-in-classes">Support for method overloading in classes</h2>
-<p>For example:</p>
+<h1 id="python">和标准Python的差异</h1>
+<h2 id="pythonpython">Python智能合约代码和标准Python代码的差异</h2>
+<p>一般Python都被称作一种动态语言，特点是编译时生成的是比较高级的虚拟机指令(byte code)，执行Python程序的时候是还需通过专门的虚拟机程序解释执行的。好处是代码非常灵活，支持对代码的动态修改，缺点是执行速度慢。最早的Python智能合约即是通过这种方式执行的。后来为了解决Python代码执行速度慢的问题，出现了许多解决方案，其中就有像Codon这里的将Python代码直接编译成可以直接执行的机器码(binary code)这样的工具。Python智能合约后面也采用了Codon编译器，从而在保留写Python的代码的易用性的同时，又能保证执行速度。但是由于编译的方式不同，生成的目标文件不相同，被执行的方式和标准的Python程序不同，所以用Codon编译的Python代码在在兼容性上和标准的Python代码有一些差异。下面来介绍一下这些差异，避免在写智能合约的时候产生疑惑。</p>
+<h2 id="_1">类的方法支持重载</h2>
+<p>例如：</p>
 <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Action</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 <span class="o">...</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">account</span><span class="p">:</span> <span class="n">Name</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="n">Name</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">bytes</span><span class="o">=</span><span class="nb">bytes</span><span class="p">()):</span>
@@ -564,12 +579,12 @@
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">account</span><span class="p">:</span> <span class="n">Name</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="n">Name</span><span class="p">,</span> <span class="n">permission_account</span><span class="p">:</span> <span class="n">Name</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">bytes</span><span class="o">=</span><span class="nb">bytes</span><span class="p">()):</span>
         <span class="o">...</span>
 </code></pre></div>
-<p>Note that module functions do not currently support function overloading.</p>
-<h2 id="the-int-type-in-codon-is-a-64-bit-signed-integer">The <code>int</code> type in Codon is a 64-bit signed integer</h2>
-<p>This is different from infinite integers in Python. One reason is that Codon is a static type language, so the code is compiled directly into machine code (binary code), rather than virtual machine instructions (byte code). Another reason is for efficiency reasons.</p>
-<h2 id="numeric-types-in-codon">Numeric types in Codon</h2>
-<p>In addition to the <code>int</code> type, Codon also has these numeric types: <code>byte</code>, <code>i8</code>, <code>u8</code>, <code>i16</code>, <code>u16</code>, <code>i32</code>, <code>u32</code>, <code>u64</code>, <code>u128</code>, <code>u256</code>, which are used to represent 64-bit unsigned integers, 128-bit unsigned integers, and 256-bit unsigned integers respectively.</p>
-<p>To convert other data types into <code>byte</code>, you can use methods like the ones below:</p>
+<p>但是要注意的是，模块的函数暂时不支持函数重载</p>
+<h2 id="codonint64">Codon里的int类型是64位有符号整数</h2>
+<p>这和Python里的无限整数不同，一个原因是Codon是静态类型语言，代码会直接编译成机器码(binary code)，而不是虚拟机指令(byte code)。另外一个原因是出于效率的考虑。</p>
+<h2 id="codon">Codon的数值类型</h2>
+<p>除了int类型外，Codon中还有这几种数值类型：<code>byte</code>, <code>i8</code>, <code>u8</code>, <code>i16</code>, <code>u16</code>, <code>i32</code>, <code>u32</code>, <code>u64</code>, <code>u128</code>, <code>u256</code>,分别用来表示64位的无符号整数，128位的无符号整数，256位的无符号整数</p>
+<p>如果要将其它数据类型转换成<code>byte</code>，可以用例如下面的方法：</p>
 <div class="highlight"><pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="n">byte</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
 <span class="n">b</span> <span class="o">=</span> <span class="n">byte</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="mi">123</span><span class="n">i8</span><span class="p">))</span>
 <span class="n">c</span> <span class="o">=</span> <span class="n">byte</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="mi">123</span><span class="n">u8</span><span class="p">))</span>
@@ -577,60 +592,61 @@
 <span class="n">e</span> <span class="o">=</span> <span class="n">byte</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="mi">123</span><span class="n">u32</span><span class="p">))</span>
 <span class="n">f</span> <span class="o">=</span> <span class="n">byte</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="mi">123</span><span class="n">u64</span><span class="p">))</span>
 </code></pre></div>
-<h2 id="string-type">String type</h2>
-<p>Codon currently uses ASCII strings, unlike Python's unicode strings.</p>
-<h2 id="dictionary-type">Dictionary type</h2>
-<p>The dictionary type in Codon does not maintain the insertion order, unlike Python, which has supported this since version 3.6.</p>
-<h2 id="optional-type">Optional type</h2>
-<p>The Codon compiler provides support for the Optional type.</p>
+<h2 id="_2">字符串类型</h2>
+<p>Codon 目前使用的是 ASCII 字符串，不像 Python 的 unicode 字符串。</p>
+<h2 id="_3">字典类型</h2>
+<p>Codon 的字典类型不保留插入顺序，不像Python那样从3.6开始支持。</p>
+<h2 id="optional">Optional类型</h2>
+<p>Codon的编译器提供了对Optional类型的支持</p>
 <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">A</span><span class="p">:</span>
     <span class="n">value</span><span class="p">:</span> <span class="n">u64</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
 <span class="n">a</span> <span class="o">=</span> <span class="n">Optional</span><span class="p">(</span><span class="n">A</span><span class="p">(</span><span class="mi">123</span><span class="n">u64</span><span class="p">))</span>
 </code></pre></div>
-<p>To check if the Optional type is None:</p>
+<p>判断Optional类型是否为None:</p>
 <div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="n">a</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
     <span class="n">do_something</span><span class="p">()</span>
 </code></pre></div>
-<p>To get the value in an Optional type:</p>
+<p>获取Optional类型中的值:</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">internal.types.optional</span> <span class="kn">import</span> <span class="n">unwrap</span>
 <span class="n">a1</span> <span class="o">=</span> <span class="n">unwrap</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
 </code></pre></div>
-<p>There is an even simpler way:</p>
+<p>还有种更简单的办法：</p>
 <div class="highlight"><pre><span></span><code><span class="n">a1</span><span class="p">:</span> <span class="n">A</span> <span class="o">=</span> <span class="n">a</span>
 </code></pre></div>
-<p>Here, during compilation, the compiler checks if the type is Optional, and if so, calls unwrap(a), which throws an exception if a is None.</p>
-<p>Methods or member variables in an Optional class can be accessed directly:</p>
+<p>这里，编译器在编译的时候会判断是否为Optional类型，是则会调用unwrap(a)，unwrap函数在a为None的时候会抛出异常。</p>
+<p>Optional中的类的方法或者成员变量可以直接访问：</p>
 <div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
 </code></pre></div>
-<p>In fact, it is equivalent to:</p>
+<p>实际上调用的是：
 <div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
-</code></pre></div>
-<h2 id="union-type">Union type</h2>
-<p>Union type is a built-in type in Codon. In Python, there is no built-in support for Union, so the usage is different. In Codon, the data structure of Union is not defined in Codon's code and is implemented internally by the compiler, but can be represented by the following class definition:</p>
+</code></pre></div></p>
+<h2 id="union">Union类型</h2>
+<p>Union类型是Codon的内置类型，在Python中，并没有对Union提供内置类型支持，所以要注意用法的不同。
+在Codon中，Union的数据结构并不定义在codon的代码里，是编译器内部实现的，但是可以用下面的类的定义来表示：
 <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Union</span><span class="p">:</span>
     <span class="n">tag</span><span class="p">:</span> <span class="n">byte</span>
     <span class="n">value</span><span class="p">:</span> <span class="nb">object</span>
-</code></pre></div>
-<p>Usage:</p>
-<div class="highlight"><pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">](</span><span class="mi">123</span><span class="p">)</span>
+</code></pre></div></p>
+<p>用法：</p>
+<p><div class="highlight"><pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">](</span><span class="mi">123</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">==</span> <span class="mi">123</span><span class="p">)</span>
 </code></pre></div>
-<p>Output: True</p>
-<p>If the type is incorrect, an exception will be thrown directly, as shown in the following code:</p>
+输出：True</p>
+<p>如果类型不对，则会直接抛出异常，如下面的代码会抛出异常：</p>
 <div class="highlight"><pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">](</span><span class="mi">123</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">==</span> <span class="s2">&quot;ABC&quot;</span><span class="p">)</span>
 </code></pre></div>
-<p>Note that in Codon, if the types in the union are only different in their order, they are considered the same type.</p>
-<p>The following code outputs: True</p>
+<p>要注意的是，Codon里的Union，如果union里的类型只是顺序不同，那么视为同一个种类型。</p>
+<p>如下面的代码输出为：True</p>
 <div class="highlight"><pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">](</span><span class="mi">123</span><span class="p">)</span>
 <span class="n">b</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">](</span><span class="s2">&quot;abc&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]))</span>
 </code></pre></div>
-<h2 id="conclusion">Conclusion</h2>
-<p>Finally, it is necessary to explain that the executable file generated after compiling the smart contract code in Python is in WebAssembly instructions, with a file extension of .wasm. In reality, there is no CPU that can execute WebAssembly instructions directly, and in most cases, they also need to be interpreted by a specialized virtual machine program during execution, but only binary code is executed. This is similar to Python's virtual machine executing byte code, but WebAssembly's instructions are more low-level than Python's virtual machine instructions, and are safer, so they can be easily translated into system machine code to optimize execution speed by JIT or AOT. In the EOS blockchain, smart contract code can be executed by <code>eosvm</code> using JIT, or by interpreting the instructions, or even by compiling into machine code that can be directly executed by the system. Python's virtual machine instructions are difficult to execute completely by JIT and AOT.</p>
-<p>In conclusion, Python smart contracts use a static compiler like Codon, sacrificing some compatibility with standard Python code for the benefit of significantly improved execution speed and security.</p>
+<h2 id="_4">总结</h2>
+<p>最后，特别需要说明一下的是，编译智能合约代码后生成的可执行文件的指令是WebAssembly指令，文件的扩展名为.wasm。在现实中，并没有能直接执行WebAssembly指令的CPU存在，在执行的时候，大多数情况也是需要通过专门的虚拟机程序来解释执行的，但是执行的是binary code而已。这和Python的虚拟机执行byte code的方式类似，但是WebAssebmly的指令由于是binary code，比Python的虚拟机指令更加低级，安全性也更好，可以比较方便的翻译成系统的机器码，所以可以比较方便的以JIT或者AOT的方式先编译成所在的系统指令后再执行，从而优化执行的速度。在EOS区块链中，智能合约的代码既可以通过<code>eosvm</code>以JIT的方式来执行的，也可以通过对指令解释执行的方式来执行，甚至还可以先编译成系统可直接执行的机器码来运行。而Python的虚拟机指令则很难被完全的以JIT和AOT的方式来执行。</p>
+<p>一句话来作下总结：Python智能合约采用Codon这种静态编译器，牺牲了一部分的和标准Python代码的兼容性为代价，以获得运行速度和安全性上的大幅的提升。</p>
 
 
 
@@ -668,10 +684,10 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.19047be9.min.js"></script>
+      <script src="../../assets/javascripts/bundle.19047be9.min.js"></script>
       
     
   
@@ -679,7 +695,7 @@
 console.log("hello, plugin")
 var mkdocs_chat_plugin = {'param': '', 'docs_chat_endpoint': 'https://docs.uuos.io:8443/chat'};
 </script>
-<script src="../js/chat-dialog-plugin.js"></script>
+<script src="../../js/chat-dialog-plugin.js"></script>
 
         </body>
 </html>
