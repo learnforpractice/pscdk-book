@@ -884,7 +884,7 @@
     <span class="k">def</span> <span class="nf">__size__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">__size__</span><span class="p">()</span>
 </code></pre></div>
-<p><code>primary</code>类是一个模版类，如果<code>primary</code>的<code>value</code>的类型不为<code>u64</code>，则类型必须实现<code>get_primary</code>方法，<code>primary</code>类还有一个<code>__call__</code>方法，以方便获取<code>value</code>。在后面会讲到的多重索引中，还会用到二极索引，二极索引的类型必须是<code>database.secondary</code></p>
+<p><code>primary</code>类是一个模版类，如果<code>primary</code>的<code>value</code>的类型不为<code>u64</code>，则类型必须实现<code>get_primary</code>方法，<code>primary</code>类还有一个<code>__call__</code>方法，以方便获取<code>value</code>。在后面会讲到的多重索引中，还会用到二级索引，二级索引的类型必须是<code>database.secondary</code></p>
 <p>编译：</p>
 <div class="highlight"><pre><span></span><code>python-contract<span class="w"> </span>build<span class="w"> </span>db_example/db_example5.codon
 </code></pre></div>
@@ -1283,6 +1283,55 @@
 
 
 
+
+  <h2 id="__comments">评论</h2>
+  <!-- Insert generated snippet here -->
+  <script src="https://giscus.app/client.js"
+    data-repo="learnforpractice/pscdk-book"
+    data-repo-id="R_kgDOJOzESQ"
+    data-category="Q&A"
+    data-category-id="DIC_kwDOJOzESc4CWVU9"
+    data-mapping="url"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="preferred_color_scheme"
+    data-lang="en"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+
+  <!-- Synchronize Giscus theme with palette -->
+  <script>
+    var giscus = document.querySelector("script[src*=giscus]")
+
+    /* Set palette on initial load */
+    var palette = __md_get("__palette")
+    if (palette && typeof palette.color === "object") {
+      var theme = palette.color.scheme === "slate" ? "dark" : "light"
+      giscus.setAttribute("data-theme", theme) 
+    }
+
+    /* Register event handlers after documented loaded */
+    document.addEventListener("DOMContentLoaded", function() {
+      var ref = document.querySelector("[data-md-component=palette]")
+      ref.addEventListener("change", function() {
+        var palette = __md_get("__palette")
+        if (palette && typeof palette.color === "object") {
+          var theme = palette.color.scheme === "slate" ? "dark" : "light"
+
+          /* Instruct Giscus to change theme */
+          var frame = document.querySelector(".giscus-frame")
+          frame.contentWindow.postMessage(
+            { giscus: { setConfig: { theme } } },
+            "https://giscus.app"
+          )
+        }
+      })
+    })
+  </script>
 
                 
               </article>

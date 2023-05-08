@@ -556,12 +556,14 @@
 <h2 id="what-is-a-smart-contract">What is a Smart Contract</h2>
 <p>A smart contract is code that can be executed on the blockchain.</p>
 <h2 id="what-is-a-python-smart-contract">What is a Python Smart Contract</h2>
-<p>A Python smart contract is code written in Python that can be executed on the blockchain. In the case of the EOS network, Python smart contract code is compiled into a binary file called WebAssembly, which can be published to the blockchain and executed, achieving a certain operation effect.</p>
+<p>A Python smart contract is code written in Python that can be executed on the blockchain. In the case of the EOS network, Python smart contract code is compiled into a WebAssembly binary file, which can be published to the blockchain and executed, achieving a certain operation effect.</p>
 <h2 id="what-is-eos">What is EOS</h2>
 <p>EOS is a blockchain network based on the Delegated Proof of Stake (DPOS) consensus algorithm. The main network was officially launched on June 8, 2018. The EOS mainnet is controlled by 21 Block Producers (BP) who are elected by voting and are responsible for packaging transactions into blocks.</p>
 <h2 id="account">Account</h2>
 <p>On the EOS blockchain, each transaction entity is represented by an account. The account name is a <code>name</code> structure, which will be discussed in the next section. The account structure in C++ code is relatively complex.</p>
-<p>The following is a brief overview of the information contained in an account, based on the information returned by EOS's <code>get_account</code> RPC interface:</p>
+<p>The following is a brief overview of the information contained in an account, based on the information returned by EOS's <code>get_account</code> RPC interface with the following code:</p>
+<div class="highlight"><pre><span></span><code><span class="n">eosapi</span><span class="o">.</span><span class="n">get_account</span><span class="p">(</span><span class="n">testaccount</span><span class="p">)</span>
+</code></pre></div>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w"> </span><span class="nt">&quot;account_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;testaccount&quot;</span><span class="p">,</span>
 <span class="w"> </span><span class="nt">&quot;head_block_num&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">301601062</span><span class="p">,</span>
@@ -800,6 +802,55 @@ The meanings of the member variables in the structure are explained as follows:<
 
 
 
+
+  <h2 id="__comments">Comments</h2>
+  <!-- Insert generated snippet here -->
+  <script src="https://giscus.app/client.js"
+    data-repo="learnforpractice/pscdk-book"
+    data-repo-id="R_kgDOJOzESQ"
+    data-category="Q&A"
+    data-category-id="DIC_kwDOJOzESc4CWVU9"
+    data-mapping="url"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="preferred_color_scheme"
+    data-lang="en"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+
+  <!-- Synchronize Giscus theme with palette -->
+  <script>
+    var giscus = document.querySelector("script[src*=giscus]")
+
+    /* Set palette on initial load */
+    var palette = __md_get("__palette")
+    if (palette && typeof palette.color === "object") {
+      var theme = palette.color.scheme === "slate" ? "dark" : "light"
+      giscus.setAttribute("data-theme", theme) 
+    }
+
+    /* Register event handlers after documented loaded */
+    document.addEventListener("DOMContentLoaded", function() {
+      var ref = document.querySelector("[data-md-component=palette]")
+      ref.addEventListener("change", function() {
+        var palette = __md_get("__palette")
+        if (palette && typeof palette.color === "object") {
+          var theme = palette.color.scheme === "slate" ? "dark" : "light"
+
+          /* Instruct Giscus to change theme */
+          var frame = document.querySelector(".giscus-frame")
+          frame.contentWindow.postMessage(
+            { giscus: { setConfig: { theme } } },
+            "https://giscus.app"
+          )
+        }
+      })
+    })
+  </script>
 
                 
               </article>
