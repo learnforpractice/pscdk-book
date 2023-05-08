@@ -1,3 +1,7 @@
+---
+comments: true
+---
+
 # 发布智能合约
 
 ```python

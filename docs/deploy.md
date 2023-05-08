@@ -1,3 +1,7 @@
+---
+comments: true
+---
+
 # Deploying a Smart Contract
 
 ```python

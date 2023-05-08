@@ -1,3 +1,7 @@
+---
+comments: true
+---
+
 # 常用智能合约函数
 
 ## is_account

@@ -1,3 +1,7 @@
+---
+comments: true
+---
+
 # 预备知识
 
 ## 什么是智能合约
@@ -15,6 +19,10 @@ EOS是一个基于代理权益证明(DPOS - Delegated Proof of Stake)共识算�
 在EOS区块链上，每一个交易的实体用一个账号表示。账号的名称是一个name结构，在下一节会讲到。账号在C++代码里表示的结构比较复杂。
 
 下面是通过EOS的`get_account`RPC接口返回的信息来分集一下包含在账号里的信息：
+
+```python
+eosapi.get_account(testaccount)
+```
 
 ```json
 {

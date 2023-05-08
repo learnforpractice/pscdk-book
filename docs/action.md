@@ -1,3 +1,7 @@
+---
+comments: true
+---
+
 # Inline Actions
 
 In smart contracts, you can also initiate an action, which is called an inline action. Keep in mind that actions are asynchronous, meaning that the contract code corresponding to the inline action will only be called after the entire code is executed. If the called contract does not define the relevant action or the account does not have a deployed contract, the call will have no effect, but no exception will be thrown. Empty inline actions like these are not entirely useless, as they can serve as on-chain logs for application queries.

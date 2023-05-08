@@ -1,3 +1,7 @@
+---
+comments: true
+---
+
 # ABI类型详解
 
 # 内置的ABI类型

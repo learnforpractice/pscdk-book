@@ -1,3 +1,7 @@
+---
+comments: true
+---
+
 # HelloWorld
 
 ## 第一个智能合约

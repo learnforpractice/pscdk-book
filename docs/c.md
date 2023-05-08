@@ -1,3 +1,7 @@
+---
+comments: true
+---
+
 # Codon代码与C代码的相互调用
 
 ## 在Codon代码里调用C代码

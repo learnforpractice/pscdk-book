@@ -1,3 +1,7 @@
+---
+comments: true
+---
+
 # Development Environment Setup
 
 ## Installing the Required Tools for Compilation and Testing

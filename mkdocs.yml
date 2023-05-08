@@ -30,3 +30,4 @@ markdown_extensions:
       alternate_style: true
 theme:
   name: material
+  custom_dir: overrides

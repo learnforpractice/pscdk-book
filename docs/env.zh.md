@@ -1,3 +1,7 @@
+---
+comments: true
+---
+
 # 开发环境搭建
 
 ## 安装编译和测试所需的工具
@@ -10,10 +14,22 @@
 python3 -m pip install pscdk
 ```
 
-安装ipyeos包，这个包用于测试智能合约
+安装ipyeos，这个包用于测试智能合约或者运行一个节点
 
 ```bash
 python3 -m pip install ipyeos
+```
+
+安装ipyeos，这个包用于测试智能合约
+
+```bash
+python3 -m pip install ipyeos
+```
+
+安装pyeoskit，这个工具用于和节点进行交互，如发布智能合约等等：
+
+```bash
+python3 -m pip install pyeoskit
 ```
 
 ### 在Docker中运行

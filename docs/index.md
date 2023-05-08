@@ -1,6 +1,14 @@
+---
+comments: true
+---
+
+---
+comments: true
+---
+
 # Table of Contents
 
-* [Prior Knowledge](prelude.md)
+* [Prerequisite Knowledge](prelude.md)
 * [Development Environment](env.md)
 * [HelloWorld](helloworld.md)
 * [Deploy](deploy.md)

@@ -1,3 +1,7 @@
+---
+comments: true
+---
+
 # 和标准Python的差异
 
 ## Python智能合约代码和标准Python代码的差异

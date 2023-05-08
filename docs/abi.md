@@ -1,3 +1,7 @@
+---
+comments: true
+---
+
 # Explanation of ABI types
 
 ## Built-in ABI types

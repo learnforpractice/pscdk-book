@@ -1,3 +1,7 @@
+---
+comments: true
+---
+
 # The `require_recipient` function
 
 The function is declared in `action.codon` as follows:

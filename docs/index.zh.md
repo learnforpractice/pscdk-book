@@ -1,3 +1,7 @@
+---
+comments: true
+---
+
 # 目录
 
 * [预备知识](prelude.md)

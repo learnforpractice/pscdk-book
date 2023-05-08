@@ -1,3 +1,7 @@
+---
+comments: true
+---
+
 # Differences between Codon and standard Python
 
 Python is generally referred to as a dynamic language that generates relatively high-level virtual machine instructions (byte code) at compile time. When Python programs are executed, they are still interpreted by a specialized virtual machine program. The advantage is that the code is very flexible and supports dynamic modification of the code, but the disadvantage is that the execution speed is slow. The earliest Python smart contract was executed in this way. Later, in order to solve the problem of slow Python code execution speed, many solutions emerged, including tools like Codon that directly compile Python code into machine code that can be executed directly. The Python smart contract later adopted the Codon compiler, which not only preserves the ease of use of writing Python code, but also ensures execution speed. However, due to the different compilation methods, the generated target files are different, and the execution method is different from that of standard Python programs, so there are some differences in compatibility between Codon compiled Python code and standard Python code. Let's introduce these differences below to avoid confusion when writing smart contracts.

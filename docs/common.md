@@ -1,3 +1,7 @@
+---
+comments: true
+---
+
 # Common Smart Contract Functions
 
 ## is_account

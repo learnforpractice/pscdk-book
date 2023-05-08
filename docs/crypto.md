@@ -1,3 +1,7 @@
+---
+comments: true
+---
+
 # Cryptographic functions
 
 Cryptographic functions are defined in `crypto.codon`. They can be imported like the following code:

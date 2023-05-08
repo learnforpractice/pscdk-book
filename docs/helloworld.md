@@ -1,3 +1,7 @@
+---
+comments: true
+---
+
 # HelloWorld
 
 ## The First Smart Contract

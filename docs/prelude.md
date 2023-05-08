@@ -1,3 +1,7 @@
+---
+comments: true
+---
+
 # Prerequisite Knowledge
 
 ## What is a Smart Contract
@@ -6,7 +10,7 @@ A smart contract is code that can be executed on the blockchain.
 
 ## What is a Python Smart Contract
 
-A Python smart contract is code written in Python that can be executed on the blockchain. In the case of the EOS network, Python smart contract code is compiled into a binary file called WebAssembly, which can be published to the blockchain and executed, achieving a certain operation effect.
+A Python smart contract is code written in Python that can be executed on the blockchain. In the case of the EOS network, Python smart contract code is compiled into a WebAssembly binary file, which can be published to the blockchain and executed, achieving a certain operation effect.
 
 ## What is EOS
 
@@ -16,7 +20,11 @@ EOS is a blockchain network based on the Delegated Proof of Stake (DPOS) consens
 
 On the EOS blockchain, each transaction entity is represented by an account. The account name is a `name` structure, which will be discussed in the next section. The account structure in C++ code is relatively complex.
 
-The following is a brief overview of the information contained in an account, based on the information returned by EOS's `get_account` RPC interface:
+The following is a brief overview of the information contained in an account, based on the information returned by EOS's `get_account` RPC interface with the following code:
+
+```python
+eosapi.get_account(testaccount)
+```
 
 ```json
 {

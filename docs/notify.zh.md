@@ -1,3 +1,7 @@
+---
+comments: true
+---
+
 # require_recipient函数
 
 函数在`action.codon`中的声明如下：
