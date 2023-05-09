@@ -27,14 +27,6 @@ https://github.com/learnforpractice/pscdk-book/tree/main/examples/frontend
 ```
 
 <style>
-    body {
-        margin: 0;
-        min-height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: #f0f0f0;
-    }
     form {
         background-color: #f0f0f0;
         padding: 20px;
