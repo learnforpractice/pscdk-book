@@ -402,6 +402,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#api_1" class="md-nav__link">
     利用API来对表进行二重索引查询
   </a>
@@ -409,14 +416,14 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     数据库的实现原理
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     总结
   </a>
   
@@ -573,6 +580,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#api_1" class="md-nav__link">
     利用API来对表进行二重索引查询
   </a>
@@ -580,14 +594,14 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     数据库的实现原理
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     总结
   </a>
   
@@ -1057,7 +1071,7 @@
 </code></pre></div>
 <p>简述下过程：</p>
 <ul>
-<li><code>it_sec = idx_table_b.find(2u64)</code>查找二级索引的值<code>2u64</code>，返回的<code>SecondarIterator</code>类型的<code>it_sec</code>。</li>
+<li><code>it_sec = idx_table_b.find(2u64)</code>查找二级索引的值<code>2u64</code>，返回的<code>SecondaryIterator</code>类型的<code>it_sec</code>。</li>
 <li><strong><code>table.update_b(it_sec, 22u64, payer)</code></strong> 这行代码即是实现了更新的功能，更新<code>b</code>的值为<code>22u64</code></li>
 <li><code>it_sec = idx_table_b.find(22u64)</code>查找新的二级索引</li>
 <li><code>assert assert it_sec.is_ok()</code>用于确认二级索引是否更新成功</li>
@@ -1085,13 +1099,18 @@
     <span class="n">item</span> <span class="o">=</span> <span class="n">A</span><span class="p">(</span><span class="mi">1</span><span class="n">u64</span><span class="p">,</span> <span class="mi">2</span><span class="n">u64</span><span class="p">,</span> <span class="mi">3</span><span class="n">u128</span><span class="p">)</span>
     <span class="n">table</span><span class="o">.</span><span class="n">store</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">payer</span><span class="p">)</span>
 
-    <span class="n">it</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="mi">1</span><span class="n">u64</span><span class="p">)</span>
-    <span class="n">table</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">it</span><span class="p">)</span>
-
     <span class="n">idx_table_b</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">get_idx_table_by_b</span><span class="p">()</span>
     <span class="n">it_sec</span> <span class="o">=</span> <span class="n">idx_table_b</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="mi">2</span><span class="n">u64</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">it_sec</span><span class="o">.</span><span class="n">primary</span> <span class="o">==</span> <span class="mi">1</span><span class="n">u64</span>
+    <span class="n">it</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">it_sec</span><span class="o">.</span><span class="n">primary</span><span class="p">)</span>
+    <span class="n">table</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">it</span><span class="p">)</span>
+
+    <span class="n">it_sec</span> <span class="o">=</span> <span class="n">idx_table_b</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="mi">2</span><span class="n">u64</span><span class="p">)</span>
     <span class="k">assert</span> <span class="ow">not</span> <span class="n">it_sec</span><span class="o">.</span><span class="n">is_ok</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;done!&#39;</span><span class="p">)</span>
 </code></pre></div>
+<p>在这个例子中，首先调用<code>store</code>存储主索引为<code>1u64</code>，以及第一个二级索引的值为<code>2u64</code>的对象A，然后查询<code>2u64</code>，确认<code>it_sec.primary == 1u64</code>，然后调用<code>remove</code>删除主索引为<code>1u64</code>的数据，最后再次查询<code>2u64</code>，确认元素已经被删除。</p>
+<h2 id="_5"></h2>
 <div class="highlight"><pre><span></span><code><span class="c1"># test.py</span>
 <span class="k">def</span> <span class="nf">test_remove_secondary</span><span class="p">():</span>
     <span class="n">t</span> <span class="o">=</span> <span class="n">init_db_test</span><span class="p">(</span><span class="s1">&#39;db_example8&#39;</span><span class="p">)</span>
@@ -1136,7 +1155,7 @@
 <div class="highlight"><pre><span></span><code>++++++++++[{&#39;a&#39;: 1, &#39;b&#39;: 22, &#39;c&#39;: &#39;3&#39;}, {&#39;a&#39;: 111, &#39;b&#39;: 222, &#39;c&#39;: &#39;333&#39;}]
 ++++++++++[{&#39;a&#39;: 1, &#39;b&#39;: 22, &#39;c&#39;: &#39;3&#39;}, {&#39;a&#39;: 111, &#39;b&#39;: 222, &#39;c&#39;: &#39;333&#39;}]
 </code></pre></div>
-<h2 id="_5">数据库的实现原理</h2>
+<h2 id="_6">数据库的实现原理</h2>
 <p>上面的代码演示了数据库的基本操作，但是实际上在编译的过程中，有些方法和类是由编译器生成的，下面的代码把这些由编译器生成的代码展示了出来。</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># db_example6.codon</span>
 <span class="kn">from</span> <span class="nn">chain.contract</span> <span class="kn">import</span> <span class="n">Contract</span>
@@ -1292,7 +1311,7 @@
 <div class="highlight"><pre><span></span><code>++++++it.primary: 1
 ++++++it.primary: 1
 </code></pre></div>
-<h2 id="_6">总结</h2>
+<h2 id="_7">总结</h2>
 <p>EOS中的数据存储功能是比较完善的，并且有二级索引表的功能，使数据的查找变得非常的灵活。本章详细讲解了数据库表的增，删，改，查的代码。本章的内容较多，需要花点时间好好消化。可以在示例的基础上作些发动，并且尝试运行以增加对这章知识点的理解。</p>
 
 

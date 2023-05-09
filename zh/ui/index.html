@@ -494,7 +494,7 @@
 <p>手机版本通过应用商店搜索<code>Anchor Wallet</code>进行下载</p>
 <p>下载后导入EOS的账号的私钥即可使用，桌面版本也支持ledger硬件钱包</p>
 <h2 id="_2">网页代码</h2>
-<p>下面这个html代码只依赖于<code>anchor.js</code>，可以在本地打开直接运行，完整的代码可以从下面的链接中找到，也可以直接尝试下面这个例子，需要事先安装好了anchor钱包并且已经导入了账号私钥：</p>
+<p>下面这个html代码只依赖于<code>anchor.min.js</code>，可以在本地打开直接运行，完整的代码可以从下面的链接中找到，也可以直接尝试下面这个例子，需要事先安装好了anchor钱包并且已经导入了账号私钥：</p>
 <div class="highlight"><pre><span></span><code>https://github.com/learnforpractice/pscdk-book/tree/main/examples/frontend
 </code></pre></div>
 <style>
@@ -523,7 +523,7 @@
         margin-right: 10px;
     }
 </style>
-<script src="../../assets/javascripts/anchor.js"></script>
+<script src="../../assets/javascripts/anchor.min.js"></script>
 <script>
 const eos = {
     chainId: 'aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906',
@@ -659,7 +659,7 @@ window.wallet = wallet;
 <span class="w">            </span><span class="k">margin-right</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;./anchor.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;./anchor.min.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span><span class="w">    </span>
 <span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">eos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="nx">chainId</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906&#39;</span><span class="p">,</span>
@@ -789,7 +789,7 @@ window.wallet = wallet;
 <span class="kd">var</span><span class="w"> </span><span class="nx">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">user</span><span class="p">.</span><span class="nx">session</span><span class="p">.</span><span class="nx">transact</span><span class="p">(</span><span class="nx">args</span><span class="p">);</span>
 </code></pre></div>
 <p>总结：</p>
-<p>上面的例子中<code>anchor.js</code>是用的用到了正面的库经过webpack后生成的代码</p>
+<p>上面的例子中<code>anchor.min.js</code>是用的用到了正面的库经过webpack后生成的代码</p>
 <div class="highlight"><pre><span></span><code>https://github.com/greymass/ual-anchor
 </code></pre></div>
 <p>上面的例子只是演示了一个最简单的例子，在实际的例子中，可能要用到<code>vuejs</code>,<code>react</code>,<code>svelte</code>等应用框架，这些框架都可以直接使用<code>ual-anchor</code>这个库。实现也可以参考一下的示例：</p>
