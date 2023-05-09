@@ -20,7 +20,7 @@ https://github.com/greymass/anchor/tags
 
 ## 网页代码
 
-下面这个html代码只依赖于`anchor.js`，可以在本地打开直接运行，完整的代码可以从下面的链接中找到，也可以直接尝试下面这个例子，需要事先安装好了anchor钱包并且已经导入了账号私钥：
+下面这个html代码只依赖于`anchor.min.js`，可以在本地打开直接运行，完整的代码可以从下面的链接中找到，也可以直接尝试下面这个例子，需要事先安装好了anchor钱包并且已经导入了账号私钥：
 
 
 ```
@@ -54,7 +54,7 @@ https://github.com/learnforpractice/pscdk-book/tree/main/examples/frontend
         margin-right: 10px;
     }
 </style>
-<script src="../../assets/javascripts/anchor.js"></script>
+<script src="../../assets/javascripts/anchor.min.js"></script>
 <script>
 const eos = {
     chainId: 'aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906',
@@ -192,7 +192,7 @@ window.wallet = wallet;
             margin-right: 10px;
         }
     </style>
-    <script src="./anchor.js"></script>
+    <script src="./anchor.min.js"></script>
     <script>    
     const eos = {
       chainId: 'aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906',
@@ -339,7 +339,7 @@ var ret = await user.session.transact(args);
 
 总结：
 
-上面的例子中`anchor.js`是用的用到了正面的库经过webpack后生成的代码
+上面的例子中`anchor.min.js`是用的用到了正面的库经过webpack后生成的代码
 
 ```
 https://github.com/greymass/ual-anchor
