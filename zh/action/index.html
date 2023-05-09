@@ -639,22 +639,22 @@ debug 2023-03-28T12:35:48.177 thread-0  controller.cpp:2444           clear_expi
     }
 
     /* Register event handlers after documented loaded */
-    document.addEventListener("DOMContentLoaded", function() {
-      var ref = document.querySelector("[data-md-component=palette]")
-      ref.addEventListener("change", function() {
-        var palette = __md_get("__palette")
-        if (palette && typeof palette.color === "object") {
-          var theme = palette.color.scheme === "slate" ? "dark" : "light"
+    // document.addEventListener("DOMContentLoaded", function() {
+    //   var ref = document.querySelector("[data-md-component=palette]")
+    //   ref.addEventListener("change", function() {
+    //     var palette = __md_get("__palette")
+    //     if (palette && typeof palette.color === "object") {
+    //       var theme = palette.color.scheme === "slate" ? "dark" : "light"
 
-          /* Instruct Giscus to change theme */
-          var frame = document.querySelector(".giscus-frame")
-          frame.contentWindow.postMessage(
-            { giscus: { setConfig: { theme } } },
-            "https://giscus.app"
-          )
-        }
-      })
-    })
+    //       /* Instruct Giscus to change theme */
+    //       var frame = document.querySelector(".giscus-frame")
+    //       frame.contentWindow.postMessage(
+    //         { giscus: { setConfig: { theme } } },
+    //         "https://giscus.app"
+    //       )
+    //     }
+    //   })
+    // })
   </script>
 
                 
