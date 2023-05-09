@@ -1,5 +1,5 @@
 site_name: Python Smart Contracts Development Cook Book
-repo_url: https://github.com/uuosio/pscdk
+repo_url: https://github.com/learnforpractice/pscdk-book
 plugins:
     - i18n:
         default_language: en
@@ -17,6 +17,7 @@ nav:
     - 'env.md'
     - 'helloworld.md'
     - 'deploy.md'
+    - 'ui.md'
     - 'action.md'
     - 'notify.md'
     - 'database.md'

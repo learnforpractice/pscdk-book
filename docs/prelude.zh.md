@@ -21,7 +21,7 @@ EOS是一个基于代理权益证明(DPOS - Delegated Proof of Stake)共识算�
 下面是通过EOS的`get_account`RPC接口返回的信息来分集一下包含在账号里的信息：
 
 ```python
-eosapi.get_account(testaccount)
+eosapi.get_account("testaccount")
 ```
 
 ```json

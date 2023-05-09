@@ -23,7 +23,7 @@ On the EOS blockchain, each transaction entity is represented by an account. The
 The following is a brief overview of the information contained in an account, based on the information returned by EOS's `get_account` RPC interface with the following code:
 
 ```python
-eosapi.get_account(testaccount)
+eosapi.get_account("testaccount")
 ```
 
 ```json
