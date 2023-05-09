@@ -20,11 +20,144 @@ https://github.com/greymass/anchor/tags
 
 ## 网页代码
 
-正面这个网页是可以直接运行的代码,完整的代码可以从正面的链接中找到：
+下面这个html代码只依赖于`anchor.js`，可以在本地打开直接运行，完整的代码可以从下面的链接中找到，也可以直接尝试下面这个例子，需要事先安装好了anchor钱包并且已经导入了账号私钥：
+
 
 ```
 https://github.com/learnforpractice/pscdk-book/tree/main/examples/frontend
 ```
+
+
+<style>
+    body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #f0f0f0;
+    }
+    form {
+        background-color: #f0f0f0;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    }
+    form button {
+        color: #ffffff; /* You can change this color to your desired foreground color */
+        background-color: #007bff;
+        padding: 5px 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    form button:hover {
+        background-color: #0056b3;
+    }
+    form label {
+        display: inline-block;
+        width: 100px; /* Adjust this value to set the desired width for the labels */
+        text-align: left;
+        margin-right: 10px;
+    }
+</style>
+<script src="../../assets/javascripts/anchor.js"></script>
+<script>
+const eos = {
+    chainId: 'aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906',
+    rpcEndpoints: [{
+    protocol: 'https',
+    host: 'eos.greymass.com',
+    port: '443',
+    }]
+}
+
+var wallet = new anchor.Anchor([eos], {
+    // Required: The app name, required by anchor-link. Short string identifying the app
+    appName: 'my-example-dapp',
+    // Optional: a @greymass/eosio APIClient from eosjs for both your use and to use internally in UAL
+    // client = new APIClient({ provider }),
+    // Optional: a JsonRpc instance from eosjs for your use
+    // rpc: new JsonRpc(),
+    // Optional: The callback service URL to use, defaults to https://cb.anchor.link
+    service: 'https://cb.anchor.link',
+    // Optional: A flag to disable the Greymass Fuel integration, defaults to false (enabled)
+    // disableGreymassFuel: false,
+    // Optional: An account name on a Fuel enabled network to specify as the referrer for transactions
+    // fuelReferrer: 'teamgreymass',
+    // Optional: A flag to enable the Anchor Link UI request status, defaults to true (enabled)
+    // requestStatus: true,  
+    // Optional: Whether or not to verify the signatures during user login, defaults to false (disabled)
+    // verifyProofs: false,
+});
+
+(async () => {
+    await wallet.init();
+})();
+
+window.wallet = wallet;
+</script>
+<form>
+    <button type="button" id="login">Login</button>
+    <button type="button" id="logout">Logout</button><br><br>
+    <label for="account">To Account:</label>
+    <input type="text" id="account" name="account"><br><br>
+    <label for="amount">Quantity:</label>
+    <input type="number" id="amount" name="amount" value="0.0001"><label>EOS</label><br><br>
+    <label for="memo">Memo:</label>
+    <input type="text" id="memo" name="memo" value="hello world"><br><br>
+    <button type="button" id="transfer">Transfer</button>
+</form>
+
+<script>
+    document.getElementById("transfer").addEventListener("click", async function() {
+        if (wallet.users.length == 0) {
+            alert("please login first!");
+            return;
+        }
+        let account = document.getElementById("account").value;
+        let amount = document.getElementById("amount").value;
+        let memo = document.getElementById("memo").value;
+
+        console.log("Account: " + account);
+        console.log("Amount: " + amount);
+        console.log("Memo: " + memo);
+
+        amount = parseFloat(amount).toFixed(4);
+        let user = wallet.users[0];
+        let args = {
+            action: {
+                account: 'eosio.token',
+                name: 'transfer',
+                authorization: [user.session.auth],
+                data: {
+                    from: user.session.auth.actor,
+                    to: account,
+                    quantity: `${amount} EOS`,
+                    memo: memo,
+                },
+            },
+        }
+        var ret = await user.session.transact(args);
+        console.log(ret);
+        alert(JSON.stringify(ret.processed));
+    });
+
+    document.getElementById("login").addEventListener("click", async function() {
+        if (wallet.users.length == 0) {
+            var ret = await wallet.login();
+            console.log("++++++:", ret);
+        }
+    });
+
+    document.getElementById("logout").addEventListener("click", async function() {
+        if (wallet.users.length != 0) {
+            await wallet.logout();
+        }
+    });
+</script>
+
 
 ```html
 <!DOCTYPE html>
@@ -32,7 +165,7 @@ https://github.com/learnforpractice/pscdk-book/tree/main/examples/frontend
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>发送Token示例</title>
+    <title>简单的HTML界面</title>
     <style>
         body {
             margin: 0;
@@ -43,14 +176,32 @@ https://github.com/learnforpractice/pscdk-book/tree/main/examples/frontend
             background-color: #f0f0f0;
         }
         form {
-            background-color: #ffffff;
+            background-color: #f0f0f0;
             padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
+        form button {
+            color: #ffffff; /* You can change this color to your desired foreground color */
+            background-color: #007bff;
+            padding: 5px 10px;
+            border: none;
             border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+    
+        form button:hover {
+            background-color: #0056b3;
+        }
+        form label {
+            display: inline-block;
+            width: 100px; /* Adjust this value to set the desired width for the labels */
+            text-align: left;
+            margin-right: 10px;
         }
     </style>
     <script src="./anchor.js"></script>
-    <script>
+    <script>    
     const eos = {
       chainId: 'aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906',
       rpcEndpoints: [{
@@ -78,7 +229,7 @@ https://github.com/learnforpractice/pscdk-book/tree/main/examples/frontend
       // Optional: Whether or not to verify the signatures during user login, defaults to false (disabled)
       // verifyProofs: false,
     });
-
+    
     (async () => {
         await wallet.init();
     })();
