@@ -494,15 +494,145 @@
 <p>手机版本通过应用商店搜索<code>Anchor Wallet</code>进行下载</p>
 <p>下载后导入EOS的账号的私钥即可使用，桌面版本也支持ledger硬件钱包</p>
 <h2 id="_2">网页代码</h2>
-<p>正面这个网页是可以直接运行的代码,完整的代码可以从正面的链接中找到：</p>
+<p>下面这个html代码只依赖于<code>anchor.js</code>，可以在本地打开直接运行，完整的代码可以从下面的链接中找到，也可以直接尝试下面这个例子，需要事先安装好了anchor钱包并且已经导入了账号私钥：</p>
 <div class="highlight"><pre><span></span><code>https://github.com/learnforpractice/pscdk-book/tree/main/examples/frontend
 </code></pre></div>
+<style>
+    body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #f0f0f0;
+    }
+    form {
+        background-color: #f0f0f0;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    }
+    form button {
+        color: #ffffff; /* You can change this color to your desired foreground color */
+        background-color: #007bff;
+        padding: 5px 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    form button:hover {
+        background-color: #0056b3;
+    }
+    form label {
+        display: inline-block;
+        width: 100px; /* Adjust this value to set the desired width for the labels */
+        text-align: left;
+        margin-right: 10px;
+    }
+</style>
+<script src="../../assets/javascripts/anchor.js"></script>
+<script>
+const eos = {
+    chainId: 'aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906',
+    rpcEndpoints: [{
+    protocol: 'https',
+    host: 'eos.greymass.com',
+    port: '443',
+    }]
+}
+
+var wallet = new anchor.Anchor([eos], {
+    // Required: The app name, required by anchor-link. Short string identifying the app
+    appName: 'my-example-dapp',
+    // Optional: a @greymass/eosio APIClient from eosjs for both your use and to use internally in UAL
+    // client = new APIClient({ provider }),
+    // Optional: a JsonRpc instance from eosjs for your use
+    // rpc: new JsonRpc(),
+    // Optional: The callback service URL to use, defaults to https://cb.anchor.link
+    service: 'https://cb.anchor.link',
+    // Optional: A flag to disable the Greymass Fuel integration, defaults to false (enabled)
+    // disableGreymassFuel: false,
+    // Optional: An account name on a Fuel enabled network to specify as the referrer for transactions
+    // fuelReferrer: 'teamgreymass',
+    // Optional: A flag to enable the Anchor Link UI request status, defaults to true (enabled)
+    // requestStatus: true,  
+    // Optional: Whether or not to verify the signatures during user login, defaults to false (disabled)
+    // verifyProofs: false,
+});
+
+(async () => {
+    await wallet.init();
+})();
+
+window.wallet = wallet;
+</script>
+<form>
+    <button type="button" id="login">Login</button>
+    <button type="button" id="logout">Logout</button><br><br>
+    <label for="account">To Account:</label>
+    <input type="text" id="account" name="account"><br><br>
+    <label for="amount">Quantity:</label>
+    <input type="number" id="amount" name="amount" value="0.0001"><label>EOS</label><br><br>
+    <label for="memo">Memo:</label>
+    <input type="text" id="memo" name="memo" value="hello world"><br><br>
+    <button type="button" id="transfer">Transfer</button>
+</form>
+
+<script>
+    document.getElementById("transfer").addEventListener("click", async function() {
+        if (wallet.users.length == 0) {
+            alert("please login first!");
+            return;
+        }
+        let account = document.getElementById("account").value;
+        let amount = document.getElementById("amount").value;
+        let memo = document.getElementById("memo").value;
+
+        console.log("Account: " + account);
+        console.log("Amount: " + amount);
+        console.log("Memo: " + memo);
+
+        amount = parseFloat(amount).toFixed(4);
+        let user = wallet.users[0];
+        let args = {
+            action: {
+                account: 'eosio.token',
+                name: 'transfer',
+                authorization: [user.session.auth],
+                data: {
+                    from: user.session.auth.actor,
+                    to: account,
+                    quantity: `${amount} EOS`,
+                    memo: memo,
+                },
+            },
+        }
+        var ret = await user.session.transact(args);
+        console.log(ret);
+        alert(JSON.stringify(ret.processed));
+    });
+
+    document.getElementById("login").addEventListener("click", async function() {
+        if (wallet.users.length == 0) {
+            var ret = await wallet.login();
+            console.log("++++++:", ret);
+        }
+    });
+
+    document.getElementById("logout").addEventListener("click", async function() {
+        if (wallet.users.length != 0) {
+            await wallet.logout();
+        }
+    });
+</script>
+
 <div class="highlight"><pre><span></span><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
 <span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;zh-CN&quot;</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;UTF-8&quot;</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;viewport&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;width=device-width, initial-scale=1.0&quot;</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>发送Token示例<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>简单的HTML界面<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
 <span class="w">        </span><span class="nt">body</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
@@ -513,14 +643,32 @@
 <span class="w">            </span><span class="k">background-color</span><span class="p">:</span><span class="w"> </span><span class="mh">#f0f0f0</span><span class="p">;</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">        </span><span class="nt">form</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="k">background-color</span><span class="p">:</span><span class="w"> </span><span class="mh">#ffffff</span><span class="p">;</span>
+<span class="w">            </span><span class="k">background-color</span><span class="p">:</span><span class="w"> </span><span class="mh">#f0f0f0</span><span class="p">;</span>
 <span class="w">            </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="kt">px</span><span class="p">;</span>
+<span class="w">            </span><span class="k">border-radius</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+<span class="w">            </span><span class="k">box-shadow</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">2</span><span class="kt">px</span><span class="w"> </span><span class="mi">5</span><span class="kt">px</span><span class="w"> </span><span class="nb">rgba</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.5</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="nt">form</span><span class="w"> </span><span class="nt">button</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="mh">#ffffff</span><span class="p">;</span><span class="w"> </span><span class="c">/* You can change this color to your desired foreground color */</span>
+<span class="w">            </span><span class="k">background-color</span><span class="p">:</span><span class="w"> </span><span class="mh">#007bff</span><span class="p">;</span>
+<span class="w">            </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="kt">px</span><span class="w"> </span><span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+<span class="w">            </span><span class="k">border</span><span class="p">:</span><span class="w"> </span><span class="kc">none</span><span class="p">;</span>
 <span class="w">            </span><span class="k">border-radius</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="kt">px</span><span class="p">;</span>
-<span class="w">            </span><span class="k">box-shadow</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">2</span><span class="kt">px</span><span class="w"> </span><span class="mi">5</span><span class="kt">px</span><span class="w"> </span><span class="nb">rgba</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.1</span><span class="p">);</span>
+<span class="w">            </span><span class="k">cursor</span><span class="p">:</span><span class="w"> </span><span class="kc">pointer</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="nt">form</span><span class="w"> </span><span class="nt">button</span><span class="p">:</span><span class="nd">hover</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">background-color</span><span class="p">:</span><span class="w"> </span><span class="mh">#0056b3</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="nt">form</span><span class="w"> </span><span class="nt">label</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">display</span><span class="p">:</span><span class="w"> </span><span class="kc">inline-block</span><span class="p">;</span>
+<span class="w">            </span><span class="k">width</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="kt">px</span><span class="p">;</span><span class="w"> </span><span class="c">/* Adjust this value to set the desired width for the labels */</span>
+<span class="w">            </span><span class="k">text-align</span><span class="p">:</span><span class="w"> </span><span class="kc">left</span><span class="p">;</span>
+<span class="w">            </span><span class="k">margin-right</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;./anchor.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span><span class="w">    </span>
 <span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">eos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="nx">chainId</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906&#39;</span><span class="p">,</span>
 <span class="w">      </span><span class="nx">rpcEndpoints</span><span class="o">:</span><span class="w"> </span><span class="p">[{</span>
