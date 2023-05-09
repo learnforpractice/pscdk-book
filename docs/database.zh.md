@@ -581,7 +581,7 @@ assert it_sec.primary == 1u64
 
 简述下过程：
 
-- `it_sec = idx_table_b.find(2u64)`查找二级索引的值`2u64`，返回的`SecondarIterator`类型的`it_sec`。
+- `it_sec = idx_table_b.find(2u64)`查找二级索引的值`2u64`，返回的`SecondaryIterator`类型的`it_sec`。
 - **`table.update_b(it_sec, 22u64, payer)`** 这行代码即是实现了更新的功能，更新`b`的值为`22u64`
 - `it_sec = idx_table_b.find(22u64)`查找新的二级索引
 - `assert assert it_sec.is_ok()`用于确认二级索引是否更新成功
@@ -615,13 +615,20 @@ def test_remove(self):
     item = A(1u64, 2u64, 3u128)
     table.store(item, payer)
 
-    it = table.find(1u64)
-    table.remove(it)
-
     idx_table_b = table.get_idx_table_by_b()
     it_sec = idx_table_b.find(2u64)
+    assert it_sec.primary == 1u64
+    it = table.find(it_sec.primary)
+    table.remove(it)
+
+    it_sec = idx_table_b.find(2u64)
     assert not it_sec.is_ok()
+    print('done!')
 ```
+
+在这个例子中，首先调用`store`存储主索引为`1u64`，以及第一个二级索引的值为`2u64`的对象A，然后查询`2u64`，确认`it_sec.primary == 1u64`，然后调用`remove`删除主索引为`1u64`的数据，最后再次查询`2u64`，确认元素已经被删除。
+
+## 
 
 ```python
 # test.py

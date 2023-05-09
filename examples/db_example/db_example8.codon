@@ -56,10 +56,12 @@ class MyContract(Contract):
         item = A(1u64, 2u64, 3u128)
         table.store(item, payer)
 
-        it = table.find(1u64)
-        table.remove(it)
-
         idx_table_b = table.get_idx_table_by_b()
         it_sec = idx_table_b.find(2u64)
-        assert not it_sec.is_ok()
+        assert it_sec.primary == 1u64
+        it = table.find(it_sec.primary)
+        table.remove(it)
 
+        it_sec = idx_table_b.find(2u64)
+        assert not it_sec.is_ok()
+        print('done!')

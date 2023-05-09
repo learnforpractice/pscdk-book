@@ -4,7 +4,7 @@ comments: true
 
 # Interact with Digital Wallets
 
-After the smart contract is written, the next step is to design a user interface to interact with the smart contract. To call the on-chain smart contract from the user interface, you must use digital wallet software, like the example demonstrated using the `Anchor` wallet to send transactions. The implemented feature is to call the `transfer` Action of the smart contract in the `eosio.token` account.
+After the smart contract is written, the next step is to design a user interface to interact with the smart contract. To call the on-chain smart contract from the user interface, you must use digital wallet software. The following demo will show you how to call the `transfer` Action of the smart contract in the `eosio.token` account.
 
 ## Download Anchor Wallet
 

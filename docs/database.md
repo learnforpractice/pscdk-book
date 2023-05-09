@@ -578,7 +578,7 @@ assert it_sec.primary == 1u64
 
 Brief description of the process:
 
-- `it_sec = idx_table_b.find(2u64)`: Looks up the value `2u64` in the binary index and returns the `SecondarIterator` type result `it_sec`.
+- `it_sec = idx_table_b.find(2u64)`: Looks up the value `2u64` in the binary index and returns the `SecondaryIterator` type result `it_sec`.
 - `table.update_b(it_sec, 22u64, payer)`: This line of code implements the update function and updates the value of `b` to `22u64`.
 - `it_sec = idx_table_b.find(22u64)`: Looks up the new binary index.
 - `assert assert it_sec.is_ok()`: Used to confirm whether the binary index has been updated successfully.
@@ -602,7 +602,7 @@ def update_b(self, it: SecondaryIterator, b: u64, payer: Name) -> None:
 
 From the code, it is apparent that when updating the binary index, the corresponding value in the primary index will also be updated.
 
-## Deleting the binary index
+## Deleting the secondary index
 
 ```python
 @action('testremove')
@@ -612,13 +612,18 @@ def test_remove(self):
     item = A(1u64, 2u64, 3u128)
     table.store(item, payer)
 
-    it = table.find(1u64)
-    table.remove(it)
-
     idx_table_b = table.get_idx_table_by_b()
     it_sec = idx_table_b.find(2u64)
+    assert it_sec.primary == 1u64
+    it = table.find(it_sec.primary)
+    table.remove(it)
+
+    it_sec = idx_table_b.find(2u64)
     assert not it_sec.is_ok()
+    print('done!')
 ```
+
+In this example, first call `store` to store an object A with the primary index of `1u64` and the first secondary index value of `2u64`. Then query `2u64` and confirm that `it_sec.primary == 1u64`. Next, call `remove` to delete the data with the primary index of `1u64`. Finally, query `2u64` again and confirm that the element has been deleted.
 
 ```python
 # test.py
