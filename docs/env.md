@@ -44,6 +44,7 @@ Create a test project using the following command:
 
 ```bash
 python-contract init mytest
+cd mytest
 ```
 
 Compile the contract code:

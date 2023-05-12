@@ -20,12 +20,6 @@ python3 -m pip install pscdk
 python3 -m pip install ipyeos
 ```
 
-安装ipyeos，这个包用于测试智能合约
-
-```bash
-python3 -m pip install ipyeos
-```
-
 安装pyeoskit，这个工具用于和节点进行交互，如发布智能合约等等：
 
 ```bash
@@ -58,6 +52,7 @@ docker run --entrypoint bash -it --rm -v "$(pwd)":/work -w /work -t ghcr.io/uuos
 
 ```bash
 python-contract init mytest
+cd mytest
 ```
 
 编译合约代码：
