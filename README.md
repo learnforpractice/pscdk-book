@@ -14,6 +14,7 @@ Python Smart Contracts Development Cook Book
 * [Database](docs/database.md)
 * [Crypto Functions](docs/crypto.md)
 * [Commonly Functions](docs/common.md)
+* [Call C/C++ Code](docs/callc.md)
 * [Codon](docs/codon.md)
 
 ## 目录
@@ -28,6 +29,7 @@ Python Smart Contracts Development Cook Book
 * [数据库的操作](docs/database.zh.md)
 * [密码学相关函数](docs/crypto.zh.md)
 * [常用智能合约函数](docs/common.zh.md)
+* [Codon代码里调用C/C++代码](docs/callc.zh.md)
 * [和标准Python的差异](docs/codon.zh.md)
 
 ## Examples

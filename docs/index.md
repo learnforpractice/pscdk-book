@@ -1,11 +1,3 @@
----
-comments: true
----
-
----
-comments: true
----
-
 # Table of Contents
 
 * [Prerequisite Knowledge](prelude.md)

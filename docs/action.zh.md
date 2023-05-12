@@ -194,8 +194,6 @@ debug 2023-03-28T12:35:48.177 thread-0  controller.cpp:2444           clear_expi
 可以看到，这里先调用了`test`这个在Transaction里指定了的action，然后调用了`test2`这个Action，但是`test2`这个action并没有在Transaction里指定，而是在智能合约里发起的。另外，还通过`test3`演示了如何发送带多个参数的action.
 
 
-
-
 需要注意的是，为了在合约中能够调用inline action，需要在账号的`active`权限中添加`eosio.code`这个虚拟权限,在测试代码中，通过下面的函数来将`eosio.code`这个虚拟权限添加到`active`权限中。
 
 ```python
