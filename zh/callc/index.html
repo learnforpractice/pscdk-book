@@ -9,13 +9,17 @@
       
       
       
+        <link rel="prev" href="../abi/">
+      
+      
+        <link rel="next" href="../codon/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.4">
     
     
       
-        <title>Codon代码与C代码的相互调用 - Python Smart Contracts Development Cook Book</title>
+        <title>Codon代码里调用C/C++代码 - Python Smart Contracts Development Cook Book</title>
       
     
     
@@ -65,7 +69,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#codonc" class="md-skip">
+        <a href="#codoncc" class="md-skip">
           跳转至
         </a>
       
@@ -100,7 +104,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Codon代码与C代码的相互调用
+              Codon代码里调用C/C++代码
             
           </span>
         </div>
@@ -118,7 +122,7 @@
             <ul class="md-select__list">
               
                 <li class="md-select__item">
-                  <a href="../../c/" hreflang="en" class="md-select__link">
+                  <a href="../../callc/" hreflang="en" class="md-select__link">
                     English
                   </a>
                 </li>
@@ -366,6 +370,31 @@
 
   
   
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Codon代码里调用C/C++代码
+      </a>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
   
     <li class="md-nav__item">
       <a href="../codon/" class="md-nav__link">
@@ -395,28 +424,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#codonc_1" class="md-nav__link">
-    在Codon代码里调用C代码
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ccodon" class="md-nav__link">
-    在C代码里调用Codon代码
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -433,15 +440,102 @@
   
 
 
-<h1 id="codonc">Codon代码与C代码的相互调用</h1>
-<h2 id="codonc_1">在Codon代码里调用C代码</h2>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">C</span> <span class="kn">import</span> <span class="n">say_hello</span><span class="p">(</span><span class="n">cobj</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+<h1 id="codoncc">Codon代码里调用C/C++代码</h1>
+<p>首先，用下面的命令安装<code>eoscdt</code>用于编译c或者是c++代码:</p>
+<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-U<span class="w"> </span>eoscdt
 </code></pre></div>
-<h2 id="ccodon">在C代码里调用Codon代码</h2>
-<div class="highlight"><pre><span></span><code><span class="nd">@export</span>
-<span class="k">def</span> <span class="nf">print_string</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="n">cobj</span><span class="err">，</span> <span class="nb">len</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">strlen</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
+<p>下面以编译<code>say_hello</code>函数为例，演示如何编译代码：</p>
+<p>如果源文件是c代码，例如：</p>
+<p>say_hello.c</p>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">prints</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">s</span><span class="p">);</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">say_hello</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">prints</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+<span class="p">}</span>
 </code></pre></div>
+<p>则用下面的命令编译：</p>
+<div class="highlight"><pre><span></span><code>cdt-cc<span class="w"> </span>-c<span class="w"> </span>-o<span class="w"> </span>say_hello.o<span class="w"> </span>say_hello.c
+</code></pre></div>
+<p>如果源文件是c++代码，例如：</p>
+<p>say_hello.cpp</p>
+<div class="highlight"><pre><span></span><code><span class="k">extern</span><span class="w"> </span><span class="s">&quot;C&quot;</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">prints</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">s</span><span class="p">);</span>
+
+<span class="k">extern</span><span class="w"> </span><span class="s">&quot;C&quot;</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">say_hello</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">prints</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>则用下面的命令编译：</p>
+<div class="highlight"><pre><span></span><code>cdt-cpp<span class="w"> </span>-c<span class="w"> </span>-o<span class="w"> </span>say_hello.o<span class="w"> </span>say_hello.cpp
+</code></pre></div>
+<p>注意，如果是C++文件，则需在函数前面加上<code>extern "C"</code>，否则会在链接时出错。</p>
+<p>接下来看下如何在codon中使用<code>say_hello</code>这个函数：</p>
+<p>test.codon</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">chain.contract</span> <span class="kn">import</span> <span class="n">Contract</span>
+
+<span class="kn">from</span> <span class="nn">C</span> <span class="kn">import</span> <span class="n">say_hello</span><span class="p">(</span><span class="n">cobj</span><span class="p">);</span>
+
+<span class="nd">@contract</span><span class="p">(</span><span class="n">main</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">MyContract</span><span class="p">(</span><span class="n">Contract</span><span class="p">):</span>
+
+    <span class="nd">@action</span><span class="p">(</span><span class="s2">&quot;sayhello&quot;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">say_hello</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">say_hello</span><span class="p">(</span><span class="s2">&quot;hello, world&quot;</span><span class="o">.</span><span class="n">c_str</span><span class="p">())</span>
+</code></pre></div>
+<p>这里的</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">C</span> <span class="kn">import</span> <span class="n">say_hello</span><span class="p">(</span><span class="n">cobj</span><span class="p">);</span>
+</code></pre></div>
+<p>即告诉codon编译器要链接<code>say_hello</code>这个c函数。所有的C/C++里的指针类型都对应Codon里的<code>cobj</code>类型</p>
+<p>下面的这行代码即是调用c函数，c_str返回的值是<code>cobj</code>类型, 相当于C/C++里的<code>const char *</code>类型</p>
+<div class="highlight"><pre><span></span><code><span class="n">say_hello</span><span class="p">(</span><span class="s2">&quot;abc&quot;</span><span class="o">.</span><span class="n">c_str</span><span class="p">())</span>
+</code></pre></div>
+<p>接下来用下面的命令来编译：</p>
+<div class="highlight"><pre><span></span><code>python-contract<span class="w"> </span>build<span class="w"> </span>--linker-flags<span class="o">=</span><span class="s2">&quot;say_hello.o&quot;</span><span class="w"> </span>test.codon
+</code></pre></div>
+<p>这里的<code>--linker-flags="say_hello.o</code>即是告诉编译器要链接<code>say_hello.o</code>这个obj文件</p>
+<p>接下来用下面的代码来测试：</p>
+<p>test.py</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">ipyeos</span> <span class="kn">import</span> <span class="n">eos</span>
+<span class="kn">from</span> <span class="nn">ipyeos</span> <span class="kn">import</span> <span class="n">chaintester</span>
+<span class="kn">from</span> <span class="nn">ipyeos.chaintester</span> <span class="kn">import</span> <span class="n">ChainTester</span>
+<span class="kn">from</span> <span class="nn">ipyeos</span> <span class="kn">import</span> <span class="n">log</span>
+<span class="kn">from</span> <span class="nn">pyeoskit</span> <span class="kn">import</span> <span class="n">eosapi</span>
+
+<span class="n">chaintester</span><span class="o">.</span><span class="n">chain_config</span><span class="p">[</span><span class="s1">&#39;contracts_console&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">eos</span><span class="o">.</span><span class="n">set_log_level</span><span class="p">(</span><span class="s2">&quot;default&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">log</span><span class="o">.</span><span class="n">get_logger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="n">dir_name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">init_test</span><span class="p">(</span><span class="n">contract_name</span><span class="p">):</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">ChainTester</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">wasm_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dir_name</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">contract_name</span><span class="si">}</span><span class="s1">.wasm&#39;</span><span class="p">)</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">wasm_file</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">code</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+    <span class="n">abi_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dir_name</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">contract_name</span><span class="si">}</span><span class="s1">.abi&#39;</span><span class="p">)</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">abi_file</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">abi</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+    <span class="n">t</span><span class="o">.</span><span class="n">deploy_contract</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="n">code</span><span class="p">,</span> <span class="n">abi</span><span class="p">)</span>
+    <span class="n">t</span><span class="o">.</span><span class="n">produce_block</span><span class="p">()</span>
+    <span class="n">eos</span><span class="o">.</span><span class="n">set_log_level</span><span class="p">(</span><span class="s2">&quot;default&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">t</span>
+
+<span class="k">def</span> <span class="nf">test_say_hello</span><span class="p">():</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">init_test</span><span class="p">(</span><span class="s1">&#39;test&#39;</span><span class="p">)</span>
+    <span class="n">ret</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">push_action</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;sayhello&#39;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;hello&#39;</span><span class="p">:</span> <span class="s1">&#39;active&#39;</span><span class="p">})</span>
+    <span class="n">t</span><span class="o">.</span><span class="n">produce_block</span><span class="p">()</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;++++++++++</span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;elapsed&#39;</span><span class="p">])</span>
+</code></pre></div>
+<p>运行测试：</p>
+<div class="highlight"><pre><span></span><code>ipyeos<span class="w"> </span>-m<span class="w"> </span>pytest<span class="w"> </span>-s<span class="w"> </span>-x<span class="w"> </span>test.py<span class="w"> </span>-k<span class="w"> </span>test_say_hello
+</code></pre></div>
+<p>会有下面的输出：</p>
+<div class="highlight"><pre><span></span><code>hello, world
+</code></pre></div>
+<p><a href="https://github.com/learnforpractice/pscdk-book/tree/main/examples/callc">完整代码链接</a></p>
 
 
 

@@ -420,6 +420,21 @@
   
   
     <li class="md-nav__item">
+      <a href="../callc/" class="md-nav__link">
+        Codon代码里调用C/C++代码
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../codon/" class="md-nav__link">
         和标准Python的差异
       </a>
@@ -554,16 +569,20 @@
 ./build.sh
 </code></pre></div>
 <p>执行成功后会生成<code>mycontract.wasm</code>和<code>mycontract.abi</code>这两个文件</p>
-<p>可以运行下面的命令进行测试：
+<p>可以运行下面的命令进行测试：</p>
 <div class="highlight"><pre><span></span><code>./test.sh
-</code></pre></div></p>
-<p>会输出以下信息：</p>
+</code></pre></div>
+<p>会以绿色字体输出以下的的文字信息：</p>
 <div class="highlight"><pre><span></span><code>[(hello,sayhello)-&gt;hello]: CONSOLE OUTPUT BEGIN =====================
 hello  alice
 
 [(hello,sayhello)-&gt;hello]: CONSOLE OUTPUT END   =====================
 </code></pre></div>
-<p>确认测试成功后即可在现有的项目的基础上进行智能合约的开发。</p>
+<p>需要注意的是上面的输出是调用信息，如果是在主网上运行,<code>print</code>函数输出的内容是看不到的，如果是运行在测试网，则在运行nodeos命令的时候要加上参数<code>--contracts-console</code>才能在返回中看调试输出。</p>
+<p>在上面测试代码中，则是直接通过下面的这行代码来输出调试信息：</p>
+<div class="highlight"><pre><span></span><code><span class="n">chaintester</span><span class="o">.</span><span class="n">chain_config</span><span class="p">[</span><span class="s1">&#39;contracts_console&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+</code></pre></div>
+<p>另外，在发布版本的代码中，为了提高程序运行的性能，也不应该包含print代码。</p>
 
 
 
