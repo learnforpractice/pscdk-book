@@ -22,7 +22,7 @@ class MultiIndexA(MultiIndexBase[A]):
     idx_c: IdxTable128
 
     def __init__(self, code: Name, scope: Name, table: Name):
-        super().__init__(code, scope, table)
+        MultiIndexBase[A].__init__(code, scope, table)
         idx_table_base = table.value & 0xfffffffffffffff0u64
         self.idx_b = IdxTable64(0, code, scope, Name(idx_table_base | u64(0)))
         self.idx_c = IdxTable128(1, code, scope, Name(idx_table_base | u64(1)))

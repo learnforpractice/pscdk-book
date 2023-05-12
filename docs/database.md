@@ -14,6 +14,10 @@ Storage is the simplest function of the database, and the following code demonst
 
 ```python
 # db_example1.codon
+
+from chain.database import primary
+from chain.contract import Contract
+
 @table("mytable")
 class A(object):
     a: primary[u64]
@@ -121,7 +125,7 @@ def test_update():
     t.produce_block()
     logger.info("++++++++++%s\n", ret['elapsed'])
 
-    ret = t.push_action('hello', 'test', {'value': 'hello, alice'}, {'hello': 'active'})
+    ret = t.push_action('hello', 'testupdate', {'value': 'hello, alice'}, {'hello': 'active'})
     t.produce_block()
 ```
 
@@ -139,7 +143,7 @@ ipyeos -m pytest -s -x test.py -k test_update
 
 When calling
 ```python
-t.push_action('hello', 'test', {'value': 'hello, bob'}, {'hello': 'active'})
+t.push_action('hello', 'testupdate', {'value': 'hello, bob'}, {'hello': 'active'})
 ```
 
 it will output:
@@ -148,9 +152,9 @@ it will output:
 +++++store value: hello, bob
 ```
 
-When calling
+When calling `testupdate` action again:
 ```python
-t.push_action('hello', 'test', {'value': 'hello, alice'}, {'hello': 'active'})
+t.push_action('hello', 'testupdate', {'value': 'hello, alice'}, {'hello': 'active'})
 ```
 
 it will output:
@@ -725,7 +729,7 @@ class MultiIndexA(MultiIndexBase[A]):
     idx_c: IdxTable128
 
     def __init__(self, code: Name, scope: Name, table: Name):
-        super().__init__(code, scope, table)
+        MultiIndexBase[A].__init__(code, scope, table)
         idx_table_base = table.value & 0xfffffffffffffff0u64
         self.idx_b = IdxTable64(0, code, scope, Name(idx_table_base | u64(0)))
         self.idx_c = IdxTable128(1, code, scope, Name(idx_table_base | u64(1)))
