@@ -24,6 +24,7 @@ nav:
     - 'crypto.md'
     - 'common.md'
     - 'abi.md'
+    - 'callc.md'
     - 'codon.md'
 markdown_extensions:
   - pymdownx.superfences

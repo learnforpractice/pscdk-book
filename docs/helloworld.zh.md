@@ -98,11 +98,12 @@ cd mycontract
 执行成功后会生成`mycontract.wasm`和`mycontract.abi`这两个文件
 
 可以运行下面的命令进行测试：
+
 ```
 ./test.sh
 ```
 
-会输出以下信息：
+会以绿色字体输出以下的的文字信息：
 
 ```
 [(hello,sayhello)->hello]: CONSOLE OUTPUT BEGIN =====================
@@ -111,4 +112,12 @@ hello  alice
 [(hello,sayhello)->hello]: CONSOLE OUTPUT END   =====================
 ```
 
-确认测试成功后即可在现有的项目的基础上进行智能合约的开发。
+需要注意的是上面的输出是调用信息，如果是在主网上运行,`print`函数输出的内容是看不到的，如果是运行在测试网，则在运行nodeos命令的时候要加上参数`--contracts-console`才能在返回中看调试输出。
+
+在上面测试代码中，则是直接通过下面的这行代码来输出调试信息：
+
+```python
+chaintester.chain_config['contracts_console'] = True
+```
+
+另外，在发布版本的代码中，为了提高程序运行的性能，也不应该包含print代码。

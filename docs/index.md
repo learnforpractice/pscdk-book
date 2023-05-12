@@ -18,4 +18,5 @@ comments: true
 * [Database](database.md)
 * [Crypto Functions](crypto.md)
 * [Commonly Functions](common.md)
+* [Call C/C++ Code](callc.md)
 * [Codon](codon.md)

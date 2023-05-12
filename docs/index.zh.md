@@ -14,4 +14,5 @@ comments: true
 * [数据库的操作](database.md)
 * [密码学相关函数](crypto.md)
 * [常用智能合约函数](common.md)
+* [Codon代码里调用C/C++代码](callc.zh.md)
 * [和标准Python的差异](codon.md)
