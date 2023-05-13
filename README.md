@@ -1,6 +1,6 @@
 # pscdk-book
 
-Python Smart Contracts Development Cook Book
+[Python Smart Contracts Development Cook Book](https://learnforpractice.github.io/pscdk-book)
 
 ## Table of Contents
 
