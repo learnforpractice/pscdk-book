@@ -75,10 +75,10 @@ python-contract build mytest.codon
 ipyeos -m pytest -s -x test.py -k test_hello
 ```
 
-或者直接运行测试脚本`test.sh`：
+如果你的系统是Windows，或者MacOSX M1/M2，可以用docker运行上面的命令：
 
 ```bash
-./test.sh
+docker run --entrypoint ipyeos -it -v$(pwd):/develop -w /develop -t ghcr.io/uuosio/ipyeos -m pytest -s -x test.py -k test_hello
 ```
 
 正常会看到输出：

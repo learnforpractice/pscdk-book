@@ -67,6 +67,12 @@ To test the installation environment, run:
 ipyeos -m pytest -s -x test.py -k test_hello
 ```
 
+or run the following command if you are using docker:
+
+```bash
+docker run --entrypoint ipyeos -it -v$(pwd):/develop -w /develop -t ghcr.io/uuosio/ipyeos -m pytest -s -x test.py -k test_hello
+```
+
 Alternatively, you can run the test script `test.sh` directly:
 
 ```bash
