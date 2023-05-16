@@ -381,15 +381,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#operation-of-the-binary-index" class="md-nav__link">
-    Operation of the binary index
+  <a href="#operation-of-the-secondary-indexes" class="md-nav__link">
+    Operation of the secondary indexes
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#updating-the-binary-index" class="md-nav__link">
-    Updating the binary index
+  <a href="#updating-the-secondary-indexes" class="md-nav__link">
+    Updating the secondary indexes
   </a>
   
 </li>
@@ -567,15 +567,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#operation-of-the-binary-index" class="md-nav__link">
-    Operation of the binary index
+  <a href="#operation-of-the-secondary-indexes" class="md-nav__link">
+    Operation of the secondary indexes
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#updating-the-binary-index" class="md-nav__link">
-    Updating the binary index
+  <a href="#updating-the-secondary-indexes" class="md-nav__link">
+    Updating the secondary indexes
   </a>
   
 </li>
@@ -916,7 +916,7 @@
     <span class="k">def</span> <span class="nf">__size__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">__size__</span><span class="p">()</span>
 </code></pre></div>
-<p>The <code>primary</code> class is a template class. If the type of the <code>value</code> in <code>primary</code> is not of type <code>u64</code>, then the type must implement the <code>get_primary</code> method. The <code>primary</code> class also has a <code>__call__</code> method to facilitate access to <code>value</code>. In the following discussion of multiple indexes, binary indexes will also be used. The type of the binary index must be <code>database.secondary</code>.</p>
+<p>The <code>primary</code> class is a template class. If the type of the <code>value</code> in <code>primary</code> is not of type <code>u64</code>, then the type must implement the <code>get_primary</code> method. The <code>primary</code> class also has a <code>__call__</code> method to facilitate access to <code>value</code>. In the following discussion of multiple indexes, secondary indexes will also be used. The type of the secondary index must be <code>database.secondary</code>.</p>
 <p>Compilation:
 <div class="highlight"><pre><span></span><code>python-contract<span class="w"> </span>build<span class="w"> </span>db_example/db_example5.codon
 </code></pre></div></p>
@@ -946,7 +946,7 @@
 <p>Output:
 <div class="highlight"><pre><span></span><code>++++++=rows: {&#39;rows&#39;: [{&#39;a&#39;: 1, &#39;b&#39;: &#39;alice&#39;}, {&#39;a&#39;: 3, &#39;b&#39;: &#39;bob&#39;}, {&#39;a&#39;: 5, &#39;b&#39;: &#39;john&#39;}], &#39;more&#39;: False, &#39;next_key&#39;: &#39;&#39;}
 </code></pre></div></p>
-<h2 id="operation-of-the-binary-index">Operation of the binary index</h2>
+<h2 id="operation-of-the-secondary-indexes">Operation of the secondary indexes</h2>
 <p>First, consider the following example:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># db_example7.codon</span>
 
@@ -989,11 +989,11 @@
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;++++++it.primary:&quot;</span><span class="p">,</span> <span class="n">it</span><span class="o">.</span><span class="n">primary</span><span class="p">)</span>
         <span class="k">assert</span> <span class="n">it</span><span class="o">.</span><span class="n">primary</span> <span class="o">==</span> <span class="mi">1</span><span class="n">u64</span>
 </code></pre></div>
-<p>In this example, two binary indexes are defined:</p>
+<p>In this example, two secondary indexes are defined:</p>
 <div class="highlight"><pre><span></span><code><span class="n">b</span><span class="p">:</span> <span class="n">secondary</span><span class="p">[</span><span class="n">u64</span><span class="p">]</span>
 <span class="n">c</span><span class="p">:</span> <span class="n">secondary</span><span class="p">[</span><span class="n">u128</span><span class="p">]</span>
 </code></pre></div>
-<p>In the code, <code>get_idx_table_by_b</code> and <code>get_idx_table_by_c</code> are used to obtain the tables of the binary indexes, and the returned object types are <code>IdxTable64</code> and <code>IdxTable128</code>, respectively. The tables of binary indexes have similar method names as the tables of the primary index, and can also perform the function of binary index lookup.</p>
+<p>In the code, <code>get_idx_table_by_b</code> and <code>get_idx_table_by_c</code> are used to obtain the tables of the secondary indexes, and the returned object types are <code>IdxTable64</code> and <code>IdxTable128</code>, respectively. The tables of secondary indexes have similar method names as the tables of the primary index, and can also perform the function of secondary index lookup.</p>
 <p>Test code:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># test.py</span>
 <span class="k">def</span> <span class="nf">test_example7</span><span class="p">():</span>
@@ -1012,8 +1012,8 @@
 <div class="highlight"><pre><span></span><code>++++++it.primary: 1
 ++++++it.primary: 1
 </code></pre></div></p>
-<h2 id="updating-the-binary-index">Updating the binary index</h2>
-<p>In practical applications, sometimes it is necessary to update the binary index. Please first look at the following code:</p>
+<h2 id="updating-the-secondary-indexes">Updating the secondary indexes</h2>
+<p>In practical applications, sometimes it is necessary to update the secondary index. Please first look at the following code:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># db_example8.codon</span>
 <span class="kn">from</span> <span class="nn">chain.contract</span> <span class="kn">import</span> <span class="n">Contract</span>
 <span class="kn">from</span> <span class="nn">chain.database</span> <span class="kn">import</span> <span class="n">primary</span><span class="p">,</span> <span class="n">secondary</span>
@@ -1073,10 +1073,10 @@
 </code></pre></div>
 <p>Brief description of the process:</p>
 <ul>
-<li><code>it_sec = idx_table_b.find(2u64)</code>: Looks up the value <code>2u64</code> in the binary index and returns the <code>SecondaryIterator</code> type result <code>it_sec</code>.</li>
+<li><code>it_sec = idx_table_b.find(2u64)</code>: Looks up the value <code>2u64</code> in the secondary index and returns the <code>SecondaryIterator</code> type result <code>it_sec</code>.</li>
 <li><code>table.update_b(it_sec, 22u64, payer)</code>: This line of code implements the update function and updates the value of <code>b</code> to <code>22u64</code>.</li>
-<li><code>it_sec = idx_table_b.find(22u64)</code>: Looks up the new binary index.</li>
-<li><code>assert assert it_sec.is_ok()</code>: Used to confirm whether the binary index has been updated successfully.</li>
+<li><code>it_sec = idx_table_b.find(22u64)</code>: Looks up the new secondary index.</li>
+<li><code>assert assert it_sec.is_ok()</code>: Used to confirm whether the secondry index has been updated successfully.</li>
 <li><code>assert it_sec.primary == 1u64</code>: Used to confirm whether the primary index is correct.</li>
 </ul>
 <p>The <code>update_b</code> code is generated by the compiler and is shown below:</p>
@@ -1092,7 +1092,7 @@
     <span class="n">value</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="n">secondary</span><span class="p">[</span><span class="n">u64</span><span class="p">](</span><span class="n">b</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">table</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">it_primary</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">payer</span><span class="p">)</span>
 </code></pre></div>
-<p>From the code, it is apparent that when updating the binary index, the corresponding value in the primary index will also be updated.</p>
+<p>From the code, it is apparent that when updating the secondary index, the corresponding value in the primary index will also be updated.</p>
 <h2 id="deleting-the-secondary-index">Deleting the secondary index</h2>
 <div class="highlight"><pre><span></span><code><span class="nd">@action</span><span class="p">(</span><span class="s1">&#39;testremove&#39;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">test_remove</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1126,7 +1126,7 @@
 <div class="highlight"><pre><span></span><code>ipyeos<span class="w"> </span>-m<span class="w"> </span>pytest<span class="w"> </span>-s<span class="w"> </span>-x<span class="w"> </span>test.py<span class="w"> </span>-k<span class="w"> </span>test_remove_secondary
 </code></pre></div>
 <h2 id="using-the-api-to-perform-secondary-index-queries-on-a-table">Using the API to perform secondary index queries on a table</h2>
-<p>In the <code>db_example8.codon</code> example, two binary indexes are defined, with the types <code>u64</code> and <code>u128</code>, respectively. The <code>get_table_rows</code> API also supports finding corresponding values through binary indexes.</p>
+<p>In the <code>db_example8.codon</code> example, two secondary indexes are defined, with the types <code>u64</code> and <code>u128</code>, respectively. The <code>get_table_rows</code> API also supports finding corresponding values through secondary indexes.</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">test_example9</span><span class="p">():</span>
     <span class="n">t</span> <span class="o">=</span> <span class="n">init_db_test</span><span class="p">(</span><span class="s1">&#39;db_example8&#39;</span><span class="p">)</span>
     <span class="n">ret</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">push_action</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="p">{},</span> <span class="p">{</span><span class="s1">&#39;hello&#39;</span><span class="p">:</span> <span class="s1">&#39;active&#39;</span><span class="p">})</span>
@@ -1151,7 +1151,7 @@
 <p>To find the value in the table through the second index <code>c</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="n">rows</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">get_table_rows</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;mytable&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;i128&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">)</span>
 </code></pre></div>
-<p>Here, <code>i128</code> is the index type of <code>c</code>. Note that the value <code>3</code> in the <code>lowerbound</code> parameter is the value of the binary index. Since <code>u128</code> has exceeded the range of 64-bit integers, a numeric string is used to represent it. Finally, the last parameter <code>3</code> is the corresponding index number.</p>
+<p>Here, <code>i128</code> is the index type of <code>c</code>. Note that the value <code>3</code> in the <code>lowerbound</code> parameter is the value of the secondary index. Since <code>u128</code> has exceeded the range of 64-bit integers, a numeric string is used to represent it. Finally, the last parameter <code>3</code> is the corresponding index number.</p>
 <p>The results of running the above test code are as follows:</p>
 <div class="highlight"><pre><span></span><code>++++++++++[{&#39;a&#39;: 1, &#39;b&#39;: 22, &#39;c&#39;: &#39;3&#39;}, {&#39;a&#39;: 111, &#39;b&#39;: 222, &#39;c&#39;: &#39;333&#39;}]
 ++++++++++[{&#39;a&#39;: 1, &#39;b&#39;: 22, &#39;c&#39;: &#39;3&#39;}, {&#39;a&#39;: 111, &#39;b&#39;: 222, &#39;c&#39;: &#39;333&#39;}]
@@ -1276,7 +1276,7 @@
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;++++++it.primary:&quot;</span><span class="p">,</span> <span class="n">it</span><span class="o">.</span><span class="n">primary</span><span class="p">)</span>
         <span class="k">assert</span> <span class="n">it</span><span class="o">.</span><span class="n">primary</span> <span class="o">==</span> <span class="mi">1</span><span class="n">u64</span>
 </code></pre></div>
-<p>This example demonstrates a scenario where there are two binary indexes. Only the name <code>table</code> was changed to <code>packer</code>. In this case, the compiler will not generate any code related to the database.</p>
+<p>This example demonstrates a scenario where there are two secondary indexes. Only the name <code>table</code> was changed to <code>packer</code>. In this case, the compiler will not generate any code related to the database.</p>
 <p>By comparison, it is apparent that the compiler generates a class named <code>MultiIndexA</code>, which inherits from the <code>MultiIndexBase</code> class defined in <code>mi.codon</code>. This class has the following methods:</p>
 <ul>
 <li>def store(self, item: A, payer: Name) -&gt; Iterator[A]</li>
