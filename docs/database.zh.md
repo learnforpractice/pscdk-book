@@ -66,12 +66,12 @@ def test_store():
 ```python
 def test_example1():
     t = init_db_test('db_example1')
-    ret = t.push_action('hello', 'test', "", {'hello': 'active'})
+    ret = t.push_action('hello', 'teststore', "", {'hello': 'active'})
     t.produce_block()
     logger.info("++++++++++%s\n", ret['elapsed'])
 
     # will raise exception
-    ret = t.push_action('hello', 'test', "", {'hello': 'active'})
+    ret = t.push_action('hello', 'teststore', "", {'hello': 'active'})
     t.produce_block()
 ```
 
