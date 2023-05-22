@@ -36,13 +36,13 @@ macOS平台推荐使用[OrbStack](https://orbstack.dev/download)软件来安装d
 下载Docker镜像
 
 ```bash
-docker pull ghcr.io/uuosio/pscdk:latest
+docker pull ghcr.io/uuosio/scdk:latest
 ```
 
 运行container:
 
 ```bash
-docker run --entrypoint bash -it --rm -v "$(pwd)":/work -w /work -t ghcr.io/uuosio/pscdk
+docker run --entrypoint bash -it --rm -v "$(pwd)":/work -w /work -t ghcr.io/uuosio/scdk
 ```
 
 
@@ -75,14 +75,8 @@ python-contract build mytest.codon
 ipyeos -m pytest -s -x test.py -k test_hello
 ```
 
-如果你的系统是Windows，或者MacOSX M1/M2，可以用docker运行上面的命令：
+如果你的系统是Windows，或者MacOSX M1/M2，可以用下面的命令在docker中运行bash，然后再执行上面的命令：
 
 ```bash
-docker run --entrypoint ipyeos -it -v$(pwd):/develop -w /develop -t ghcr.io/uuosio/ipyeos -m pytest -s -x test.py -k test_hello
-```
-
-正常会看到输出：
-
-```
-hello  alice
+docker run --entrypoint bash -it -v$(pwd):/develop -w /develop -t ghcr.io/uuosio/scdk
 ```

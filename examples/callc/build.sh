@@ -1,2 +1,3 @@
 cdt-cc -c -o say_hello.o say_hello.c
-python-contract build --linker-flags="say_hello.o" test.codon
+cdt-ar rcs libsay_hello.a say_hello.o
+python-contract build --linker-flags="libsay_hello.a" test.codon
