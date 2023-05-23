@@ -4,7 +4,7 @@ comments: true
 
 # 数据库的操作
 
-链上数据存储和读取是智能合约的一个重要功能。EOS链实现了一个内存数据库，支持以表的方式来存储数据，其中，每一个表的每一项数据都有唯一的主索引，称之为primary key，类型为u64，表中存储的原始数据为任意长度的二进制数据，在智能合约调用存储数据的功能时，会将类的数据序列化后存进表中，在读取的时候又会通过反序列化的方式将原始数据转成类对象。并且还支持u64, u128, u256, double, long double类型的二级索引表，可以把二级索引表看作数据长度固定的特殊的表。主索引表和二级索引表可以配合起来使用，以实现多重索引的功能。二级索引表可以有多个。二级索引表的值是可以重复的，但是主索引表的主索引必须是唯一的。
+链上数据存储和读取是智能合约的一个重要功能。EOS链实现了一个内存数据库，支持以表的方式来存储数据，其中，每一个表的每一项数据都有唯一的主索引，称之为primary key，类型为u64，表中存储的原始数据为任意长度的二进制数据，在智能合约调用存储数据的功能时，会将类的数据序列化后存进表中，在读取的时候又会通过反序列化的方式将原始数据转成类对象。并且还支持u64, u128, u256, double, long double类型的二重索引表，可以把二重索引表看作数据长度固定的特殊的表。主索引表和二重索引表可以配合起来使用，以实现多重索引的功能。二重索引表可以有多个。二重索引表的值是可以重复的，但是主索引表的主索引必须是唯一的。
 
 下面结合示例来讲解下EOS的链上的内存数据库的使用。
 
@@ -39,6 +39,13 @@ class MyContract(Contract):
         table = A.new_table(n'hello', n'')
         table.store(item, n'hello')
 ```
+
+解释一下上面的代码：
+- 其中，`@table("mytable")`这行代码表示要创建一个表名称为`mytable`的表类型。注意，`mytable`是一个`name`类型。`@table`告诉编译器生成表操作相关的额外代码，像上面的`new_table`方法即是通过编译器生成的。
+
+- `A.new_table(n'hello', n'')`创建一个新的表对象，`n'hello'`用于指定表存储在那个账号中，第二个参数表示scope，一般可以置空，配合账号名，表名，用于区分不同的表。
+
+- `table.store(item, n'hello')`这行代码将数据存储到链上的数据库中。其中的`n'hello'`指定通过`hello`这个账号支付RAM资源，并且需要在Transaction中已经用账号`hello`的`active`权限签名。
 
 编译：
 
@@ -386,7 +393,7 @@ class primary[T](object):
         return self.value.__size__()
 ```
 
-`primary`类是一个模版类，如果`primary`的`value`的类型不为`u64`，则类型必须实现`get_primary`方法，`primary`类还有一个`__call__`方法，以方便获取`value`。在后面会讲到的多重索引中，还会用到二级索引，二级索引的类型必须是`database.secondary`
+`primary`类是一个模版类，如果`primary`的`value`的类型不为`u64`，则类型必须实现`get_primary`方法，`primary`类还有一个`__call__`方法，以方便获取`value`。在后面会讲到的多重索引中，还会用到二重索引，二重索引的类型必须是`database.secondary`
 
 编译：
 
@@ -431,7 +438,7 @@ ipyeos -m pytest -s -x test.py -k test_example5
 ++++++=rows: {'rows': [{'a': 1, 'b': 'alice'}, {'a': 3, 'b': 'bob'}, {'a': 5, 'b': 'john'}], 'more': False, 'next_key': ''}
 ```
                                                                                                     
-## 二级索引的操作
+## 二重索引的操作
 
 请先看下面的例子：
 
@@ -478,15 +485,15 @@ class MyContract(Contract):
         assert it.primary == 1u64
 ```
 
-在这个例子中，定义了两个二级索引：
+在这个例子中，定义了两个二重索引：
 
 ```python
 b: secondary[u64]
 c: secondary[u128]
 ```
 
-在代码里，通过`get_idx_table_by_b`和`get_idx_table_by_c`来获取二级索引的表，返回的对象类型分别为`IdxTable64`和`IdxTable128`。
-二级索引的表和主索引的表有类似的方法名称，也可以执行二级索引的查找的功能。
+在代码里，通过`get_idx_table_by_b`和`get_idx_table_by_c`来获取二重索引的表，返回的对象类型分别为`IdxTable64`和`IdxTable128`。
+二重索引的表和主索引的表有类似的方法名称，也可以执行二重索引的查找的功能。
 
 测试代码：
 
@@ -518,9 +525,9 @@ ipyeos -m pytest -s -x test.py -k test_example7
 ++++++it.primary: 1
 ```
                                                                                                     
-## 二级索引的的更新
+## 二重索引的的更新
 
-在实际的应用中，有时候需要更新二级索引。请先看下面的代码
+在实际的应用中，有时候需要更新二重索引。请先看下面的代码
 
 ```python
 # db_example8.codon
@@ -586,17 +593,17 @@ assert it_sec.primary == 1u64
 
 简述下过程：
 
-- `it_sec = idx_table_b.find(2u64)`查找二级索引的值`2u64`，返回的`SecondaryIterator`类型的`it_sec`。
+- `it_sec = idx_table_b.find(2u64)`查找二重索引的值`2u64`，返回的`SecondaryIterator`类型的`it_sec`。
 - **`table.update_b(it_sec, 22u64, payer)`** 这行代码即是实现了更新的功能，更新`b`的值为`22u64`
-- `it_sec = idx_table_b.find(22u64)`查找新的二级索引
-- `assert assert it_sec.is_ok()`用于确认二级索引是否更新成功
+- `it_sec = idx_table_b.find(22u64)`查找新的二重索引
+- `assert assert it_sec.is_ok()`用于确认二重索引是否更新成功
 - `assert it_sec.primary == 1u64`用于确认主索引是否正确
 
 而`update_b`是由编译器生成的代码，生成的代码如下：
 
 ```python
 def update_b(self, it: SecondaryIterator, b: u64, payer: Name) -> None:
-    # 更新`b`的二级索引
+    # 更新`b`的二重索引
     self.idx_b.update(it, b, payer)
     # 查找主索引
     it_primary = self.table.find(it.primary)
@@ -608,9 +615,9 @@ def update_b(self, it: SecondaryIterator, b: u64, payer: Name) -> None:
     self.table.update(it_primary, value, payer)
 ```
 
-从代码看出，更新二级索引的时候，还会更新主索引的对应的值
+从代码看出，更新二重索引的时候，还会更新主索引的对应的值
                                                                                                     
-## 二级索引的删除
+## 二重索引的删除
 
 ```python
 @action('testremove')
@@ -631,7 +638,7 @@ def test_remove(self):
     print('done!')
 ```
 
-在这个例子中，首先调用`store`存储主索引为`1u64`，以及第一个二级索引的值为`2u64`的对象A，然后查询`2u64`，确认`it_sec.primary == 1u64`，然后调用`remove`删除主索引为`1u64`的数据，最后再次查询`2u64`，确认元素已经被删除。
+在这个例子中，首先调用`store`存储主索引为`1u64`，以及第一个二重索引的值为`2u64`的对象A，然后查询`2u64`，确认`it_sec.primary == 1u64`，然后调用`remove`删除主索引为`1u64`的数据，最后再次查询`2u64`，确认元素已经被删除。
 
 ## 
 
@@ -659,7 +666,7 @@ ipyeos -m pytest -s -x test.py -k test_remove_secondary
 
 ## 利用API来对表进行二重索引查询
 
-在例子`db_example8.codon`中，定义了两个二级索引，类型分别为`u64`,`u128`，`get_table_rows`API还支持通过二级索引来查找对应的值
+在例子`db_example8.codon`中，定义了两个二重索引，类型分别为`u64`,`u128`，`get_table_rows`API还支持通过二重索引来查找对应的值
 
 ```python
 def test_example9():
@@ -681,7 +688,7 @@ def test_example9():
 
 下面对代码作下解释
 
-通过二级索引`b`来查找表中的值：
+通过二重索引`b`来查找表中的值：
 
 ```python
 rows = t.get_table_rows(True, 'hello', '', 'mytable', 22, '', 10, 'i64', '2')
@@ -690,13 +697,13 @@ rows = t.get_table_rows(True, 'hello', '', 'mytable', 22, '', 10, 'i64', '2')
 这里的`i64`即是`b`的索引类型，`2`是索引对应的序号，注意一下这里不是从`1`开始算起的。
 
 
-通过二级索引`c`来查找表中的值：
+通过二重索引`c`来查找表中的值：
 
 ```python
 rows = t.get_table_rows(True, 'hello', '', 'mytable', '3', '', 10, 'i128', '3')
 ```
 
-这里的`i128`即是`c`的索引类型，注意这里lowerbound参数的值`3`是二级索引的值，由于u128已经超过了64位整数的表示范围，所以用数字字符串表示，最后一个参数`3`是索引对应的序号。
+这里的`i128`即是`c`的索引类型，注意这里lowerbound参数的值`3`是二重索引的值，由于u128已经超过了64位整数的表示范围，所以用数字字符串表示，最后一个参数`3`是索引对应的序号。
 
 
 上面的测试代码的运行结果如下：
@@ -830,7 +837,7 @@ class MyContract(Contract):
         assert it.primary == 1u64
 ```
 
-这个例子展示了有二个二级索引的例子，只是把`table`改成了`packer`，编译器即不再会生成数据库相关的代码。
+这个例子展示了有二个二重索引的例子，只是把`table`改成了`packer`，编译器即不再会生成数据库相关的代码。
 对比可知，编译器在编译的时候会生成`MultiIndexA`这个继承自`mi.codon`中定义的`MultiIndexBase`类，
 
 这个类有以下几个方法：
@@ -847,8 +854,8 @@ class MyContract(Contract):
 同时会为类`A`生成额外的方法：
 
 - `get_primary` 获取主索引
-- `get_idx_table_by_b`, 用于获取二级索引`b`的表，返回的类是`IdxTable64`
-- `get_idx_table_by_c`，用于获取二级索引`c`的表，返回的类为`IdxTable128`。
+- `get_idx_table_by_b`, 用于获取二重索引`b`的表，返回的类是`IdxTable64`
+- `get_idx_table_by_c`，用于获取二重索引`c`的表，返回的类为`IdxTable128`。
 - `new_table`
 
 测试代码：
@@ -881,6 +888,6 @@ ipyeos -m pytest -s -x test.py -k test_example6
 ```
 
 ## 总结
-EOS中的数据存储功能是比较完善的，并且有二级索引表的功能，使数据的查找变得非常的灵活。本章详细讲解了数据库表的增，删，改，查的代码。本章的内容较多，需要花点时间好好消化。可以在示例的基础上作些改动，并且尝试运行以增加对这章知识点的理解。
+EOS中的数据存储功能是比较完善的，并且有二重索引表的功能，使数据的查找变得非常的灵活。本章详细讲解了数据库表的增，删，改，查的代码。本章的内容较多，需要花点时间好好消化。可以在示例的基础上作些改动，并且尝试运行以增加对这章知识点的理解。
 
 [示例代码](https://github.com/learnforpractice/pscdk-book/tree/main/examples/db_example)
