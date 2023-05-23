@@ -318,6 +318,21 @@ def get_table_rows(self, _json, code, scope, table,
     """
 ```
 
+Here is the explanation of the parameters for this interface:
+
+- `_json`: If set to True, data will be returned in JSON format. If set to False, the raw data will be returned in hexadecimal representation.
+- `code`: The account where the table is located.
+- `scope`: Generally set to an empty string. When there are identical `code` and `table`, different `scope` can be used to distinguish different tables.
+- `table`: The name of the data table to be queried.
+- `lower_bound`: Can be of string type or numeric type. When it's a string type, it can represent a `name` type. If it starts with `0x`, it represents a numeric type in hexadecimal. If it's empty, the query starts from the beginning.
+- `upper_bound`: Can be of string type or numeric type. When it's a string type, it can represent a `name` type. If it starts with `0x`, it represents a numeric type in hexadecimal. If it's empty, there's no set upper limit and all values >= `lower_bound` will be returned.
+- `limit`: Used to limit the number of returned values.
+- `key_type`: Used to specify the type of index, defaulting to a 64-bit unsigned integer type.
+- `index_position`: Used to specify the relative position of the index. If it's empty or `1`, it means the primary index. From `2` and above, it represents the position of the secondary index.
+- `reverse`: Specifies whether to return data in reverse order.
+- `show_payer`: Specifies whether to display the account that pays for the RAM resources.
+
+
 First of all, to query a table using `get_table_rows`, the structure of the table must be visible in the ABI description. You can use the following code to describe the table in the corresponding generated ABI file:
 
 ```python
