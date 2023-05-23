@@ -382,21 +382,21 @@
       
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
-    二级索引的操作
+    二重索引的操作
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
-    二级索引的的更新
+    二重索引的的更新
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
-    二级索引的删除
+    二重索引的删除
   </a>
   
 </li>
@@ -575,21 +575,21 @@
       
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
-    二级索引的操作
+    二重索引的操作
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
-    二级索引的的更新
+    二重索引的的更新
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
-    二级索引的删除
+    二重索引的删除
   </a>
   
 </li>
@@ -641,7 +641,7 @@
 
 
 <h1 id="_1">数据库的操作</h1>
-<p>链上数据存储和读取是智能合约的一个重要功能。EOS链实现了一个内存数据库，支持以表的方式来存储数据，其中，每一个表的每一项数据都有唯一的主索引，称之为primary key，类型为u64，表中存储的原始数据为任意长度的二进制数据，在智能合约调用存储数据的功能时，会将类的数据序列化后存进表中，在读取的时候又会通过反序列化的方式将原始数据转成类对象。并且还支持u64, u128, u256, double, long double类型的二级索引表，可以把二级索引表看作数据长度固定的特殊的表。主索引表和二级索引表可以配合起来使用，以实现多重索引的功能。二级索引表可以有多个。二级索引表的值是可以重复的，但是主索引表的主索引必须是唯一的。</p>
+<p>链上数据存储和读取是智能合约的一个重要功能。EOS链实现了一个内存数据库，支持以表的方式来存储数据，其中，每一个表的每一项数据都有唯一的主索引，称之为primary key，类型为u64，表中存储的原始数据为任意长度的二进制数据，在智能合约调用存储数据的功能时，会将类的数据序列化后存进表中，在读取的时候又会通过反序列化的方式将原始数据转成类对象。并且还支持u64, u128, u256, double, long double类型的二重索引表，可以把二重索引表看作数据长度固定的特殊的表。主索引表和二重索引表可以配合起来使用，以实现多重索引的功能。二重索引表可以有多个。二重索引表的值是可以重复的，但是主索引表的主索引必须是唯一的。</p>
 <p>下面结合示例来讲解下EOS的链上的内存数据库的使用。</p>
 <h2 id="store">store</h2>
 <p>存储功能是数据库最简单的功能了，下面的代码即演示了该功能。</p>
@@ -671,6 +671,16 @@
         <span class="n">table</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">new_table</span><span class="p">(</span><span class="n">n</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="n">n</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
         <span class="n">table</span><span class="o">.</span><span class="n">store</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">n</span><span class="s1">&#39;hello&#39;</span><span class="p">)</span>
 </code></pre></div>
+<p>解释一下上面的代码：
+- 其中，<code>@table("mytable")</code>这行代码表示要创建一个表名称为<code>mytable</code>的表类型。注意，<code>mytable</code>是一个<code>name</code>类型。<code>@table</code>告诉编译器生成表操作相关的额外代码，像上面的<code>new_table</code>方法即是通过编译器生成的。</p>
+<ul>
+<li>
+<p><code>A.new_table(n'hello', n'')</code>创建一个新的表对象，<code>n'hello'</code>用于指定表存储在那个账号中，第二个参数表示scope，一般可以置空，配合账号名，表名，用于区分不同的表。</p>
+</li>
+<li>
+<p><code>table.store(item, n'hello')</code>这行代码将数据存储到链上的数据库中。其中的<code>n'hello'</code>指定通过<code>hello</code>这个账号支付RAM资源，并且需要在Transaction中已经用账号<code>hello</code>的<code>active</code>权限签名。</p>
+</li>
+</ul>
 <p>编译：</p>
 <div class="highlight"><pre><span></span><code>python-contract build db_example/db_example1.codon
 </code></pre></div>
@@ -687,12 +697,12 @@
 <p>如将上面的测试用例修改成下面的代码：</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">test_example1</span><span class="p">():</span>
     <span class="n">t</span> <span class="o">=</span> <span class="n">init_db_test</span><span class="p">(</span><span class="s1">&#39;db_example1&#39;</span><span class="p">)</span>
-    <span class="n">ret</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">push_action</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;hello&#39;</span><span class="p">:</span> <span class="s1">&#39;active&#39;</span><span class="p">})</span>
+    <span class="n">ret</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">push_action</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;teststore&#39;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;hello&#39;</span><span class="p">:</span> <span class="s1">&#39;active&#39;</span><span class="p">})</span>
     <span class="n">t</span><span class="o">.</span><span class="n">produce_block</span><span class="p">()</span>
     <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;++++++++++</span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;elapsed&#39;</span><span class="p">])</span>
 
     <span class="c1"># will raise exception</span>
-    <span class="n">ret</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">push_action</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;hello&#39;</span><span class="p">:</span> <span class="s1">&#39;active&#39;</span><span class="p">})</span>
+    <span class="n">ret</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">push_action</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;teststore&#39;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;hello&#39;</span><span class="p">:</span> <span class="s1">&#39;active&#39;</span><span class="p">})</span>
     <span class="n">t</span><span class="o">.</span><span class="n">produce_block</span><span class="p">()</span>
 </code></pre></div>
 <p>用同样的命令运行测试，在第二次调用<code>push_action</code>时，该函数就会抛出像下面的异常：</p>
@@ -932,7 +942,7 @@
     <span class="k">def</span> <span class="nf">__size__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">__size__</span><span class="p">()</span>
 </code></pre></div>
-<p><code>primary</code>类是一个模版类，如果<code>primary</code>的<code>value</code>的类型不为<code>u64</code>，则类型必须实现<code>get_primary</code>方法，<code>primary</code>类还有一个<code>__call__</code>方法，以方便获取<code>value</code>。在后面会讲到的多重索引中，还会用到二级索引，二级索引的类型必须是<code>database.secondary</code></p>
+<p><code>primary</code>类是一个模版类，如果<code>primary</code>的<code>value</code>的类型不为<code>u64</code>，则类型必须实现<code>get_primary</code>方法，<code>primary</code>类还有一个<code>__call__</code>方法，以方便获取<code>value</code>。在后面会讲到的多重索引中，还会用到二重索引，二重索引的类型必须是<code>database.secondary</code></p>
 <p>编译：</p>
 <div class="highlight"><pre><span></span><code>python-contract<span class="w"> </span>build<span class="w"> </span>db_example/db_example5.codon
 </code></pre></div>
@@ -962,7 +972,7 @@
 <p>输出：</p>
 <div class="highlight"><pre><span></span><code>++++++=rows: {&#39;rows&#39;: [{&#39;a&#39;: 1, &#39;b&#39;: &#39;alice&#39;}, {&#39;a&#39;: 3, &#39;b&#39;: &#39;bob&#39;}, {&#39;a&#39;: 5, &#39;b&#39;: &#39;john&#39;}], &#39;more&#39;: False, &#39;next_key&#39;: &#39;&#39;}
 </code></pre></div>
-<h2 id="_2">二级索引的操作</h2>
+<h2 id="_2">二重索引的操作</h2>
 <p>请先看下面的例子：</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># db_example7.codon</span>
 
@@ -1005,12 +1015,12 @@
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;++++++it.primary:&quot;</span><span class="p">,</span> <span class="n">it</span><span class="o">.</span><span class="n">primary</span><span class="p">)</span>
         <span class="k">assert</span> <span class="n">it</span><span class="o">.</span><span class="n">primary</span> <span class="o">==</span> <span class="mi">1</span><span class="n">u64</span>
 </code></pre></div>
-<p>在这个例子中，定义了两个二级索引：</p>
+<p>在这个例子中，定义了两个二重索引：</p>
 <div class="highlight"><pre><span></span><code><span class="n">b</span><span class="p">:</span> <span class="n">secondary</span><span class="p">[</span><span class="n">u64</span><span class="p">]</span>
 <span class="n">c</span><span class="p">:</span> <span class="n">secondary</span><span class="p">[</span><span class="n">u128</span><span class="p">]</span>
 </code></pre></div>
-<p>在代码里，通过<code>get_idx_table_by_b</code>和<code>get_idx_table_by_c</code>来获取二级索引的表，返回的对象类型分别为<code>IdxTable64</code>和<code>IdxTable128</code>。
-二级索引的表和主索引的表有类似的方法名称，也可以执行二级索引的查找的功能。</p>
+<p>在代码里，通过<code>get_idx_table_by_b</code>和<code>get_idx_table_by_c</code>来获取二重索引的表，返回的对象类型分别为<code>IdxTable64</code>和<code>IdxTable128</code>。
+二重索引的表和主索引的表有类似的方法名称，也可以执行二重索引的查找的功能。</p>
 <p>测试代码：</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># test.py</span>
 <span class="k">def</span> <span class="nf">test_example7</span><span class="p">():</span>
@@ -1029,8 +1039,8 @@
 <div class="highlight"><pre><span></span><code>++++++it.primary: 1
 ++++++it.primary: 1
 </code></pre></div>
-<h2 id="_3">二级索引的的更新</h2>
-<p>在实际的应用中，有时候需要更新二级索引。请先看下面的代码</p>
+<h2 id="_3">二重索引的的更新</h2>
+<p>在实际的应用中，有时候需要更新二重索引。请先看下面的代码</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># db_example8.codon</span>
 <span class="kn">from</span> <span class="nn">chain.contract</span> <span class="kn">import</span> <span class="n">Contract</span>
 <span class="kn">from</span> <span class="nn">chain.database</span> <span class="kn">import</span> <span class="n">primary</span><span class="p">,</span> <span class="n">secondary</span>
@@ -1090,15 +1100,15 @@
 </code></pre></div>
 <p>简述下过程：</p>
 <ul>
-<li><code>it_sec = idx_table_b.find(2u64)</code>查找二级索引的值<code>2u64</code>，返回的<code>SecondaryIterator</code>类型的<code>it_sec</code>。</li>
+<li><code>it_sec = idx_table_b.find(2u64)</code>查找二重索引的值<code>2u64</code>，返回的<code>SecondaryIterator</code>类型的<code>it_sec</code>。</li>
 <li><strong><code>table.update_b(it_sec, 22u64, payer)</code></strong> 这行代码即是实现了更新的功能，更新<code>b</code>的值为<code>22u64</code></li>
-<li><code>it_sec = idx_table_b.find(22u64)</code>查找新的二级索引</li>
-<li><code>assert assert it_sec.is_ok()</code>用于确认二级索引是否更新成功</li>
+<li><code>it_sec = idx_table_b.find(22u64)</code>查找新的二重索引</li>
+<li><code>assert assert it_sec.is_ok()</code>用于确认二重索引是否更新成功</li>
 <li><code>assert it_sec.primary == 1u64</code>用于确认主索引是否正确</li>
 </ul>
 <p>而<code>update_b</code>是由编译器生成的代码，生成的代码如下：</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">update_b</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">it</span><span class="p">:</span> <span class="n">SecondaryIterator</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="n">u64</span><span class="p">,</span> <span class="n">payer</span><span class="p">:</span> <span class="n">Name</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-    <span class="c1"># 更新`b`的二级索引</span>
+    <span class="c1"># 更新`b`的二重索引</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">idx_b</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">it</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">payer</span><span class="p">)</span>
     <span class="c1"># 查找主索引</span>
     <span class="n">it_primary</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">table</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">it</span><span class="o">.</span><span class="n">primary</span><span class="p">)</span>
@@ -1109,8 +1119,8 @@
     <span class="n">value</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="n">secondary</span><span class="p">[</span><span class="n">u64</span><span class="p">](</span><span class="n">b</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">table</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">it_primary</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">payer</span><span class="p">)</span>
 </code></pre></div>
-<p>从代码看出，更新二级索引的时候，还会更新主索引的对应的值</p>
-<h2 id="_4">二级索引的删除</h2>
+<p>从代码看出，更新二重索引的时候，还会更新主索引的对应的值</p>
+<h2 id="_4">二重索引的删除</h2>
 <div class="highlight"><pre><span></span><code><span class="nd">@action</span><span class="p">(</span><span class="s1">&#39;testremove&#39;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">test_remove</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="n">payer</span> <span class="o">=</span> <span class="n">n</span><span class="s2">&quot;hello&quot;</span>
@@ -1128,7 +1138,7 @@
     <span class="k">assert</span> <span class="ow">not</span> <span class="n">it_sec</span><span class="o">.</span><span class="n">is_ok</span><span class="p">()</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;done!&#39;</span><span class="p">)</span>
 </code></pre></div>
-<p>在这个例子中，首先调用<code>store</code>存储主索引为<code>1u64</code>，以及第一个二级索引的值为<code>2u64</code>的对象A，然后查询<code>2u64</code>，确认<code>it_sec.primary == 1u64</code>，然后调用<code>remove</code>删除主索引为<code>1u64</code>的数据，最后再次查询<code>2u64</code>，确认元素已经被删除。</p>
+<p>在这个例子中，首先调用<code>store</code>存储主索引为<code>1u64</code>，以及第一个二重索引的值为<code>2u64</code>的对象A，然后查询<code>2u64</code>，确认<code>it_sec.primary == 1u64</code>，然后调用<code>remove</code>删除主索引为<code>1u64</code>的数据，最后再次查询<code>2u64</code>，确认元素已经被删除。</p>
 <h2 id="_5"></h2>
 <div class="highlight"><pre><span></span><code><span class="c1"># test.py</span>
 <span class="k">def</span> <span class="nf">test_remove_secondary</span><span class="p">():</span>
@@ -1144,7 +1154,7 @@
 <div class="highlight"><pre><span></span><code>ipyeos<span class="w"> </span>-m<span class="w"> </span>pytest<span class="w"> </span>-s<span class="w"> </span>-x<span class="w"> </span>test.py<span class="w"> </span>-k<span class="w"> </span>test_remove_secondary
 </code></pre></div>
 <h2 id="api_1">利用API来对表进行二重索引查询</h2>
-<p>在例子<code>db_example8.codon</code>中，定义了两个二级索引，类型分别为<code>u64</code>,<code>u128</code>，<code>get_table_rows</code>API还支持通过二级索引来查找对应的值</p>
+<p>在例子<code>db_example8.codon</code>中，定义了两个二重索引，类型分别为<code>u64</code>,<code>u128</code>，<code>get_table_rows</code>API还支持通过二重索引来查找对应的值</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">test_example9</span><span class="p">():</span>
     <span class="n">t</span> <span class="o">=</span> <span class="n">init_db_test</span><span class="p">(</span><span class="s1">&#39;db_example8&#39;</span><span class="p">)</span>
     <span class="n">ret</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">push_action</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="p">{},</span> <span class="p">{</span><span class="s1">&#39;hello&#39;</span><span class="p">:</span> <span class="s1">&#39;active&#39;</span><span class="p">})</span>
@@ -1162,14 +1172,14 @@
     <span class="k">assert</span> <span class="n">rows</span><span class="p">[</span><span class="s1">&#39;rows&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;c&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;3&#39;</span>
 </code></pre></div>
 <p>下面对代码作下解释</p>
-<p>通过二级索引<code>b</code>来查找表中的值：</p>
+<p>通过二重索引<code>b</code>来查找表中的值：</p>
 <div class="highlight"><pre><span></span><code><span class="n">rows</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">get_table_rows</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;mytable&#39;</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;i64&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">)</span>
 </code></pre></div>
 <p>这里的<code>i64</code>即是<code>b</code>的索引类型，<code>2</code>是索引对应的序号，注意一下这里不是从<code>1</code>开始算起的。</p>
-<p>通过二级索引<code>c</code>来查找表中的值：</p>
+<p>通过二重索引<code>c</code>来查找表中的值：</p>
 <div class="highlight"><pre><span></span><code><span class="n">rows</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">get_table_rows</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;mytable&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;i128&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">)</span>
 </code></pre></div>
-<p>这里的<code>i128</code>即是<code>c</code>的索引类型，注意这里lowerbound参数的值<code>3</code>是二级索引的值，由于u128已经超过了64位整数的表示范围，所以用数字字符串表示，最后一个参数<code>3</code>是索引对应的序号。</p>
+<p>这里的<code>i128</code>即是<code>c</code>的索引类型，注意这里lowerbound参数的值<code>3</code>是二重索引的值，由于u128已经超过了64位整数的表示范围，所以用数字字符串表示，最后一个参数<code>3</code>是索引对应的序号。</p>
 <p>上面的测试代码的运行结果如下：</p>
 <div class="highlight"><pre><span></span><code>++++++++++[{&#39;a&#39;: 1, &#39;b&#39;: 22, &#39;c&#39;: &#39;3&#39;}, {&#39;a&#39;: 111, &#39;b&#39;: 222, &#39;c&#39;: &#39;333&#39;}]
 ++++++++++[{&#39;a&#39;: 1, &#39;b&#39;: 22, &#39;c&#39;: &#39;3&#39;}, {&#39;a&#39;: 111, &#39;b&#39;: 222, &#39;c&#39;: &#39;333&#39;}]
@@ -1294,7 +1304,7 @@
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;++++++it.primary:&quot;</span><span class="p">,</span> <span class="n">it</span><span class="o">.</span><span class="n">primary</span><span class="p">)</span>
         <span class="k">assert</span> <span class="n">it</span><span class="o">.</span><span class="n">primary</span> <span class="o">==</span> <span class="mi">1</span><span class="n">u64</span>
 </code></pre></div>
-<p>这个例子展示了有二个二级索引的例子，只是把<code>table</code>改成了<code>packer</code>，编译器即不再会生成数据库相关的代码。
+<p>这个例子展示了有二个二重索引的例子，只是把<code>table</code>改成了<code>packer</code>，编译器即不再会生成数据库相关的代码。
 对比可知，编译器在编译的时候会生成<code>MultiIndexA</code>这个继承自<code>mi.codon</code>中定义的<code>MultiIndexBase</code>类，</p>
 <p>这个类有以下几个方法：</p>
 <ul>
@@ -1309,8 +1319,8 @@
 <p>同时会为类<code>A</code>生成额外的方法：</p>
 <ul>
 <li><code>get_primary</code> 获取主索引</li>
-<li><code>get_idx_table_by_b</code>, 用于获取二级索引<code>b</code>的表，返回的类是<code>IdxTable64</code></li>
-<li><code>get_idx_table_by_c</code>，用于获取二级索引<code>c</code>的表，返回的类为<code>IdxTable128</code>。</li>
+<li><code>get_idx_table_by_b</code>, 用于获取二重索引<code>b</code>的表，返回的类是<code>IdxTable64</code></li>
+<li><code>get_idx_table_by_c</code>，用于获取二重索引<code>c</code>的表，返回的类为<code>IdxTable128</code>。</li>
 <li><code>new_table</code></li>
 </ul>
 <p>测试代码：</p>
@@ -1331,7 +1341,8 @@
 ++++++it.primary: 1
 </code></pre></div>
 <h2 id="_7">总结</h2>
-<p>EOS中的数据存储功能是比较完善的，并且有二级索引表的功能，使数据的查找变得非常的灵活。本章详细讲解了数据库表的增，删，改，查的代码。本章的内容较多，需要花点时间好好消化。可以在示例的基础上作些发动，并且尝试运行以增加对这章知识点的理解。</p>
+<p>EOS中的数据存储功能是比较完善的，并且有二重索引表的功能，使数据的查找变得非常的灵活。本章详细讲解了数据库表的增，删，改，查的代码。本章的内容较多，需要花点时间好好消化。可以在示例的基础上作些改动，并且尝试运行以增加对这章知识点的理解。</p>
+<p><a href="https://github.com/learnforpractice/pscdk-book/tree/main/examples/db_example">示例代码</a></p>
 
 
 

@@ -556,10 +556,10 @@
 <p>目前，该开发工具包不支持Window和Macbook M1/M2，开发工具在这两种平台上需要利用docker来运行。</p>
 <p>macOS平台推荐使用<a href="https://orbstack.dev/download">OrbStack</a>软件来安装docker和运行docker。其它平台可以使用<a href="https://www.docker.com/products/docker-desktop">Docker Desktop</a>。</p>
 <p>下载Docker镜像</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>pull<span class="w"> </span>ghcr.io/uuosio/pscdk:latest
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>pull<span class="w"> </span>ghcr.io/uuosio/scdk:latest
 </code></pre></div>
 <p>运行container:</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>--entrypoint<span class="w"> </span>bash<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span><span class="s2">&quot;</span>:/work<span class="w"> </span>-w<span class="w"> </span>/work<span class="w"> </span>-t<span class="w"> </span>ghcr.io/uuosio/pscdk
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>--entrypoint<span class="w"> </span>bash<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span><span class="s2">&quot;</span>:/work<span class="w"> </span>-w<span class="w"> </span>/work<span class="w"> </span>-t<span class="w"> </span>ghcr.io/uuosio/scdk
 </code></pre></div>
 <h2 id="_4">测试安装环境是否安装成功：</h2>
 <p>新建一个测试项目：</p>
@@ -576,11 +576,8 @@
 <p>测试：</p>
 <div class="highlight"><pre><span></span><code>ipyeos<span class="w"> </span>-m<span class="w"> </span>pytest<span class="w"> </span>-s<span class="w"> </span>-x<span class="w"> </span>test.py<span class="w"> </span>-k<span class="w"> </span>test_hello
 </code></pre></div>
-<p>或者直接运行测试脚本<code>test.sh</code>：</p>
-<div class="highlight"><pre><span></span><code>./test.sh
-</code></pre></div>
-<p>正常会看到输出：</p>
-<div class="highlight"><pre><span></span><code>hello  alice
+<p>如果你的系统是Windows，或者MacOSX M1/M2，可以用下面的命令在docker中运行bash，然后再执行上面的命令：</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>--entrypoint<span class="w"> </span>bash<span class="w"> </span>-it<span class="w"> </span>-v<span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/develop<span class="w"> </span>-w<span class="w"> </span>/develop<span class="w"> </span>-t<span class="w"> </span>ghcr.io/uuosio/scdk
 </code></pre></div>
 
 
