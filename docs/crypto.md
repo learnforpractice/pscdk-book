@@ -199,6 +199,8 @@ In the sent transaction, the user's signature on the transaction is also require
 
 In actual smart contract applications, the above method can also be used to determine whether a certain section of binary data in the smart contract is signed using a specific private key. The process is as follows:
 
-- Firstly, the user signs the data using his own private key
-- The user passes the data, signature, and public key (note that this is not a private key) to the smart contract
-- The smart contract can then determine whether the data is signed using a particular private key and perform corresponding operations.
+- The contract stores the user's public key.
+- the user signs the data with their private key.
+- The user sends the data, along with the corresponding signature, to the smart contract.
+- The smart contract can call `RecoverKey` to reconstruct the public key from the user's data and the signature on the data.
+- The smart contract reads the user's public key stored on the chain and compares it with the public key reconstructed by calling `RecoverKey`. If they are the same, it can be confirmed that the data is signed by the corresponding user.
