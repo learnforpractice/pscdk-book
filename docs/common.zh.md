@@ -86,7 +86,8 @@ class MyContract(Contract):
 ```
 
 编译：
-```
+
+```bash
 python-contract build common_example.codon
 ```
 
@@ -102,7 +103,7 @@ def test_common():
 
 测试：
 
-```
+```bash
 ipyeos -m pytest -s -x test.py -k test_common
 ```
 

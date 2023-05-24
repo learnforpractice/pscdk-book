@@ -64,14 +64,14 @@ def test():
 
 Compile:
 
-```
+```bash
 python-contract build helloworld.codon
 ```
 
 
 To run the test code:
 
-```
+```bash
 ipyeos -m pytest -s -x testhelloworld.py -k test
 ```
 
@@ -85,7 +85,7 @@ Hello, World!
 
 You can create an initial project using the `python-contract init` command. For example, the following code creates an initial project named `mycontract`:
 
-```
+```bash
 python-contract init mycontract
 ```
 

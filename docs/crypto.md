@@ -159,13 +159,13 @@ def test_recover():
 
 Compilation:
 
-```
+```bash
 python-contract build crypto_example.codon
 ```
 
 Testing:
 
-```
+```bash
 ipyeos -m pytest -s -x test.py -k test_crypto
 ipyeos -m pytest -s -x test.py -k test_recover
 ```

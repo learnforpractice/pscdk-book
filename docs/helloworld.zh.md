@@ -64,7 +64,7 @@ def test():
 
 编译：
 
-```
+```bash
 python-contract build helloworld.codon
 ```
 
@@ -84,7 +84,7 @@ Hello, World!
 
 可以用`python-contract init`命令来创建一个初始项目，例如下面的代码创建了一个`mycontract`的初始项目：
 
-```
+```bash
 python-contract init mycontract
 ```
 

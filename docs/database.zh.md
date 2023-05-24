@@ -49,7 +49,7 @@ class MyContract(Contract):
 
 编译：
 
-```
+```bash
 python-contract build db_example/db_example1.codon
 ```
 
@@ -137,7 +137,7 @@ def test_update():
 
 编译：
 
-```
+```bash
 python-contract build db_example/db_example1.codon
 ```
 
@@ -215,7 +215,7 @@ def test_remove():
 
 编译：
 
-```
+```bash
 python-contract build db_example/db_example1.codon
 ```
 
@@ -279,7 +279,7 @@ def test_bound():
 
 编译：
 
-```
+```bash
 python-contract build db_example/db_example1.codon
 ```
 
@@ -298,7 +298,7 @@ ipyeos -m pytest -s -x test.py -k test_bound
                                                                                                     
 ## 利用API来对表进行主索引查询
 
-上面的例子都是讲的如果通过智能合约来操作链上的数据库的表，实际上，通过EOS提供的链下的`get_table_rows`的API的接口，也同样可以对链上的表进行查询工作。
+上面的例子都是讲的如何通过智能合约来操作链上的数据库的表，实际上，通过EOS提供的链下的`get_table_rows`的API的接口，也同样可以对链上的表进行查询工作。
 在测试代码中，get_table_rows的定义如下
 
 ```python
@@ -522,7 +522,7 @@ def test_example7():
 
 编译：
 
-```
+```bash
 python-contract build db_example/db_example7.codon
 ```
 
@@ -668,7 +668,7 @@ def test_remove_secondary():
 
 编译：
 
-```
+```bash
 python-contract build db_example/db_example8.codon
 ```
 
@@ -884,7 +884,7 @@ def test_example6():
 
 编译：
 
-```
+```bash
 python-contract build db_example/db_example6.codon
 ```
 

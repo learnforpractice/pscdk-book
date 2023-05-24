@@ -142,13 +142,13 @@ def test_action():
 
 Compile:
 
-```
+```bash
 python-contract build action_example.codon
 ```
 
 Run the test:
 
-```
+```bash
 ipyeos -m pytest -s -x test.py -k test_action
 ```
 

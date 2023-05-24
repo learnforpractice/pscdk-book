@@ -50,7 +50,7 @@ The code above is explained as follows:
 
 Compile:
 
-```
+```bash
 python-contract build db_example/db_example1.codon
 ```
 
@@ -139,7 +139,7 @@ def test_update():
 
 Compile using the following command:
 
-```
+```bash
 python-contract build db_example/db_example1.codon
 ```
 
@@ -216,7 +216,7 @@ def test_remove():
 
 Compile using the following command:
 
-```
+```bash
 python-contract build db_example/db_example1.codon
 ```
 
@@ -281,7 +281,7 @@ def test_bound():
 
 Compile using the following command:
 
-```
+```bash
 python-contract build db_example/db_example1.codon
 ```
 
@@ -521,7 +521,7 @@ def test_example7():
 
 Compile:
 
-```
+```bash
 python-contract build db_example/db_example7.codon
 ```
 
@@ -879,7 +879,7 @@ def test_example6():
 
 Compilation:
 
-```
+```bash
 python-contract build db_example/db_example6.codon
 ```
 

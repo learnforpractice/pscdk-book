@@ -141,13 +141,13 @@ def test_action():
 ```
 
 编译：
-```
+```bash
 python-contract build action_example.codon
 ```
 
 运行测试：
 
-```
+```bash
 ipyeos -m pytest -s -x test.py -k test_action
 ```
 

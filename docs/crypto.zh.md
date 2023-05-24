@@ -160,13 +160,13 @@ def test_recover():
 
 编译：
 
-```
+```bash
 python-contract build crypto_example.codon
 ```
 
 测试：
 
-```
+```bash
 ipyeos -m pytest -s -x test.py -k test_crypto
 ipyeos -m pytest -s -x test.py -k test_recover
 ```
