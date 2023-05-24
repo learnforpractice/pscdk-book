@@ -663,11 +663,11 @@
     <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;++++++++++</span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;elapsed&#39;</span><span class="p">])</span>
 </code></pre></div>
 <p>编译：</p>
-<div class="highlight"><pre><span></span><code>python-contract build crypto_example.codon
+<div class="highlight"><pre><span></span><code>python-contract<span class="w"> </span>build<span class="w"> </span>crypto_example.codon
 </code></pre></div>
 <p>测试：</p>
-<div class="highlight"><pre><span></span><code>ipyeos -m pytest -s -x test.py -k test_crypto
-ipyeos -m pytest -s -x test.py -k test_recover
+<div class="highlight"><pre><span></span><code>ipyeos<span class="w"> </span>-m<span class="w"> </span>pytest<span class="w"> </span>-s<span class="w"> </span>-x<span class="w"> </span>test.py<span class="w"> </span>-k<span class="w"> </span>test_crypto
+ipyeos<span class="w"> </span>-m<span class="w"> </span>pytest<span class="w"> </span>-s<span class="w"> </span>-x<span class="w"> </span>test.py<span class="w"> </span>-k<span class="w"> </span>test_recover
 </code></pre></div>
 <p>在这个示例代码中，分别演示了常用的hash函数的用法以及<code>recover_key</code>和<code>assert_recover_key</code>的用法。hash函数的用法比较简单，这里解释一下recover_key的测试代码：
 recover_key接受二个参数，分别是<code>digest</code>和<code>signature</code>，digest是对一个二进制数据进行sha256运行的结果。在上面的代码中是通过对<code>hello,world</code>进行sha256算法的hash计算。</p>

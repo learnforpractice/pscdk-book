@@ -670,7 +670,7 @@
 </li>
 </ul>
 <p>Compile:</p>
-<div class="highlight"><pre><span></span><code>python-contract build db_example/db_example1.codon
+<div class="highlight"><pre><span></span><code>python-contract<span class="w"> </span>build<span class="w"> </span>db_example/db_example1.codon
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>ipyeos<span class="w"> </span>-m<span class="w"> </span>pytest<span class="w"> </span>-s<span class="w"> </span>-x<span class="w"> </span>test.py<span class="w"> </span>-k<span class="w"> </span>test_store
 </code></pre></div>
@@ -735,7 +735,7 @@
     <span class="n">t</span><span class="o">.</span><span class="n">produce_block</span><span class="p">()</span>
 </code></pre></div>
 <p>Compile using the following command:</p>
-<div class="highlight"><pre><span></span><code>python-contract build db_example/db_example1.codon
+<div class="highlight"><pre><span></span><code>python-contract<span class="w"> </span>build<span class="w"> </span>db_example/db_example1.codon
 </code></pre></div>
 <p>Execute the test code with the following command:</p>
 <div class="highlight"><pre><span></span><code>ipyeos<span class="w"> </span>-m<span class="w"> </span>pytest<span class="w"> </span>-s<span class="w"> </span>-x<span class="w"> </span>test.py<span class="w"> </span>-k<span class="w"> </span>test_update
@@ -784,7 +784,7 @@
     <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;++++++++++</span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;elapsed&#39;</span><span class="p">])</span>
 </code></pre></div>
 <p>Compile using the following command:</p>
-<div class="highlight"><pre><span></span><code>python-contract build db_example/db_example1.codon
+<div class="highlight"><pre><span></span><code>python-contract<span class="w"> </span>build<span class="w"> </span>db_example/db_example1.codon
 </code></pre></div>
 <p>Test using the following command:</p>
 <div class="highlight"><pre><span></span><code>ipyeos<span class="w"> </span>-m<span class="w"> </span>pytest<span class="w"> </span>-s<span class="w"> </span>-x<span class="w"> </span>test.py<span class="w"> </span>-k<span class="w"> </span>test_remove
@@ -834,7 +834,7 @@
     <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;++++++++++</span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;elapsed&#39;</span><span class="p">])</span>
 </code></pre></div>
 <p>Compile using the following command:</p>
-<div class="highlight"><pre><span></span><code>python-contract build db_example/db_example1.codon
+<div class="highlight"><pre><span></span><code>python-contract<span class="w"> </span>build<span class="w"> </span>db_example/db_example1.codon
 </code></pre></div>
 <p>Run the test using the following command:</p>
 <div class="highlight"><pre><span></span><code>ipyeos<span class="w"> </span>-m<span class="w"> </span>pytest<span class="w"> </span>-s<span class="w"> </span>-x<span class="w"> </span>test.py<span class="w"> </span>-k<span class="w"> </span>test_bound
@@ -858,6 +858,20 @@
 <span class="sd">    index_position: &quot;2&quot;|&quot;3&quot;|&quot;4&quot;|&quot;5&quot;|&quot;6&quot;|&quot;7&quot;|&quot;8&quot;|&quot;9&quot;|&quot;10&quot;</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 </code></pre></div>
+<p>Here is the explanation of the parameters for this interface:</p>
+<ul>
+<li><code>_json</code>: If set to True, data will be returned in JSON format. If set to False, the raw data will be returned in hexadecimal representation.</li>
+<li><code>code</code>: The account where the table is located.</li>
+<li><code>scope</code>: Generally set to an empty string. When there are identical <code>code</code> and <code>table</code>, different <code>scope</code> can be used to distinguish different tables.</li>
+<li><code>table</code>: The name of the data table to be queried.</li>
+<li><code>lower_bound</code>: Can be of string type or numeric type. When it's a string type, it can represent a <code>name</code> type. If it starts with <code>0x</code>, it represents a numeric type in hexadecimal. If it's empty, the query starts from the beginning.</li>
+<li><code>upper_bound</code>: Can be of string type or numeric type. When it's a string type, it can represent a <code>name</code> type. If it starts with <code>0x</code>, it represents a numeric type in hexadecimal. If it's empty, there's no set upper limit and all values &gt;= <code>lower_bound</code> will be returned.</li>
+<li><code>limit</code>: Used to limit the number of returned values.</li>
+<li><code>key_type</code>: Used to specify the type of index, defaulting to a 64-bit unsigned integer type.</li>
+<li><code>index_position</code>: Used to specify the relative position of the index. If it's empty or <code>1</code>, it means the primary index. From <code>2</code> and above, it represents the position of the secondary index.</li>
+<li><code>reverse</code>: Specifies whether to return data in reverse order.</li>
+<li><code>show_payer</code>: Specifies whether to display the account that pays for the RAM resources.</li>
+</ul>
 <p>First of all, to query a table using <code>get_table_rows</code>, the structure of the table must be visible in the ABI description. You can use the following code to describe the table in the corresponding generated ABI file:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># db_example5.codon</span>
 
@@ -1015,7 +1029,7 @@
     <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;++++++++++</span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;elapsed&#39;</span><span class="p">])</span>
 </code></pre></div>
 <p>Compile:</p>
-<div class="highlight"><pre><span></span><code>python-contract build db_example/db_example7.codon
+<div class="highlight"><pre><span></span><code>python-contract<span class="w"> </span>build<span class="w"> </span>db_example/db_example7.codon
 </code></pre></div>
 <p>Run the test:</p>
 <div class="highlight"><pre><span></span><code>ipyeos<span class="w"> </span>-m<span class="w"> </span>pytest<span class="w"> </span>-s<span class="w"> </span>-x<span class="w"> </span>test.py<span class="w"> </span>-k<span class="w"> </span>test_example7
@@ -1317,7 +1331,7 @@
     <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;++++++++++</span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;elapsed&#39;</span><span class="p">])</span>
 </code></pre></div>
 <p>Compilation:</p>
-<div class="highlight"><pre><span></span><code>python-contract build db_example/db_example6.codon
+<div class="highlight"><pre><span></span><code>python-contract<span class="w"> </span>build<span class="w"> </span>db_example/db_example6.codon
 </code></pre></div>
 <p>Running the test:</p>
 <div class="highlight"><pre><span></span><code>ipyeos<span class="w"> </span>-m<span class="w"> </span>pytest<span class="w"> </span>-s<span class="w"> </span>-x<span class="w"> </span>test.py<span class="w"> </span>-k<span class="w"> </span>test_example6

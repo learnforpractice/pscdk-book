@@ -555,10 +555,10 @@
     <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;++++++++++</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;elapsed&#39;</span><span class="p">])</span>
 </code></pre></div>
 <p>编译：
-<div class="highlight"><pre><span></span><code>python-contract build action_example.codon
+<div class="highlight"><pre><span></span><code>python-contract<span class="w"> </span>build<span class="w"> </span>action_example.codon
 </code></pre></div></p>
 <p>运行测试：</p>
-<div class="highlight"><pre><span></span><code>ipyeos -m pytest -s -x test.py -k test_action
+<div class="highlight"><pre><span></span><code>ipyeos<span class="w"> </span>-m<span class="w"> </span>pytest<span class="w"> </span>-s<span class="w"> </span>-x<span class="w"> </span>test.py<span class="w"> </span>-k<span class="w"> </span>test_action
 </code></pre></div>
 <p>输出：</p>
 <div class="highlight"><pre><span></span><code>debug 2023-03-28T12:35:48.175 thread-0  apply_context.cpp:30          print_debug          ] 

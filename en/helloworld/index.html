@@ -552,17 +552,17 @@
     <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;++++++++++</span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;elapsed&#39;</span><span class="p">])</span>
 </code></pre></div>
 <p>Compile:</p>
-<div class="highlight"><pre><span></span><code>python-contract build helloworld.codon
+<div class="highlight"><pre><span></span><code>python-contract<span class="w"> </span>build<span class="w"> </span>helloworld.codon
 </code></pre></div>
 <p>To run the test code:</p>
-<div class="highlight"><pre><span></span><code>ipyeos -m pytest -s -x testhelloworld.py -k test
+<div class="highlight"><pre><span></span><code>ipyeos<span class="w"> </span>-m<span class="w"> </span>pytest<span class="w"> </span>-s<span class="w"> </span>-x<span class="w"> </span>testhelloworld.py<span class="w"> </span>-k<span class="w"> </span><span class="nb">test</span>
 </code></pre></div>
 <p>Output:</p>
 <div class="highlight"><pre><span></span><code>Hello, World!
 </code></pre></div>
 <h2 id="create-an-initial-project">Create an Initial Project</h2>
 <p>You can create an initial project using the <code>python-contract init</code> command. For example, the following code creates an initial project named <code>mycontract</code>:</p>
-<div class="highlight"><pre><span></span><code>python-contract init mycontract
+<div class="highlight"><pre><span></span><code>python-contract<span class="w"> </span>init<span class="w"> </span>mycontract
 </code></pre></div>
 <p>After creating the project, you can compile the contract using the following command:</p>
 <div class="highlight"><pre><span></span><code>cd mycontract

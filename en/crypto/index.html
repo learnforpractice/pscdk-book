@@ -663,11 +663,11 @@
     <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;++++++++++</span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;elapsed&#39;</span><span class="p">])</span>
 </code></pre></div>
 <p>Compilation:</p>
-<div class="highlight"><pre><span></span><code>python-contract build crypto_example.codon
+<div class="highlight"><pre><span></span><code>python-contract<span class="w"> </span>build<span class="w"> </span>crypto_example.codon
 </code></pre></div>
 <p>Testing:</p>
-<div class="highlight"><pre><span></span><code>ipyeos -m pytest -s -x test.py -k test_crypto
-ipyeos -m pytest -s -x test.py -k test_recover
+<div class="highlight"><pre><span></span><code>ipyeos<span class="w"> </span>-m<span class="w"> </span>pytest<span class="w"> </span>-s<span class="w"> </span>-x<span class="w"> </span>test.py<span class="w"> </span>-k<span class="w"> </span>test_crypto
+ipyeos<span class="w"> </span>-m<span class="w"> </span>pytest<span class="w"> </span>-s<span class="w"> </span>-x<span class="w"> </span>test.py<span class="w"> </span>-k<span class="w"> </span>test_recover
 </code></pre></div>
 <p>In this example code, the usage of commonly used hash functions as well as the usage of <code>recover_key</code> and <code>assert_recover_key</code> are demonstrated separately. The usage of hash functions is relatively simple; here is an explanation of the test code for <code>recover_key</code>:
 <code>recover_key</code> takes two parameters, namely <code>digest</code> and <code>signature</code>. The <code>digest</code> is the result of running the sha256 algorithm on a binary data. In the above code, the hash calculation was performed on <code>hello,world</code> using the sha256 algorithm.</p>
