@@ -16,7 +16,7 @@ Python智能合约是用Python语言写的可在链上执行的代码。以EOS�
 EOS是一个基于代理权益证明(DPOS - Delegated Proof of Stake)共识算法的区块链网络。主网于2018年的6月8号正式上线。EOS的主网由21个块生产者(Block Producer)控制，块生产者简称为BP，由投票产生，负责将交易(Transaction)打包到区块中。
 
 ## 账号(Account)
-在EOS区块链上，每一个交易的实体用一个账号表示。账号的名称是一个name结构，在下一节会讲到。账号在C++代码里表示的结构比较复杂。
+不同于以太坊的通过地址（公钥）来进行交易，EOS区块链的交易的实体是比地址更复杂的账号。账号的名称是一个name结构，在下一节会讲到。账号在C++代码里表示的结构比较复杂。
 
 下面是通过EOS的`get_account`RPC接口返回的信息来分集一下包含在账号里的信息：
 
@@ -285,5 +285,5 @@ struct permission_level {
 
 - `version`用来指定ABI的版本
 - `structs`用来指定数据结构，会在`actions`和`tables`这两个结构里被用到
-- `actions`用来描述可以智能合约中的action，每个action实际上都是对应一个智能合约函数
+- `actions`用来描述智能合约中的action的参数，每个action实际上都是对应一个智能合约函数
 - `tables`用来描述表的信息，这样，你网页应用程序就可以通过`get_table_rows`这个RPC API来查询链上的数据库信息
