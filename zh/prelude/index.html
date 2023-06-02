@@ -590,7 +590,7 @@
 <h2 id="eos">什么是EOS</h2>
 <p>EOS是一个基于代理权益证明(DPOS - Delegated Proof of Stake)共识算法的区块链网络。主网于2018年的6月8号正式上线。EOS的主网由21个块生产者(Block Producer)控制，块生产者简称为BP，由投票产生，负责将交易(Transaction)打包到区块中。</p>
 <h2 id="account">账号(Account)</h2>
-<p>在EOS区块链上，每一个交易的实体用一个账号表示。账号的名称是一个name结构，在下一节会讲到。账号在C++代码里表示的结构比较复杂。</p>
+<p>不同于以太坊的通过地址（公钥）来进行交易，EOS区块链的交易的实体是比地址更复杂的账号。账号的名称是一个name结构，在下一节会讲到。账号在C++代码里表示的结构比较复杂。</p>
 <p>下面是通过EOS的<code>get_account</code>RPC接口返回的信息来分集一下包含在账号里的信息：</p>
 <div class="highlight"><pre><span></span><code><span class="n">eosapi</span><span class="o">.</span><span class="n">get_account</span><span class="p">(</span><span class="s2">&quot;testaccount&quot;</span><span class="p">)</span>
 </code></pre></div>
@@ -825,7 +825,7 @@
 <ul>
 <li><code>version</code>用来指定ABI的版本</li>
 <li><code>structs</code>用来指定数据结构，会在<code>actions</code>和<code>tables</code>这两个结构里被用到</li>
-<li><code>actions</code>用来描述可以智能合约中的action，每个action实际上都是对应一个智能合约函数</li>
+<li><code>actions</code>用来描述智能合约中的action的参数，每个action实际上都是对应一个智能合约函数</li>
 <li><code>tables</code>用来描述表的信息，这样，你网页应用程序就可以通过<code>get_table_rows</code>这个RPC API来查询链上的数据库信息</li>
 </ul>
 

@@ -690,9 +690,11 @@ ipyeos<span class="w"> </span>-m<span class="w"> </span>pytest<span class="w"> <
 <p>In the sent transaction, the user's signature on the transaction is also required to indicate that the user has authorized the transaction. Then, in the smart contract, the <code>require_auth</code> function can be called to determine whether the transaction has been authorized by a specific user.</p>
 <p>In actual smart contract applications, the above method can also be used to determine whether a certain section of binary data in the smart contract is signed using a specific private key. The process is as follows:</p>
 <ul>
-<li>Firstly, the user signs the data using his own private key</li>
-<li>The user passes the data, signature, and public key (note that this is not a private key) to the smart contract</li>
-<li>The smart contract can then determine whether the data is signed using a particular private key and perform corresponding operations.</li>
+<li>The contract stores the user's public key.</li>
+<li>the user signs the data with their private key.</li>
+<li>The user sends the data, along with the corresponding signature, to the smart contract.</li>
+<li>The smart contract can call <code>RecoverKey</code> to reconstruct the public key from the user's data and the signature on the data.</li>
+<li>The smart contract reads the user's public key stored on the chain and compares it with the public key reconstructed by calling <code>RecoverKey</code>. If they are the same, it can be confirmed that the data is signed by the corresponding user.</li>
 </ul>
 
 
